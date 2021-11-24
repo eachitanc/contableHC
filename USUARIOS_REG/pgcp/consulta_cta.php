@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!$_SESSION["login"])
 {
 header("Location: ../login.php");
 exit;
@@ -48,6 +48,6 @@ req.send(null);
 </body>
 </html>
 
-<?
+<?php
 }
 ?>

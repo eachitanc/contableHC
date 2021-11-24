@@ -1,31 +1,22 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!$_SESSION["login"])
 {
 header("Location: ../login.php");
 exit;
 } else {
-?>
-<?php
 
    include('../config.php');				
     
-   if($connection=new mysqli($server, $dbuser, $dbpass, $database)) 
-	{
-		
-	} 
-	else 
-	{
-		die("Error conectandose a la base.");
-	} 
-	
 	////------------------
-		$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+	global $server, $database, $dbpass,$dbuser,$charset;
+	// Conexion con la base de datos
+	$cx= new mysqli ($server, $dbuser, $dbpass, $database);
 	    $s = "select * from fecha";
-	    $r = mysql_db_query($database, $s, $connectionxx);
-	    while($rw = mysql_fetch_array($r)) 
-  	    {
-     	 $fecha_sesion=$rw["ano"];
+	    $r = $cx->query($s);
+	    while($v = $r->fetch_assoc()){ 
+  	    
+     	 $fecha_sesion=$v["ano"];
     	}
 
 	
@@ -75,26 +66,27 @@ exit;
    }
    else
    {
-   $banco=$_POST['banco']; //
-   $nom_banco1=$_POST['nom_banco1']; //
-   $nom_banco2=$_POST['nom_banco2']; //
-   $num_cta=$_POST['num_cta']; //
-   $fuentes_recursos=$_POST['fuentes_recursos']; //
-   $cod_sia=$_POST['cod_sia']; //**********
-   $tip_cta=$_POST['tip_cta']; //**********
-   $sispro=$_POST['sispro']; //
-   $sispro2=$_POST['sispro2']; //**********
-   $cod_fut_el=$_POST['cod_fut_el']; //**********
-   $naturaleza=$_POST['naturaleza']; //
-   $c_nc=$_POST['c_nc']; //
-   $almacen=$_POST['almacen']; //
-   $depreciable=$_POST['depreciable']; //
-   $cartera=$_POST['cartera']; //
-   $tercero=$_POST['tercero']; //
-   $base=$_POST['base']; //
-   $c_costos=$_POST['c_costos']; //
-   $cta_costos=$_POST['cta_costos']; //
-   $ent_recip=$_POST['ent_recip']; //
+   if (isset($_POST['banco'])) $banco=$_POST['banco']; else $banco=''; //
+   if (isset($_POST['nom_banco1'])) $nom_banco1=$_POST['nom_banco1']; else $nom_banco1='';//
+   if (isset($_POST['$nom_banco2'])) $nom_banco2=$_POST['nom_banco2']; else $nom_banco2='';//
+   if (isset($_POST['num_cta'])) $num_cta=$_POST['num_cta']; else $num_cta='';//	
+   if (isset($_POST['fuentes_recursos'])) $fuentes_recursos=$_POST['fuentes_recursos']; else $fuentes_recursos='';//
+   if (isset($_POST['cod_sia'])) $cod_sia=$_POST['cod_sia']; else $cod_sia='';//
+   if (isset($_POST['tip_cta'])) $tip_cta=$_POST['tip_cta']; else $tip_cta='';//
+   if (isset($_POST['sispro'])) $sispro=$_POST['sispro']; else $sispro='';//
+   if (isset($_POST['sispro2'])) $sispro2=$_POST['sispro2']; else $sispro2='';//
+   if (isset($_POST['cod_fut_el'])) $cod_fut_el=$_POST['cod_fut_el']; else $cod_fut_el='';//
+   if (isset($_POST['naturaleza'])) $naturaleza=$_POST['naturaleza']; else $naturaleza='';//
+   if (isset($_POST['c_nc'])) $c_nc=$_POST['c_nc']; else $c_nc='';//
+   if (isset($_POST['almacen'])) $almacen=$_POST['almacen']; else $almacen='';//
+   if (isset($_POST['depreciable'])) $depreciable=$_POST['depreciable']; else $depreciable='';//
+   if (isset($_POST['cartera'])) $cartera=$_POST['cartera']; else $cartera='';//
+   if (isset($_POST['tercero'])) $tercero=$_POST['tercero']; else $tercero='';//
+   if (isset($_POST['base'])) $base=$_POST['base']; else $base='';//
+   if (isset($_POST['c_costos'])) $c_costos=$_POST['c_costos']; else $c_costos='';//
+   if (isset($_POST['cta_costos'])) $cta_costos=$_POST['cta_costos']; else $cta_costos='';//
+   if (isset($_POST['ent_recip'])) $ent_recip=$_POST['ent_recip']; else $ent_recip='';//
+
    $bloqueo='NO';
    }
    
@@ -104,10 +96,12 @@ exit;
 
 
 
-   
-$consultax=mysql_query("select * from vf ",$connection);
-while($rowx = mysql_fetch_array($consultax)) 
-{	 $ax=$rowx["fecha_ini"]; $bx=$rowx["fecha_fin"];
+  
+$sq2="select * from vf ";
+$consultax= $cx->query($sq2);
+while($rowx =$consultax->fetch_array())
+{	 
+	$ax=$rowx["fecha_ini"]; $bx=$rowx["fecha_fin"];
 } 
 
 if($ano > $bx or $ano < $ax)
@@ -118,17 +112,16 @@ else
 {   
    
 //---------------------------- saco el id de la empresa ----------------------------
-   $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	    $sqlxx = "select * from fecha";
-	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-	    while($rowxx = mysql_fetch_array($resultadoxx)) 
+	    $resultadoxx = $cx->query($sqlxx);
+	    while($rowxx = $resultadoxx->fetch_array())
   	    {
      	 $idxx=$rowxx["id_emp"];
     	}
    
    
    $sql = "update tmp_cod_pptal set cod='$cod_pptal'";
-   $resultado = mysql_db_query($database, $sql, $connection);
+   $resultado = $cx->query($sql);
    
    $ingreso = substr($cod_pptal,0,1);
    
@@ -143,26 +136,27 @@ else
    		$longitud = strlen($cadena);
     	printf("<center class='Estilo4'><B>ANALISIS DE LOS DATOS INGRESADOS POR EL USUARIO</B><BR><br>
 	        Codigo presupuestal = %s",$cadena);
-
-   	switch ($longitud)
+   	//echo $longitud;
+	switch ($longitud)
    	 {
          	  
-	     case (0):
+	  case (0):
       $error = "<center class='Estilo4'><br><br><b>Codigo Presupuestal</B> ...:::" .$cadena. ":::... <B> ES INCORRECTO</b><br><br><B><u>RECUERDE</u></B><br><br>Debe Ingresar la Cuentas por <B>PARES</B> y cada <b>PAR</b> no debe exceder 99<br><br> Verifique nuevamente su informacion</center>";
       break;
 	  //---------------------
-	     case (1):
-      $tipo = 1;
+	  case (1):
+	  $tipo = 1;
       $codigo = $cadena;
 	  $padre = substr($codigo,0,$tipo);
 	  $nivel = 1;
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
 	  
 // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
-      {	 $mayor_detalle=$row["tip_dato"];  } 
-	  
+	$sq3=  "select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'";
+	$consulta= $cx->query($sq3);
+    $row =$consulta->fetch_array();
+	        
+				if (isset($row["tip_dato"])) $mayor_detalle=$row["tip_dato"]; else $mayor_detalle='M';
 	  if ($mayor_detalle == 'D')
 	  {
 	  printf("<center class='Estilo4'><br><br><B>RESPUESTA DEL SISTEMA</B><BR><BR>El Codigo Presupuestal<BR> ...:::<b>" .$cadena. "
@@ -170,31 +164,30 @@ else
 		Depende de la Cuenta<BR>...::: <B>" .$padre. "</B>:::...<br>que es una Cuenta tipo <B>" .$mayor_detalle. "etalle</b>
 		<br><br>
 		<B><u>ATENCION</u></B><br><br>De una Cuenta DETALLE <U><B>NO</B></U> puede depender otra cuenta de tipo DETALLE o MAYOR
-		<br><br> Verifique nuevamente su informacion</center>");
+		<br><br> Verifique nuevamente su informacion </center>");
 	  }
 	  else
 	  {
-	  
+			
+
 	  //----------------------------------------------------------------------------------
       // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$codigo' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		if ($result->num_rows == 0)
 		{
 			//--------- INSERCION DEL NUEVO COD_PPTAL -----
+
+			$sql1 = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
+			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro,cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo,homologacion ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro','$cta_maestra', '$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
 			
-			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
-			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro,cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro','$cta_maestra', '$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			mysql_query($sql, $connection) or die(mysql_error());
-			
-			
-			
+			$cx->query($sql1);
 		}
 		else 
 		{
 			echo "<br><br><center class='Estilo4'><b>El codigo presupuestal que intenta grabar ya existe en la Base de Datos<br>
 			<br>
-			<a href='consulta_pgcp.php'>Consulte Maestro P.G.C.P</a> y Verifique su Informacion</center>";
+			<a href='consulta_pgcp.php'>Consulte Maestro P.G.C.P</a> y Verifique su Informacion </center>";
 		} 
 		
 	  }	
@@ -202,7 +195,7 @@ else
 	   
 	  break;
 	  //---------------------
-	     case (2):
+    case (2):
       $tipo = 1;
 	  $codigo = $cadena;
 	  $nivel = 2;
@@ -210,9 +203,12 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
 	  
 // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
-      {	 $mayor_detalle=$row["tip_dato"];  } 
+	$sq4 =  "select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'";
+	$consulta= $cx->query($sq4);
+      while($row =$consulta->fetch_array())
+      {	
+		   $mayor_detalle=$row["tip_dato"];  
+		} 
 	  
 	  if ($mayor_detalle == 'D')
 	  {
@@ -229,21 +225,22 @@ else
 	  //----------------------------------------------------------------------------------
       // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
+		$result = $cx->query($sql);
 
-		if (mysql_num_rows($result) == 0)
+		if ( $result->num_rows == 0)
 		{
 			//------ verifico que exista el padre ---
 
           $sql1 = "select * from pgcp where cod_pptal= '$padre' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
-
-			if (mysql_num_rows($result1) == 0)
+		  
+		  $result1 = $cx->query($sql1);
+		  $fil=$result1->num_rows;
+			if ($fil == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
 				<b>El codigo presupuestal que intenta grabar NO TIENE CUENTA MAYOR ASIGNADA 1<br><br>
-				<a href='consulta_pgcp.php'>Consulte Maestro P.G.C.P</a> y Verifique su Informacion
+				<a href='consulta_pgcp.php'>Consulte Maestro P.G.C.P</a> y Verifique su Informacion 
 				</center>";
 				
 			}
@@ -254,11 +251,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro, cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra', '$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			mysql_query($sql, $connection) or die(mysql_error());
+			$cx->query($sql);
 			
 			// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$cx->query($sql2);
 			
 			}   
 		 
@@ -289,8 +286,10 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
 	  
 // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	$sql4=  "select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'";  
+	$consulta= $cx->query($sql4);
+      while($row = $consulta->fetch_array())
+	  
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -316,15 +315,16 @@ else
 	  	  
 	   // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
+		$result = $cx->query($sql); 
 
-		if (mysql_num_rows($result) == 0)
+		if ( $result->num_rows == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c2' and nivel = '2' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
-			if (mysql_num_rows($result1) == 0)
+		  $result1 = $cx->query($sql1);
+		  $fil=$result1->num_rows;
+			if ( $fil == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -332,25 +332,21 @@ else
 				<a href='consulta_pgcp.php'>Consulte Maestro P.G.C.P</a> y Verifique su Informacion
 				</center>";
 				
-			}
-		    else
-		   {
+			} else{
 		    
 			//--------- INSERCION DEL NUEVO COD_PPTAL DE 3ER NIVEL-----
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro, cta_maestra,naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra','$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			       $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2);
 					
 					
 			}	
-		}
-		else 
-		{
+		}else{
 			echo "<br><br><center class='Estilo4'><b>El codigo presupuestal que intenta grabar ya existe en la Base de Datos<br><br>
 			<a href='consulta_pgcp.php'>Consulte Maestro P.G.C.P</a> y Verifique su Informacion</center>";
 		}
@@ -373,8 +369,10 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
       
 // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	  $sql = "select * from pgcp where cod_pptal = '$padre' and id_emp='$idxx'";
+	$consulta = $cx->query($sql);
+      while($row = $consulta->fetch_array())
+	  
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -403,16 +401,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil =$result->num_rows;
+		if ( $fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c3' and nivel = '3' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
-		  
-		  if (mysql_num_rows($result1) == 0)
+		  $result1 = $cx->query($sql1);
+		  $fil=$result1->num_rows;
+		  if ( $fil == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -428,11 +426,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro, cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra','$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			        $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2);
 					
 					
 			}	
@@ -459,8 +457,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
       
 // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	$sq4="select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'";  
+	$consulta= $cx->query($sq4);
+      while($row = $consulta->fetch_array())
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -495,16 +494,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil=$result->num_rows;
+		if ($fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c4' and nivel = '4' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
+		  $result1 = $cx->query($sql1);
 		  
-		  if (mysql_num_rows($result1) == 0)
+		  if ($result1->num_rows == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -520,11 +519,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro, cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra', '$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			        $cx->query($sql) ;
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql) ;
 					
 					
 			}	
@@ -551,8 +550,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
 	  
 // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+    $sq4 = "select * from pgcp where cod_pptal = '$padre' and id_emp = '$idxx'";				
+	$consulta= $cx->query($sq4);
+      while($row = $consulta->fetch_array())
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -589,16 +589,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil =$result->num_rows;
+		if ($fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c5' and nivel = '5' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
+		  $result1 = $cx->query($sql1);
 		  
-		  if (mysql_num_rows($result1) == 0)
+		  if ($result1->num_rows == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -614,11 +614,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro, cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra', '$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			        $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2);
 					
 					
 			}	
@@ -646,8 +646,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
       
 // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	  $sql4= "select * from pgcp where cod_pptal = '$padre' and id_emp = '$idxx'";		
+	  $consulta= $cx->query($sql4);
+      while($row = $consulta->fetch_array())
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -689,16 +690,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil =$result->num_rows;
+		if ( $fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c6' and nivel = '6' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
-		  
-		  if (mysql_num_rows($result1) == 0)
+		  $result1 = $cx->query($sql1);
+		  $fil=$result1->num_rows;
+		  if ($fil == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -714,11 +715,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro, cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra','$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			       $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$cx->query($sql2);
 					
 					
 			}	
@@ -744,8 +745,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
       
 // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	$sql4= "select * from pgcp where cod_pptal = '$padre' and id_emp = '$idxx'"; 
+	$consulta= $cx->query($sql4);
+      while($row = $consulta->fetch_array()) 
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -790,17 +792,17 @@ else
 	  
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
-   		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+   		$sql15 = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
+		$result = $cx->query($sql15);
+		$fil=$result->num_rows;
+		if ( $fil== 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c7' and nivel = '7' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
+		  $result1 = $cx->query($sql1);
 		  
-		  if (mysql_num_rows($result1) == 0)
+		  if ( $result1->num_rows == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -816,11 +818,12 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro,cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra','$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			       // mysql_query($sql, $connection) or die(mysql_error());
+					$cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2) or die($cx->error);
 					
 					
 			}	
@@ -847,8 +850,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
       
 // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	  $sql4= "select * from pgcp where cod_pptal = '$padre' and id_emp = '$idxx'";
+	  $consulta= $cx->query($sql4);
+      while($row = 	$consulta->fetch_array())
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -898,16 +902,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil =$result->num_rows;
+		if ( $fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c8' and nivel = '8' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
+		  $result1 = $cx->query($sql1);
 		  
-		  if (mysql_num_rows($result1) == 0)
+		  if ( $result1->num_rows == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -923,11 +927,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro,cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro','$cta_maestra', '$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			$result = $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2);
 					
 					
 			}	
@@ -954,8 +958,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
       
 // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	$sql4 = "select * from pgcp where cod_pptal = '$padre' and id_emp='$idxx'";  
+	$consulta= $cx->query($sql4);
+      while($row = $consulta->fetch_array())
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -1009,16 +1014,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil =$result->num_rows;
+		if ( $fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c9' and nivel = '9' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
+		  $result1 = $cx->query($sql1);
 		  
-		  if (mysql_num_rows($result1) == 0)
+		  if ( $result1->num_rows == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -1034,11 +1039,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro,cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra','$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			$result = $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2);
 					
 					
 			}	
@@ -1065,8 +1070,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
       
 	  // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	 $sql4= "select * from pgcp where cod_pptal = '$padre' and id_emp = '$idxx'"; 
+	  $consulta= $cx->query($sql4);
+      while($row = $consulta->fetch_array())
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -1124,16 +1130,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil =$result->num_rows;
+		if ( $fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c10' and nivel = '10' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
+		  $result1 = $cx->query($sql1);
 		  
-		  if (mysql_num_rows($result1) == 0)
+		  if ( $result1->num_rows == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -1149,11 +1155,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro,cta_maestra,naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra','$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			$result = $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2);
 					
 					
 			}	
@@ -1180,8 +1186,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
 
 	  // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	  $sql = "select * from pgcp where cod_pptal = '$padre' and id_emp = '$idxx'";
+	  $consulta= $cx->query($sql);
+      while($row = $consulta->fetch_array()) 
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -1243,16 +1250,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil =$result->num_rows;
+		if ($fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c11' and nivel = '11' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
+		  $result1 = $cx->query($sql1);
 		  
-		  if (mysql_num_rows($result1) == 0)
+		  if ($result1->num_rows == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -1268,11 +1275,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro,cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra','$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			         $result = $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2);
 					
 					
 			}	
@@ -1300,8 +1307,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
 	  
 	  // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	  $sql = "select * from pgcp where cod_pptal = '$padre' and id_emp = '$idxx'"; 
+	  $consulta= $cx->query($sql);
+      while($row = 	$consulta->fetch_array())
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -1367,16 +1375,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil =$result->num_rows;
+		if ( $fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c12' and nivel = '12' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
+		  $result1 = $cx->query($sql1);
 		  
-		  if (mysql_num_rows($result1) == 0)
+		  if ( $result1->num_rows == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -1392,11 +1400,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro,cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro','$cta_maestra', '$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			        $result = $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2);
 					
 					
 			}	
@@ -1423,8 +1431,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
 	  
 	  // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	  $sql = "select * from pgcp where cod_pptal = '$padre' and id_emp = '$idxx'"; 
+	  $consulta= $cx->query($sql);
+      while($row = $consulta->fetch_array())
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -1494,16 +1503,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil =$result->num_rows;
+		if ( $fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c13' and nivel = '13' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
+		  $result1 = $cx->query($sql1);
 		  
-		  if (mysql_num_rows($result1) == 0)
+		  if ( $result1->num_rows == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -1519,11 +1528,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro, cta_maestra,naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro','$cta_maestra', '$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			       $result = $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2);
 					
 					
 			}	
@@ -1550,8 +1559,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
 	  
 	  // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	 $sql = "select * from pgcp where cod_pptal = '$padre' and id_emp = '$idxx'"; 
+	  $consulta= $cx->query($sql);
+      while($row = $consulta->fetch_array())
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -1625,16 +1635,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil =$result->num_rows;
+		if ( $fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c14' and nivel = '14' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
+		  $result1 = $cx->query($sql1);
 		  
-		  if (mysql_num_rows($result1) == 0)
+		  if ( $result1->num_rows == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -1650,11 +1660,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro,cta_maestra, naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra','$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			        $result = $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2);
 					
 					
 			}	
@@ -1681,8 +1691,9 @@ else
 	  printf('<br>Esta cuenta depende de = %s <br>El nivel de esta Cuenta es %s',$padre,$nivel);
 	  
 	  // consulto si el padre es MAYOR o DETALLE para evitar papas DETALLE con hijos DETALLE
-	  $consulta=mysql_query("select tip_dato from pgcp where cod_pptal ='$padre' and id_emp ='$idxx'",$connection);
-      while($row = mysql_fetch_array($consulta)) 
+	  $sql = "select * from pgcp where cod_pptal = '$padre' and id_emp = '$idxx'";
+	  $consulta= $cx->query($sql);
+      while($row = $consulta->fetch_array())
       {	 $mayor_detalle=$row["tip_dato"];  } 
 	  
 	  if ($mayor_detalle == 'D')
@@ -1760,16 +1771,16 @@ else
 	  
 	  // ------------------- verificar que el cod pptal no existe en la empresa actual --
    		$sql = "select * from pgcp where cod_pptal='$cod_pptal' and id_emp='$idxx'";
-		$result = mysql_query($sql, $connection) or die(mysql_error());
-
-		if (mysql_num_rows($result) == 0)
+		$result = $cx->query($sql);
+		$fil =$result->num_rows;
+		if ($fil == 0)
 		{
 		   
 		   //------ verifico que exista el padre ---
           $sql1 = "select * from pgcp where cod_pptal = '$c15' and nivel = '15' and id_emp='$idxx'";
-		  $result1 = mysql_query($sql1, $connection) or die(mysql_error());
+		  $result1 = $cx->query($sql1);
 		  
-		  if (mysql_num_rows($result1) == 0)
+		  if ( $result1->num_rows == 0)
 			{
 				echo "<br><br>
 				<center class='Estilo4'>
@@ -1785,11 +1796,11 @@ else
 			
 			$sql = "INSERT INTO pgcp ( ano , id_emp , cod_pptal , padre , nom_rubro , tip_dato , nivel , afectado , 
 			banco , nom_banco1, nom_banco2, num_cta, fuentes_recursos, sispro, cta_maestra,naturaleza, c_nc, almacen, depreciable, cartera, tercero, base, c_costos, cta_costos, ent_recip, cod_sia, tip_cta, sispro2, cod_fut_el, bloqueo ) VALUES ( '$ano' , '$id_emp' , '$cod_pptal' , '$padre' , '$nom_rubro' , '$tip_dato' , '$nivel' , '$afectado' , '$banco' , '$nom_banco1', '$nom_banco2', '$num_cta', '$fuentes_recursos', '$sispro', '$cta_maestra','$naturaleza', '$c_nc', '$almacen', '$depreciable', '$cartera', '$tercero', '$base', '$c_costos', '$cta_costos', '$ent_recip', '$cod_sia', '$tip_cta', '$sispro2', '$cod_fut_el', '$bloqueo' )";
-			        mysql_query($sql, $connection) or die(mysql_error());
+			       $result = $cx->query($sql);
 					
 					// actualizo el afectado del padre cambiadolo a 1
 			$sql2 = "update pgcp set afectado='1' where cod_pptal ='$padre' and id_emp ='$idxx'";
-			$resultado2 = mysql_db_query($database, $sql2, $connection); 
+			$resultado2 = $cx->query($sql2);
 					
 					
 			}	
@@ -1808,7 +1819,7 @@ else
       $error = "<center class='Estilo4'><br><br><b>La Extension del Codigo Presupuestal Ingresado Excede al Nivel 16 </b><br>Verifique nuevamente su informacion</center>"; 
  
    	 }
-    	 printf("%s <br><br></center>",$error); 
+    	 //echo $error; 
 
    }
    
@@ -1854,9 +1865,10 @@ a:link {
 .Estilo9 {color: #FFFFFF}
 -->
 </style> 
-<?
+<?php
 }
-?><title>CONTAFACIL</title>
+?>
+<title>CONTAFACIL</title>
 <body onload = "document.forms[0]['a'].focus()">
 		 <center>
 		 <form name="a" action="carga_pgcp.php">

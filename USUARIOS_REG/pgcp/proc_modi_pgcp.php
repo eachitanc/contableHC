@@ -8,9 +8,9 @@ exit;
 ?>
 <?php
    include('../config.php');				
-   $connection = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+   $connection = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
    //id_emp
-	$cxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+	$cxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 	$sxx = "select * from fecha";
 	$rxx = mysql_db_query($database, $sxx, $cxx);
 
@@ -65,8 +65,8 @@ exit;
 	$nivel=$_POST['nivel']; 
 	
 	
-new mysqli($server, $dbuser, $dbpass, $database);
-
+mysql_connect($server, $dbuser, $dbpass);
+mysql_select_db($database);
 $sSQL="Update pgcp Set 	cod_pptal = '$cod_pptal' , nom_rubro = '$nom_rubro' , banco = '$banco' , nom_banco1 = '$nom_banco1' , nom_banco2 = '$nom_banco2' , num_cta = '$num_cta' , tip_cta = '$tip_cta' , fuentes_recursos = '$fuentes_recursos' , cod_sia = '$cod_sia' , sispro = '$sispro' , sispro2 = '$sispro2' , cod_fut_el = '$cod_fut_el' , naturaleza = '$naturaleza' , c_nc = '$c_nc' , almacen = '$almacen' , depreciable = '$depreciable' , cartera = '$cartera' , tercero = '$tercero' , base = '$base' , c_costos = '$c_costos' , cta_costos = '$cta_costos' , ent_recip = '$ent_recip' , nivel = '$nivel'   Where cod_pptal = '$cod_pptal' and id_emp ='$idxx'";
 mysql_query($sSQL);	
 

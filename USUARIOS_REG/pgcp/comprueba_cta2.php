@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!$_SESSION["login"])
 {
 header("Location: ../login.php");
 exit;
@@ -21,16 +21,18 @@ exit;
 }
 -->
 </style>
-<?
+<?php
 include('../config.php');
+global $server, $database, $dbpass,$dbuser,$charset;
+	// Conexion con la base de datos
+	$cx= new mysqli ($server, $dbuser, $dbpass, $database);
 
-//*** luis hillon
 
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = 	$cx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_array())
+
 {
   $id_emp=$rowxx["id_emp"];
 }
@@ -39,13 +41,9 @@ $servidor = $server;
 $usuario = $dbuser;
 $password = $dbpass;
 
-$conexion = mysql_connect($servidor, $usuario, $password) or die("no se pudo conectar a base de datos".mysql_error());
-
-$selec = mysql_select_db($database,$conexion);
-
-$usuarios = mysql_query("Select * from pgcp where cod_pptal like '".$_REQUEST['cod']."%' and id_emp ='$id_emp'",$conexion);
-
-$num = mysql_num_rows($usuarios);
+$sql ="Select * from pgcp where cod_pptal like '".$_REQUEST['cod']."%' and id_emp ='$id_emp'";
+$usuarios = $cx->query($sql); 
+$num = $usuarios->num_rows;
 
 if ($num==0)
 {
@@ -54,9 +52,9 @@ printf("<span class='Estilo1'>COD. INCORRECTO</span>");
 else
 {
 		$sql2 = "Select * from pgcp where cod_pptal like '".$_REQUEST['cod']."%' and id_emp ='$id_emp'";
-		$resultado2 = mysql_db_query($database, $sql2, $conexion);
+		$resultado2 = $cx->query($sql2);
 		printf("<center><table>");
-		while($row2 = mysql_fetch_array($resultado2)) 
+		while($row2 = $resultado2->fetch_array()) 
 		{
 		  $cod_pptal=$row2["cod_pptal"];
 		  $nom_rubro=$row2["nom_rubro"];
@@ -71,9 +69,7 @@ else
 		}
 		printf("</center></table>");		
 }
-mysql_close($conexion);
-?>
-<?
+
 }
 ?>
 

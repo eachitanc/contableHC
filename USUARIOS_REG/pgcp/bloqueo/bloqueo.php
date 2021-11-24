@@ -72,7 +72,7 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
     <td colspan="3">
 	<?php 
 	  include('../../config.php');				
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 
@@ -107,8 +107,8 @@ while($rowxx = mysql_fetch_array($resultadoxx))
               <select name="nn" class="Estilo4" style="width: 400px;">
                 <?
 include('../../config.php');
-$db = new mysqli($server, $dbuser, $dbpass, $database);
-
+$db = mysql_connect($server, $dbuser, $dbpass);
+mysql_select_db($database);
 $strSQL = "SELECT * FROM pgcp WHERE id_emp = '$idxx' AND tip_dato ='D' AND bloqueo = 'NO' ORDER BY cod_pptal";
 $rs = mysql_query($strSQL);
 $nr = mysql_num_rows($rs);
@@ -140,7 +140,7 @@ for ($i=0; $i<$nr; $i++) {
 	<?php
 //-------
 include('../../config.php');				
-$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$cx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from pgcp where id_emp = '$idxx' and bloqueo = 'SI' order by cod_pptal asc ";
 $re = mysql_db_query($database, $sq, $cx);
 
@@ -193,7 +193,7 @@ printf("</table></center>");
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
           <? include('../../config.php');				
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 

@@ -70,7 +70,7 @@ return (key <= 13 || (key >= 48 && key <= 57));
 
 <?php 
 include('../config.php');				
-$cxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$cxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sxx = "select * from fecha";
 $rxx = mysql_db_query($database, $sxx, $cxx);
 
@@ -84,7 +84,7 @@ while($rowxxx = mysql_fetch_array($rxx))
 
 <?php 
 		   mysql_connect($server,$dbuser,$dbpass); 
-		     
+		   mysql_select_db($database);  
 		   $a=$_GET['id'];  
 		   $a1=mysql_query("select * from pgcp where cod_pptal = '$a' and id_emp ='$idxxx'");  
 		   $result = @mysql_query($a1);
@@ -189,7 +189,7 @@ function habilitar2(obj) {
 	  <td>	    <div align="center"><span class="Estilo4"><strong>MODIFICA  DATOS CUENTA DEL PLAN GENERAL DE CONTABILIDAD PUBLICA  <br />P.G.C.P</strong></span><br />
               <?php 
 	  include('../config.php');				
-$cxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$cxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sxx = "select * from fecha";
 $rxx = mysql_db_query($database, $sxx, $cxx);
 
@@ -203,7 +203,7 @@ while($rowxxx = mysql_fetch_array($rxx))
               <?php
 //-------
 include('../config.php');				
-$cx2 = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$cx2 = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sq2 = "select * from empresa where cod_emp = '$idxxx'";
 $re2 = mysql_db_query($database, $sq2, $cx2);
 
@@ -775,8 +775,8 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                       <select name="ent_recip" class="Estilo4" id="ent_recip" style="width: 400px;" >
                         <?
 include('config.php');
-$db = new mysqli($server, $dbuser, $dbpass, $database);
-
+$db = mysql_connect($server, $dbuser, $dbpass);
+mysql_select_db($database);
 $strSQL = "SELECT * FROM terceros_cgr_ing ORDER BY cod_ter";
 $rs = mysql_query($strSQL);
 $nr = mysql_num_rows($rs);
@@ -795,8 +795,8 @@ for ($i=0; $i<$nr; $i++) {
 					  <select name="ent_recip" class="Estilo4" id="ent_recip" style="width: 400px;" disabled="disabled" >
                         <?
 include('config.php');
-$db = new mysqli($server, $dbuser, $dbpass, $database);
-
+$db = mysql_connect($server, $dbuser, $dbpass);
+mysql_select_db($database);
 $strSQL = "SELECT * FROM terceros_cgr_ing ORDER BY cod_ter";
 $rs = mysql_query($strSQL);
 $nr = mysql_num_rows($rs);
@@ -864,7 +864,7 @@ for ($i=0; $i<$nr; $i++) {
         <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
             <span class="Estilo4"> <strong>
             <? include('../config.php');				
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 

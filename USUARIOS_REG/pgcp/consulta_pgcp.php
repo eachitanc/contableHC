@@ -76,7 +76,7 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
 	    <span class="Estilo1"><BR />MAESTRO PLAN GENERAL DE CONTABILIDAD PUBLICA<BR />P.G.C.P </span><BR />
 	      <?php 
 	  include('../config.php');				
-$cxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$cxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sxx = "select * from fecha";
 $rxx = mysql_db_query($database, $sxx, $cxx);
 
@@ -90,7 +90,7 @@ while($rowxxx = mysql_fetch_array($rxx))
 	      <?php
 //-------
 include('../config.php');				
-$cx2 = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$cx2 = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sq2 = "select * from empresa where cod_emp = '$idxxx'";
 $re2 = mysql_db_query($database, $sq2, $cx2);
 
@@ -104,7 +104,7 @@ printf("<span class='Estilo4'><br><b>...::: %s :::...</b></span><br>", $row2["ra
 	      <?php
 //-------
 include('../config.php');				
-$connection = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$connection = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sql = "select * from fecha";
 $resultado = mysql_db_query($database, $sql, $connection);
 
@@ -158,8 +158,8 @@ function muestra(queCosa)
 <?
 
 include('../config.php');	
-$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-$cxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$cx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+$cxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sxx = "select * from fecha";
 $rxx = mysql_db_query($database, $sxx, $cxx);
 
@@ -187,7 +187,7 @@ if($numeroRegistros<=0)
     //////////fin elementos de orden
 
     //////////calculo de elementos necesarios para paginacion
-    //tamaï¿½o de la pagina
+    //tamaño de la pagina
     $tamPag=50;
 
     //pagina actual si no esta definida y limites
@@ -378,7 +378,7 @@ echo "</table>";
         <span class="Estilo4">
 		<strong>
 <? include('../config.php');				
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 
