@@ -1,0 +1,27 @@
+21;M;T;GASTOS DE FUNCIONAMIENTO
+2101;M;;GASTOS DE PERSONAL
+210101;M;T;Gastos de Personal de Planta
+21010101;M;;Servicios personales asociados a la nomina
+2101010101;D;;Sueldos personal de nomina
+2101010102;D;;Horas extras, dominicales y festivos
+2101010103;D;;Otros conceptos de servicios personales asociados a la nomina
+21010102;D;;Contribuciones inherentes a la nomina
+210102;D;T;Servicios personales indirectos
+2102;M;T;GASTOS GENERALES
+210201;D;;Adquisicion de bienes
+210202;D;;Adquisicion de servicios (diferentes a mantenimiento)
+210203;D;;Mantenimiento
+210204;D;;Servicios publicos
+210205;D;;Impuestos y Multas
+210206;D;;Otros
+2103;M;T;TRANSFERENCIAS CORRIENTES
+210301;D;;Pago directo de pensionados o jubilados
+210302;D;;Otras transferencias corrientes
+2104;M;T;GASTOS DE OPERACION COMERCIAL Y PRESTACION DE SERVICIOS
+210401;D;;Medicamentos
+210402;D;;De comercializacion (compra de ByS para la venta diferentes a medicamentos)
+210403;D;;De prestacion de servicios (compra de ByS para prestacion de servicios diferentes a medicamentos)
+22;D;T;INVERSION
+23;D;T;DEUDA PUBLICA
+24;D;T;CUENTAS POR PAGAR (Vigencias anteriores)
+2;M;T;TOTAL DE GASTOS

@@ -1,0 +1,299 @@
+1,INGRESOS
+1.1,INGRESOS CORRIENTES
+1.1.01,TRIBUTARIOS
+1.1.01.01,Impuestos Directos
+1.1.01.01.34,Circulación y Tránsito por Transporte Público
+1.1.01.01.40,Predial Unificado
+1.1.01.01.41,Porcentaje del Impuesto Predial para Corporaciones Autónomas Regionales
+1.1.01.01.43,Teléfonos
+1.1.01.02,Impuestos Indirectos
+1.1.01.02.17,Impuesto al Transporte de Hidrocarburos
+1.1.01.02.39,Industria y Comercio
+1.1.01.02.45,Avisos y Tableros
+1.1.01.02.47,Publicidad Exterior Visual
+1.1.01.02.49,Delineación y Urbanismo
+1.1.01.02.51,Espectaculos Públicos
+1.1.01.02.51.01,Espectaculos Públicos Libre Destinación
+1.1.01.02.51.03,Espectaculos Públicos -Deporte-
+1.1.01.02.51.05,Espectaculos Públicos -Cultura-
+1.1.01.02.53,Impuesto de Ocupación de Vías
+1.1.01.02.55,Juegos de suerte y azar
+1.1.01.02.55.09,Juegos promocionales municipales
+1.1.01.02.55.11,A las ventas por sistema de Clubes
+1.1.01.02.55.13,Rifas
+1.1.01.02.55.15,Billetes tiquetes boletas de rifas y premios de las mismas
+1.1.01.02.55.17,A las apuestas en toda clase de juegos permitidos
+1.1.01.02.55.19,De Casinos
+1.1.01.02.55.21,Sobre Apuestas Mutuas
+1.1.01.02.55.23,Gravamenes a concursos Hípicos y Caninos
+1.1.01.02.55.91,Porcentaje de juegos de suerte y azar para Colciencias
+1.1.01.02.57,Degüello de Ganado Menor
+1.1.01.02.59,Sobretasa Bomberil
+1.1.01.02.61,Sobretasa Consumo Gasolina Motor
+1.1.01.02.61.01,Sobretasa Consumo Gasolina Motor Libre Destinación
+1.1.01.02.61.03,Sobretasa Consumo Gasolina Motor Destinación Específica
+1.1.01.02.63,Estampillas
+1.1.01.02.63.01,Estampilla Pro-Palacio
+1.1.01.02.63.03,Estampilla Pro-Desarrollo
+1.1.01.02.63.05,Estampilla Pro-Electrificación Rural
+1.1.01.02.63.07,Estampillas Pro-Turismo
+1.1.01.02.63.09,Estampilla Desarrollo Fronterizo
+1.1.01.02.63.11,Estampilla Pro-Ancianos
+1.1.01.02.63.13,Estampilla Pro-Universidad
+1.1.01.02.63.15,Estampilla Pro-Asistencia Social
+1.1.01.02.63.17,Estampilla Pro-Hospital
+1.1.01.02.63.19,Estampilla Pro-Cultura
+1.1.01.02.63.93,Estampillas Fondos de Pensiones
+1.1.01.02.63.98,Otras Estampillas
+1.1.01.02.65,Alumbrado Público
+1.1.01.02.67,Plusvalía
+1.1.01.02.69,Registro de Marcas y Herretes
+1.1.01.02.73,Contribución del 5% sobre contratos
+1.1.01.02.98,Otros Impuestos Indirectos
+1.1.02,NO TRIBUTARIOS
+1.1.02.01,Tasas Multas y Contribuciones
+1.1.02.01.01,Tasas
+1.1.02.01.01.01,Tránsito y Transporte
+1.1.02.01.01.03,Sistematización
+1.1.02.01.01.05,Acueducto
+1.1.02.01.01.06,Alcantarillado
+1.1.02.01.01.07,Aseo
+1.1.02.01.01.08,Energía
+1.1.02.01.01.09,Plaza de Mercado
+1.1.02.01.01.11,Plaza de Ferias
+1.1.02.01.01.13,Matadero Público
+1.1.02.01.01.15,Licencias para Transporte de Ganado
+1.1.02.01.01.17,Licencias y Patentes de Funcionamiento
+1.1.02.01.01.19,Expedición de Certificados y Paz y Salvos
+1.1.02.01.01.25,Peaje Turístico
+1.1.02.01.01.31,Publicaciones
+1.1.02.01.01.33,Almotacen
+1.1.02.01.01.35,Tasa por Ocupación de Vías
+1.1.02.01.01.37,Venta de Bienes y Servicios
+1.1.02.01.01.37.01,Venta de Bienes y Servicios Agropecuarios
+1.1.02.01.01.37.03,Venta de Bienes y Servicios Instituciones Educativas
+1.1.02.01.01.37.05,Venta de Bienes y Servicios Previsión Social
+1.1.02.01.01.37.98,Otras ventas de Bienes y Servicios
+1.1.02.01.01.39,Arrendamientos
+1.1.02.01.01.41,Alquiler de Maquinaria y Equipo
+1.1.02.01.01.98,Otras Tasas
+1.1.02.01.03,Multas y Sanciones
+1.1.02.01.03.01,Tránsito y Transporte
+1.1.02.01.03.03,Recargos
+1.1.02.01.03.05,Multas de Control Fiscal
+1.1.02.01.03.07,Multas de Control Disciplinario
+1.1.02.01.03.09,Multas de Gobierno
+1.1.02.01.03.11,Multas por Ocupación de Vías
+1.1.02.01.03.15,Intereses moratorios
+1.1.02.01.03.98,Otras Multas y Sanciones
+1.1.02.01.05,Contribuciones
+1.1.02.01.05.01,Contribución Especial por Valorización
+1.1.02.01.05.98,Otras Contribuciones
+1.1.02.02,Transferencias
+1.1.02.02.01,Transferencias para Funcionamiento
+1.1.02.02.01.01,Del Nivel Nacional
+1.1.02.02.01.01.01,Del Nivel Central Nacional
+1.1.02.02.01.01.01.01,Sistema General de Participaciones Propósito General Libre Destinación
+1.1.02.02.01.01.01.98,Otras Transferencias del Nivel Central Nacional
+1.1.02.02.01.01.03,De Entidades Descentralizadas Nacionales
+1.1.02.02.01.01.03.01,De Entidades No Financieras Nacionales
+1.1.02.02.01.01.03.01.03,De Empresas No Financieras Nacionales
+1.1.02.02.01.01.03.01.03.01,Empresas del Sector Eléctrico -de Ley-
+1.1.02.02.01.01.03.01.03.98,Otras Transferencias de Empresas No Financieras Nacionales
+1.1.02.02.01.03,Del Nivel Departamental
+1.1.02.02.01.03.01,Del Nivel Central Departamental
+1.1.02.02.01.03.01.01,De Vehículos Automotores
+1.1.02.02.01.03.01.98,Otras Transferencias del Nivel Central Departamental
+1.1.02.02.01.03.03,De Entidades Descentralizadas Departamentales
+1.1.02.02.01.03.03.01,De Entidades No Financieras Departamentales
+1.1.02.02.01.03.03.01.03,De Empresas No Financieras Departamentales
+1.1.02.02.01.03.03.01.03.01,Empresas del Sector Eléctrico -de Ley-
+1.1.02.02.01.03.03.01.03.98,Otras Transferencias de Empresas No Financieras Departamentales
+1.1.02.02.01.05,Del Nivel Municipal y/o Distrital
+1.1.02.02.01.05.01,Del Nivel Central Municipal y/o Distrital
+1.1.02.02.01.05.03,De Entidades Descentralizadas Municipales y/o Distritales
+1.1.02.02.01.05.03.01,De Entidades No Financieras Municipales y/o Distritales
+1.1.02.02.01.05.03.01.03,De Empresas No Financieras Municipales y/o Distritales
+1.1.02.02.01.07,Cuota de Auditaje
+1.1.02.02.01.09,Cuotas partes pensionales
+1.1.02.02.03,Transferencias para Inversión
+1.1.02.02.03.01,Del Nivel Nacional
+1.1.02.02.03.01.01,Del Nivel Central Nacional
+1.1.02.02.03.01.01.01,Sistema General de Participaciones -Educación-
+1.1.02.02.03.01.01.01.01,S. G. P. Educación - Prestación de Servicios
+1.1.02.02.03.01.01.01.03,S. G. P. Educación - Aportes Patronales de Docentes y Directivos Docentes
+1.1.02.02.03.01.01.01.05,S. G. P. Educación - Cancelación de Prestaciones Sociales del Magisterio
+1.1.02.02.03.01.01.01.07,S. G. P. Educación - Recursos de Calidad
+1.1.02.02.03.01.01.03,Sistema General de Participaciones -Salud-
+1.1.02.02.03.01.01.03.01,S. G. P. Salud - Subsidio Demanda
+1.1.02.02.03.01.01.03.01.01,S. G. P. Salud - Subsidio Demanda Continuidad
+1.1.02.02.03.01.01.03.01.03,S. G. P. Salud - Subsidio Demanda Ampliación Cobertura
+1.1.02.02.03.01.01.03.03,S. G. P. Salud - Prestación de servicios a Población no Afiliada
+1.1.02.02.03.01.01.03.03.01,S. G. P. Salud - Prestación de servicios a Población no Afiliada
+1.1.02.02.03.01.01.03.03.03,S. G. P. Salud - Aportes Patronales
+1.1.02.02.03.01.01.03.05,S. G. P. Salud - Salud Pública
+1.1.02.02.03.01.01.05,S. G. P. Rio Grande de la Magdalena
+1.1.02.02.03.01.01.06,S. G. P. Atención Integral a la Primera Infancia
+1.1.02.02.03.01.01.07,S. G. P. Alimentación Escolar
+1.1.02.02.03.01.01.08,S. G. P. Agua Potable y Saneamiento Básico
+1.1.02.02.03.01.01.09,Sistema General de Participaciones Propósito General Forsoza Inversión
+1.1.02.02.03.01.01.09.03,S. G. P. Propósito General Forsoza Inversión - Deporte
+1.1.02.02.03.01.01.09.05,S. G. P. Propósito General Forsoza Inversión - Cultura
+1.1.02.02.03.01.01.09.07,S. G. P. Propósito General Forsoza Inversión - FONPET
+1.1.02.02.03.01.01.09.98,S. G. P. Propósito General Forsoza Inversión - Libre inversión
+1.1.02.02.03.01.01.10,Sistema General de Regalías
+1.1.02.02.03.01.01.10.01,S. G. R. - Asignaciones y/o Compensaciones directas
+1.1.02.02.03.01.01.10.03,S. G. R. - Ahorro Pensional Entidades Territoriales
+1.1.02.02.03.01.01.11,Programas Nacionales - Salud
+1.1.02.02.03.01.01.11.01,Campaña Directa Enferemedades de Transmisión por vectores ETV
+1.1.02.02.03.01.01.11.03,Campaña Directa Lepra
+1.1.02.02.03.01.01.11.05,Campaña Directa Tuberculosis
+1.1.02.02.03.01.01.11.07,Campañas Directas Desplazados
+1.1.02.02.03.01.01.11.09,Programa de Centros de Regulación y Urgencias CRUE
+1.1.02.02.03.01.01.11.11,Fondo de Estupefacientes
+1.1.02.02.03.01.01.11.98,Otros Programas Nacionales - Salud
+1.1.02.02.03.01.01.13,Programas Nacionales - Educación
+1.1.02.02.03.01.01.13.01,Ley 21/82
+1.1.02.02.03.01.01.13.03,Plan Padrinos
+1.1.02.02.03.01.01.13.05,Atención a la Población Desplazada
+1.1.02.02.03.01.01.13.07,Red de Solidaridad
+1.1.02.02.03.01.01.15,Cofinanciación
+1.1.02.02.03.01.01.17,De Solidaridad y Garantías
+1.1.02.02.03.01.01.17.01,Subcuenta de solidaridad: regimén subsidiado
+1.1.02.02.03.01.01.17.01.01,Continuidad
+1.1.02.02.03.01.01.17.01.03,Ampliación
+1.1.02.02.03.01.01.17.03,Subcuenta Accidentes y eventos catastroficos (desplazados)
+1.1.02.02.03.01.01.17.05,Subcuenta promoción de la salud (Programa de convivencia pácifica)
+1.1.02.02.03.01.01.19,Regalías Indirectas
+1.1.02.02.03.01.01.21,Fondo de Ahorro y Estabilización Macroeconómica
+1.1.02.02.03.01.01.22,Fondo de Ahorro y Estabilización del S. G. R.
+1.1.02.02.03.01.01.98,Otras Transferencias del Nivel Central Nacional
+1.1.02.02.03.01.03,De Entidades Descentralizadas Nacionales
+1.1.02.02.03.01.03.01,De Entidades No Financieras Nacionales
+1.1.02.02.03.01.03.01.01,De Entidades No Financieras Nacionales no consideradas Empresas
+1.1.02.02.03.01.03.01.01.01,Cofinanciación
+1.1.02.02.03.01.03.01.01.98,Otras Transferencias de Entidades No Financieras Nacionales no consideradas Empresas
+1.1.02.02.03.01.03.01.03,De Empresas No Financieras Nacionales
+1.1.02.02.03.01.03.01.03.01,Empresa para la Salud -ETESA-
+1.1.02.02.03.01.03.01.03.03,Empresas del Sector Eléctrico -de Ley-
+1.1.02.02.03.01.03.01.03.05,Transferencias E. S. P. Subsidios para Servicios Públicos
+1.1.02.02.03.01.03.01.03.98,Otras Transferencias de Empresas No Financieras Nacionales
+1.1.02.02.03.03,Del Nivel Departamental
+1.1.02.02.03.03.01,Del Nivel Central Departamental
+1.1.02.02.03.03.01.01,Cofinanciación
+1.1.02.02.03.03.01.03,Del Fondo de Desarrollo
+1.1.02.02.03.03.01.98,Otras Transferencias del Nivel Central Departamental
+1.1.02.02.03.03.03,De Entidades Descentralizadas Departamentales
+1.1.02.02.03.03.03.01,De Entidades No Financieras Departamentales
+1.1.02.02.03.03.03.01.01,De Entidades No Financieras Departamentales no consideradas Empresas
+1.1.02.02.03.03.03.01.03,De Empresas No Financieras Departamentales
+1.1.02.02.03.03.03.01.03.01,Transferencias E. S. P. Subsidios para Servicios Públicos
+1.1.02.02.03.03.03.01.03.03,Empresas del Sector Eléctrico -de Ley-
+1.1.02.02.03.03.03.01.03.98,Otras Transferencias de Empresas No Financieras Departamentales
+1.1.02.02.03.05,Del Nivel Municipal y/o Distrital
+1.1.02.02.03.05.01,Del Nivel Central Municipal y/o Distrital
+1.1.02.02.03.05.03,De Entidades Descentralizadas Municipales y/o Distritales
+1.1.02.02.03.05.03.01,De Entidades No Financieras Municipales y/o Distritales
+1.1.02.02.03.05.03.01.01,De Entidades No Financieras Municipales y/o Distritales no consideradas Empresas
+1.1.02.02.03.05.03.01.03,De Empresas No Financieras Municipales y/o Distritales
+1.1.02.02.03.05.03.01.03.01,Transferencias E. S. P. Subsidios para Servicios Públicos
+1.1.02.02.03.05.03.01.03.98,Otras Transferencias de Empresas No Financieras Municipales y/o Distritales
+1.1.02.02.03.07,Regalías
+1.1.02.02.03.07.01,Regalías Petrolíferas
+1.1.02.02.03.07.03,Regalías Carboníferas
+1.1.02.02.03.07.05,Regalías por Gas Natural
+1.1.02.02.03.07.07,Regalías Niquel
+1.1.02.02.03.07.09,Regalías Hierro
+1.1.02.02.03.07.11,Explotación Oro Plata y Platino
+1.1.02.02.03.07.13,Explotación y Exportación Esmeraldas
+1.1.02.02.03.07.15,Salinas
+1.1.02.02.03.07.17,Oro Físico
+1.1.02.02.03.07.19,Platino
+1.1.02.02.03.07.98,Otras Regalías
+1.1.02.02.03.09,Participaciones
+1.1.02.02.03.09.01,Beneficencias y Loterías
+1.1.02.02.03.09.09,Degüello de Ganado Mayor
+1.1.02.02.03.09.13,Transporte de Energía
+1.1.02.02.03.09.98,Otras Participaciones
+1.1.02.03,Rentas por derechos de explotación de Monopolios
+1.1.02.03.98,Por derechos de explotación de otros Monopolios
+1.1.02.98,Otros Ingresos No Tributarios
+1.1.02.98.98,Otros Ingresos No Tributarios no especificados
+1.2,RECURSOS DE CAPITAL
+1.2.01,RECURSOS DEL CRÉDITO
+1.2.01.01,Externo
+1.2.01.01.01,Banca Comercial
+1.2.01.01.02,Multilateral
+1.2.01.01.03,Fomento
+1.2.01.01.04,Gobiernos
+1.2.01.01.05,Proveedores
+1.2.01.01.06,Bonos y Títulos
+1.2.01.01.98,Otros
+1.2.01.02,Interno
+1.2.01.02.01,Banca Comercial
+1.2.01.02.05,Proveedores
+1.2.01.02.06,Bonos y Títulos
+1.2.01.02.08,Sector Público
+1.2.01.02.98,Otros
+1.2.02,OTROS RECURSOS DE CAPITAL
+1.2.02.01,Recursos del Balance
+1.2.02.01.01,Recuperación de Cartera
+1.2.02.01.01.01,Ingresos Tributarios (causados en vigencias anteriores)
+1.2.02.01.01.03,Préstamos Concedidos - Capital
+1.2.02.01.01.05,Préstamos Concedidos - Intereses
+1.2.02.01.01.98,Otras Recuperaciones de Cartera
+1.2.02.01.03,Cancelación de reservas
+1.2.02.01.05,Reintegros
+1.2.02.01.07,Superávit Fiscal
+1.2.02.01.09,Ingresos por Descapitalizaciones
+1.2.02.01.98,Otros Recursos del Balance
+1.2.02.02,Venta de Activos
+1.2.02.02.01,Venta de Activos No Financieros
+1.2.02.02.01.01,Venta de Terrenos
+1.2.02.02.01.01.01,Venta de Terrenos -Otras Destinaciones Específicas-
+1.2.02.02.01.03,Venta de Edificios
+1.2.02.02.01.03.01,Venta de Edificios -Otras Destinaciones Específicas-
+1.2.02.02.01.05,Venta de Maquinaria y Equipo
+1.2.02.02.01.05.01,Venta de Maquinaria y Equipo -Otras Destinaciones Específicas-
+1.2.02.02.01.98,Venta de Otros Activos No Financieros
+1.2.02.02.03,Ventas de Activos Financieros
+1.2.02.02.03.01,Ventas de Activos Financieros -Otras Destinaciones Específicas-
+1.2.02.03,Rendimientos por Operaciones Financieras
+1.2.02.03.01,Intereses
+1.2.02.03.01.01,Provenientes de Recursos de Libre Destinación
+1.2.02.03.01.01.98,Otros Intereses de libre destinación
+1.2.02.03.01.03,Provenientes de Recursos de Destinación Específica
+1.2.02.03.01.03.01,Del Fondo de Educación
+1.2.02.03.01.03.01.01,Del Fondo de Educación - Prestación de Servicios
+1.2.02.03.01.03.01.03,Del Fondo de Educación - Calidad
+1.2.02.03.01.03.03,Del Fondo de Salud
+1.2.02.03.01.03.03.01,Del Fondo de Salud - Subsidio Demanda
+1.2.02.03.01.03.03.03,Del Fondo de Salud - Prestación de Servicios
+1.2.02.03.01.03.03.05,Del Fondo de Salud - Salud Pública
+1.2.02.03.01.03.05,De Recursos de Propósito General Forzosa Inversión
+1.2.02.03.01.03.98,Otros Intereses de destinación específica
+1.2.02.03.03,Dividendos
+1.2.02.03.03.01,Provenientes de Operaciones Bancarias
+1.2.02.03.03.03,Provenientes de Papeles
+1.2.02.03.03.05,Provenientes de la Participación en Capital de Empresas Públicas Financieras
+1.2.02.03.03.07,Provenientes de la Participación en Capital de Empresas Públicas No Financieras
+1.2.02.03.05,Corrección Monetaria
+1.2.02.03.98,Otros Rendimientos por Operaciones Financieras
+1.2.02.04,Diferencial Cambiario
+1.2.02.06,Donaciones
+1.2.02.06.01,De Particulares y Organismos Privados
+1.2.02.06.01.01,De los Hogares
+1.2.02.06.01.03,De Empresas Privadas No Financieras
+1.2.02.06.01.05,De Empresas Privadas Financieras
+1.2.02.06.03,De Organismos Internacionales
+1.2.02.07,Utilidades y Excedentes Financieros
+1.2.02.07.03,Excedentes de Establecimientos Públicos
+1.2.02.07.03.01,Excedentes de destinación para educación
+1.2.02.07.03.03,Excedentes de destinación para salud
+1.2.02.07.03.98,Otros Excedentes de Establecimientos Públicos
+1.2.02.07.05,Utilidades de Empresas Industriales y Comerciales
+1.2.02.07.05.01,Utilidades de destinación para educación
+1.2.02.07.05.03,Utilidades de destinación para salud
+1.2.02.07.05.98,Otras Utilidades de Empresas Industriales y Comerciales
+1.2.02.08,Aprovechamientos Administración Central
+1.2.02.98,Otros Recursos de Capital no especificados

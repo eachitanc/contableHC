@@ -1,0 +1,66 @@
+001,Rentas propias (administración central) o recursos propios (entidades descentralizadas)
+002,Recursos corrientes de Impuestos
+003,Recursos corrientes de Estampillas
+005,Recursos corrientes de Tasas
+006,Recursos corrientes de Multas
+007,Recursos corrientes de Contribuciones
+008,Recursos corrientes de transferencias del SGP para funcionamiento
+009,Recursos corrientes de transferencias de Ley de las empresas del sector eléctrico para funcionamiento
+010,Recursos corrientes de cuotas de fiscalización
+011,Recursos corrientes de cuotas partes pensionales
+012,Recursos corrientes de otras transferencias para funcionamiento
+013,Recursos corrientes de transferencias del SGP para inversión
+014,Recursos corrientes de transferencias de los Fondos de desarrollo departamental para inversión
+015,Recursos corrientes de transferencias de Ley de empresas del sector eléctrico para inversión
+016,Recursos corrientes de transferencias de Ley de las E. S. P. para subsidio a los servicios públicos
+017,Recursos corrientes de transferencias por Regalías
+018,Recursos corrientes de transferencias por participaciones
+019,Recursos corrientes de otras transferencias para inversión
+020,Recursos corrientes por derechos de explotación de monopolios
+021,Recursos o ingresos corrientes de Rentas cedidas - Prestación
+022,Recursos o ingresos corrientes de Rentas cedidas - Dirección
+037,Recursos de capital del Tesoro de la Nación o de la Tesorería de entidades descentralizadas Crédito
+038,Recursos de capital del Tesoro de la Nación Tenedores de Bonos
+039,Recursos de capital del Tesoro de la Nación o de la Tesorería de entidades descentralizadas Recuperación de Cartera
+040,Recursos de capital del Tesoro de la Nación o de la Tesorería de entidades descentralizadas Rendimientos por Operaciones Financieras
+041,Recursos de capital del Tesoro de la Nación o de la Tesorería de entidades descentralizadas Enajenación de Activos
+042,Recursos de capital del Tesoro de la Nación o de la Tesorería de entidades descentralizadas Reintegros otros Recursos del Balance y Recursos no Apropiados
+044,Recursos de capital del Tesoro de la Nación Otros Excedentes Financieros y Utilidades / Recursos de capital de la Tesorería de entidades descentralizadas Excedentes Financieros y Utilidades
+047,Recursos de capital del Tesoro de la Nación Otros Recursos de Tesorería y/o Superávit Fiscal / Recursos de capital de la Tesorería de entidades descentralizadas Otros Recursos de Tesorería
+048,Recursos corrientes de transferencias del SGR para inversión
+251,Ingresos corrientes por Venta de Servicios - Urgencias - Consulta y Procedimientos
+252,Ingresos corrientes por Venta de Servicios - Urgencias - Observación
+253,Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Consulta Externa y Procedimientos
+254,Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Consulta Especializada
+255,Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Salud Oral
+256,Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Promoción y Prevención
+257,Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Otras Actividades Extramurales
+258,Ingresos corrientes por Venta de Servicios - Hospitalización - Estancia General
+259,Ingresos corrientes por Venta de Servicios - Hospitalización - Cuidados Intensivos
+260,Ingresos corrientes por Venta de Servicios - Hospitalización - Cuidados Intermedios
+261,Ingresos corrientes por Venta de Servicios - Hospitalización - Recién Nacidos
+262,Ingresos corrientes por Venta de Servicios - Hospitalización - Salud Mental
+263,Ingresos corrientes por Venta de Servicios - Hospitalización - Quemados
+264,Ingresos corrientes por Venta de Servicios - Hospitalización - Otros Cuidados Especiales
+265,Ingresos corrientes por Venta de Servicios - Quirófanos y Salas de Parto - Quirófanos
+266,Ingresos corrientes por Venta de Servicios - Quirófanos y Salas de Parto - Salas de Parto
+267,Ingresos corrientes por Venta de Servicios - Apoyo Diagnóstico - Laboratorio Clínico
+268,Ingresos corrientes por Venta de Servicios - Apoyo Diagnóstico - Imagenología
+269,Ingresos corrientes por Venta de Servicios - Apoyo Diagnóstico - Anatomía Patológica
+270,Ingresos corrientes por Venta de Servicios - Apoyo Diagnóstico - Otras Unidades de Apoyo Diagnóstico
+271,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Rehabilitación y Terapias
+272,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Banco de Componentes Anatómicos
+273,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Banco de Sangre
+274,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Unidad Renal
+275,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Unidad Hemodinamia
+276,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Terapias Oncológicas
+277,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Farmacia e Insumos Hospitalarios
+278,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Otras Unidades de Apoyo Terapéutico
+279,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Medio Ambiente
+280,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Ancianatos y Albergues
+281,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Centros y Puestos de Salud
+282,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Servicios Docentes
+283,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Investigación Científica
+284,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Medicina Legal
+285,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Servicio de Ambulancias
+286,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Otros Servicios

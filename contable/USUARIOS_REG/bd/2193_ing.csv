@@ -1,0 +1,33 @@
+1,M,T,INGRESOS
+10,D,T,DISPONIBILIDAD INICIAL
+11,M,T,Ingresos Corrientes
+1101,M,T,...Venta de Servicios de Salud
+110101,D,T,.........Regimen Subsidiado
+110102,D,T,.........Regimen Contributivo
+110103,M,T,.........Atención a población pobre en lo no cubierto con subsidios a la demanda (incluye con y sin situación de fondos)
+11010301,D,,............Población pobre no afiliada al Régimen Subsidiado
+11010302,D,,............Servicios no POS-S para los afiliados al Régimen Subsidiado
+110104,D,T,.........SOAT
+110105,D,T,.........FOSYGA
+110106,D,T,.........Plan de intervenciones colectivas
+110107,M,T,.........Otras ventas de servicios de salud
+11010701,D,T,............Cuotas de recuperación (Vinculados)
+11010702,D,T,............Cuotas moderadoras y copagos
+11010703,D,T,............Otras ventas de servicios de salud
+1102,M,T,...Total Aportes (No ligados a la venta de servicios)
+110201,M,T,......Aportes de la nación No ligados a la venta de servicios
+11020101,D,T,.........Aportes de la Nación para el Programa de Saneamiento Fiscal y Financiero (Excluye FONSAET)
+11020102,D,T,.........FONSAET -Fondo de Salvamento y Garantía del Sector Salud- 
+11020103,D,T,.........Otros Aportes de la Nación no ligados a la venta de servicios de salud
+110202,M,T,......Aportes del departamento/distrito No ligados a la venta de servicios
+11020201,D,T,.........Aportes patronales -Ley 1608 de 2013- (No cruzados con facturación por servicios prestados al Departamento/Distrito) 
+11020202,D,T,.........Aportes del Departamento/Distrito para el Programa de Saneamiento Fiscal y Financiero
+11020203,D,T,.........Otros aportes del Departamento/Distrito no ligados a la venta de servicios de salud
+110203,M,T,......Aportes del municipio No ligados a la venta de servicios
+11020301,D,T,.........Aportes patronales -Ley 1608 de 2013- (No cruzados con facturación por servicios prestados al Municipio)
+11020302,D,T,.........Aportes del Municipio para el Programa de Saneamiento Fiscal y Financiero
+11020303,D,T,.........Otros aportes del Municipio no ligados a la venta de servicios de salud
+1103,D,T,...Otros ingresos corrientes
+1104,D,T,Ingresos de Capital
+1105,D,T,Otros Ingresos
+1106,D,T,Cuentas por cobrar Otras vigencias

@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Marco flotante con scroll controlado</title>
+
+</head>
+
+<BODY style="font-family: Verdana">
+<p align="center"><b>Marco flotante con scroll controlado</b></p>
+<!-- ESTO VA EN EL IFRAME
+DO NOT REMOVE BELOW SCRIPT. IT SHOULD ALWAYS APPEAR AT THE VERY END OF YOUR CONTENT-->
+
+<script language="JavaScript1.2">
+
+//Scrollable content III- By http://www.dynamicdrive.com
+
+var speed, currentpos=curpos1=0,alt=1,curpos2=-1
+
+function initialize(){
+if (window.parent.scrollspeed!=0){
+speed=window.parent.scrollspeed
+scrollwindow()
+}
+}
+
+function scrollwindow(){
+temp=(document.all)? document.body.scrollTop : window.pageYOffset
+alt=(alt==0)? 1 : 0
+if (alt==0)
+curpos1=temp
+else
+curpos2=temp
+
+window.scrollBy(0,speed)
+}
+
+setInterval("initialize()",10)
+
+</script>
+<p><font size="2">Ejemplo de marco flotante<br>
+<br>
+Aquí puedes poner el contenido<br>
+que desees.</font></p>
+<p><font size="2">Utiliza las flechas para desplazar<br>
+el contenido de la página arriba<br>
+o abajo.</font></p>
+<p><font size="2">Astalaweb Javascripts.</font></p>
+<p><a href="http://javascripts.astalaweb.com"><font size="2">http://javascripts.astalaweb.com</font></a><font size="2">
+</font>
+</p>
+</body>
+
+</html>

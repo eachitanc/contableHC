@@ -1,0 +1,122 @@
+1,ACTIVO,M,C,D
+11,DISPONIBLE,M,C,D
+1105,CAJA,M,C,D
+110502,CAJA MENOR,M,C,D
+11050201,Caja Menor Eventos,D,C,D
+111005,CUENTA CORRIENTE,M,C,D
+11100501,BANCOLOMBIA-COLMENA-BOGOTA,M,C,D
+1110050102,Colmena 215-003981-10 Eventos y Festejos Popular,D,C,D
+1110050104,Bogotá 053-037909 Comite Eventos y Festejos,D,C,D
+14,DEUDORES,M,C,D
+1413,TRANSFERENCIAS POR COBRAR,M,C,D
+141314,Otras Transferencias,D,C,D
+1420,AVNCES Y ANTICIPOS ENTREGADOS,M,C,D
+142012,Anticipo para adquisición de bienes y servicios,D,C,D
+240101,BIENES Y SERVICIOS,M,C,D
+24010108,Prestación de servicios,D,C,D
+24010113,Bienes y Servicios,D,C,D
+2,PASIVO,M,C,C
+24,CUENTAS POR PAGAR,M,C,C
+2436,RETENCION FUENTE E IMPUESTO TIMBRE,M,C,C
+243603,Honorarios,D,C,C
+243605,Servicios,D,C,C
+243606,Arrendamientos,D,C,C
+243608,Compras,D,C,C
+243625,Impuesto a las Ventas Retenido,D,C,C
+243627,Retención de impuesto de industria y comercio por,D,C,C
+243690,Otras Retenciones,D,C,C
+3,PATRIMONIO,M,NC,C
+31,HACIENDA PUBLICA,M,NC,C
+3105,CAPITAL FISCAL,M,NC,C
+310504,Municipio,D,NC,C
+4,INGRESOS,M,NC,C
+48,OTROS INGRESOS,M,NC,C
+4808,OTROS INGRESOS ORDINARIOS,M,NC,C
+480819,DONACIONES,M,NC,C
+48081901,Entidades Financieras,D,NC,C
+48081902,Entidades Públicas,D,NC,C
+48081903,Otras Entidades,D,NC,C
+5,GASTOS,M,NC,D
+51,DE ADMINISTRACION,M,NC,D
+5101,SUELDOS Y SALARIOS,M,NC,D
+510106,Remuneracion Servicios Tecnicos,D,NC,D
+510109,Honorarios,D,NC,D
+5111,GENERALES,M,NC,D
+511111,Comisiones Honorarios y Servicios,D,NC,D
+511114,Materiales y Suministros,D,NC,D
+511118,ARRENDAMIENTOS,M,NC,D
+51111801,Amplificación de Sonido,D,NC,D
+51111802,Otros arrendamientos,D,NC,D
+5111,GENERALES,M,NC,D
+511119,Viaticos y Gastos de Viaje,D,NC,D
+511120,Publicidad y Propaganda,D,NC,D
+511121,ImpresosPublicac Suscrib afili,D,NC,D
+511122,Fotocopias,D,NC,D
+511123,Comunicaciones y Transporte,D,NC,D
+511137,Eventos Culturales,D,NC,D
+511146,Combustibles y Lubricantes,D,NC,D
+511149,Servicios de Aseo Cafeteria restaurante y Lavand,D,NC,D
+511154,Organización de Eventos,D,NC,D
+511190,OTROS GASTOS GENERALES,M,NC,D
+51119001,Orquestas,D,NC,D
+51119002,Grupos Musicales,M,NC,D
+51119003,NOMBRE,M,NC,D
+5111900301,Afiche,D,NC,D
+5111900302,Reinado Popular,D,NC,D
+5111900303,Premiación Carnavalito,D,NC,D
+5111900304,Premiación 06 de enero,D,NC,D
+5111900305,Premición 31 de Diciembre,D,NC,D
+5111900306,Premiación 03 de enero,D,NC,D
+5111900307,Otras premiación,D,NC,D
+51119004,Plan de Contingencia,D,NC,D
+51119005,Espectáculos Pitotécnicos,D,NC,D
+51119006,Trios Musicales,D,NC,D
+51119007,NOMBRE,M,NC,D
+5111900701,Trios Musicales,D,NC,D
+5111900702,Maestros de Ceremonia,D,NC,D
+5111900703,Otros Incentivos,D,NC,D
+55,GASTO PUBLICO SOCIAL,M,NC,D
+5550,SUBSIDIOS ASIGNADOS,M,NC,D
+555090,Otros subsidios,M,NC,D
+55509001,SUBSIDIO 02 DE ENERO,M,NC,D
+5550900101,Comparsa Danza,D,NC,D
+5550900102,Comparsa Teatro,D,NC,D
+5550900103,Murgas,D,NC,D
+55509002,SUBSIDIO 03 DE ENERO,M,NC,D
+5550900204,Municipios,D,NC,D
+5550900206,Subsidio 03 de enero,D,NC,D
+55509003,SUBSIDIO 04 DE ENERO,M,NC,D
+5550900301,Junta Carnavalito - Barrio Golgota,D,NC,D
+5550900302,Subsidios participantes reinado carnavalito,D,NC,D
+5550900304,Disfraz Individual,D,NC,D
+5550900305,Disfraz Por Pareja,D,NC,D
+5550900306,Murguita,D,NC,D
+5550900307,Carroza,D,NC,D
+5550900308,Comparsa Danza,D,NC,D
+5550900309,Comparsa Teatro,D,NC,D
+5550900310,Logitica Carnavalito,D,NC,D
+55509004,SUBSIDIO 05 DE ENERO,M,NC,D
+5550900401,Familia Ipial,D,NC,D
+5550900402,Grupos,D,NC,D
+55509005,SUBSIDIO 06 DE ENERO,M,NC,D
+5550900501,Disfraz Individual,D,NC,D
+5550900502,Disfraz por Pareja,D,NC,D
+5550900503,Murgas,D,NC,D
+5550900504,Comparsa Teatro,D,NC,D
+5550900505,Comparsa Danza,D,NC,D
+5550900506,Carrozas,D,NC,D
+55509006,OTROS SUBSIDIOS,M,NC,D
+5550900601,Reinado Popular,D,NC,D
+5550900603,Subsidio Corregimientos,D,NC,D
+5550900604,Subsidio Resguardos,D,NC,D
+5550900605,Otros subsidios,D,NC,D
+55509007,AÑOS VIEJOS,M,NC,D
+5550900701,Años Viejos Artisticos,D,NC,D
+5550900702,Años Viejos Tradicionales,D,NC,D
+5550900703,Viudas,D,NC,D
+58,OTROS GASTOS,M,NC,D
+5805,FINANCIEROS,M,NC,D
+580590,Otros Gastos financieros,D,NC,D
+59,CIERRE DE INGRESOSGASTOS Y CTOS,M,NC,D
+5905,CIERRE DE INGRESOSGASTOS Y CTOS,M,NC,D
+590501,Cierre de ingresos Gastos y Costos,D,NC,D

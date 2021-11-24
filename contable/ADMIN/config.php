@@ -1,0 +1,10 @@
+<?
+	$server="localhost";  
+	$database="bd_empopotosi2021"; 
+	$dbpass="maro1509"; 
+	$dbuser="root";
+	$nom_emp="";
+	$dir_tel="";
+	$muni="";
+	$email="";
+?>

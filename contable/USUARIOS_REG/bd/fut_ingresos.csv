@@ -1,0 +1,518 @@
+TI,INGRESOS TOTALES
+TI.A,INGRESOS CORRIENTES
+TI.A.1,TRIBUTARIOS
+TI.A.1.1,Impuesto de Circulación y Tránsito sobre vehículos de Servicio Público
+TI.A.1.1.1,Impuesto de Circulación y Tránsito sobre vehículos de servicio público de la vigencia actual
+TI.A.1.1.2,Impuesto de Circulación y Tránsito sobre vehículos de servicio público de vigencias anteriores
+TI.A.1.2,Vehículos Automotores
+TI.A.1.2.1,vehículos Automotores Vigencia Actual
+TI.A.1.2.2,vehículos Automotores Vigencias Anteriores
+TI.A.1.3,Impuesto Predial unificado
+TI.A.1.3.1,Impuesto Predial Unificado vigencia Actual
+TI.A.1.3.2,Impuesto Predial Unificado vigencia anteriores
+TI.A.1.3.3,Compensación predial por resguardos indígenas vigencia actual
+TI.A.1.3.4,Compensación predial por resguardos indígenas vigencia anterior
+TI.A.1.3.5,Participación con destinación ambiental vigencia Actual
+TI.A.1.3.6,Participación con destinación ambiental vigencia Anterior
+TI.A.1.4,Sobretasa Ambiental
+TI.A.1.4.1,Sobretasa Ambiental Vigencia Actual
+TI.A.1.4.1.1,Con destino a la Corporación Ambiental (sólo municipios que adopten sobretasa)
+TI.A.1.4.1.2,Con destino al Área Metropolitana (sólo municipios que adopten sobretasa)
+TI.A.1.4.1.3,SOBRETASA ESPECIAL PARA EL DISTRITO DE CARTAGENA (VIGENTE LEY 15/ 1961)
+TI.A.1.4.2,Sobretasa Ambiental Vigencias Anteriores
+TI.A.1.4.2.1,Con destino a la Corporación Ambiental (sólo municipios que adopten sobretasa)
+TI.A.1.4.2.2,Con destino al Área Metropolitana (sólo municipios que adopten sobretasa)
+TI.A.1.4.2.3,SOBRETASA ESPECIAL PARA EL DISTRITO DE CARTAGENA (VIGENTE LEY 15/ 1961)
+TI.A.1.4.2.4,SOBRETASA PARA INVERSIÓN EN CEDELCA (SOLO MUNICIPIOS DEL DEPTO. DEL CAUCA)
+TI.A.1.5,Impuesto de Industria y Comercio
+TI.A.1.5.1,Impuesto de Industria y Comercio de la vigencia actual
+TI.A.1.5.2,Impuesto de Industria y Comercio de la vigencia anterior
+TI.A.1.6,Avisos y Tableros
+TI.A.1.6.1,Avisos y tableros vigencia actual
+TI.A.1.6.2,Avisos y tableros vigencias anteriores
+TI.A.1.7,Publicidad Exterior Visual
+TI.A.1.8,Impuesto de Delineación
+TI.A.1.9,Impuesto de Espectáculos Públicos Nacional con Destino al Deporte
+TI.A.1.10,Impuesto de Espectáculos Públicos Municipal
+TI.A.1.11,Impuesto a ganadores de sorteos ordinarios y extraordinarios
+TI.A.1.12,Impuesto de loterías foráneas
+TI.A.1.13,Impuesto de Registro
+TI.A.1.14,Impuesto al consumo de licores vinos aperitivos y similares
+TI.A.1.14.1,Impuesto al consumo de licores
+TI.A.1.14.1.1,Impuesto al consumo de licores de libre destinación
+TI.A.1.14.1.1.1,Impuesto al consumo de licores de libre destinación producidos en el departamento
+TI.A.1.14.1.1.2,Impuesto al consumo de licores de libre destinación de producción nacional
+TI.A.1.14.1.1.3,Impuesto al consumo de licores de libre destinación de producción extranjera
+TI.A.1.14.1.2,Impuesto al consumo de licores con destinación a salud
+TI.A.1.14.1.2.1,Impuesto al consumo de licores con destinación a salud producidos en el departamento
+TI.A.1.14.1.2.2,Impuesto al consumo de licores con destinación a salud de producción nacional
+TI.A.1.14.1.2.3,Impuesto al consumo de licores con destinación a salud de producción extranjera
+TI.A.1.14.2,Impuesto al consumo de vinos aperitivos y similares
+TI.A.1.14.2.1,Impuesto al consumo de vinos aperitivos y similares de libre destinación
+TI.A.1.14.2.1.1,Impuesto al consumo de vinos aperitivos y similares de libre destinación de producción nacional
+TI.A.1.14.2.1.2,Impuesto al consumo de vinos aperitivos y similares de libre destinación de producción extranjera
+TI.A.1.14.2.2,Impuesto al consumo de vinos aperitivos y similares con destinación a salud
+TI.A.1.14.2.2.1,Impuesto al consumo de vinos aperitivos y similares con destinación a salud de producción nacional
+TI.A.1.14.2.2.2,Impuesto al consumo de vinos aperitivos y similar+B15es con destinación a salud de producción extranjera
+TI.A.1.15,Desagregación IVA licores Vinos Aperitivos y Similares
+TI.A.1.15.1,IVA licores vinos aperitivos y similares - salud
+TI.A.1.15.2,IVA licores vinos aperitivos y similares - deporte
+TI.A.1.16,Impuesto al Consumo Cerveza
+TI.A.1.16.1,Impuesto al Consumo Cerveza de producción Nacional
+TI.A.1.16.2,Impuesto al Consumo Cerveza de producción extranjera
+TI.A.1.17,Impuesto al consumo con destino a salud / cerveza salud
+TI.A.1.17.1,Impuesto al consumo con destino a salud / cerveza salud de producción nacional
+TI.A.1.17.2,Impuesto al consumo con destino a salud / cerveza salud de producción extranjera
+TI.A.1.18,Impuesto Al Consumo De Cigarrillos y Tabaco
+TI.A.1.18.1,Impuesto Al Consumo De Cigarrillos y Tabaco de libre destinación
+TI.A.1.18.1.1,Impuesto Al Consumo De Cigarrillos y Tabaco de libre destinación de producción Nacional
+TI.A.1.18.1.2,Impuesto Al Consumo De Cigarrillos y Tabaco de libre destinación de producción extranjera
+TI.A.1.18.2,Impuesto al consumo con destino a salud / Sobretasa al consumo de cigarrillo y tabaco
+TI.A.1.18.2.1,Impuesto al consumo con destino a salud / Sobretasa al consumo de cigarrillo y tabaco de productos nacionales
+TI.A.1.18.2.2,Impuesto al consumo con destino a salud / Sobretasa al consumo de cigarrillo y tabaco de productos extranjeros
+TI.A.1.18.3,Impuesto con destino al deporte Ley 181 de 1995
+TI.A.1.18.3.1,Impuesto con destino al deporte Ley 181 de 1995 de productos nacionales
+TI.A.1.18.3.2,Impuesto con destino al deporte Ley 181 de 1995 de productos extranjeros
+TI.A.1.20,Impuesto a las ventas por el sistema de clubes
+TI.A.1.21,Impuesto de casinos
+TI.A.1.22,Impuesto sobre apuestas mutuas
+TI.A.1.23,Degüello de Ganado Menor
+TI.A.1.24,Degüello de ganado mayor
+TI.A.1.25,Sobretasa Bomberil
+TI.A.1.26,Sobretasa a la Gasolina
+TI.A.1.27,Impuesto sobre Teléfonos Urbanos
+TI.A.1.28,Estampillas
+TI.A.1.28.1,Estampilla para el bienestar del Adulto Mayor
+TI.A.1.28.2,EstampillasPro Electrificación Rural
+TI.A.1.28.3,Estampillas Pro Seguridad alimentaria y Desarrollo Rural
+TI.A.1.28.4,Estampillas Pro Cultura
+TI.A.1.28.5,Estampillas Prodesarrollo Departamental
+TI.A.1.28.6,Estampillas Desarrollo Fronterizo
+TI.A.1.28.7,EstampillasProhospitales Universitarios y otras estampillas Pro hospitales
+TI.A.1.28.8,Estampillas Pro Universidades Públicas
+TI.A.1.28.9,Otras Estampillas
+TI.A.1.28.9.1,Otras Estampillas creadas con destino al Fondo Departamental de bomberos
+TI.A.1.28.9.2,Otras Estampillas
+TI.A.1.29,Impuesto sobre el servicio de Alumbrado Público
+TI.A.1.30,Contribución sobre Contratos de Obras Públicas
+TI.A.1.31,Impuesto de Transporte por oleoductos y gasoductos
+TI.A.1.32,Impuesto único a favor de San Andrés
+TI.A.1.34,Contribución del 2.5 por mil del valor del recaudo bruto de las concesiones de construcción mantenimiento y operaciones de vías de comunicación puertos aéreos marítimos o fluviales.
+TI.A.1.35,Aporte solidario o contribución para la financiación de los subsidios para los estratos 1 2 y 3
+TI.A.1.40,Otros Ingresos Tributarios
+TI.A.2,NO TRIBUTARIOS
+TI.A.2.1,Tasas y Derechos
+TI.A.2.1.1,Peajes
+TI.A.2.1.2,Peaje turístico
+TI.A.2.1.3,Tasas por el derecho de parqueo sobre las vías públicas
+TI.A.2.1.4,Tarjeta de Turista
+TI.A.2.1.5,Tarjeta de Residente
+TI.A.2.1.6,Tasas y derechos autorizados para la actividad pesquera
+TI.A.2.1.7,Contraprestación por concepto del uso y goce temporal y exclusivo de las zonas de uso público-Municipios portuarios marítimos
+TI.A.2.1.8,Tasas retributivas y compensatorias (municipios de más de un millón de habitantes)
+TI.A.2.1.9,Recursos locales para Proyectos de Infraestructura Vial y de Transporte (Art.. 112 Ley 812 de 2003)
+TI.A.2.1.9.1,Contribuciones o gravámenes
+TI.A.2.1.9.2,Derechos de tránsito en áreas restringidas o de alta congestión
+TI.A.2.1.9.3,Estacionamiento en espacio público o en lotes de parqueo
+TI.A.2.1.9.4,Tasa contributiva por contaminación vehicular
+TI.A.2.1.11,Derechos de explotación de juegos de suerte y azar
+TI.A.2.1.11.1,Rifas
+TI.A.2.1.11.2,Juego de loterías
+TI.A.2.1.11.3,Juegos de apuestas permanentes o chance
+TI.A.2.1.11.4,Juegos de suerte y azar promocionales
+TI.A.2.1.11.6,Juegos de apuestas en eventos deportivos gallísticos caninos y similares
+TI.A.2.1.11.7,Juego de apuestas en eventos hípicos
+TI.A.2.1.11.8,Juegos de suerte y azar novedosos
+TI.A.2.1.11.8.1,Juegos Novedosos - Lotería instantánea y lotto preimpreso
+TI.A.2.1.11.8.2,Juegos Novedosos - Súper Astro
+TI.A.2.1.11.8.10,Juegos Novedosos - Otros
+TI.A.2.1.13,Tasa por ingreso a las Salinas de Zipaquirá
+TI.A.2.1.14,Derechos de Tránsito
+TI.A.2.1.15,Tasas o sobretasas especiales creadas para financiar los fondos de seguridad
+TI.A.2.1.16,Tasas o sobretasas especiales con destino al Fondo Departamental de Bomberos
+TI.A.2.1.90,Otras Tasas (desagregar o especificar)
+TI.A.2.2,Multas y sanciones
+TI.A.2.2.1,Tránsito y Transporte
+TI.A.2.2.2,Multas de Control Fiscal
+TI.A.2.2.3,Multas de Control Disciplinario
+TI.A.2.2.4,Multas de Gobierno
+TI.A.2.2.4.1,Registro de Marcas y Herretes
+TI.A.2.2.4.2,Multas establecidas en el código nacional de policía
+TI.A.2.2.4.3,Multas establecimientos de comercio
+TI.A.2.2.4.4,Sanciones urbanísticas
+TI.A.2.2.4.5,Otras multas de gobierno
+TI.A.2.2.5,Intereses moratorios
+TI.A.2.2.5.1,predial
+TI.A.2.2.5.2,Sobretasa ambiental
+TI.A.2.2.5.3,industria y comercio
+TI.A.2.2.5.4,Sobretasa a la gasolina
+TI.A.2.2.5.5,vehículos automotores
+TI.A.2.2.5.6,Licores
+TI.A.2.2.5.7,Cerveza
+TI.A.2.2.5.8,Cigarrillos y tabaco
+TI.A.2.2.5.9,otros intereses de origen tributario
+TI.A.2.2.5.10,otros intereses de origen no tributario
+TI.A.2.2.6,Sanciones tributarias
+TI.A.2.2.6.1,Predial
+TI.A.2.2.6.2,Industria y comercio
+TI.A.2.2.6.3,Sobretasa a la gasolina
+TI.A.2.2.6.4,Vehículos automotores
+TI.A.2.2.6.5,Licores
+TI.A.2.2.6.6,Cerveza
+TI.A.2.2.6.7,Cigarrillos y tabaco
+TI.A.2.2.6.8,Otras sanciones tributarias
+TI.A.2.2.8,Multas y sanciones por infracciones al régimen del monopolio de juegos de suerte y azar
+TI.A.2.2.9,Multas infracciones y sanciones por violación al régimen de venta de medicamentos controlados
+TI.A.2.2.15,Otras Multas y sanciones
+TI.A.2.3,Contribuciones
+TI.A.2.3.1,Contribución de Valorización
+TI.A.2.3.1.1,Contribución de Valorización Vigencia Actual
+TI.A.2.3.1.2,Contribución de Valorización Vigencias Anteriores
+TI.A.2.3.2,Participación en la plusvalía
+TI.A.2.3.3,Uso de la Infraestructura pública turística
+TI.A.2.3.4,Otras contribuciones
+TI.A.2.4,Venta de bienes y servicios
+TI.A.2.4.1,Acueducto
+TI.A.2.4.2,Alcantarillado
+TI.A.2.4.3,Aseo
+TI.A.2.4.4,Plaza de Mercado
+TI.A.2.4.5,Plaza de Ferias
+TI.A.2.4.6,Matadero Público
+TI.A.2.4.7,Servicios educativos
+TI.A.2.4.8,Servicios de salud y previsión social
+TI.A.2.4.8.1,Servicios de salud y previsión social
+TI.A.2.4.8.2,Venta de medicamentos controlados
+TI.A.2.4.9,Servicios de Transito y Trasporte
+TI.A.2.4.10,Otros Ingresos de venta de Bienes y Servicios diferente a la venta de activos
+TI.A.2.5,Rentas contractuales
+TI.A.2.5.1,Arrendamientos
+TI.A.2.5.2,Alquiler de maquinaria y equipos
+TI.A.2.5.3,Otras Rentas Contractuales
+TI.A.2.6,TRASFERENCIAS
+TI.A.2.6.1,Transferencias de libre destinación
+TI.A.2.6.1.1,Del Nivel Nacional
+TI.A.2.6.1.1.1,SGP: Libre Destinación de Participación de Propósito General Municipios categorías 4 5 y 6
+TI.A.2.6.1.1.2,COLJUEGOS (máximo el 25 % en los términos del Art. 60 de la Ley 715)
+TI.A.2.6.1.1.3,Participación del IVA antiguas intendencias y comisarías
+TI.A.2.6.1.1.4,Transferencias Antiguas Comisarías
+TI.A.2.6.1.1.5,Impuesto Nacional a la Explotación de Oro Plata y Platino
+TI.A.2.6.1.1.7,Otras transferencias del nivel central nacional para funcionamiento
+TI.A.2.6.1.1.7.1,Subsidio para movilización de personeros Ley 1551 de 2012
+TI.A.2.6.1.1.7.10,Otras transferencias del nivel central nacional para funcionamiento
+TI.A.2.6.1.2,Del Nivel Departamental
+TI.A.2.6.1.2.1,De vehículos Automotores
+TI.A.2.6.1.2.2,Degüello ganado mayor (En los términos que lo defina la Ordenanza)
+TI.A.2.6.1.2.3,Participación Impuesto de Registro (sólo Bogotá)
+TI.A.2.6.1.2.5,Otras Transferencias del Nivel Departamental
+TI.A.2.6.1.2.6,Transferencia del departamento de San Andrés (solo aplica para providencia)
+TI.A.2.6.1.2.7,Participación  de libre destinación impuesto al consumo de cigarrillos y tabaco de producción nacional (sólo Bogotá)
+TI.A.2.6.1.3,Cuota de Fiscalización
+TI.A.2.6.1.3.1,Proveniente de Empresas Industriales y Comerciales Sociales del estado y de servicios públicos
+TI.A.2.6.1.3.2,Provenientes de Establecimientos públicos
+TI.A.2.6.1.3.3,De otras entidades
+TI.A.2.6.1.4,Transferencias de otras entidades para pago de pensiones
+TI.A.2.6.1.5,Cuotas partes pensiónales
+TI.A.2.6.1.6,Transferencia sector eléctrico (solo el 10% autorizado para libre destinación)
+TI.A.2.6.1.6.1,Empresas del orden Nacional
+TI.A.2.6.1.6.2,Empresas del orden Departamental
+TI.A.2.6.1.6.3,Empresas del orden Municipal
+TI.A.2.6.1.6.4,Otros
+TI.A.2.6.2,Trasferencias para Inversión
+TI.A.2.6.2.1,Del Nivel Nacional
+TI.A.2.6.2.1.1,Sistema General de Participaciones
+TI.A.2.6.2.1.1.1,Sistema General de Participaciones -Educación
+TI.A.2.6.2.1.1.1.1,S. G. P. Educación - Prestación de servicios
+TI.A.2.6.2.1.1.1.2,S. G. P. Educación - Cancelaciones
+TI.A.2.6.2.1.1.1.4,S. G. P. Educación -Recursos de calidad
+TI.A.2.6.2.1.1.1.4.1,Calidad por matrícula oficial
+TI.A.2.6.2.1.1.1.4.2,Calidad por gratuidad (sin situación de Fondos)
+TI.A.2.6.2.1.1.2,Sistema General de Participaciones -Salud-
+TI.A.2.6.2.1.1.2.1,S. G. P. Salud - Régimen subsidiado
+TI.A.2.6.2.1.1.2.1.1,S. G. P. Salud - Régimen subsidiado Continuidad
+TI.A.2.6.2.1.1.2.2,S. G. P. Salud - Salud Publica
+TI.A.2.6.2.1.1.2.3,S. G. P. Salud - Complemento y Compensación Prestación de servicios a población pobre no afiliada ( municipios certificados )
+TI.A.2.6.2.1.1.2.4,S. G. P. Salud - Aportes Patronales (Sin situación de fondos) (Municipios certificados)
+TI.A.2.6.2.1.1.3,Sistema general de participaciones Río Grande De La Magdalena
+TI.A.2.6.2.1.1.4,Sistema General de Participaciones Alimentación Escolar
+TI.A.2.6.2.1.1.5,S.G.P  Agua Potable y Saneamiento Básico
+TI.A.2.6.2.1.1.5.1,S.G.P  Agua Potable y Saneamiento Básico
+TI.A.2.6.2.1.1.5.2,S.G.P  Agua Potable y Saneamiento Básico - Municipios Descertificados
+TI.A.2.6.2.1.1.6,S.G.P. Por crecimiento de la economía
+TI.A.2.6.2.1.1.6.1,Primera Infancia
+TI.A.2.6.2.1.1.7,Sistema General Forzosa Inversión de Participación Propósito General
+TI.A.2.6.2.1.1.7.1,Deporte y recreación
+TI.A.2.6.2.1.1.7.2,Cultura
+TI.A.2.6.2.1.1.7.4,Resto libre inversión(Incluye recursos de libre inversión municipios menores de 25000 habitantes)
+TI.A.2.6.2.1.3,Fondo de Solidaridad y Garantías -FOSYGA-
+TI.A.2.6.2.1.3.1,FOSYGA Régimen subsidiado operación corriente
+TI.A.2.6.2.1.3.2,FOSYGA Recursos para financiar pagos de deuda reconocida sobre contratos de régimen subsidiado
+TI.A.2.6.2.1.4,COLJUEGOS 75 % - Inversión en salud. (Ley 643 de 2001 Ley 1122 de 2007 y Ley 1151 de 2007 )
+TI.A.2.6.2.1.5,IVA telefonía celular
+TI.A.2.6.2.1.6,Sobretasa al ACPM
+TI.A.2.6.2.1.7,Regalías y Compensaciones  (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.A.2.6.2.1.7.1,Regalías por hidrocarburos petróleo y gas  (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.A.2.6.2.1.7.2,Regalías por carbón  (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.A.2.6.2.1.7.3,Regalías por Níquel hierro cobre y demás minerales metálicos  (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.A.2.6.2.1.7.4,Regalías por oro plata platino y piedras preciosas  (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.A.2.6.2.1.7.5,Regalías por calizas yesos arcillas gravas  minerales no metálicos y materiales de construcción  (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.A.2.6.2.1.7.6,Regalías por sal  (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.A.2.6.2.1.7.9,Desahorro FAEP  (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.A.2.6.2.1.8,Otras Transferencias del Nivel Nacional para inversión
+TI.A.2.6.2.1.8.1,En Salud
+TI.A.2.6.2.1.8.1.1,Compensación Régimen Subsidiado
+TI.A.2.6.2.1.8.1.2,Coljuegos Loto en Línea
+TI.A.2.6.2.1.8.1.10,Otras Transferencias del Nivel Nacional para inversión en Salud
+TI.A.2.6.2.1.8.2,En Educación
+TI.A.2.6.2.1.8.2.1,Ejecución de proyectos
+TI.A.2.6.2.1.8.2.2,Pago de deudas laborales
+TI.A.2.6.2.1.8.1.11,Ingresos por compensación menor recaudo de derechos de explotación de Apuestas Permanentes
+TI.A.2.6.2.1.8.2.3,Alimentación Escolar Ley 1450 de 2011 (ICBF o MEN)
+TI.A.2.6.2.1.8.2.4,Compensación Alimentación Escolar
+TI.A.2.6.2.1.8.4,Transferencia del Mincultura de la Contribución Parafiscal de los Espectaculos Públicos de las artes escenicas
+TI.A.2.6.2.1.8.90,En otros sectores
+TI.A.2.6.2.2,Del Nivel Departamental
+TI.A.2.6.2.2.1,Participación/Sobretasa impuesto al consumo de cigarrillos y tabaco (sólo Bogotá)
+TI.A.2.6.2.2.1.1,Participación/Sobretasa impuesto al consumo de cigarrillos y tabaco de producción nacional con destino al deporte ley 181 de 1995 (sólo Bogotá)
+TI.A.2.6.2.2.1.2,Participación/sobretasa impuesto al consumo de cigarrillos y tabaco de producción nacional con destino a salud Ley 1393/2010 (sólo Bogotá)
+TI.A.2.6.2.2.2,Participación IVA licores - Salud (Sólo Bogotá)
+TI.A.2.6.2.2.3,Participación IVA licores - Deporte (Sólo Bogotá)
+TI.A.2.6.2.2.5,Transferencia regimen subsidiado del departamento a los municipios
+TI.A.2.6.2.2.6,Transferencia Departamental para alimentación escolar Ley 1450 de 2011 (ICBF o MEN)
+TI.A.2.6.2.2.7,Transferencia Departamental cofinanciación alimentación escolar (Art 145 ley 1530 Conpes - 151 de 2012)
+TI.A.2.6.2.2.10,Otras transferencias del nivel departamental para inversión
+TI.A.2.6.2.3,Transferencia sector eléctrico 90% para inversión
+TI.A.2.6.2.3.1,Empresas del orden Nacional
+TI.A.2.6.2.3.2,Empresas del orden Departamental
+TI.A.2.6.2.3.3,Empresas del orden Municipal
+TI.A.2.6.2.3.4,Otras entidades
+TI.A.2.6.2.4,Del Nivel municipal
+TI.A.2.6.2.4.1,Saldos de liquidación de contratos del régimen subsidiado
+TI.A.2.6.2.4.3,Transferencia recibida de Fondos de Solidaridad y Redistribución del Ingreso diferentes al FSRI del Municipio
+TI.A.2.6.2.4.10,Otras Transferencias de origen municipal
+TI.A.2.6.2.5,Sector Descentralizado
+TI.A.2.6.2.5.1,Nacional
+TI.A.2.6.2.5.2,Departamental
+TI.A.2.6.2.5.3,Municipal
+TI.A.2.6.2.6,Sector Privado
+TI.A.2.7,Otros Ingresos No Tributarios
+TI.A.2.7.1,Operaciones comerciales
+TI.A.2.7.2,Participación por el ejercicio del monopolio de licores y alcoholes potables
+TI.A.2.7.2.1,Salud
+TI.A.2.7.2.1.1,Destinación preferente Artículo 336 C.P.
+TI.A.2.7.2.1.2,Porcentaje destinado a salud Ley 1393 de 2010
+TI.A.2.7.2.2,Educación
+TI.A.2.7.2.3,Libre Destinación
+TI.A.2.7.4,Premios de juegos de suerte y azar no reclamados
+TI.A.2.7.4.1,Premios de juegos de suerte y azar no reclamados - juego de loterías
+TI.A.2.7.4.2,Premios de juegos de suerte y azar no reclamados - juego de apuestas permanentes o chance
+TI.A.2.7.4.3,Premios de juegos de suerte y azar no reclamados - juegos de suerte y azar - novedosos
+TI.A.2.7.4.3.1,Premios de juegos de suerte y azar no reclamados - juegos novedosos - lotería instantánea y lotto impreso
+TI.A.2.7.4.3.2,Premios de juegos de suerte y azar no reclamados - juegos novedosos - superastro
+TI.A.2.7.4.3.3,Premios de juegos de suerte y azar no reclamados - juegos novedosos - otros
+TI.A.2.7.10,Otros no tributarios
+TI.B,INGRESOS DE CAPITAL
+TI.B.1,Cofinanciación
+TI.B.1.1,cofinanciación nacional - nivel central
+TI.B.1.1.1,Cofinanciación nacional en Programas de Salud
+TI.B.1.1.1.1,Cofinanciacion nacional en programas de salud Salud: Régimen Subsidiado
+TI.B.1.1.1.2,Cofinanciacion nacional en programas de salud Salud:  Salud Pública Colectiva
+TI.B.1.1.1.3,Cofinanciacion nacional en programas de salud Salud: Prestación del servicio a la población pobre no afiliada
+TI.B.1.1.1.4,Cofinanciacion nacional en programas de salud Salud :  Otros diferentes a los anteriores con destino a salud
+TI.B.1.1.2,Programas de Educación
+TI.B.1.1.3,Programas de Agua potable y saneamiento básico
+TI.B.1.1.4,Programas de Infraestructura
+TI.B.1.1.5,Programas Otros Sectores
+TI.B.1.2,Cofinanciación DEPARTAMENTAL - nivel central
+TI.B.1.2.1,Cofinanciación departamental en Programas de Salud
+TI.B.1.2.1.1,Cofinanciacion departamental en programas de salud Salud : Régimen Subsidiado
+TI.B.1.2.1.2,Cofinanciacion departamental en programas de salud Salud :  Salud Pública Colectiva
+TI.B.1.2.1.3,Cofinanciacion departamental en programas de salud Salud : Prestación del servicio a la población pobre no afiliada
+TI.B.1.2.1.4,Cofinanciacion departamental en programas de salud Salud :  Otros diferentes a los anteriores con destino a salud
+TI.B.1.2.2,Programas de Educación
+TI.B.1.2.3,Programas de Agua potable y saneamiento básico
+TI.B.1.2.4,Programas de Infraestructura
+TI.B.1.2.5,Programas Otros Sectores
+TI.B.1.3,Cofinanciación Municipal - nivel central
+TI.B.1.3.1,Cofinanciacion Municipal Programas de Salud
+TI.B.1.3.1.1,Cofinanciacion municipal en programas de salud Salud : Régimen Subsidiado
+TI.B.1.3.1.2,Cofinanciacion municipal en programas de salud Salud :  Salud Pública Colectiva
+TI.B.1.3.1.3,Cofinanciacion municipal en programas de salud Salud : Prestación del servicio a la población pobre no afiliada
+TI.B.1.3.1.4,Cofinanciacion municipal en programas de salud Salud :  Otros diferentes a los anteriores con destino a salud
+TI.B.1.3.2,Programas de Educación
+TI.B.1.3.3,Programas de Agua potable y saneamiento básico
+TI.B.1.3.4,Programas de Infraestructura
+TI.B.1.3.5,Programas Otros Sectores
+TI.B.1.4,Otras Cofinanciaciones
+TI.B.1.4.1,Sector Descentralizado
+TI.B.1.4.1.1,Nacional
+TI.B.1.4.1.1.1,De establecimientos públicos
+TI.B.1.4.1.1.3,De empresas
+TI.B.1.4.1.2,Departamental
+TI.B.1.4.1.3,Municipal
+TI.B.1.4.2,Sector Privado
+TI.B.2,Regalías Indirectas (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.B.2.1,Fondo Nacional de Regalías - FNR (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.B.2.2,Fondo de Ahorro y estabilización petrolera. Ley 781 de 2002 (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.B.2.3,Fondos Córdoba y Sucre (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.B.2.4,Escalonamiento (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.B.3,Fondo de subsidio de la sobretasa a la gasolina
+TI.B.4,Recursos del crédito
+TI.B.4.1,Interno
+TI.B.4.1.1,Findeter
+TI.B.4.1.2,Fonade
+TI.B.4.1.3,Institutos de Desarrollo Departamental y/o Municipal
+TI.B.4.1.4,Banca Comercial Publica
+TI.B.4.1.5,Banca Comercial Privada
+TI.B.4.1.6,Títulos de deuda publica
+TI.B.4.1.7,Crédito de la Nación susceptible de condonación
+TI.B.4.2,Externo
+TI.B.5,Recuperación de Cartera (DIFERENTES A TRIBUTARIOS)
+TI.B.5.1,Por créditos concedidos
+TI.B.5.3,Por otros conceptos
+TI.B.6,Recursos del balance
+TI.B.6.1,Cancelación de reservas
+TI.B.6.1.1,de regalías
+TI.B.6.1.2,de SGP
+TI.B.6.1.2.1,Cancelación de reservas - Educación
+TI.B.6.1.2.1.1,SGP Educación Prestación del Servicio
+TI.B.6.1.2.1.2,SGP Educación Calidad Matrícula
+TI.B.6.1.2.2,Cancelación de reservas - Salud
+TI.B.6.1.2.2.1,Recursos de forzosa inversión - Salud: Régimen Subsidiado
+TI.B.6.1.2.2.2,Recursos de forzosa inversión - Salud:  Pública
+TI.B.6.1.2.2.3,Recursos de forzosa inversión - Salud: Prestación del servicio a la población pobre no afiliada
+TI.B.6.1.2.2.4,Recursos de forzosa inversión - Salud: Otros diferentes a los anteriores con destino a salud
+TI.B.6.1.2.3,Cancelación de reservas - Alimentación Escolar
+TI.B.6.1.2.4,Cancelación de reservas -  Ribereños
+TI.B.6.1.2.5,Cancelación de reservas - Agua Potable y Saneamiento Básico
+TI.B.6.1.2.5.1,Cancelación de reservas - Agua Potable y Saneamiento Básico
+TI.B.6.1.2.5.2,Cancelación de reservas - Agua Potable y Saneamiento Básico - Municipios Descertificados
+TI.B.6.1.2.6,Cancelación de reservas - Crecimiento de la economía
+TI.B.6.1.2.6.1,Primera Infancia
+TI.B.6.1.2.6.2,Educación
+TI.B.6.1.2.7,Cancelación de reservas - Propósito general
+TI.B.6.1.2.7.1,DEPORTE Y RECREACIÓN
+TI.B.6.1.2.7.3,CULTURA
+TI.B.6.1.2.7.7,RESTO LIBRE INVERSIÓN
+TI.B.6.1.3,de otros recursos
+TI.B.6.2,Superávit Fiscal
+TI.B.6.2.1,Superávit Fiscal de la Vigencia Anterior
+TI.B.6.2.1.1,Recursos de libre destinación
+TI.B.6.2.1.1.1,SGP Propósito General recursos de libre destinación 42% municipios de 4 5 y 6 categoría.
+TI.B.6.2.1.1.3,Ingresos corrientes de libre destinación diferentes a la participación de libre destinación Propósito General
+TI.B.6.2.1.2,Recursos de forzosa inversión (con destinación especifica)
+TI.B.6.2.1.2.1,Recursos de forzosa inversión SGP (con destinación específica)
+TI.B.6.2.1.2.1.1,Recursos de forzosa inversión - Educación
+TI.B.6.2.1.2.1.1.1,SGP Educación Prestación del Servicio
+TI.B.6.2.1.2.1.1.2,SGP Educación Calidad Matrícula
+TI.B.6.2.1.2.1.1.3,SGP Cancelaciones
+TI.B.6.2.1.2.1.2,Recursos de forzosa inversión - Salud
+TI.B.6.2.1.2.1.2.1,Recursos de forzosa inversión - Salud: Régimen Subsidiado
+TI.B.6.2.1.2.1.2.2,Recursos de forzosa inversión - Salud:  Pública
+TI.B.6.2.1.2.1.2.3,Recursos de forzosa inversión - Salud: Prestación del servicio a la población pobre no afiliada
+TI.B.6.2.1.2.1.3,Recursos de forzosa inversión - Alimentación Escolar
+TI.B.6.2.1.2.1.4,Recursos de forzosa inversión - Ribereños
+TI.B.6.2.1.2.1.5,Participación para Agua Potable y Saneamiento Básico
+TI.B.6.2.1.2.1.5.1,Participación para Agua Potable y Saneamiento Básico
+TI.B.6.2.1.2.1.5.2,Participación para Agua Potable y Saneamiento Básico - Municipios Descertificados
+TI.B.6.2.1.2.1.6,Recursos de forzosa inversión - Crecimiento de la economía
+TI.B.6.2.1.2.1.6.1,Primera Infancia
+TI.B.6.2.1.2.1.6.2,Educación
+TI.B.6.2.1.2.1.7,Recursos de forzosa inversión Propósito general
+TI.B.6.2.1.2.1.7.1,DEPORTE Y RECREACIÓN
+TI.B.6.2.1.2.1.7.3,CULTURA
+TI.B.6.2.1.2.1.7.7,RESTO LIBRE INVERSIÓN
+TI.B.6.2.1.2.2,Regalías y compensaciones  (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.B.6.2.1.2.4,Superávit excedentes de rentas cedidas Sector Salud
+TI.B.6.2.1.2.5,Superávit excedentes Cuenta maestra regimen subsidiado otros recursos diferentes a SGP
+TI.B.6.2.1.2.9,Otros recursos de forzosa inversión diferentes al SGP (con destinación específica)
+TI.B.6.2.2,Superávit Fiscal de vigencias anteriores no incorporado
+TI.B.6.2.2.1,Recursos de libre destinación
+TI.B.6.2.2.1.1,SGP Propósito General recursos de libre destinación 42% municipios de 4 5 y 6 categoría.
+TI.B.6.2.2.1.3,Ingresos corrientes de libre destinación diferentes a la participación de libre destinación Propósito General:
+TI.B.6.2.2.2,Recursos de forzosa inversión (con destinación especifica)
+TI.B.6.2.2.2.1,Recursos de forzosa inversión SGP (con destinación específica)
+TI.B.6.2.2.2.1.1,Recursos de forzosa inversión - Educación
+TI.B.6.2.2.2.1.1.1,SGP Educación Prestación del Servicio
+TI.B.6.2.2.2.1.1.2,SGP Educación Calidad Matrícula
+TI.B.6.2.2.2.1.1.3,SGP Cancelaciones
+TI.B.6.2.2.2.1.2,Recursos de forzosa inversión - Salud
+TI.B.6.2.2.2.1.2.1,Recursos de forzosa inversión - Salud: Régimen Subsidiado
+TI.B.6.2.2.2.1.2.2,Recursos de forzosa inversión - Salud:  Salud Pública Colectiva
+TI.B.6.2.2.2.1.2.3,Recursos de forzosa inversión - Salud: Prestación del servicio a la población pobre no afiliada
+TI.B.6.2.2.2.1.3,Recursos de forzosa inversión - Alimentación Escolar
+TI.B.6.2.2.2.1.4,Recursos de forzosa inversión - Ribereños
+TI.B.6.2.2.2.1.5,Recursos de forzosa inversión - Agua Potable y Saneamiento Básico
+TI.B.6.2.2.2.1.6,Recursos de forzosa inversión - Crecimiento de la economía
+TI.B.6.2.2.2.1.6.1,Primera Infancia
+TI.B.6.2.2.2.1.6.2,Educación
+TI.B.6.2.2.2.1.7,Recursos de forzosa inversión Propósito general
+TI.B.6.2.2.2.1.7.1,DEPORTE Y RECREACIÓN
+TI.B.6.2.2.2.1.7.3,CULTURA
+TI.B.6.2.2.2.1.7.7,RESTO LIBRE INVERSIÓN
+TI.B.6.2.2.2.2,Regalías y compensaciones  (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.B.6.2.2.2.4,Superávit excedentes de rentas cedidas Sector Salud
+TI.B.6.2.2.2.5,Superávit excedentes Cuenta maestra regimen subsidiado otros recursos diferentes a SGP
+TI.B.6.2.2.2.9,Otros recursos de forzosa inversión diferentes al SGP (con destinación específica)
+TI.B.7,Venta de activos
+TI.B.7.1,al sector público
+TI.B.7.1.1,Venta de acciones
+TI.B.7.1.3,Venta de terrenos
+TI.B.7.1.5,Venta de edificios
+TI.B.7.1.7,Otros activos  (Como equipos mobiliarios semovientes patentes etc.)
+TI.B.7.2,AL SECTOR PRIVADO
+TI.B.7.2.1,Venta de acciones
+TI.B.7.2.3,Venta de terrenos
+TI.B.7.2.5,Venta de edificios
+TI.B.7.2.7,Otros activos  (Como equipos mobiliarios semovientes patentes etc.)
+TI.B.8,Rendimientos por operaciones financieras
+TI.B.8.1,Provenientes de Recursos Libre destinación
+TI.B.8.1.1,SGP Propósito General recursos de libre destinación 42% municipios de 4 5 y 6 categoría.
+TI.B.8.1.3,Ingresos corrientes de libre destinación diferentes a la participación de libre destinación Propósito General:
+TI.B.8.2,Provenientes de Recursos con destinación especifica
+TI.B.8.2.1,Provenientes de Recursos SGP con destinación especifica
+TI.B.8.2.1.1,Provenientes de Recursos SGP con destinación especifica - Educación
+TI.B.8.2.1.1.1,SGP Educación Prestación del Servicio
+TI.B.8.2.1.1.2,SGP Educación Calidad Matrícula
+TI.B.8.2.1.1.3,SGP Cancelaciones
+TI.B.8.2.1.2,Provenientes de Recursos SGP con destinación especifica - Salud
+TI.B.8.2.1.2.1,Provenientes de Recursos SGP con destinación especifica - Salud: Régimen Subsidiado
+TI.B.8.2.1.2.2,Provenientes de Recursos SGP con destinación especifica - Salud:  Pública
+TI.B.8.2.1.2.3,Recursos SGP con destinación especifica - Salud Servicios a la población pobre no afiliada
+TI.B.8.2.1.2.4,Rendimientos Otros diferentes a los anteriores con destino a salud
+TI.B.8.2.1.3,Provenientes de Recursos SGP con destinación especifica - Alimentación Escolar
+TI.B.8.2.1.4,Provenientes de Recursos SGP con destinación especifica - Ribereños
+TI.B.8.2.1.5,Provenientes de Recursos SGP con destinación especifica - Agua potable y saneamiento básico
+TI.B.8.2.1.5.1,S.G.P  Agua Potable y Saneamiento Básico
+TI.B.8.2.1.5.2,S.G.P  Agua Potable y Saneamiento Básico - Municipios Descertificados
+TI.B.8.2.1.6,S.G.P. Por crecimiento de la economía
+TI.B.8.2.1.6.1,Primera Infancia
+TI.B.8.2.1.6.2,Educación
+TI.B.8.2.1.7,Sistema General Forzosa Inversión de Participación Propósito General
+TI.B.8.2.1.7.8,Sistema General Forzosa Inversión de Participación Propósito General
+TI.B.8.2.2,Provenientes de regalías y compensaciones  (Régimen Anterior de Regalías Ley 141/94 y 756/02)
+TI.B.8.2.3,Provenientes de Otros recursos con destinación específica diferentes al SGP
+TI.B.9,Donaciones
+TI.B.9.1,De otras entidades públicas
+TI.B.9.3,De entidades privadas
+TI.B.9.5,De personas naturales
+TI.B.9.7,Del resto del mundo
+TI.B.10,Desahorro y Retiro FONPET
+TI.B.10.4,Para pago de cuotas partes de bono pensional o bonos pensionales
+TI.B.10.5,Para pago pasivo fondo nacional de prestaciones sociales del magisterio - FNPSM (FOMAG)
+TI.B.10.6,Retiro excedente del cubrimiento del Pasivo Pensional 
+TI.B.10.6.1,Retiro de excedentes del cubrimiento del pasivo pensional recursos loto en línea para inversión en salud
+TI.B.10.6.3,Retiro excedente del cubrimiento del Pasivo Pensional (otros recursos diferentes a Loto en Línea)
+TI.B.10.7,Reintegro excedente del cubrimiento del pasivo pensional de SGP Propósito General vigencias anteriores autorizado por el Conpes Social
+TI.B.11,Utilidades y excedentes financieros (empresas industriales comerciales y establecimientos públicos)
+TI.B.12,Reducción de capital de Empresas
+TI.B.13,Reintegros
+TI.B.13.1,Salud
+TI.B.13.1.2,REINTEGROS DE RECURSOS DE REGALIAS
+TI.B.13.1.4,REINTEGROS DE RECURSOS DISTINTOS A REGALIAS
+TI.B.13.1.6,Reintegros aportes patronales salud
+TI.B.13.4,OTROS REINTEGROS IMPUTABLES A RECURSOS DE REGALIAS
+TI.B.13.6,Reintegros Provenientes de Recursos SGP con destinación especifica - Agua potable y saneamiento básico
+TI.B.13.6.1,Reintegros de Recursos SGP  - Agua potable y saneamiento básico provenientes de devoluciones efectuadas en el marco del Plan Departamental de Aguas - Subsidios.
+TI.B.13.6.2,Reintegros de Recursos SGP  - Agua potable y saneamiento básico provenientes de devoluciones efectuadas por las Empresas de Servicios Públicos Domiciliarios.
+TI.B.13.10,Otros Reintegros
+TI.B.14,Otros ingresos de capital
