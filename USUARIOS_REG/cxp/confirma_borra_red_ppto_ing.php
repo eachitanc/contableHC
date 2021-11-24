@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -14,8 +14,8 @@ $id=$_POST['id'];
 // saco el id de la empresa
    $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	    $sqlxx = "select * from fecha";
-	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-	    while($rowxx = mysql_fetch_array($resultadoxx)) 
+	    $resultadoxx = $connectionxx->query($sqlxx);
+	    while($rowxx = $resultadoxx->fetch_assoc()) 
   	    {
      	 $idxx=$rowxx["id_emp"];
     	}
@@ -24,8 +24,8 @@ $id=$_POST['id'];
 			
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	$sqlxx = "select * from cancelaciones_cxp where id ='$id' and id_emp ='$idxx'";
-	$resultadoxx = mysql_db_query($database, $sqlxx, $cx);
-	while($r = mysql_fetch_array($resultadoxx)) 
+	$resultadoxx = $cx->query($sqlxx);
+	while($r = $resultadoxx->fetch_assoc()) 
 	{
  	$h=$r["valor_adi"];
 	$ingresa=$r["cod_pptal"];
@@ -62,24 +62,24 @@ $id=$_POST['id'];
 	 					 $nivel = 2;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0', $afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection);
+					     $resultadopa = $connection->query($sqlpa);
 						 
 	                     break;
 						//---------
@@ -101,34 +101,34 @@ $id=$_POST['id'];
 	 					 $nivel = 3;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection);
+					     $resultadopa = $connection->query($sqlpa);
                          
 	                     break;
 						//---------
@@ -150,44 +150,44 @@ $id=$_POST['id'];
 	 					 $nivel = 4;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection);
+					     $resultadopa = $connection->query($sqlpa);
                          
 	                     break;
 						//---------
@@ -209,54 +209,54 @@ $id=$_POST['id'];
 	 					 $nivel = 5;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection);
+					     $resultadopa = $connection->query($sqlpa);
                         
 	                     break;
 						//---------
@@ -278,64 +278,64 @@ $id=$_POST['id'];
 	 					 $nivel = 6;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 6
 						 $pe = substr($codigo,0,8); 
 					$consultape=mysql_query("select * from cxp where cod_pptal ='$pe' and id_emp ='$idxx'",$connection);
-     					 while($rowpe = mysql_fetch_array($consultape)) 
+     					 while($rowpe = $consultape->fetch_assoc()) 
       				     {	 
 						   $vrpe=$rowpe["definitivo"];
 					     } 
 						 $respe = $vrpe + $h;
 						 $sqlpe = "update cxp set definitivo = '$respe' where cod_pptal ='$pe' and id_emp ='$idxx'";
-					     $resultadope = mysql_db_query($database, $sqlpe, $connection);
+					     $resultadope = $connection->query($sqlpe);
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection); 
+					     $resultadopa = $connection->query($sqlpa); 
                         
 						  
 	                     break;
@@ -358,74 +358,74 @@ $id=$_POST['id'];
 	 					 $nivel = 7;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 7
 						 $pf = substr($codigo,0,10); 
 					$consultapf=mysql_query("select * from cxp where cod_pptal ='$pf' and id_emp ='$idxx'",$connection);
-     					 while($rowpf = mysql_fetch_array($consultapf)) 
+     					 while($rowpf = $consultapf->fetch_assoc()) 
       				     {	 
 						   $vrpf=$rowpf["definitivo"];
 					     } 
 						 $respf = $vrpf + $h;
 						 $sqlpf = "update cxp set definitivo = '$respf' where cod_pptal ='$pf' and id_emp ='$idxx'";
-					     $resultadopf = mysql_db_query($database, $sqlpf, $connection);
+					     $resultadopf = $connection->query($sqlpf);
 						 // padre cuenta nivel 6
 						 $pe = substr($codigo,0,8); 
 					$consultape=mysql_query("select * from cxp where cod_pptal ='$pe' and id_emp ='$idxx'",$connection);
-     					 while($rowpe = mysql_fetch_array($consultape)) 
+     					 while($rowpe = $consultape->fetch_assoc()) 
       				     {	 
 						   $vrpe=$rowpe["definitivo"];
 					     } 
 						 $respe = $vrpe + $h;
 						 $sqlpe = "update cxp set definitivo = '$respe' where cod_pptal ='$pe' and id_emp ='$idxx'";
-					     $resultadope = mysql_db_query($database, $sqlpe, $connection);
+					     $resultadope = $connection->query($sqlpe);
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection); 
+					     $resultadopa = $connection->query($sqlpa); 
                          
 	                     break;
 						//---------
@@ -447,84 +447,84 @@ $id=$_POST['id'];
 	 					 $nivel = 8;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 						 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 8
 						 $pg = substr($codigo,0,12); 
 					$consultapg=mysql_query("select * from cxp where cod_pptal ='$pg' and id_emp ='$idxx'",$connection);
-     					 while($rowpg = mysql_fetch_array($consultapg)) 
+     					 while($rowpg = $consultapg->fetch_assoc()) 
       				     {	 
 						   $vrpg=$rowpg["definitivo"];
 					     } 
 						 $respg = $vrpg + $h;
 						 $sqlpg = "update cxp set definitivo = '$respg' where cod_pptal ='$pg' and id_emp ='$idxx'";
-					     $resultadopg = mysql_db_query($database, $sqlpg, $connection);
+					     $resultadopg = $connection->query($sqlpg);
 						 // padre cuenta nivel 7
 						 $pf = substr($codigo,0,10); 
 					$consultapf=mysql_query("select * from cxp where cod_pptal ='$pf' and id_emp ='$idxx'",$connection);
-     					 while($rowpf = mysql_fetch_array($consultapf)) 
+     					 while($rowpf = $consultapf->fetch_assoc()) 
       				     {	 
 						   $vrpf=$rowpf["definitivo"];
 					     } 
 						 $respf = $vrpf + $h;
 						 $sqlpf = "update cxp set definitivo = '$respf' where cod_pptal ='$pf' and id_emp ='$idxx'";
-					     $resultadopf = mysql_db_query($database, $sqlpf, $connection);
+					     $resultadopf = $connection->query($sqlpf);
 						 // padre cuenta nivel 6
 						 $pe = substr($codigo,0,8); 
 					$consultape=mysql_query("select * from cxp where cod_pptal ='$pe' and id_emp ='$idxx'",$connection);
-     					 while($rowpe = mysql_fetch_array($consultape)) 
+     					 while($rowpe = $consultape->fetch_assoc()) 
       				     {	 
 						   $vrpe=$rowpe["definitivo"];
 					     } 
 						 $respe = $vrpe + $h;
 						 $sqlpe = "update cxp set definitivo = '$respe' where cod_pptal ='$pe' and id_emp ='$idxx'";
-					     $resultadope = mysql_db_query($database, $sqlpe, $connection);
+					     $resultadope = $connection->query($sqlpe);
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection); 
+					     $resultadopa = $connection->query($sqlpa); 
                          	 					 
 	                     break;
 						//---------
@@ -546,94 +546,94 @@ $id=$_POST['id'];
 	 					 $nivel = 9;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 9
 						 $ph = substr($codigo,0,14); 
 					$consultaph=mysql_query("select * from cxp where cod_pptal ='$ph' and id_emp ='$idxx'",$connection);
-     					 while($rowph = mysql_fetch_array($consultaph)) 
+     					 while($rowph = $consultaph->fetch_assoc()) 
       				     {	 
 						   $vrph=$rowph["definitivo"];
 					     } 
 						 $resph = $vrph + $h;
 						 $sqlph = "update cxp set definitivo = '$resph' where cod_pptal ='$ph' and id_emp ='$idxx'";
-					     $resultadoph = mysql_db_query($database, $sqlph, $connection);
+					     $resultadoph = $connection->query($sqlph);
 						 // padre cuenta nivel 8
 						 $pg = substr($codigo,0,12); 
 					$consultapg=mysql_query("select * from cxp where cod_pptal ='$pg' and id_emp ='$idxx'",$connection);
-     					 while($rowpg = mysql_fetch_array($consultapg)) 
+     					 while($rowpg = $consultapg->fetch_assoc()) 
       				     {	 
 						   $vrpg=$rowpg["definitivo"];
 					     } 
 						 $respg = $vrpg + $h;
 						 $sqlpg = "update cxp set definitivo = '$respg' where cod_pptal ='$pg' and id_emp ='$idxx'";
-					     $resultadopg = mysql_db_query($database, $sqlpg, $connection);
+					     $resultadopg = $connection->query($sqlpg);
 						 // padre cuenta nivel 7
 						 $pf = substr($codigo,0,10); 
 					$consultapf=mysql_query("select * from cxp where cod_pptal ='$pf' and id_emp ='$idxx'",$connection);
-     					 while($rowpf = mysql_fetch_array($consultapf)) 
+     					 while($rowpf = $consultapf->fetch_assoc()) 
       				     {	 
 						   $vrpf=$rowpf["definitivo"];
 					     } 
 						 $respf = $vrpf + $h;
 						 $sqlpf = "update cxp set definitivo = '$respf' where cod_pptal ='$pf' and id_emp ='$idxx'";
-					     $resultadopf = mysql_db_query($database, $sqlpf, $connection);
+					     $resultadopf = $connection->query($sqlpf);
 						 // padre cuenta nivel 6
 						 $pe = substr($codigo,0,8); 
 					$consultape=mysql_query("select * from cxp where cod_pptal ='$pe' and id_emp ='$idxx'",$connection);
-     					 while($rowpe = mysql_fetch_array($consultape)) 
+     					 while($rowpe = $consultape->fetch_assoc()) 
       				     {	 
 						   $vrpe=$rowpe["definitivo"];
 					     } 
 						 $respe = $vrpe + $h;
 						 $sqlpe = "update cxp set definitivo = '$respe' where cod_pptal ='$pe' and id_emp ='$idxx'";
-					     $resultadope = mysql_db_query($database, $sqlpe, $connection);
+					     $resultadope = $connection->query($sqlpe);
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection); 
+					     $resultadopa = $connection->query($sqlpa); 
                          
 						 break;
 						//---------
@@ -655,104 +655,104 @@ $id=$_POST['id'];
 	 					 $nivel = 10;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 10
 						 $pi = substr($codigo,0,16); 
 					$consultapi=mysql_query("select * from cxp where cod_pptal ='$pi' and id_emp ='$idxx'",$connection);
-     					 while($rowpi = mysql_fetch_array($consultapi)) 
+     					 while($rowpi = $consultapi->fetch_assoc()) 
       				     {	 
 						   $vrpi=$rowpi["definitivo"];
 					     } 
 						 $respi = $vrpi + $h;
 						 $sqlpi = "update cxp set definitivo = '$respi' where cod_pptal ='$pi' and id_emp ='$idxx'";
-					     $resultadopi = mysql_db_query($database, $sqlpi, $connection);
+					     $resultadopi = $connection->query($sqlpi);
 						 // padre cuenta nivel 9
 						 $ph = substr($codigo,0,14); 
 					$consultaph=mysql_query("select * from cxp where cod_pptal ='$ph' and id_emp ='$idxx'",$connection);
-     					 while($rowph = mysql_fetch_array($consultaph)) 
+     					 while($rowph = $consultaph->fetch_assoc()) 
       				     {	 
 						   $vrph=$rowph["definitivo"];
 					     } 
 						 $resph = $vrph + $h;
 						 $sqlph = "update cxp set definitivo = '$resph' where cod_pptal ='$ph' and id_emp ='$idxx'";
-					     $resultadoph = mysql_db_query($database, $sqlph, $connection);
+					     $resultadoph = $connection->query($sqlph);
 						 // padre cuenta nivel 8
 						 $pg = substr($codigo,0,12); 
 					$consultapg=mysql_query("select * from cxp where cod_pptal ='$pg' and id_emp ='$idxx'",$connection);
-     					 while($rowpg = mysql_fetch_array($consultapg)) 
+     					 while($rowpg = $consultapg->fetch_assoc()) 
       				     {	 
 						   $vrpg=$rowpg["definitivo"];
 					     } 
 						 $respg = $vrpg + $h;
 						 $sqlpg = "update cxp set definitivo = '$respg' where cod_pptal ='$pg' and id_emp ='$idxx'";
-					     $resultadopg = mysql_db_query($database, $sqlpg, $connection);
+					     $resultadopg = $connection->query($sqlpg);
 						 // padre cuenta nivel 7
 						 $pf = substr($codigo,0,10); 
 					$consultapf=mysql_query("select * from cxp where cod_pptal ='$pf' and id_emp ='$idxx'",$connection);
-     					 while($rowpf = mysql_fetch_array($consultapf)) 
+     					 while($rowpf = $consultapf->fetch_assoc()) 
       				     {	 
 						   $vrpf=$rowpf["definitivo"];
 					     } 
 						 $respf = $vrpf + $h;
 						 $sqlpf = "update cxp set definitivo = '$respf' where cod_pptal ='$pf' and id_emp ='$idxx'";
-					     $resultadopf = mysql_db_query($database, $sqlpf, $connection);
+					     $resultadopf = $connection->query($sqlpf);
 						 // padre cuenta nivel 6
 						 $pe = substr($codigo,0,8); 
 					$consultape=mysql_query("select * from cxp where cod_pptal ='$pe' and id_emp ='$idxx'",$connection);
-     					 while($rowpe = mysql_fetch_array($consultape)) 
+     					 while($rowpe = $consultape->fetch_assoc()) 
       				     {	 
 						   $vrpe=$rowpe["definitivo"];
 					     } 
 						 $respe = $vrpe + $h;
 						 $sqlpe = "update cxp set definitivo = '$respe' where cod_pptal ='$pe' and id_emp ='$idxx'";
-					     $resultadope = mysql_db_query($database, $sqlpe, $connection);
+					     $resultadope = $connection->query($sqlpe);
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection); 
+					     $resultadopa = $connection->query($sqlpa); 
                         
 						 break;
 						//---------
@@ -774,114 +774,114 @@ $id=$_POST['id'];
 	 					 $nivel = 11;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 11
 						 $pj = substr($codigo,0,18); 
 					$consultapj=mysql_query("select * from cxp where cod_pptal ='$pj' and id_emp ='$idxx'",$connection);
-     					 while($rowpj = mysql_fetch_array($consultapj)) 
+     					 while($rowpj = $consultapj->fetch_assoc()) 
       				     {	 
 						   $vrpj=$rowpj["definitivo"];
 					     } 
 						 $respj = $vrpj + $h;
 						 $sqlpj = "update cxp set definitivo = '$respj' where cod_pptal ='$pj' and id_emp ='$idxx'";
-					     $resultadopj = mysql_db_query($database, $sqlpj, $connection);
+					     $resultadopj = $connection->query($sqlpj);
 						 // padre cuenta nivel 10
 						 $pi = substr($codigo,0,16); 
 					$consultapi=mysql_query("select * from cxp where cod_pptal ='$pi' and id_emp ='$idxx'",$connection);
-     					 while($rowpi = mysql_fetch_array($consultapi)) 
+     					 while($rowpi = $consultapi->fetch_assoc()) 
       				     {	 
 						   $vrpi=$rowpi["definitivo"];
 					     } 
 						 $respi = $vrpi + $h;
 						 $sqlpi = "update cxp set definitivo = '$respi' where cod_pptal ='$pi' and id_emp ='$idxx'";
-					     $resultadopi = mysql_db_query($database, $sqlpi, $connection);
+					     $resultadopi = $connection->query($sqlpi);
 						 // padre cuenta nivel 9
 						 $ph = substr($codigo,0,14); 
 					$consultaph=mysql_query("select * from cxp where cod_pptal ='$ph' and id_emp ='$idxx'",$connection);
-     					 while($rowph = mysql_fetch_array($consultaph)) 
+     					 while($rowph = $consultaph->fetch_assoc()) 
       				     {	 
 						   $vrph=$rowph["definitivo"];
 					     } 
 						 $resph = $vrph + $h;
 						 $sqlph = "update cxp set definitivo = '$resph' where cod_pptal ='$ph' and id_emp ='$idxx'";
-					     $resultadoph = mysql_db_query($database, $sqlph, $connection);
+					     $resultadoph = $connection->query($sqlph);
 						 // padre cuenta nivel 8
 						 $pg = substr($codigo,0,12); 
 					$consultapg=mysql_query("select * from cxp where cod_pptal ='$pg' and id_emp ='$idxx'",$connection);
-     					 while($rowpg = mysql_fetch_array($consultapg)) 
+     					 while($rowpg = $consultapg->fetch_assoc()) 
       				     {	 
 						   $vrpg=$rowpg["definitivo"];
 					     } 
 						 $respg = $vrpg + $h;
 						 $sqlpg = "update cxp set definitivo = '$respg' where cod_pptal ='$pg' and id_emp ='$idxx'";
-					     $resultadopg = mysql_db_query($database, $sqlpg, $connection);
+					     $resultadopg = $connection->query($sqlpg);
 						 // padre cuenta nivel 7
 						 $pf = substr($codigo,0,10); 
 					$consultapf=mysql_query("select * from cxp where cod_pptal ='$pf' and id_emp ='$idxx'",$connection);
-     					 while($rowpf = mysql_fetch_array($consultapf)) 
+     					 while($rowpf = $consultapf->fetch_assoc()) 
       				     {	 
 						   $vrpf=$rowpf["definitivo"];
 					     } 
 						 $respf = $vrpf + $h;
 						 $sqlpf = "update cxp set definitivo = '$respf' where cod_pptal ='$pf' and id_emp ='$idxx'";
-					     $resultadopf = mysql_db_query($database, $sqlpf, $connection);
+					     $resultadopf = $connection->query($sqlpf);
 						 // padre cuenta nivel 6
 						 $pe = substr($codigo,0,8); 
 					$consultape=mysql_query("select * from cxp where cod_pptal ='$pe' and id_emp ='$idxx'",$connection);
-     					 while($rowpe = mysql_fetch_array($consultape)) 
+     					 while($rowpe = $consultape->fetch_assoc()) 
       				     {	 
 						   $vrpe=$rowpe["definitivo"];
 					     } 
 						 $respe = $vrpe + $h;
 						 $sqlpe = "update cxp set definitivo = '$respe' where cod_pptal ='$pe' and id_emp ='$idxx'";
-					     $resultadope = mysql_db_query($database, $sqlpe, $connection);
+					     $resultadope = $connection->query($sqlpe);
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection); 
+					     $resultadopa = $connection->query($sqlpa); 
                          
 						 break;
 						//---------
@@ -903,124 +903,124 @@ $id=$_POST['id'];
 	 					 $nivel = 12;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 						 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 12
 						 $pk = substr($codigo,0,20); 
 					$consultapk=mysql_query("select * from cxp where cod_pptal ='$pk' and id_emp ='$idxx'",$connection);
-     					 while($rowpk = mysql_fetch_array($consultapk)) 
+     					 while($rowpk = $consultapk->fetch_assoc()) 
       				     {	 
 						   $vrpk=$rowpk["definitivo"];
 					     } 
 						 $respk = $vrpk + $h;
 						 $sqlpk = "update cxp set definitivo = '$respk' where cod_pptal ='$pk' and id_emp ='$idxx'";
-					     $resultadopk = mysql_db_query($database, $sqlpk, $connection);
+					     $resultadopk = $connection->query($sqlpk);
 						 // padre cuenta nivel 11
 						 $pj = substr($codigo,0,18); 
 					$consultapj=mysql_query("select * from cxp where cod_pptal ='$pj' and id_emp ='$idxx'",$connection);
-     					 while($rowpj = mysql_fetch_array($consultapj)) 
+     					 while($rowpj = $consultapj->fetch_assoc()) 
       				     {	 
 						   $vrpj=$rowpj["definitivo"];
 					     } 
 						 $respj = $vrpj + $h;
 						 $sqlpj = "update cxp set definitivo = '$respj' where cod_pptal ='$pj' and id_emp ='$idxx'";
-					     $resultadopj = mysql_db_query($database, $sqlpj, $connection);
+					     $resultadopj = $connection->query($sqlpj);
 						 // padre cuenta nivel 10
 						 $pi = substr($codigo,0,16); 
 					$consultapi=mysql_query("select * from cxp where cod_pptal ='$pi' and id_emp ='$idxx'",$connection);
-     					 while($rowpi = mysql_fetch_array($consultapi)) 
+     					 while($rowpi = $consultapi->fetch_assoc()) 
       				     {	 
 						   $vrpi=$rowpi["definitivo"];
 					     } 
 						 $respi = $vrpi + $h;
 						 $sqlpi = "update cxp set definitivo = '$respi' where cod_pptal ='$pi' and id_emp ='$idxx'";
-					     $resultadopi = mysql_db_query($database, $sqlpi, $connection);
+					     $resultadopi = $connection->query($sqlpi);
 						 // padre cuenta nivel 9
 						 $ph = substr($codigo,0,14); 
 					$consultaph=mysql_query("select * from cxp where cod_pptal ='$ph' and id_emp ='$idxx'",$connection);
-     					 while($rowph = mysql_fetch_array($consultaph)) 
+     					 while($rowph = $consultaph->fetch_assoc()) 
       				     {	 
 						   $vrph=$rowph["definitivo"];
 					     } 
 						 $resph = $vrph + $h;
 						 $sqlph = "update cxp set definitivo = '$resph' where cod_pptal ='$ph' and id_emp ='$idxx'";
-					     $resultadoph = mysql_db_query($database, $sqlph, $connection);
+					     $resultadoph = $connection->query($sqlph);
 						 // padre cuenta nivel 8
 						 $pg = substr($codigo,0,12); 
 					$consultapg=mysql_query("select * from cxp where cod_pptal ='$pg' and id_emp ='$idxx'",$connection);
-     					 while($rowpg = mysql_fetch_array($consultapg)) 
+     					 while($rowpg = $consultapg->fetch_assoc()) 
       				     {	 
 						   $vrpg=$rowpg["definitivo"];
 					     } 
 						 $respg = $vrpg + $h;
 						 $sqlpg = "update cxp set definitivo = '$respg' where cod_pptal ='$pg' and id_emp ='$idxx'";
-					     $resultadopg = mysql_db_query($database, $sqlpg, $connection);
+					     $resultadopg = $connection->query($sqlpg);
 						 // padre cuenta nivel 7
 						 $pf = substr($codigo,0,10); 
 					$consultapf=mysql_query("select * from cxp where cod_pptal ='$pf' and id_emp ='$idxx'",$connection);
-     					 while($rowpf = mysql_fetch_array($consultapf)) 
+     					 while($rowpf = $consultapf->fetch_assoc()) 
       				     {	 
 						   $vrpf=$rowpf["definitivo"];
 					     } 
 						 $respf = $vrpf + $h;
 						 $sqlpf = "update cxp set definitivo = '$respf' where cod_pptal ='$pf' and id_emp ='$idxx'";
-					     $resultadopf = mysql_db_query($database, $sqlpf, $connection);
+					     $resultadopf = $connection->query($sqlpf);
 						 // padre cuenta nivel 6
 						 $pe = substr($codigo,0,8); 
 					$consultape=mysql_query("select * from cxp where cod_pptal ='$pe' and id_emp ='$idxx'",$connection);
-     					 while($rowpe = mysql_fetch_array($consultape)) 
+     					 while($rowpe = $consultape->fetch_assoc()) 
       				     {	 
 						   $vrpe=$rowpe["definitivo"];
 					     } 
 						 $respe = $vrpe + $h;
 						 $sqlpe = "update cxp set definitivo = '$respe' where cod_pptal ='$pe' and id_emp ='$idxx'";
-					     $resultadope = mysql_db_query($database, $sqlpe, $connection);
+					     $resultadope = $connection->query($sqlpe);
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection); 
+					     $resultadopa = $connection->query($sqlpa); 
                          
 						 break;
 						//---------
@@ -1042,134 +1042,134 @@ $id=$_POST['id'];
 	 					 $nivel = 13;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 						 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 13
 						 $pl = substr($codigo,0,22); 
 					$consultapl=mysql_query("select * from cxp where cod_pptal ='$pl' and id_emp ='$idxx'",$connection);
-     					 while($rowpl = mysql_fetch_array($consultapl)) 
+     					 while($rowpl = $consultapl->fetch_assoc()) 
       				     {	 
 						   $vrpl=$rowpl["definitivo"];
 					     } 
 						 $respl = $vrpl + $h;
 						 $sqlpl = "update cxp set definitivo = '$respl' where cod_pptal ='$pl' and id_emp ='$idxx'";
-					     $resultadopl = mysql_db_query($database, $sqlpl, $connection);
+					     $resultadopl = $connection->query($sqlpl);
 						 // padre cuenta nivel 12
 						 $pk = substr($codigo,0,20); 
 					$consultapk=mysql_query("select * from cxp where cod_pptal ='$pk' and id_emp ='$idxx'",$connection);
-     					 while($rowpk = mysql_fetch_array($consultapk)) 
+     					 while($rowpk = $consultapk->fetch_assoc()) 
       				     {	 
 						   $vrpk=$rowpk["definitivo"];
 					     } 
 						 $respk = $vrpk + $h;
 						 $sqlpk = "update cxp set definitivo = '$respk' where cod_pptal ='$pk' and id_emp ='$idxx'";
-					     $resultadopk = mysql_db_query($database, $sqlpk, $connection);
+					     $resultadopk = $connection->query($sqlpk);
 						 // padre cuenta nivel 11
 						 $pj = substr($codigo,0,18); 
 					$consultapj=mysql_query("select * from cxp where cod_pptal ='$pj' and id_emp ='$idxx'",$connection);
-     					 while($rowpj = mysql_fetch_array($consultapj)) 
+     					 while($rowpj = $consultapj->fetch_assoc()) 
       				     {	 
 						   $vrpj=$rowpj["definitivo"];
 					     } 
 						 $respj = $vrpj + $h;
 						 $sqlpj = "update cxp set definitivo = '$respj' where cod_pptal ='$pj' and id_emp ='$idxx'";
-					     $resultadopj = mysql_db_query($database, $sqlpj, $connection);
+					     $resultadopj = $connection->query($sqlpj);
 						 // padre cuenta nivel 10
 						 $pi = substr($codigo,0,16); 
 					$consultapi=mysql_query("select * from cxp where cod_pptal ='$pi' and id_emp ='$idxx'",$connection);
-     					 while($rowpi = mysql_fetch_array($consultapi)) 
+     					 while($rowpi = $consultapi->fetch_assoc()) 
       				     {	 
 						   $vrpi=$rowpi["definitivo"];
 					     } 
 						 $respi = $vrpi + $h;
 						 $sqlpi = "update cxp set definitivo = '$respi' where cod_pptal ='$pi' and id_emp ='$idxx'";
-					     $resultadopi = mysql_db_query($database, $sqlpi, $connection);
+					     $resultadopi = $connection->query($sqlpi);
 						 // padre cuenta nivel 9
 						 $ph = substr($codigo,0,14); 
 					$consultaph=mysql_query("select * from cxp where cod_pptal ='$ph' and id_emp ='$idxx'",$connection);
-     					 while($rowph = mysql_fetch_array($consultaph)) 
+     					 while($rowph = $consultaph->fetch_assoc()) 
       				     {	 
 						   $vrph=$rowph["definitivo"];
 					     } 
 						 $resph = $vrph + $h;
 						 $sqlph = "update cxp set definitivo = '$resph' where cod_pptal ='$ph' and id_emp ='$idxx'";
-					     $resultadoph = mysql_db_query($database, $sqlph, $connection);
+					     $resultadoph = $connection->query($sqlph);
 						 // padre cuenta nivel 8
 						 $pg = substr($codigo,0,12); 
 					$consultapg=mysql_query("select * from cxp where cod_pptal ='$pg' and id_emp ='$idxx'",$connection);
-     					 while($rowpg = mysql_fetch_array($consultapg)) 
+     					 while($rowpg = $consultapg->fetch_assoc()) 
       				     {	 
 						   $vrpg=$rowpg["definitivo"];
 					     } 
 						 $respg = $vrpg + $h;
 						 $sqlpg = "update cxp set definitivo = '$respg' where cod_pptal ='$pg' and id_emp ='$idxx'";
-					     $resultadopg = mysql_db_query($database, $sqlpg, $connection);
+					     $resultadopg = $connection->query($sqlpg);
 						 // padre cuenta nivel 7
 						 $pf = substr($codigo,0,10); 
 					$consultapf=mysql_query("select * from cxp where cod_pptal ='$pf' and id_emp ='$idxx'",$connection);
-     					 while($rowpf = mysql_fetch_array($consultapf)) 
+     					 while($rowpf = $consultapf->fetch_assoc()) 
       				     {	 
 						   $vrpf=$rowpf["definitivo"];
 					     } 
 						 $respf = $vrpf + $h;
 						 $sqlpf = "update cxp set definitivo = '$respf' where cod_pptal ='$pf' and id_emp ='$idxx'";
-					     $resultadopf = mysql_db_query($database, $sqlpf, $connection);
+					     $resultadopf = $connection->query($sqlpf);
 						 // padre cuenta nivel 6
 						 $pe = substr($codigo,0,8); 
 					$consultape=mysql_query("select * from cxp where cod_pptal ='$pe' and id_emp ='$idxx'",$connection);
-     					 while($rowpe = mysql_fetch_array($consultape)) 
+     					 while($rowpe = $consultape->fetch_assoc()) 
       				     {	 
 						   $vrpe=$rowpe["definitivo"];
 					     } 
 						 $respe = $vrpe + $h;
 						 $sqlpe = "update cxp set definitivo = '$respe' where cod_pptal ='$pe' and id_emp ='$idxx'";
-					     $resultadope = mysql_db_query($database, $sqlpe, $connection);
+					     $resultadope = $connection->query($sqlpe);
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection); 
+					     $resultadopa = $connection->query($sqlpa); 
                          
 						 break;
 						//---------
@@ -1191,144 +1191,144 @@ $id=$_POST['id'];
 	 					 $nivel = 14;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 14
 						 $pm = substr($codigo,0,24); 
 					$consultapm=mysql_query("select * from cxp where cod_pptal ='$pm' and id_emp ='$idxx'",$connection);
-     					 while($rowpm = mysql_fetch_array($consultapm)) 
+     					 while($rowpm = $consultapm->fetch_assoc()) 
       				     {	 
 						   $vrpm=$rowpm["definitivo"];
 					     } 
 						 $respm = $vrpm + $h;
 						 $sqlpm = "update cxp set definitivo = '$respm' where cod_pptal ='$pm' and id_emp ='$idxx'";
-					     $resultadopm = mysql_db_query($database, $sqlpm, $connection);
+					     $resultadopm = $connection->query($sqlpm);
 						 // padre cuenta nivel 13
 						 $pl = substr($codigo,0,22); 
 					$consultapl=mysql_query("select * from cxp where cod_pptal ='$pl' and id_emp ='$idxx'",$connection);
-     					 while($rowpl = mysql_fetch_array($consultapl)) 
+     					 while($rowpl = $consultapl->fetch_assoc()) 
       				     {	 
 						   $vrpl=$rowpl["definitivo"];
 					     } 
 						 $respl = $vrpl + $h;
 						 $sqlpl = "update cxp set definitivo = '$respl' where cod_pptal ='$pl' and id_emp ='$idxx'";
-					     $resultadopl = mysql_db_query($database, $sqlpl, $connection);
+					     $resultadopl = $connection->query($sqlpl);
 						 // padre cuenta nivel 12
 						 $pk = substr($codigo,0,20); 
 					$consultapk=mysql_query("select * from cxp where cod_pptal ='$pk' and id_emp ='$idxx'",$connection);
-     					 while($rowpk = mysql_fetch_array($consultapk)) 
+     					 while($rowpk = $consultapk->fetch_assoc()) 
       				     {	 
 						   $vrpk=$rowpk["definitivo"];
 					     } 
 						 $respk = $vrpk + $h;
 						 $sqlpk = "update cxp set definitivo = '$respk' where cod_pptal ='$pk' and id_emp ='$idxx'";
-					     $resultadopk = mysql_db_query($database, $sqlpk, $connection);
+					     $resultadopk = $connection->query($sqlpk);
 						 // padre cuenta nivel 11
 						 $pj = substr($codigo,0,18); 
 					$consultapj=mysql_query("select * from cxp where cod_pptal ='$pj' and id_emp ='$idxx'",$connection);
-     					 while($rowpj = mysql_fetch_array($consultapj)) 
+     					 while($rowpj = $consultapj->fetch_assoc()) 
       				     {	 
 						   $vrpj=$rowpj["definitivo"];
 					     } 
 						 $respj = $vrpj + $h;
 						 $sqlpj = "update cxp set definitivo = '$respj' where cod_pptal ='$pj' and id_emp ='$idxx'";
-					     $resultadopj = mysql_db_query($database, $sqlpj, $connection);
+					     $resultadopj = $connection->query($sqlpj);
 						 // padre cuenta nivel 10
 						 $pi = substr($codigo,0,16); 
 					$consultapi=mysql_query("select * from cxp where cod_pptal ='$pi' and id_emp ='$idxx'",$connection);
-     					 while($rowpi = mysql_fetch_array($consultapi)) 
+     					 while($rowpi = $consultapi->fetch_assoc()) 
       				     {	 
 						   $vrpi=$rowpi["definitivo"];
 					     } 
 						 $respi = $vrpi + $h;
 						 $sqlpi = "update cxp set definitivo = '$respi' where cod_pptal ='$pi' and id_emp ='$idxx'";
-					     $resultadopi = mysql_db_query($database, $sqlpi, $connection);
+					     $resultadopi = $connection->query($sqlpi);
 						 // padre cuenta nivel 9
 						 $ph = substr($codigo,0,14); 
 					$consultaph=mysql_query("select * from cxp where cod_pptal ='$ph' and id_emp ='$idxx'",$connection);
-     					 while($rowph = mysql_fetch_array($consultaph)) 
+     					 while($rowph = $consultaph->fetch_assoc()) 
       				     {	 
 						   $vrph=$rowph["definitivo"];
 					     } 
 						 $resph = $vrph + $h;
 						 $sqlph = "update cxp set definitivo = '$resph' where cod_pptal ='$ph' and id_emp ='$idxx'";
-					     $resultadoph = mysql_db_query($database, $sqlph, $connection);
+					     $resultadoph = $connection->query($sqlph);
 						 // padre cuenta nivel 8
 						 $pg = substr($codigo,0,12); 
 					$consultapg=mysql_query("select * from cxp where cod_pptal ='$pg' and id_emp ='$idxx'",$connection);
-     					 while($rowpg = mysql_fetch_array($consultapg)) 
+     					 while($rowpg = $consultapg->fetch_assoc()) 
       				     {	 
 						   $vrpg=$rowpg["definitivo"];
 					     } 
 						 $respg = $vrpg + $h;
 						 $sqlpg = "update cxp set definitivo = '$respg' where cod_pptal ='$pg' and id_emp ='$idxx'";
-					     $resultadopg = mysql_db_query($database, $sqlpg, $connection);
+					     $resultadopg = $connection->query($sqlpg);
 						 // padre cuenta nivel 7
 						 $pf = substr($codigo,0,10); 
 					$consultapf=mysql_query("select * from cxp where cod_pptal ='$pf' and id_emp ='$idxx'",$connection);
-     					 while($rowpf = mysql_fetch_array($consultapf)) 
+     					 while($rowpf = $consultapf->fetch_assoc()) 
       				     {	 
 						   $vrpf=$rowpf["definitivo"];
 					     } 
 						 $respf = $vrpf + $h;
 						 $sqlpf = "update cxp set definitivo = '$respf' where cod_pptal ='$pf' and id_emp ='$idxx'";
-					     $resultadopf = mysql_db_query($database, $sqlpf, $connection);
+					     $resultadopf = $connection->query($sqlpf);
 						 // padre cuenta nivel 6
 						 $pe = substr($codigo,0,8); 
 					$consultape=mysql_query("select * from cxp where cod_pptal ='$pe' and id_emp ='$idxx'",$connection);
-     					 while($rowpe = mysql_fetch_array($consultape)) 
+     					 while($rowpe = $consultape->fetch_assoc()) 
       				     {	 
 						   $vrpe=$rowpe["definitivo"];
 					     } 
 						 $respe = $vrpe + $h;
 						 $sqlpe = "update cxp set definitivo = '$respe' where cod_pptal ='$pe' and id_emp ='$idxx'";
-					     $resultadope = mysql_db_query($database, $sqlpe, $connection);
+					     $resultadope = $connection->query($sqlpe);
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection); 
+					     $resultadopa = $connection->query($sqlpa); 
                          
 						 break;
 						//---------
@@ -1350,154 +1350,154 @@ $id=$_POST['id'];
 	 					 $nivel = 15;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 15
 						 $pn = substr($codigo,0,26); 
 					$consultapn=mysql_query("select * from cxp where cod_pptal ='$pn' and id_emp ='$idxx'",$connection);
-     					 while($rowpn = mysql_fetch_array($consultapn)) 
+     					 while($rowpn = $consultapn->fetch_assoc()) 
       				     {	 
 						   $vrpn=$rowpn["definitivo"];
 					     } 
 						 $respn = $vrpn + $h;
 						 $sqlpn = "update cxp set definitivo = '$respn' where cod_pptal ='$pn' and id_emp ='$idxx'";
-					     $resultadopn = mysql_db_query($database, $sqlpn, $connection);
+					     $resultadopn = $connection->query($sqlpn);
 						 // padre cuenta nivel 14
 						 $pm = substr($codigo,0,24); 
 					$consultapm=mysql_query("select * from cxp where cod_pptal ='$pm' and id_emp ='$idxx'",$connection);
-     					 while($rowpm = mysql_fetch_array($consultapm)) 
+     					 while($rowpm = $consultapm->fetch_assoc()) 
       				     {	 
 						   $vrpm=$rowpm["definitivo"];
 					     } 
 						 $respm = $vrpm + $h;
 						 $sqlpm = "update cxp set definitivo = '$respm' where cod_pptal ='$pm' and id_emp ='$idxx'";
-					     $resultadopm = mysql_db_query($database, $sqlpm, $connection);
+					     $resultadopm = $connection->query($sqlpm);
 						 // padre cuenta nivel 13
 						 $pl = substr($codigo,0,22); 
 					$consultapl=mysql_query("select * from cxp where cod_pptal ='$pl' and id_emp ='$idxx'",$connection);
-     					 while($rowpl = mysql_fetch_array($consultapl)) 
+     					 while($rowpl = $consultapl->fetch_assoc()) 
       				     {	 
 						   $vrpl=$rowpl["definitivo"];
 					     } 
 						 $respl = $vrpl + $h;
 						 $sqlpl = "update cxp set definitivo = '$respl' where cod_pptal ='$pl' and id_emp ='$idxx'";
-					     $resultadopl = mysql_db_query($database, $sqlpl, $connection);
+					     $resultadopl = $connection->query($sqlpl);
 						 // padre cuenta nivel 12
 						 $pk = substr($codigo,0,20); 
 					$consultapk=mysql_query("select * from cxp where cod_pptal ='$pk' and id_emp ='$idxx'",$connection);
-     					 while($rowpk = mysql_fetch_array($consultapk)) 
+     					 while($rowpk = $consultapk->fetch_assoc()) 
       				     {	 
 						   $vrpk=$rowpk["definitivo"];
 					     } 
 						 $respk = $vrpk + $h;
 						 $sqlpk = "update cxp set definitivo = '$respk' where cod_pptal ='$pk' and id_emp ='$idxx'";
-					     $resultadopk = mysql_db_query($database, $sqlpk, $connection);
+					     $resultadopk = $connection->query($sqlpk);
 						 // padre cuenta nivel 11
 						 $pj = substr($codigo,0,18); 
 					$consultapj=mysql_query("select * from cxp where cod_pptal ='$pj' and id_emp ='$idxx'",$connection);
-     					 while($rowpj = mysql_fetch_array($consultapj)) 
+     					 while($rowpj = $consultapj->fetch_assoc()) 
       				     {	 
 						   $vrpj=$rowpj["definitivo"];
 					     } 
 						 $respj = $vrpj + $h;
 						 $sqlpj = "update cxp set definitivo = '$respj' where cod_pptal ='$pj' and id_emp ='$idxx'";
-					     $resultadopj = mysql_db_query($database, $sqlpj, $connection);
+					     $resultadopj = $connection->query($sqlpj);
 						 // padre cuenta nivel 10
 						 $pi = substr($codigo,0,16); 
 					$consultapi=mysql_query("select * from cxp where cod_pptal ='$pi' and id_emp ='$idxx'",$connection);
-     					 while($rowpi = mysql_fetch_array($consultapi)) 
+     					 while($rowpi = $consultapi->fetch_assoc()) 
       				     {	 
 						   $vrpi=$rowpi["definitivo"];
 					     } 
 						 $respi = $vrpi + $h;
 						 $sqlpi = "update cxp set definitivo = '$respi' where cod_pptal ='$pi' and id_emp ='$idxx'";
-					     $resultadopi = mysql_db_query($database, $sqlpi, $connection);
+					     $resultadopi = $connection->query($sqlpi);
 						 // padre cuenta nivel 9
 						 $ph = substr($codigo,0,14); 
 					$consultaph=mysql_query("select * from cxp where cod_pptal ='$ph' and id_emp ='$idxx'",$connection);
-     					 while($rowph = mysql_fetch_array($consultaph)) 
+     					 while($rowph = $consultaph->fetch_assoc()) 
       				     {	 
 						   $vrph=$rowph["definitivo"];
 					     } 
 						 $resph = $vrph + $h;
 						 $sqlph = "update cxp set definitivo = '$resph' where cod_pptal ='$ph' and id_emp ='$idxx'";
-					     $resultadoph = mysql_db_query($database, $sqlph, $connection);
+					     $resultadoph = $connection->query($sqlph);
 						 // padre cuenta nivel 8
 						 $pg = substr($codigo,0,12); 
 					$consultapg=mysql_query("select * from cxp where cod_pptal ='$pg' and id_emp ='$idxx'",$connection);
-     					 while($rowpg = mysql_fetch_array($consultapg)) 
+     					 while($rowpg = $consultapg->fetch_assoc()) 
       				     {	 
 						   $vrpg=$rowpg["definitivo"];
 					     } 
 						 $respg = $vrpg + $h;
 						 $sqlpg = "update cxp set definitivo = '$respg' where cod_pptal ='$pg' and id_emp ='$idxx'";
-					     $resultadopg = mysql_db_query($database, $sqlpg, $connection);
+					     $resultadopg = $connection->query($sqlpg);
 						 // padre cuenta nivel 7
 						 $pf = substr($codigo,0,10); 
 					$consultapf=mysql_query("select * from cxp where cod_pptal ='$pf' and id_emp ='$idxx'",$connection);
-     					 while($rowpf = mysql_fetch_array($consultapf)) 
+     					 while($rowpf = $consultapf->fetch_assoc()) 
       				     {	 
 						   $vrpf=$rowpf["definitivo"];
 					     } 
 						 $respf = $vrpf + $h;
 						 $sqlpf = "update cxp set definitivo = '$respf' where cod_pptal ='$pf' and id_emp ='$idxx'";
-					     $resultadopf = mysql_db_query($database, $sqlpf, $connection);
+					     $resultadopf = $connection->query($sqlpf);
 						 // padre cuenta nivel 6
 						 $pe = substr($codigo,0,8); 
 					$consultape=mysql_query("select * from cxp where cod_pptal ='$pe' and id_emp ='$idxx'",$connection);
-     					 while($rowpe = mysql_fetch_array($consultape)) 
+     					 while($rowpe = $consultape->fetch_assoc()) 
       				     {	 
 						   $vrpe=$rowpe["definitivo"];
 					     } 
 						 $respe = $vrpe + $h;
 						 $sqlpe = "update cxp set definitivo = '$respe' where cod_pptal ='$pe' and id_emp ='$idxx'";
-					     $resultadope = mysql_db_query($database, $sqlpe, $connection);
+					     $resultadope = $connection->query($sqlpe);
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection); 
+					     $resultadopa = $connection->query($sqlpa); 
                          
 						 break;
 						//---------
@@ -1519,164 +1519,164 @@ $id=$_POST['id'];
 	 					 $nivel = 16;
 						 //lo actualizo a el mismo
 						 $c=mysql_query("select * from cxp where cod_pptal ='$codigo' and id_emp ='$idxx'",$connection);
-     					 while($r = mysql_fetch_array($c)) 
+     					 while($r = $c->fetch_assoc()) 
       				     {	 
 						   $vr=$r["definitivo"];
 					     } 
 						 $re = $vr + $h;
 						 $sql = "update cxp set definitivo = '$re', afectado_otros = '0' where cod_pptal ='$codigo' and id_emp ='$idxx'";
-					     $res = mysql_db_query($database, $sql, $connection);
+					     $res = $connection->query($sql);
 	 					 // actualizo el valor de todos los padres
 						 // padre cuenta nivel 16
 						 $po = substr($codigo,0,28); 
 					$consultapo=mysql_query("select * from cxp where cod_pptal ='$po' and id_emp ='$idxx'",$connection);
-     					 while($rowpo = mysql_fetch_array($consultapo)) 
+     					 while($rowpo = $consultapo->fetch_assoc()) 
       				     {	 
 						   $vrpo=$rowpo["definitivo"];
 					     } 
 						 $respo = $vrpo + $h;
 						 $sqlpo = "update cxp set definitivo = '$respo' where cod_pptal ='$po' and id_emp ='$idxx'";
-					     $resultadopo = mysql_db_query($database, $sqlpo, $connection);
+					     $resultadopo = $connection->query($sqlpo);
 						 // padre cuenta nivel 15
 						 $pn = substr($codigo,0,26); 
 					$consultapn=mysql_query("select * from cxp where cod_pptal ='$pn' and id_emp ='$idxx'",$connection);
-     					 while($rowpn = mysql_fetch_array($consultapn)) 
+     					 while($rowpn = $consultapn->fetch_assoc()) 
       				     {	 
 						   $vrpn=$rowpn["definitivo"];
 					     } 
 						 $respn = $vrpn + $h;
 						 $sqlpn = "update cxp set definitivo = '$respn' where cod_pptal ='$pn' and id_emp ='$idxx'";
-					     $resultadopn = mysql_db_query($database, $sqlpn, $connection);
+					     $resultadopn = $connection->query($sqlpn);
 						 // padre cuenta nivel 14
 						 $pm = substr($codigo,0,24); 
 					$consultapm=mysql_query("select * from cxp where cod_pptal ='$pm' and id_emp ='$idxx'",$connection);
-     					 while($rowpm = mysql_fetch_array($consultapm)) 
+     					 while($rowpm = $consultapm->fetch_assoc()) 
       				     {	 
 						   $vrpm=$rowpm["definitivo"];
 					     } 
 						 $respm = $vrpm + $h;
 						 $sqlpm = "update cxp set definitivo = '$respm' where cod_pptal ='$pm' and id_emp ='$idxx'";
-					     $resultadopm = mysql_db_query($database, $sqlpm, $connection);
+					     $resultadopm = $connection->query($sqlpm);
 						 // padre cuenta nivel 13
 						 $pl = substr($codigo,0,22); 
 					$consultapl=mysql_query("select * from cxp where cod_pptal ='$pl' and id_emp ='$idxx'",$connection);
-     					 while($rowpl = mysql_fetch_array($consultapl)) 
+     					 while($rowpl = $consultapl->fetch_assoc()) 
       				     {	 
 						   $vrpl=$rowpl["definitivo"];
 					     } 
 						 $respl = $vrpl + $h;
 						 $sqlpl = "update cxp set definitivo = '$respl' where cod_pptal ='$pl' and id_emp ='$idxx'";
-					     $resultadopl = mysql_db_query($database, $sqlpl, $connection);
+					     $resultadopl = $connection->query($sqlpl);
 						 // padre cuenta nivel 12
 						 $pk = substr($codigo,0,20); 
 					$consultapk=mysql_query("select * from cxp where cod_pptal ='$pk' and id_emp ='$idxx'",$connection);
-     					 while($rowpk = mysql_fetch_array($consultapk)) 
+     					 while($rowpk = $consultapk->fetch_assoc()) 
       				     {	 
 						   $vrpk=$rowpk["definitivo"];
 					     } 
 						 $respk = $vrpk + $h;
 						 $sqlpk = "update cxp set definitivo = '$respk' where cod_pptal ='$pk' and id_emp ='$idxx'";
-					     $resultadopk = mysql_db_query($database, $sqlpk, $connection);
+					     $resultadopk = $connection->query($sqlpk);
 						 // padre cuenta nivel 11
 						 $pj = substr($codigo,0,18); 
 					$consultapj=mysql_query("select * from cxp where cod_pptal ='$pj' and id_emp ='$idxx'",$connection);
-     					 while($rowpj = mysql_fetch_array($consultapj)) 
+     					 while($rowpj = $consultapj->fetch_assoc()) 
       				     {	 
 						   $vrpj=$rowpj["definitivo"];
 					     } 
 						 $respj = $vrpj + $h;
 						 $sqlpj = "update cxp set definitivo = '$respj' where cod_pptal ='$pj' and id_emp ='$idxx'";
-					     $resultadopj = mysql_db_query($database, $sqlpj, $connection);
+					     $resultadopj = $connection->query($sqlpj);
 						 // padre cuenta nivel 10
 						 $pi = substr($codigo,0,16); 
 					$consultapi=mysql_query("select * from cxp where cod_pptal ='$pi' and id_emp ='$idxx'",$connection);
-     					 while($rowpi = mysql_fetch_array($consultapi)) 
+     					 while($rowpi = $consultapi->fetch_assoc()) 
       				     {	 
 						   $vrpi=$rowpi["definitivo"];
 					     } 
 						 $respi = $vrpi + $h;
 						 $sqlpi = "update cxp set definitivo = '$respi' where cod_pptal ='$pi' and id_emp ='$idxx'";
-					     $resultadopi = mysql_db_query($database, $sqlpi, $connection);
+					     $resultadopi = $connection->query($sqlpi);
 						 // padre cuenta nivel 9
 						 $ph = substr($codigo,0,14); 
 					$consultaph=mysql_query("select * from cxp where cod_pptal ='$ph' and id_emp ='$idxx'",$connection);
-     					 while($rowph = mysql_fetch_array($consultaph)) 
+     					 while($rowph = $consultaph->fetch_assoc()) 
       				     {	 
 						   $vrph=$rowph["definitivo"];
 					     } 
 						 $resph = $vrph + $h;
 						 $sqlph = "update cxp set definitivo = '$resph' where cod_pptal ='$ph' and id_emp ='$idxx'";
-					     $resultadoph = mysql_db_query($database, $sqlph, $connection);
+					     $resultadoph = $connection->query($sqlph);
 						 // padre cuenta nivel 8
 						 $pg = substr($codigo,0,12); 
 					$consultapg=mysql_query("select * from cxp where cod_pptal ='$pg' and id_emp ='$idxx'",$connection);
-     					 while($rowpg = mysql_fetch_array($consultapg)) 
+     					 while($rowpg = $consultapg->fetch_assoc()) 
       				     {	 
 						   $vrpg=$rowpg["definitivo"];
 					     } 
 						 $respg = $vrpg + $h;
 						 $sqlpg = "update cxp set definitivo = '$respg' where cod_pptal ='$pg' and id_emp ='$idxx'";
-					     $resultadopg = mysql_db_query($database, $sqlpg, $connection);
+					     $resultadopg = $connection->query($sqlpg);
 						 // padre cuenta nivel 7
 						 $pf = substr($codigo,0,10); 
 					$consultapf=mysql_query("select * from cxp where cod_pptal ='$pf' and id_emp ='$idxx'",$connection);
-     					 while($rowpf = mysql_fetch_array($consultapf)) 
+     					 while($rowpf = $consultapf->fetch_assoc()) 
       				     {	 
 						   $vrpf=$rowpf["definitivo"];
 					     } 
 						 $respf = $vrpf + $h;
 						 $sqlpf = "update cxp set definitivo = '$respf' where cod_pptal ='$pf' and id_emp ='$idxx'";
-					     $resultadopf = mysql_db_query($database, $sqlpf, $connection);
+					     $resultadopf = $connection->query($sqlpf);
 						 // padre cuenta nivel 6
 						 $pe = substr($codigo,0,8); 
 					$consultape=mysql_query("select * from cxp where cod_pptal ='$pe' and id_emp ='$idxx'",$connection);
-     					 while($rowpe = mysql_fetch_array($consultape)) 
+     					 while($rowpe = $consultape->fetch_assoc()) 
       				     {	 
 						   $vrpe=$rowpe["definitivo"];
 					     } 
 						 $respe = $vrpe + $h;
 						 $sqlpe = "update cxp set definitivo = '$respe' where cod_pptal ='$pe' and id_emp ='$idxx'";
-					     $resultadope = mysql_db_query($database, $sqlpe, $connection);
+					     $resultadope = $connection->query($sqlpe);
 						 // padre cuenta nivel 5
 						 $pd = substr($codigo,0,6); 
 					$consultapd=mysql_query("select * from cxp where cod_pptal ='$pd' and id_emp ='$idxx'",$connection);
-     					 while($rowpd = mysql_fetch_array($consultapd)) 
+     					 while($rowpd = $consultapd->fetch_assoc()) 
       				     {	 
 						   $vrpd=$rowpd["definitivo"];
 					     } 
 						 $respd = $vrpd + $h;
 						 $sqlpd = "update cxp set definitivo = '$respd' where cod_pptal ='$pd' and id_emp ='$idxx'";
-					     $resultadopd = mysql_db_query($database, $sqlpd, $connection);
+					     $resultadopd = $connection->query($sqlpd);
 						 // padre cuenta nivel 4
  						 $pc = substr($codigo,0,4); 
 				    $consultapc=mysql_query("select * from cxp where cod_pptal ='$pc' and id_emp ='$idxx'",$connection);
-     					 while($rowpc = mysql_fetch_array($consultapc)) 
+     					 while($rowpc = $consultapc->fetch_assoc()) 
       				     {	 
 						   $vrpc=$rowpc["definitivo"];
 					     } 
 						 $respc = $vrpc + $h;
 						 $sqlpc = "update cxp set definitivo = '$respc' where cod_pptal ='$pc' and id_emp ='$idxx'";
-					     $resultadopc = mysql_db_query($database, $sqlpc, $connection);
+					     $resultadopc = $connection->query($sqlpc);
 						 // padre cuenta nivel 3
  						 $pb = substr($codigo,0,2); 
 					$consultapb=mysql_query("select * from cxp where cod_pptal ='$pb' and id_emp ='$idxx'",$connection);
-     					 while($rowpb = mysql_fetch_array($consultapb)) 
+     					 while($rowpb = $consultapb->fetch_assoc()) 
       				     {	 
 						   $vrpb=$rowpb["definitivo"];
 					     } 
 						 $respb = $vrpb + $h;
 						 $sqlpb = "update cxp set definitivo = '$respb' where cod_pptal ='$pb' and id_emp ='$idxx'";
-					     $resultadopb = mysql_db_query($database, $sqlpb, $connection);
+					     $resultadopb = $connection->query($sqlpb);
 						 // padre cuenta nivel 2
  						 $pa = substr($codigo,0,1); 
 					$consultapa=mysql_query("select * from cxp where cod_pptal ='$pa' and id_emp ='$idxx'",$connection);
-     					 while($rowpa = mysql_fetch_array($consultapa)) 
+     					 while($rowpa = $consultapa->fetch_assoc()) 
       				     {	 
 						   $vrpa=$rowpa["definitivo"];
 					     } 
 						 $respa = $vrpa + $h;
 						 $sqlpa = "update cxp set definitivo = '$respa' where cod_pptal ='$pa' and id_emp ='$idxx'";
-					     $resultadopa = mysql_db_query($database, $sqlpa, $connection); 
+					     $resultadopa = $connection->query($sqlpa); 
                          
 						 break;
 						//---------
@@ -1713,7 +1713,7 @@ mysql_query($sSQL);
 
 
 ?>
-<?
+<?php
 }
 ?><title>CONTAFACIL</title>
 <style type="text/css">

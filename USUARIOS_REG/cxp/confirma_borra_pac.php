@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -14,8 +14,8 @@ $id=$_POST['id'];
 // saco el id de la empresa
    $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	    $sqlxx = "select * from fecha";
-	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-	    while($rowxx = mysql_fetch_array($resultadoxx)) 
+	    $resultadoxx = $connectionxx->query($sqlxx);
+	    while($rowxx = $resultadoxx->fetch_assoc()) 
   	    {
      	 $idxx=$rowxx["id_emp"];
 		  $id_emp=$rowxx["id_emp"];
@@ -43,7 +43,7 @@ mysql_query($sSQL);
 
 
 ?>
-<?
+<?php
 }
 ?><title>CONTAFACIL</title>
 <style type="text/css">

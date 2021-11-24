@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -252,7 +252,7 @@ include('../objetos/obj_cxp.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $s = "select * from fecha_ini_op";
 $r = mysql_db_query($database, $s, $cx);
-while($rw = mysql_fetch_array($r)) 
+while($rw = $r->fetch_assoc()) 
    {
 printf("<center class='Estilo4'><b>%s</b><center>",$rw["fecha_ini_op"]);  
 $fecha_ini_op=$rw["fecha_ini_op"];
@@ -267,15 +267,15 @@ $fecha_ini_op=$rw["fecha_ini_op"];
 		  <div align="right">
 		    <?php
 $sql = "select * from fecha";
-$resultado = mysql_db_query($database, $sql, $cx);
-while($row = mysql_fetch_array($resultado)) 
+$resultado = $cx->query($sql);
+while($row = $resultado->fetch_assoc()) 
    {
 printf("<input name='ano' type='hidden' id='ano' value='%s' size='10'/><input name='id_emp' type='hidden' id='id_emp' value='%s' size='4'/>",$fecha_ini_op, $row["id_emp"]);  
    }
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $cx);
+$resultadoxx = $cx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    $idxx=$rowxx["id_emp"];
    }
@@ -288,13 +288,13 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 
 		            <div align="left">
 		              <select name="nn" onchange="cambia()" class="Estilo4" style="width: 400px;">
-		                <?
+		                <?php
 
 $strSQL = "SELECT * FROM cxp WHERE id_emp = '$idxx' ORDER BY cod_pptal";
 $rs = mysql_query($strSQL);
 $nr = mysql_num_rows($rs);
 for ($i=0; $i<$nr; $i++) {
-	$r = mysql_fetch_array($rs);
+	$r = $rs->fetch_assoc();
 	echo "<OPTION VALUE=\"".$r["cod_pptal"]."\">".$r["cod_pptal"]." - ".$r["nom_rubro"]."</b></OPTION>";
 }
 ?>
@@ -311,10 +311,10 @@ for ($i=0; $i<$nr; $i++) {
         <td width="454" colspan="2" bgcolor="#EBEBE4" class="Estilo4">
 		  <div id="main_div" style="padding-left:30px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
 		            <div align="left">
-					<?  
+					<?php  
 					$cod_pptal =$_GET["id"];
 					$consulta=mysql_query("select * from cxp where cod_pptal ='$cod_pptal'",$cx);
-					while($row = mysql_fetch_array($consulta))
+					while($row = $consulta->fetch_assoc())
 					{
    						$nom_rubro=$row["nom_rubro"]; 
 						$tip_dato=$row["tip_dato"]; 
@@ -350,7 +350,7 @@ for ($i=0; $i<$nr; $i++) {
 					
 					?>
 						
-		              <input name="cod_pptal" type="text" class="Estilo7"  id="cod_pptal"   tabindex="0"   value="<? printf('%s',$cod_pptal); ?>"   <?php echo $ver_cod; ?>
+		              <input name="cod_pptal" type="text" class="Estilo7"  id="cod_pptal"   tabindex="0"   value="<?php printf('%s',$cod_pptal); ?>"   <?php echo $ver_cod; ?>
 					  
 					  onkeyup="habilitar2();" size="40" maxlength="35" /> &nbsp;<?php echo $mensaje; ?>
 					  </div> 
@@ -399,17 +399,17 @@ for ($i=0; $i<$nr; $i++) {
 		<div class="Estilo23" id="main_div" style="padding-left:15px; padding-top:5px; padding-right:15px; padding-bottom:3px;">
 		  <div align="right">PRESUPUESTO  : </div>
 		</div>		</td>
-       <?
+       <?php
 		$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	    $s = "select * from fecha";
 	    $r = mysql_db_query($database, $s, $cx);
-	    while($rw = mysql_fetch_array($r)) 
+	    while($rw = $r->fetch_assoc()) 
   	    {
      	 $fecha_sesion=$rw["ano"];
     	}
 		$ss = "select * from fecha_ini_op";
 	    $rs = mysql_db_query($database, $ss, $cx);
-	    while($rws = mysql_fetch_array($rs)) 
+	    while($rws = $rs->fetch_assoc()) 
   	    {
      	 $fecha_ini_op=$rws["fecha_ini_op"];
     	}
@@ -423,7 +423,7 @@ for ($i=0; $i<$nr; $i++) {
 		  <div align="left" id="pto" style=" <?php echo $ver_ppto; ?>" >
 		
 		  $
-		    <input name="ppto_aprob" type="text" style="text-align:right; " class="Estilo4" id="ppto_aprob" onkeypress="return validar(event)" onblur="ValidarValor(<?php echo $pagos; ?>,<?php echo $ppto_aprob; ?>);" value="<?php echo $ppto_aprob; ?>" size="20" maxlength="20" <?php echo $ver_ppto; ?>/> &nbsp; <? echo $mensaje1; ?>
+		    <input name="ppto_aprob" type="text" style="text-align:right; " class="Estilo4" id="ppto_aprob" onkeypress="return validar(event)" onblur="ValidarValor(<?php echo $pagos; ?>,<?php echo $ppto_aprob; ?>);" value="<?php echo $ppto_aprob; ?>" size="20" maxlength="20" <?php echo $ver_ppto; ?>/> &nbsp; <?php echo $mensaje1; ?>
 		    
 		   	  
 		    <input name="msj" type="text" disabled="disabled" class="Estilo4" style="border:0px" size="40"/>
@@ -512,7 +512,7 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 $sqlx = "select * from empresa where cod_emp = '$idxx'";
 $resultadox = mysql_db_query($database, $sqlx, $cx);
 
-while($rowx = mysql_fetch_array($resultadox)) 
+while($rowx = $resultadox->fetch_assoc()) 
    {
 printf("<span class='Estilo4'><b> %s </b></span>", $rowx["raz_soc"]);  
    }
@@ -526,19 +526,19 @@ printf("<span class='Estilo4'><b> %s </b></span>", $rowx["raz_soc"]);
          <td colspan="2"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
            <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
                <span class="Estilo4"> <strong>
-               <? include('../config.php');				
+               <?php include('../config.php');				
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $cx);
+$resultadoxx = $cx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
                </strong> </span> <br />
-               <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+               <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
          </div></td>
        </tr>
      </table>	 </td>
@@ -549,10 +549,10 @@ echo $ano;
   <tr>
     <td width="250">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email ?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email ?>	</div>
 	</div>	</td>
     <td width="250">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -570,7 +570,7 @@ echo $ano;
 </table>
 </body>
 </html>
-<?
+<?php
 }
 $cx = null;
 ?>

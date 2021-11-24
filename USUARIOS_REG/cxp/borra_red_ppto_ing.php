@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -27,15 +27,15 @@ exit;
 </style>
 <title>CONTAFACIL</title><body>
 
-<? 
+<?php 
 /*
 include('config.php');
 
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $s = "select * from fecha";
-$r = mysql_db_query($database, $s, $connectionxx);
+$r = $connectionxx->query($s);
 
-while($rx = mysql_fetch_array($r)) 
+while($rx = $r->fetch_assoc()) 
 {
   $idxx=$rx["id_emp"];
 }
@@ -43,9 +43,9 @@ while($rx = mysql_fetch_array($r))
 
 $id_cuenta=$_GET['borrar'];
 $sqlxx = "select * from adi_ppto_ing where id ='$id_cuenta' and id_emp='$idxx' ";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $cod_pptal=$rowxx["cod_pptal"];
 }
@@ -62,7 +62,7 @@ while($rx2 = mysql_fetch_array($r2))
 */
 ?>
 
-<? 
+<?php 
 /*
 if ($pac == 'NO')
 {
@@ -81,7 +81,7 @@ if ($pac == 'NO')
  <p class="Estilo3"><a href="red_ppto_ing.php" target="_parent" class="Estilo1">CANCELAR</a></p>
 </div>
 </form>
-<?
+<?php
 /*
 }
 else
@@ -103,12 +103,12 @@ else
           </div>
         </div>
       </div>-->
-<?
+<?php
 /*}*/
 ?>
 
 </body>
 </html>
-<?
+<?php
 }
 ?>

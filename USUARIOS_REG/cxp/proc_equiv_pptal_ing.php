@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -13,8 +13,8 @@ exit;
 	include('../config.php');				
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	$sql = "select * from fecha";
-	$resultado = mysql_db_query($database, $sql, $cx);
-	while($row = mysql_fetch_array($resultado)) 
+	$resultado = $cx->query($sql);
+	while($row = $resultado->fetch_assoc()) 
    	{
 	   $id_emp=$row["id_emp"];
 	}
@@ -56,7 +56,7 @@ printf("<div style='padding-left:3px; padding-top:3px; padding-right:3px; paddin
         </div></center>");  
 			
    ?>
-   <?
+   <?php
 }
 ?>
 <style type="text/css">

@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -106,9 +106,9 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -117,7 +117,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 
    }
 ?>
-<? 
+<?php 
 			
 		   mysql_connect($server,$dbuser,$dbpass); 
 		     
@@ -246,8 +246,8 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             </div></td>
             <td colspan="2" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
-                  <div align="left"><? printf('%s',$cod_pptal); ?>
-                    <input name="cod_pptal" type="hidden" id="cod_pptal" value="<? printf('%s',$cod_pptal); ?>" />
+                  <div align="left"><?php printf('%s',$cod_pptal); ?>
+                    <input name="cod_pptal" type="hidden" id="cod_pptal" value="<?php printf('%s',$cod_pptal); ?>" />
                   </div>
                 </div>
             </div></td>
@@ -258,8 +258,8 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             </div></td>
             <td colspan="2" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="left">
-                  <span class="Estilo4"><? printf('%s',$nom_rubro); ?></span>
-                  <input name="nom_rubro" type="hidden" id="nom_rubro" value="<? printf('%s',$nom_rubro); ?>" />
+                  <span class="Estilo4"><?php printf('%s',$nom_rubro); ?></span>
+                  <input name="nom_rubro" type="hidden" id="nom_rubro" value="<?php printf('%s',$nom_rubro); ?>" />
                 </div>
             </div></td>
           </tr>
@@ -269,8 +269,8 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="left">
-                  <span class="Estilo4"><? printf('%.2f',$definitivo); ?></span>
-                  <input name="definitivo" type="hidden" id="definitivo" value="<? printf('%.2f',$definitivo); ?>" />
+                  <span class="Estilo4"><?php printf('%.2f',$definitivo); ?></span>
+                  <input name="definitivo" type="hidden" id="definitivo" value="<?php printf('%.2f',$definitivo); ?>" />
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -284,8 +284,8 @@ while($rowxx = mysql_fetch_array($resultadoxx))
                 </div>
             </div></td>
             <td width="250" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-                <div align="left"><span class="Estilo4"> <? printf('%d',$meses); ?></span>
-                  <input name="meses" type="hidden" id="meses" value="<? printf('%d',$meses); ?>" />
+                <div align="left"><span class="Estilo4"> <?php printf('%d',$meses); ?></span>
+                  <input name="meses" type="hidden" id="meses" value="<?php printf('%d',$meses); ?>" />
                 </div>
             </div></td>
             <td width="250" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -341,14 +341,14 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="enero" type="hidden" value="<? printf('%.2f',$enero); ?>" />
-                    <? printf('%.2f',$enero); ?> </div>
+                    <input name="enero" type="hidden" value="<?php printf('%.2f',$enero); ?>" />
+                    <?php printf('%.2f',$enero); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a > 1)
 				{
@@ -356,14 +356,14 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 				
                 <input name="adi_pac_ene" type="hidden" value="0"/>
 				
-                <?
+                <?php
 				}
 				else
 				{
 				?>
-				<input name="adi_pac_ene" type="text" class="Estilo4" id="adi_pac_ene"  style="text-align:right" value="<? printf('%.2f',$adi_pac_ene); ?>" size="20" maxlength="20"/>
+				<input name="adi_pac_ene" type="text" class="Estilo4" id="adi_pac_ene"  style="text-align:right" value="<?php printf('%.2f',$adi_pac_ene); ?>" size="20" maxlength="20"/>
 				
-				<?
+				<?php
 				}
 				?>
 				</div>
@@ -373,19 +373,19 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 			<div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a > 1)
 				{
 				?> 
 				 <input name="red_pac_ene" type="hidden" value="0"/>
-				<?
+				<?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_ene" type="text" class="Estilo4" id="red_pac_ene" style="text-align:right" value="<? printf('%.2f',$red_pac_ene); ?>" size="20" maxlength="20" />
-				<?
+                  <input name="red_pac_ene" type="text" class="Estilo4" id="red_pac_ene" style="text-align:right" value="<?php printf('%.2f',$red_pac_ene); ?>" size="20" maxlength="20" />
+				<?php
 				}
 				?>  
 				  
@@ -394,17 +394,17 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_ene); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_ene); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_ene); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_ene); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_ene); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_ene); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -417,26 +417,26 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="febrero" type="hidden" id="febrero" value="<? printf('%.2f',$febrero); ?>" />
-                    <? printf('%.2f',$febrero); ?> </div>
+                    <input name="febrero" type="hidden" id="febrero" value="<?php printf('%.2f',$febrero); ?>" />
+                    <?php printf('%.2f',$febrero); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-                  <? 
+                  <?php 
 				$a = date("m", strtotime($ano));
 				if($a >2)
 				{
 				?>
                   <input name="adi_pac_feb" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-<input name="adi_pac_feb" type="text" class="Estilo4" id="adi_pac_feb" style="text-align:right" value="<? printf('%.2f',$adi_pac_feb); ?>" size="20" maxlength="20"/>
-                <?
+<input name="adi_pac_feb" type="text" class="Estilo4" id="adi_pac_feb" style="text-align:right" value="<?php printf('%.2f',$adi_pac_feb); ?>" size="20" maxlength="20"/>
+                <?php
 				}
 				?>
                 </div>
@@ -445,19 +445,19 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				 <? 
+				 <?php 
 				$a = date("m", strtotime($ano));
 				if($a >2)
 				{
 				?>
                   <input name="red_pac_feb" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_feb" type="text" class="Estilo4" id="red_pac_feb" style="text-align:right" value="<? printf('%.2f',$red_pac_feb); ?>" size="20" maxlength="20" />
-				  <?
+                  <input name="red_pac_feb" type="text" class="Estilo4" id="red_pac_feb" style="text-align:right" value="<?php printf('%.2f',$red_pac_feb); ?>" size="20" maxlength="20" />
+				  <?php
 				}
 				?>
                 </div>
@@ -465,17 +465,17 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_feb); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_feb); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_feb); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_feb); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_feb); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_feb); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -488,61 +488,61 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="marzo" type="hidden" id="marzo" value="<? printf('%.2f',$marzo); ?>" />
-                    <? printf('%.2f',$marzo); ?> </div>
+                    <input name="marzo" type="hidden" id="marzo" value="<?php printf('%.2f',$marzo); ?>" />
+                    <?php printf('%.2f',$marzo); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				 <? 
+				 <?php 
 				$a = date("m", strtotime($ano));
 				if($a >3)
 				{
 				?>
                   <input name="adi_pac_mar" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="adi_pac_mar" type="text" class="Estilo4" id="adi_pac_mar" style="text-align:right" value="<? printf('%.2f',$adi_pac_mar); ?>" size="20" maxlength="20" />
-				  <? } ?>
+                  <input name="adi_pac_mar" type="text" class="Estilo4" id="adi_pac_mar" style="text-align:right" value="<?php printf('%.2f',$adi_pac_mar); ?>" size="20" maxlength="20" />
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >3)
 				{
 				?>
                   <input name="red_pac_mar" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_mar" type="text" class="Estilo4" id="red_pac_mar" style="text-align:right" value="<? printf('%.2f',$red_pac_mar); ?>" size="20" maxlength="20" />
-				    <? } ?>
+                  <input name="red_pac_mar" type="text" class="Estilo4" id="red_pac_mar" style="text-align:right" value="<?php printf('%.2f',$red_pac_mar); ?>" size="20" maxlength="20" />
+				    <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_mar); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_mar); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_mar); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_mar); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_mar); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_mar); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -556,61 +556,61 @@ while($rowxx = mysql_fetch_array($resultadoxx))
                 <div align="center" class="Estilo4">
 
                   <div align="right">
-                    <input name="abril" type="hidden" id="abril" value="<? printf('%.2f',$abril); ?>" />
-                    <? printf('%.2f',$abril); ?> </div>
+                    <input name="abril" type="hidden" id="abril" value="<?php printf('%.2f',$abril); ?>" />
+                    <?php printf('%.2f',$abril); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >4)
 				{
 				?>
                   <input name="adi_pac_abr" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="adi_pac_abr" type="text" class="Estilo4" id="adi_pac_abr" style="text-align:right" value="<? printf('%.2f',$adi_pac_abr); ?>" size="20" maxlength="20"/>
-				  <? } ?>
+                  <input name="adi_pac_abr" type="text" class="Estilo4" id="adi_pac_abr" style="text-align:right" value="<?php printf('%.2f',$adi_pac_abr); ?>" size="20" maxlength="20"/>
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >4)
 				{
 				?>
                   <input name="red_pac_abr" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_abr" type="text" class="Estilo4" id="red_pac_abr" style="text-align:right" value="<? printf('%.2f',$red_pac_abr); ?>" size="20" maxlength="20"/>
-				  <? } ?>
+                  <input name="red_pac_abr" type="text" class="Estilo4" id="red_pac_abr" style="text-align:right" value="<?php printf('%.2f',$red_pac_abr); ?>" size="20" maxlength="20"/>
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_abr); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_abr); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_abr); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_abr); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_abr); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_abr); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -623,61 +623,61 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="mayo" type="hidden" id="mayo" value="<? printf('%.2f',$mayo); ?>" />
-                    <? printf('%.2f',$mayo); ?> </div>
+                    <input name="mayo" type="hidden" id="mayo" value="<?php printf('%.2f',$mayo); ?>" />
+                    <?php printf('%.2f',$mayo); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >5)
 				{
 				?>
                   <input name="adi_pac_may" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="adi_pac_may" type="text" class="Estilo4" id="adi_pac_may" style="text-align:right" value="<? printf('%.2f',$adi_pac_may); ?>" size="20" maxlength="20"/>
-				  <? } ?>
+                  <input name="adi_pac_may" type="text" class="Estilo4" id="adi_pac_may" style="text-align:right" value="<?php printf('%.2f',$adi_pac_may); ?>" size="20" maxlength="20"/>
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >5)
 				{
 				?>
                   <input name="red_pac_may" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_may" type="text" class="Estilo4" id="red_pac_may" style="text-align:right" value="<? printf('%.2f',$red_pac_may); ?>" size="20" maxlength="20" />
-				  <? } ?>
+                  <input name="red_pac_may" type="text" class="Estilo4" id="red_pac_may" style="text-align:right" value="<?php printf('%.2f',$red_pac_may); ?>" size="20" maxlength="20" />
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_may); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_may); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_may); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_may); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_may); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_may); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -690,61 +690,61 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="junio" type="hidden" id="junio" value="<? printf('%.2f',$junio); ?>" />
-                    <? printf('%.2f',$junio); ?> </div>
+                    <input name="junio" type="hidden" id="junio" value="<?php printf('%.2f',$junio); ?>" />
+                    <?php printf('%.2f',$junio); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >6)
 				{
 				?>
                   <input name="adi_pac_jun" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="adi_pac_jun" type="text" class="Estilo4" id="adi_pac_jun" style="text-align:right" value="<? printf('%.2f',$adi_pac_jun); ?>" size="20" maxlength="20"/>
-				  <? } ?>
+                  <input name="adi_pac_jun" type="text" class="Estilo4" id="adi_pac_jun" style="text-align:right" value="<?php printf('%.2f',$adi_pac_jun); ?>" size="20" maxlength="20"/>
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >6)
 				{
 				?>
                   <input name="red_pac_jun" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_jun" type="text" class="Estilo4" id="red_pac_jun" style="text-align:right" value="<? printf('%.2f',$red_pac_jun); ?>" size="20" maxlength="20" />
-				  <? } ?>
+                  <input name="red_pac_jun" type="text" class="Estilo4" id="red_pac_jun" style="text-align:right" value="<?php printf('%.2f',$red_pac_jun); ?>" size="20" maxlength="20" />
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_jun); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_jun); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_jun); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_jun); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_jun); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_jun); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -757,61 +757,61 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="julio" type="hidden" id="julio" value="<? printf('%.2f',$julio); ?>" />
-                    <? printf('%.2f',$julio); ?> </div>
+                    <input name="julio" type="hidden" id="julio" value="<?php printf('%.2f',$julio); ?>" />
+                    <?php printf('%.2f',$julio); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >7)
 				{
 				?>
                   <input name="adi_pac_jul" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="adi_pac_jul" type="text" class="Estilo4" id="adi_pac_jul" style="text-align:right" value="<? printf('%.2f',$adi_pac_jul); ?>" size="20" maxlength="20"/>
-				  <? } ?>
+                  <input name="adi_pac_jul" type="text" class="Estilo4" id="adi_pac_jul" style="text-align:right" value="<?php printf('%.2f',$adi_pac_jul); ?>" size="20" maxlength="20"/>
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >7)
 				{
 				?>
                   <input name="red_pac_jul" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_jul" type="text" class="Estilo4" id="red_pac_jul" style="text-align:right" value="<? printf('%.2f',$red_pac_jul); ?>" size="20" maxlength="20" />
-				  <? } ?>
+                  <input name="red_pac_jul" type="text" class="Estilo4" id="red_pac_jul" style="text-align:right" value="<?php printf('%.2f',$red_pac_jul); ?>" size="20" maxlength="20" />
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_jul); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_jul); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_jul); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_jul); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_jul); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_jul); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -824,61 +824,61 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="agosto" type="hidden" id="agosto" value="<? printf('%.2f',$agosto); ?>" />
-                    <? printf('%.2f',$agosto); ?> </div>
+                    <input name="agosto" type="hidden" id="agosto" value="<?php printf('%.2f',$agosto); ?>" />
+                    <?php printf('%.2f',$agosto); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >8)
 				{
 				?>
                   <input name="adi_pac_ago" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="adi_pac_ago" type="text" class="Estilo4" id="adi_pac_ago" style="text-align:right" value="<? printf('%.2f',$adi_pac_ago); ?>" size="20" maxlength="20"/>
-				  <? } ?>
+                  <input name="adi_pac_ago" type="text" class="Estilo4" id="adi_pac_ago" style="text-align:right" value="<?php printf('%.2f',$adi_pac_ago); ?>" size="20" maxlength="20"/>
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >8)
 				{
 				?>
                   <input name="red_pac_ago" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_ago" type="text" class="Estilo4" id="red_pac_ago" style="text-align:right" value="<? printf('%.2f',$red_pac_ago); ?>" size="20" maxlength="20"/>
-				  <? } ?>
+                  <input name="red_pac_ago" type="text" class="Estilo4" id="red_pac_ago" style="text-align:right" value="<?php printf('%.2f',$red_pac_ago); ?>" size="20" maxlength="20"/>
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_ago); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_ago); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_ago); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_ago); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_ago); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_ago); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -891,61 +891,61 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="septiembre" type="hidden" id="septiembre" value="<? printf('%.2f',$septiembre); ?>" />
-                    <? printf('%.2f',$septiembre); ?> </div>
+                    <input name="septiembre" type="hidden" id="septiembre" value="<?php printf('%.2f',$septiembre); ?>" />
+                    <?php printf('%.2f',$septiembre); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >9)
 				{
 				?>
                   <input name="adi_pac_sep" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="adi_pac_sep" type="text" class="Estilo4" id="adi_pac_sep" style="text-align:right" value="<? printf('%.2f',$adi_pac_sep); ?>" size="20" maxlength="20"/>
-				  <? } ?>
+                  <input name="adi_pac_sep" type="text" class="Estilo4" id="adi_pac_sep" style="text-align:right" value="<?php printf('%.2f',$adi_pac_sep); ?>" size="20" maxlength="20"/>
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >9)
 				{
 				?>
                   <input name="red_pac_sep" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_sep" type="text" class="Estilo4" id="red_pac_sep" style="text-align:right" value="<? printf('%.2f',$red_pac_sep); ?>" size="20" maxlength="20" />
-				  <? } ?>
+                  <input name="red_pac_sep" type="text" class="Estilo4" id="red_pac_sep" style="text-align:right" value="<?php printf('%.2f',$red_pac_sep); ?>" size="20" maxlength="20" />
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_sep); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_sep); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_sep); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_sep); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_sep); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_sep); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -958,61 +958,61 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="octubre" type="hidden" id="octubre" value="<? printf('%.2f',$octubre); ?>" />
-                    <? printf('%.2f',$octubre); ?> </div>
+                    <input name="octubre" type="hidden" id="octubre" value="<?php printf('%.2f',$octubre); ?>" />
+                    <?php printf('%.2f',$octubre); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >10)
 				{
 				?>
                   <input name="adi_pac_oct" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="adi_pac_oct" type="text" class="Estilo4" id="adi_pac_oct" style="text-align:right" value="<? printf('%.2f',$adi_pac_oct); ?>" size="20" maxlength="20"/>
-				  <? } ?>
+                  <input name="adi_pac_oct" type="text" class="Estilo4" id="adi_pac_oct" style="text-align:right" value="<?php printf('%.2f',$adi_pac_oct); ?>" size="20" maxlength="20"/>
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >10)
 				{
 				?>
                   <input name="red_pac_oct" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_oct" type="text" class="Estilo4" id="red_pac_oct" style="text-align:right" value="<? printf('%.2f',$red_pac_oct); ?>" size="20" maxlength="20" />
-				  <? } ?>
+                  <input name="red_pac_oct" type="text" class="Estilo4" id="red_pac_oct" style="text-align:right" value="<?php printf('%.2f',$red_pac_oct); ?>" size="20" maxlength="20" />
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_oct); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_oct); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_oct); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_oct); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_oct); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_oct); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -1025,61 +1025,61 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="noviembre" type="hidden" id="noviembre" value="<? printf('%.2f',$noviembre); ?>" />
-                    <? printf('%.2f',$noviembre); ?> </div>
+                    <input name="noviembre" type="hidden" id="noviembre" value="<?php printf('%.2f',$noviembre); ?>" />
+                    <?php printf('%.2f',$noviembre); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >11)
 				{
 				?>
                   <input name="adi_pac_nov" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="adi_pac_nov" type="text" class="Estilo4" id="adi_pac_nov" style="text-align:right" value="<? printf('%.2f',$adi_pac_nov); ?>" size="20" maxlength="20"/>
-				  <? } ?>
+                  <input name="adi_pac_nov" type="text" class="Estilo4" id="adi_pac_nov" style="text-align:right" value="<?php printf('%.2f',$adi_pac_nov); ?>" size="20" maxlength="20"/>
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >11)
 				{
 				?>
                   <input name="red_pac_nov" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_nov" type="text" class="Estilo4" id="red_pac_nov" style="text-align:right" value="<? printf('%.2f',$red_pac_nov); ?>" size="20" maxlength="20" />
-				  <? } ?>
+                  <input name="red_pac_nov" type="text" class="Estilo4" id="red_pac_nov" style="text-align:right" value="<?php printf('%.2f',$red_pac_nov); ?>" size="20" maxlength="20" />
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_nov); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_nov); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_nov); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_nov); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_nov); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_nov); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -1092,61 +1092,61 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="diciembre" type="hidden" id="diciembre" value="<? printf('%.2f',$diciembre); ?>" />
-                    <? printf('%.2f',$diciembre); ?> </div>
+                    <input name="diciembre" type="hidden" id="diciembre" value="<?php printf('%.2f',$diciembre); ?>" />
+                    <?php printf('%.2f',$diciembre); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >12)
 				{
 				?>
                   <input name="adi_pac_dic" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="adi_pac_dic" type="text" class="Estilo4" id="adi_pac_dic" style="text-align:right" value="<? printf('%.2f',$adi_pac_dic); ?>" size="20" maxlength="20"/>
-				  <? } ?>
+                  <input name="adi_pac_dic" type="text" class="Estilo4" id="adi_pac_dic" style="text-align:right" value="<?php printf('%.2f',$adi_pac_dic); ?>" size="20" maxlength="20"/>
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-				<? 
+				<?php 
 				$a = date("m", strtotime($ano));
 				if($a >12)
 				{
 				?>
                   <input name="red_pac_dic" type="hidden" id="adi_pac_feb" value="0"/>
-                  <?
+                  <?php
 				}
 				else
 				{
 				?>
-                  <input name="red_pac_dic" type="text" class="Estilo4" id="red_pac_dic" style="text-align:right" value="<? printf('%.2f',$red_pac_dic); ?>" size="20" maxlength="20" />
-				  <? } ?>
+                  <input name="red_pac_dic" type="text" class="Estilo4" id="red_pac_dic" style="text-align:right" value="<?php printf('%.2f',$red_pac_dic); ?>" size="20" maxlength="20" />
+				  <?php } ?>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_def_dic); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_def_dic); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$pac_uti_dic); ?> </div>
+                <div align="right"><?php printf('%.2f',$pac_uti_dic); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_pac_dic); ?> </div>
+                <div align="right"><?php printf('%.2f',$sal_pac_dic); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -1159,37 +1159,37 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="rezago" type="hidden" id="rezago" value="<? printf('%.2f',$rezago); ?>" />
-                    <? printf('%.2f',$rezago); ?> </div>
+                    <input name="rezago" type="hidden" id="rezago" value="<?php printf('%.2f',$rezago); ?>" />
+                    <?php printf('%.2f',$rezago); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-                  <input name="adi_rezago" type="text" class="Estilo4" id="adi_rezago" style="text-align:right" value="<? printf('%.2f',$adi_rezago); ?>" size="20" maxlength="20"/>
+                  <input name="adi_rezago" type="text" class="Estilo4" id="adi_rezago" style="text-align:right" value="<?php printf('%.2f',$adi_rezago); ?>" size="20" maxlength="20"/>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="center">
-                  <input name="red_rezago" type="text" class="Estilo4" id="red_rezago" style="text-align:right" value="<? printf('%.2f',$red_rezago); ?>" size="20" maxlength="20"/>
+                  <input name="red_rezago" type="text" class="Estilo4" id="red_rezago" style="text-align:right" value="<?php printf('%.2f',$red_rezago); ?>" size="20" maxlength="20"/>
                 </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$def_rezago); ?></div>
+                <div align="right"><?php printf('%.2f',$def_rezago); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$uti_rezago); ?></div>
+                <div align="right"><?php printf('%.2f',$uti_rezago); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$sal_rezago); ?></div>
+                <div align="right"><?php printf('%.2f',$sal_rezago); ?></div>
               </div>
             </div></td>
           </tr>
@@ -1202,18 +1202,18 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#F5F5F5"><div class="Estilo18" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                  <div align="right">
-                   <input name="total" type="hidden" id="total" value="<? printf('%.2f',$total); ?>" />
-                   <? printf('%.2f',$total); ?> </div>
+                   <input name="total" type="hidden" id="total" value="<?php printf('%.2f',$total); ?>" />
+                   <?php printf('%.2f',$total); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div class="Estilo19" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$suma_adi); ?> </div>
+                <div align="right"><?php printf('%.2f',$suma_adi); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div class="Estilo20" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
-                <div align="right"><? printf('%.2f',$suma_red); ?> </div>
+                <div align="right"><?php printf('%.2f',$suma_red); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5">&nbsp;</td>
@@ -1229,8 +1229,8 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                  <div align="right">
-                   <input name="diferencia" type="hidden" id="diferencia" value="<? printf('%.2f',$diferencia); ?>" />
-                   <? printf('%.2f',$diferencia); ?> </div>
+                   <input name="diferencia" type="hidden" id="diferencia" value="<?php printf('%.2f',$diferencia); ?>" />
+                   <?php printf('%.2f',$diferencia); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF">&nbsp;</td>
@@ -1269,28 +1269,28 @@ while($rowxx = mysql_fetch_array($resultadoxx))
     <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../config.php');				
+          <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="289">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email?>	</div>
 	</div>	</td>
     <td width="289">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -1314,6 +1314,6 @@ echo $ano;
 
 
 
-<?
+<?php
 }
 ?>

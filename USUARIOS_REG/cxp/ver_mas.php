@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -76,7 +76,7 @@ function cerrarse(){
 
 <body>
 
-<?
+<?php
 $cuentax=$_POST['cuenta'];
 $cuenta=$_GET['vr'].$cuentax;
 //printf("%s",$cuenta);
@@ -84,9 +84,9 @@ $cuenta=$_GET['vr'].$cuentax;
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -146,8 +146,8 @@ else
       <div align="right">CUENTA : </div>
     </div></td>
     <td colspan="3"><div class="Estilo5" style="padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px;">
-      <div align="center"><? printf("%s",$cuenta);?>
-            <input name="cuenta" type="hidden" value="<? printf("%s",$cuenta);?>" />
+      <div align="center"><?php printf("%s",$cuenta);?>
+            <input name="cuenta" type="hidden" value="<?php printf("%s",$cuenta);?>" />
       </div>
     </div></td>
   </tr>
@@ -156,8 +156,8 @@ else
       <div align="right">NOMBRE : </div>
     </div></td>
     <td colspan="3"><div class="Estilo5" style="padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px;">
-      <div align="center"><? printf("%s",$nom_rubro);?>
-            <input name="nom_rubro" type="hidden" value="<? printf("%s",$nom_rubro);?>" />
+      <div align="center"><?php printf("%s",$nom_rubro);?>
+            <input name="nom_rubro" type="hidden" value="<?php printf("%s",$nom_rubro);?>" />
       </div>
     </div></td>
   </tr>
@@ -166,8 +166,8 @@ else
       <div align="right">PRESUPUESTO INICIAL  : </div>
     </div></td>
     <td colspan="2"><div class="Estilo5" style="padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px;">
-      <div align="right"><? echo number_format($definitivo,2,',','.'); // printf("%s",$definitivo);?>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input name="definitivo" type="hidden" value="<? printf("%s",$definitivo);?>" />
+      <div align="right"><?php echo number_format($definitivo,2,',','.'); // printf("%s",$definitivo);?>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input name="definitivo" type="hidden" value="<?php printf("%s",$definitivo);?>" />
       </div>
     </div></td>
   </tr>
@@ -222,7 +222,7 @@ else
 <table width="800" border="1" align="center" class="bordepunteado1">
   <tr>
     <td colspan="4" bgcolor="#990000">
-	<?
+	<?php
 	$fecha_ini=$_POST['fecha_ini'];
 	$fecha_fin=$_POST['fecha_fin'];	
 	$cuenta=$_POST['cuenta']; 
@@ -249,7 +249,7 @@ else
     </div></td>
     <td><div class="Estilo5" style="padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px;">
         <div align="right">
-          <?
+          <?php
 	$link=mysql_connect($server,$dbuser,$dbpass);
 	$resulta=mysql_query("select SUM(vr_obli_para_pago_mas_iva) AS TOTAL from cecp 
 	WHERE (fecha_cecp between '$fecha_ini' and '$fecha_fin' ) and id_emp='$idxx' and cuenta_cxp ='$cuenta'",$link) or die (mysql_error());
@@ -269,12 +269,12 @@ else
   
   <tr>
     <td colspan="4" bgcolor="#DCE9E5"><div class="Estilo4" style="padding-left:3px; padding-top:10px; padding-right:3px; padding-bottom:10px;">
-      <div align="center">SALDO POR PAGAR  :  <? $ppto_def = $definitivo-$total_cecp; echo "&nbsp;&nbsp;$&nbsp;".number_format($ppto_def,2,',','.')."&nbsp;=";  ?></div>
+      <div align="center">SALDO POR PAGAR  :  <?php $ppto_def = $definitivo-$total_cecp; echo "&nbsp;&nbsp;$&nbsp;".number_format($ppto_def,2,',','.')."&nbsp;=";  ?></div>
     </div></td>
   </tr>
 </table>
 <BR />
-<?
+<?php
 }
 ?>
 <form>
@@ -285,6 +285,6 @@ else
 
 </body>
 </html>
-<?
+<?php
 }
 ?>

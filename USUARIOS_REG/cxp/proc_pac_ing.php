@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -13,8 +13,8 @@ exit;
 	include('../config.php');				
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	$sql = "select * from fecha";
-	$resultado = mysql_db_query($database, $sql, $cx);
-	while($row = mysql_fetch_array($resultado)) 
+	$resultado = $cx->query($sql);
+	while($row = $resultado->fetch_assoc()) 
    	{
 	   $id_emp=$row["id_emp"];
 	}
@@ -45,7 +45,7 @@ exit;
 	
 
 $consultax=mysql_query("select * from vf ",$cx);
-while($rowx = mysql_fetch_array($consultax)) 
+while($rowx = $consultax->fetch_assoc()) 
 {	 $ax=$rowx["fecha_ini"]; $bx=$rowx["fecha_fin"];
 } 
 					
@@ -70,7 +70,7 @@ else
 									, '$junio', '$julio', '$agosto', '$septiembre', '$octubre', '$noviembre'
 									, '$diciembre', '$rezago', '$total', '$diferencia')";
 
-		$res = mysql_db_query($database, $sq, $cx);
+		$res = $cx->query($sq);
 
 
 		new mysqli($server, $dbuser, $dbpass, $database);
@@ -88,7 +88,7 @@ else
 }
 			
 ?>
-<?
+<?php
 }
 ?>
 <style type="text/css">

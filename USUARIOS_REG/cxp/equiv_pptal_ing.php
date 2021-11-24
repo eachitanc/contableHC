@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -134,16 +134,16 @@ $cod_pptal=$_POST['cod_pptal'];
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
 
    }
 ?>
-<? 
+<?php 
 			
 		   mysql_connect($server,$dbuser,$dbpass); 
 		     
@@ -237,7 +237,7 @@ if ($uni_eje != 'EMPRESA')
 			
 <select name="cod_fut" class="Estilo4" id="cod_fut" style="width: 700px;">
 <option value=""></option>
-<? 
+<?php 
    include('../config.php');
    $query="SELECT * FROM fut_gastos ORDER BY cod_fut";
    $link=mysql_connect($server,$dbuser,$dbpass);
@@ -275,7 +275,7 @@ if ($uni_eje != 'EMPRESA')
 				  
 <select name="fuentes_recursos" class="Estilo4" id="fuentes_recursos" style="width: 700px;">
 <option value=""></option>
-<? 
+<?php 
    include('../config.php');
    $query="SELECT * FROM fuentes_recursos ORDER BY cod";
    $link=mysql_connect($server,$dbuser,$dbpass);
@@ -313,7 +313,7 @@ if ($uni_eje != 'EMPRESA')
 				  
 <select name="unidad_ejecutora" class="Estilo4" id="unidad_ejecutora" style="width: 700px;">
 <option value=""></option>
-<? 
+<?php 
    include('../config.php');
    $query="SELECT * FROM uni_eje_fut_gastos ORDER BY cod";
    $link=mysql_connect($server,$dbuser,$dbpass);
@@ -355,7 +355,7 @@ if ($uni_eje != 'EMPRESA')
         </div></td>
         </tr>
     </table>
-<?
+<?php
 }
 else
 {
@@ -388,7 +388,7 @@ else
 								
  <select name="cod_cgr" class="Estilo4" id="cod_cgr" style="width: 700px;">
 <option value=""></option>
-<? 
+<?php 
    include('../config.php');
    $query="SELECT * FROM cgr_gastos ORDER BY cod";
    $link=mysql_connect($server,$dbuser,$dbpass);
@@ -430,7 +430,7 @@ else
 								
  <select name="cod_rec" class="Estilo4" id="cod_rec" style="width: 700px;">
 <option value=""></option>
-<? 
+<?php 
    include('../config.php');
    $query="SELECT * FROM cod_recurso_cgr_gastos ORDER BY cod";
    $link=mysql_connect($server,$dbuser,$dbpass);
@@ -468,7 +468,7 @@ else
 								
 <select name="oer" class="Estilo4" id="oer" style="width: 700px;">
 <option value=""></option>
-<? 
+<?php 
    include('../config.php');
    $query="SELECT * FROM oer_cgr_gastos ORDER BY cod";
    $link=mysql_connect($server,$dbuser,$dbpass);
@@ -508,7 +508,7 @@ else
 								
 <select name="cda" class="Estilo4" id="cda" style="width: 700px;">
 <option value=""></option>
-<? 
+<?php 
    include('../config.php');
    $query="SELECT * FROM cda_cgr_gastos ORDER BY cod";
    $link=mysql_connect($server,$dbuser,$dbpass);
@@ -546,7 +546,7 @@ else
 						
 <select name="vigencia_gasto" class="Estilo4" id="vigencia_gasto" style="width: 700px;">
 <option value=""></option>
-<? 
+<?php 
    include('../config.php');
    $query="SELECT * FROM vigencia_gasto_cgr ORDER BY cod";
    $link=mysql_connect($server,$dbuser,$dbpass);
@@ -588,7 +588,7 @@ else
 						
 <select name="finalidad_gasto" class="Estilo4" id="finalidad_gasto" style="width: 700px;">
 <option value=""></option>
-<? 
+<?php 
    include('../config.php');
    $query="SELECT * FROM finalidad_gasto_cgr ORDER BY cod";
    $link=mysql_connect($server,$dbuser,$dbpass);
@@ -629,7 +629,7 @@ else
 			
 <select name="uni_ejec_cgr" class="Estilo4" id="uni_ejec_cgr" style="width: 700px;">
 <option value=""></option>
-<? 
+<?php 
    include('../config.php');
    $query="SELECT * FROM uni_eje_cgr_gas ORDER BY cod";
    $link=mysql_connect($server,$dbuser,$dbpass);
@@ -670,7 +670,7 @@ else
 			
 <select name="ent_recip" class="Estilo4" id="ent_recip" style="width: 700px;">
 <option value=""></option>
-<? 
+<?php 
    include('../config.php');
    $query="SELECT * FROM terceros_cgr_ing ORDER BY cod_ter";
    $link=mysql_connect($server,$dbuser,$dbpass);
@@ -723,28 +723,28 @@ else
     <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../config.php');				
+          <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email?>	</div>
 	</div>	</td>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -768,6 +768,6 @@ echo $ano;
 
 
 
-<?
+<?php
 }
 ?>

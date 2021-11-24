@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -12,8 +12,8 @@ exit;
 	include('../config.php');				
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	$sql = "select * from fecha";
-	$resultado = mysql_db_query($database, $sql, $cx);
-	while($row = mysql_fetch_array($resultado)) 
+	$resultado = $cx->query($sql);
+	while($row = $resultado->fetch_assoc()) 
    	{
 	   $id_emp=$row["id_emp"];
 	}
@@ -111,7 +111,7 @@ $suma_adi,$suma_red,$adi_rezago,$red_rezago,$def_rezago,$uti_rezago,$sal_rezago)
 	
 
 $consultax=mysql_query("select * from vf ",$cx);
-while($rowx = mysql_fetch_array($consultax)) 
+while($rowx = $consultax->fetch_assoc()) 
 {	 $ax=$rowx["fecha_ini"]; $bx=$rowx["fecha_fin"];
 } 
 					
@@ -162,7 +162,7 @@ else
 		
 ?>
 
-<?
+<?php
 }
 ?><title>CONTAFACIL</title>
 <style type="text/css">

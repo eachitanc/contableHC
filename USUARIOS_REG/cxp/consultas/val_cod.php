@@ -1,4 +1,4 @@
-<?
+<?php
 	header("Cache-Control: no-store, no-cache, must-revalidate"); 
 	$cod =$_POST['cod'];
 	// conexion con la base de datos

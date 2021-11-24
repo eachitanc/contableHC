@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -8,10 +8,10 @@ exit;
 	// verifico permisos del usuario
 		include('../config.php');
 		$cx = mysql_connect("$server","$dbuser","$dbpass")or die ("Conexion no Exitosa");
-		mysql_select_db("$database"); 
+		 
        	$sql="SELECT teso FROM usuarios2 where login = '$_SESSION[login]'";
 		$res=mysql_db_query($database,$sql,$cx);
-		$rw =mysql_fetch_array($res);
+		$rw =$res->fetch_assoc();
 if ($rw['teso']=='SI')
 {
 ?>
@@ -118,9 +118,9 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
 include('../config.php');				
 $connection = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sql = "select * from fecha";
-$resultado = mysql_db_query($database, $sql, $connection);
+$resultado = $connection->query($sql);
 
-while($row = mysql_fetch_array($resultado)) 
+while($row = $resultado->fetch_assoc()) 
    {
    
    $id=$row["id_emp"];
@@ -202,7 +202,7 @@ ACTUALIZAR P.A.C
 include('../config.php');				
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cxp where id_emp = '$id' order by cod_pptal asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -284,12 +284,12 @@ printf("</table></center>");
 		<br />
         <span class="Estilo4">
 		<strong>
-<? include('../config.php');				
+<?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
@@ -298,7 +298,7 @@ echo $ano;
 		</strong>
 		</span>
 		<br />
-        <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u>
+        <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u>
 		</span> 
 		</div>
 	    </div>
@@ -311,10 +311,10 @@ echo $ano;
   <tr align="center">
     <td width="283">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email ?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email ?>	</div>
 	</div>	</td>
     <td width="283">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -332,7 +332,7 @@ echo $ano;
 </table>
 </body>
 </html>
-<?
+<?php
 }else{ // si no tiene persisos de usuario
 	echo "<br><br><center>Usuario no tiene permisos en este m&oacute;dulo</center><br>";
 	echo "<center>Click <a href=\"../user.php\">aqu&iacute; para volver</a></center>";

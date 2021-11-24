@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -32,8 +32,8 @@ exit;
 	include('../config.php');				
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	$sql = "select * from fecha";
-	$resultado = mysql_db_query($database, $sql, $cx);
-	while($row = mysql_fetch_array($resultado)) 
+	$resultado = $cx->query($sql);
+	while($row = $resultado->fetch_assoc()) 
    	{
 	   $id_emp=$row["id_emp"];
 	}
@@ -253,8 +253,8 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             </div></td>
             <td colspan="2" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
-                  <div align="left"><? printf('%s',$cod_pptal); ?>
-                    <input name="cod_pptal" type="hidden" id="cod_pptal" value="<? printf('%s',$cod_pptal); ?>" />
+                  <div align="left"><?php printf('%s',$cod_pptal); ?>
+                    <input name="cod_pptal" type="hidden" id="cod_pptal" value="<?php printf('%s',$cod_pptal); ?>" />
                   </div>
                 </div>
             </div></td>
@@ -265,8 +265,8 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             </div></td>
             <td colspan="2" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="left">
-                  <span class="Estilo4"><? printf('%s',$nom_rubro); ?></span>
-                  <input name="nom_rubro" type="hidden" id="nom_rubro" value="<? printf('%s',$nom_rubro); ?>" />
+                  <span class="Estilo4"><?php printf('%s',$nom_rubro); ?></span>
+                  <input name="nom_rubro" type="hidden" id="nom_rubro" value="<?php printf('%s',$nom_rubro); ?>" />
                 </div>
             </div></td>
           </tr>
@@ -276,8 +276,8 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="left">
-                  <span class="Estilo4"><? printf('%.2f',$definitivo); ?></span>
-                  <input name="definitivo" type="hidden" id="definitivo" value="<? printf('%.2f',$definitivo); ?>" />
+                  <span class="Estilo4"><?php printf('%.2f',$definitivo); ?></span>
+                  <input name="definitivo" type="hidden" id="definitivo" value="<?php printf('%.2f',$definitivo); ?>" />
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -291,8 +291,8 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
                 </div>
             </div></td>
             <td width="250" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-                <div align="left"><span class="Estilo4"> <? printf('%d',$meses); ?></span>
-                  <input name="meses" type="hidden" id="meses" value="<? printf('%d',$meses); ?>" />
+                <div align="left"><span class="Estilo4"> <?php printf('%d',$meses); ?></span>
+                  <input name="meses" type="hidden" id="meses" value="<?php printf('%d',$meses); ?>" />
                 </div>
             </div></td>
             <td width="250" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -348,44 +348,44 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="enero" type="hidden" value="<? printf('%.2f',$enero); ?>" />
-                    <? printf('%.2f',$enero); ?> </div>
+                    <input name="enero" type="hidden" value="<?php printf('%.2f',$enero); ?>" />
+                    <?php printf('%.2f',$enero); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF" width="150"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_ene" type="hidden" id="adi_pac_ene" value="<? printf('%.2f',$adi_pac_ene); ?>" />
-                  <? printf('%.2f',$adi_pac_ene); ?></div>
+                  <input name="adi_pac_ene" type="hidden" id="adi_pac_ene" value="<?php printf('%.2f',$adi_pac_ene); ?>" />
+                  <?php printf('%.2f',$adi_pac_ene); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF" width="150">
 			<div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_ene" type="hidden" value="<? printf('%.2f',$red_pac_ene); ?>" />
-                  <? printf('%.2f',$red_pac_ene); ?>                </div>
+                  <input name="red_pac_ene" type="hidden" value="<?php printf('%.2f',$red_pac_ene); ?>" />
+                  <?php printf('%.2f',$red_pac_ene); ?>                </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF" width="120"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_ene" type="hidden" value="<? printf('%.2f',$pac_def_ene); ?>" />
-                  <? printf('%.2f',$pac_def_ene); ?> </div>
+                  <input name="pac_def_ene" type="hidden" value="<?php printf('%.2f',$pac_def_ene); ?>" />
+                  <?php printf('%.2f',$pac_def_ene); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF" width="120"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_ene" type="hidden" value="<? printf('%.2f',$pac_uti_ene); ?>" />
-                  <? printf('%.2f',$pac_uti_ene); ?> </div>
+                  <input name="pac_uti_ene" type="hidden" value="<?php printf('%.2f',$pac_uti_ene); ?>" />
+                  <?php printf('%.2f',$pac_uti_ene); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF" width="120"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_ene" type="hidden" value="<? printf('%.2f',$sal_pac_ene); ?>" />
-                  <? printf('%.2f',$sal_pac_ene); ?> </div>
+                  <input name="sal_pac_ene" type="hidden" value="<?php printf('%.2f',$sal_pac_ene); ?>" />
+                  <?php printf('%.2f',$sal_pac_ene); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -398,43 +398,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="febrero" type="hidden" id="febrero" value="<? printf('%.2f',$febrero); ?>" />
-                    <? printf('%.2f',$febrero); ?> </div>
+                    <input name="febrero" type="hidden" id="febrero" value="<?php printf('%.2f',$febrero); ?>" />
+                    <?php printf('%.2f',$febrero); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_feb" type="hidden" value="<? printf('%.2f',$adi_pac_feb);   ?>" />
-                  <? printf('%.2f',$adi_pac_feb);  ?></div>
+                  <input name="adi_pac_feb" type="hidden" value="<?php printf('%.2f',$adi_pac_feb);   ?>" />
+                  <?php printf('%.2f',$adi_pac_feb);  ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_feb" type="hidden" value="<? printf('%.2f',$red_pac_feb); ?>" />
-                  <? printf('%.2f',$red_pac_feb); ?></div>
+                  <input name="red_pac_feb" type="hidden" value="<?php printf('%.2f',$red_pac_feb); ?>" />
+                  <?php printf('%.2f',$red_pac_feb); ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_feb" type="hidden" value="<? printf('%.2f',$pac_def_feb); ?>" />
-                  <? printf('%.2f',$pac_def_feb); ?> </div>
+                  <input name="pac_def_feb" type="hidden" value="<?php printf('%.2f',$pac_def_feb); ?>" />
+                  <?php printf('%.2f',$pac_def_feb); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_feb" type="hidden" value="<? printf('%.2f',$pac_uti_feb); ?>" />
-                  <? printf('%.2f',$pac_uti_feb); ?> </div>
+                  <input name="pac_uti_feb" type="hidden" value="<?php printf('%.2f',$pac_uti_feb); ?>" />
+                  <?php printf('%.2f',$pac_uti_feb); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_feb" type="hidden" value="<? printf('%.2f',$sal_pac_feb); ?>" />
-                  <? printf('%.2f',$sal_pac_feb); ?> </div>
+                  <input name="sal_pac_feb" type="hidden" value="<?php printf('%.2f',$sal_pac_feb); ?>" />
+                  <?php printf('%.2f',$sal_pac_feb); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -447,43 +447,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="marzo" type="hidden" id="marzo" value="<? printf('%.2f',$marzo); ?>" />
-                    <? printf('%.2f',$marzo); ?> </div>
+                    <input name="marzo" type="hidden" id="marzo" value="<?php printf('%.2f',$marzo); ?>" />
+                    <?php printf('%.2f',$marzo); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_mar" type="hidden" value="<? printf('%.2f',$adi_pac_mar); ?>" />
-                  <? printf('%.2f',$adi_pac_mar); ?></div>
+                  <input name="adi_pac_mar" type="hidden" value="<?php printf('%.2f',$adi_pac_mar); ?>" />
+                  <?php printf('%.2f',$adi_pac_mar); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_mar" type="hidden" value="<? printf('%.2f',$red_pac_mar); ?>" />
-                  <? printf('%.2f',$red_pac_mar); ?>                </div>
+                  <input name="red_pac_mar" type="hidden" value="<?php printf('%.2f',$red_pac_mar); ?>" />
+                  <?php printf('%.2f',$red_pac_mar); ?>                </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_mar" type="hidden" value="<? printf('%.2f',$pac_def_mar); ?>" />
-                  <? printf('%.2f',$pac_def_mar); ?> </div>
+                  <input name="pac_def_mar" type="hidden" value="<?php printf('%.2f',$pac_def_mar); ?>" />
+                  <?php printf('%.2f',$pac_def_mar); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_mar" type="hidden" value="<? printf('%.2f',$pac_uti_mar); ?>" />
-                  <? printf('%.2f',$pac_uti_mar); ?> </div>
+                  <input name="pac_uti_mar" type="hidden" value="<?php printf('%.2f',$pac_uti_mar); ?>" />
+                  <?php printf('%.2f',$pac_uti_mar); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_mar" type="hidden" value="<? printf('%.2f',$sal_pac_mar); ?>" />
-                  <? printf('%.2f',$sal_pac_mar); ?> </div>
+                  <input name="sal_pac_mar" type="hidden" value="<?php printf('%.2f',$sal_pac_mar); ?>" />
+                  <?php printf('%.2f',$sal_pac_mar); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -497,43 +497,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
                 <div align="center" class="Estilo4">
 
                   <div align="right">
-                    <input name="abril" type="hidden" id="abril" value="<? printf('%.2f',$abril); ?>" />
-                    <? printf('%.2f',$abril); ?> </div>
+                    <input name="abril" type="hidden" id="abril" value="<?php printf('%.2f',$abril); ?>" />
+                    <?php printf('%.2f',$abril); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_abr" type="hidden" value="<? printf('%.2f',$adi_pac_abr); ?>" />
-                  <? printf('%.2f',$adi_pac_abr); ?></div>
+                  <input name="adi_pac_abr" type="hidden" value="<?php printf('%.2f',$adi_pac_abr); ?>" />
+                  <?php printf('%.2f',$adi_pac_abr); ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_abr" type="hidden" value="<? printf('%.2f',$red_pac_abr); ?>" />
-                  <? printf('%.2f',$red_pac_abr); ?></div>
+                  <input name="red_pac_abr" type="hidden" value="<?php printf('%.2f',$red_pac_abr); ?>" />
+                  <?php printf('%.2f',$red_pac_abr); ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_abr" type="hidden" value="<? printf('%.2f',$pac_def_abr); ?>" />
-                  <? printf('%.2f',$pac_def_abr); ?> </div>
+                  <input name="pac_def_abr" type="hidden" value="<?php printf('%.2f',$pac_def_abr); ?>" />
+                  <?php printf('%.2f',$pac_def_abr); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_abr" type="hidden" value="<? printf('%.2f',$pac_uti_abr); ?>" />
-                  <? printf('%.2f',$pac_uti_abr); ?> </div>
+                  <input name="pac_uti_abr" type="hidden" value="<?php printf('%.2f',$pac_uti_abr); ?>" />
+                  <?php printf('%.2f',$pac_uti_abr); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_abr" type="hidden" value="<? printf('%.2f',$sal_pac_abr); ?>" />
-                  <? printf('%.2f',$sal_pac_abr); ?> </div>
+                  <input name="sal_pac_abr" type="hidden" value="<?php printf('%.2f',$sal_pac_abr); ?>" />
+                  <?php printf('%.2f',$sal_pac_abr); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -546,43 +546,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="mayo" type="hidden" id="mayo" value="<? printf('%.2f',$mayo); ?>" />
-                    <? printf('%.2f',$mayo); ?> </div>
+                    <input name="mayo" type="hidden" id="mayo" value="<?php printf('%.2f',$mayo); ?>" />
+                    <?php printf('%.2f',$mayo); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_may" type="hidden" value="<? printf('%.2f',$adi_pac_may); ?>" />
-                  <? printf('%.2f',$adi_pac_may); ?></div>
+                  <input name="adi_pac_may" type="hidden" value="<?php printf('%.2f',$adi_pac_may); ?>" />
+                  <?php printf('%.2f',$adi_pac_may); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_may" type="hidden" value="<? printf('%.2f',$red_pac_may); ?>" />
-                  <? printf('%.2f',$red_pac_may); ?></div>
+                  <input name="red_pac_may" type="hidden" value="<?php printf('%.2f',$red_pac_may); ?>" />
+                  <?php printf('%.2f',$red_pac_may); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_may" type="hidden" value="<? printf('%.2f',$pac_def_may); ?>" />
-                  <? printf('%.2f',$pac_def_may); ?> </div>
+                  <input name="pac_def_may" type="hidden" value="<?php printf('%.2f',$pac_def_may); ?>" />
+                  <?php printf('%.2f',$pac_def_may); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_may" type="hidden" value="<? printf('%.2f',$pac_uti_may); ?>" />
-                  <? printf('%.2f',$pac_uti_may); ?> </div>
+                  <input name="pac_uti_may" type="hidden" value="<?php printf('%.2f',$pac_uti_may); ?>" />
+                  <?php printf('%.2f',$pac_uti_may); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_may" type="hidden" value="<? printf('%.2f',$sal_pac_may); ?>" />
-                  <? printf('%.2f',$sal_pac_may); ?> </div>
+                  <input name="sal_pac_may" type="hidden" value="<?php printf('%.2f',$sal_pac_may); ?>" />
+                  <?php printf('%.2f',$sal_pac_may); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -595,43 +595,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="junio" type="hidden" id="junio" value="<? printf('%.2f',$junio); ?>" />
-                    <? printf('%.2f',$junio); ?> </div>
+                    <input name="junio" type="hidden" id="junio" value="<?php printf('%.2f',$junio); ?>" />
+                    <?php printf('%.2f',$junio); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_jun" type="hidden" value="<? printf('%.2f',$adi_pac_jun); ?>" />
-                  <? printf('%.2f',$adi_pac_jun); ?></div>
+                  <input name="adi_pac_jun" type="hidden" value="<?php printf('%.2f',$adi_pac_jun); ?>" />
+                  <?php printf('%.2f',$adi_pac_jun); ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_jun" type="hidden" value="<? printf('%.2f',$red_pac_jun); ?>" />
-                  <? printf('%.2f',$red_pac_jun); ?></div>
+                  <input name="red_pac_jun" type="hidden" value="<?php printf('%.2f',$red_pac_jun); ?>" />
+                  <?php printf('%.2f',$red_pac_jun); ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_jun" type="hidden" value="<? printf('%.2f',$pac_def_jun); ?>" />
-                  <? printf('%.2f',$pac_def_jun); ?> </div>
+                  <input name="pac_def_jun" type="hidden" value="<?php printf('%.2f',$pac_def_jun); ?>" />
+                  <?php printf('%.2f',$pac_def_jun); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_jun" type="hidden" value="<? printf('%.2f',$pac_uti_jun); ?>" />
-                  <? printf('%.2f',$pac_uti_jun); ?> </div>
+                  <input name="pac_uti_jun" type="hidden" value="<?php printf('%.2f',$pac_uti_jun); ?>" />
+                  <?php printf('%.2f',$pac_uti_jun); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_jun" type="hidden" value="<? printf('%.2f',$sal_pac_jun); ?>" />
-                  <? printf('%.2f',$sal_pac_jun); ?> </div>
+                  <input name="sal_pac_jun" type="hidden" value="<?php printf('%.2f',$sal_pac_jun); ?>" />
+                  <?php printf('%.2f',$sal_pac_jun); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -644,43 +644,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="julio" type="hidden" id="julio" value="<? printf('%.2f',$julio); ?>" />
-                    <? printf('%.2f',$julio); ?> </div>
+                    <input name="julio" type="hidden" id="julio" value="<?php printf('%.2f',$julio); ?>" />
+                    <?php printf('%.2f',$julio); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_jul" type="hidden" value="<? printf('%.2f',$adi_pac_jul); ?>" />
-                  <? printf('%.2f',$adi_pac_jul); ?></div>
+                  <input name="adi_pac_jul" type="hidden" value="<?php printf('%.2f',$adi_pac_jul); ?>" />
+                  <?php printf('%.2f',$adi_pac_jul); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_jul" type="hidden" value="<? printf('%.2f',$red_pac_jul); ?>" />
-                  <? printf('%.2f',$red_pac_jul); ?></div>
+                  <input name="red_pac_jul" type="hidden" value="<?php printf('%.2f',$red_pac_jul); ?>" />
+                  <?php printf('%.2f',$red_pac_jul); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_jul" type="hidden" value="<? printf('%.2f',$pac_def_jul); ?>" />
-                  <? printf('%.2f',$pac_def_jul); ?> </div>
+                  <input name="pac_def_jul" type="hidden" value="<?php printf('%.2f',$pac_def_jul); ?>" />
+                  <?php printf('%.2f',$pac_def_jul); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_jul" type="hidden" value="<? printf('%.2f',$pac_uti_jul); ?>" />
-                  <? printf('%.2f',$pac_uti_jul); ?> </div>
+                  <input name="pac_uti_jul" type="hidden" value="<?php printf('%.2f',$pac_uti_jul); ?>" />
+                  <?php printf('%.2f',$pac_uti_jul); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_jul" type="hidden" value="<? printf('%.2f',$sal_pac_jul); ?>" />
-                  <? printf('%.2f',$sal_pac_jul); ?> </div>
+                  <input name="sal_pac_jul" type="hidden" value="<?php printf('%.2f',$sal_pac_jul); ?>" />
+                  <?php printf('%.2f',$sal_pac_jul); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -693,43 +693,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="agosto" type="hidden" id="agosto" value="<? printf('%.2f',$agosto); ?>" />
-                    <? printf('%.2f',$agosto); ?> </div>
+                    <input name="agosto" type="hidden" id="agosto" value="<?php printf('%.2f',$agosto); ?>" />
+                    <?php printf('%.2f',$agosto); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_ago" type="hidden" value="<? printf('%.2f',$adi_pac_ago); ?>" />
-                  <? printf('%.2f',$adi_pac_ago); ?></div>
+                  <input name="adi_pac_ago" type="hidden" value="<?php printf('%.2f',$adi_pac_ago); ?>" />
+                  <?php printf('%.2f',$adi_pac_ago); ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_ago" type="hidden" value="<? printf('%.2f',$red_pac_ago); ?>" />
-                  <? printf('%.2f',$red_pac_ago); ?></div>
+                  <input name="red_pac_ago" type="hidden" value="<?php printf('%.2f',$red_pac_ago); ?>" />
+                  <?php printf('%.2f',$red_pac_ago); ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_ago" type="hidden" value="<? printf('%.2f',$pac_def_ago); ?>" />
-                  <? printf('%.2f',$pac_def_ago); ?> </div>
+                  <input name="pac_def_ago" type="hidden" value="<?php printf('%.2f',$pac_def_ago); ?>" />
+                  <?php printf('%.2f',$pac_def_ago); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_ago" type="hidden" value="<? printf('%.2f',$pac_uti_ago); ?>" />
-                  <? printf('%.2f',$pac_uti_ago); ?> </div>
+                  <input name="pac_uti_ago" type="hidden" value="<?php printf('%.2f',$pac_uti_ago); ?>" />
+                  <?php printf('%.2f',$pac_uti_ago); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_ago" type="hidden" value="<? printf('%.2f',$sal_pac_ago); ?>" />
-                  <? printf('%.2f',$sal_pac_ago); ?> </div>
+                  <input name="sal_pac_ago" type="hidden" value="<?php printf('%.2f',$sal_pac_ago); ?>" />
+                  <?php printf('%.2f',$sal_pac_ago); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -742,43 +742,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="septiembre" type="hidden" id="septiembre" value="<? printf('%.2f',$septiembre); ?>" />
-                    <? printf('%.2f',$septiembre); ?> </div>
+                    <input name="septiembre" type="hidden" id="septiembre" value="<?php printf('%.2f',$septiembre); ?>" />
+                    <?php printf('%.2f',$septiembre); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_sep" type="hidden" value="<? printf('%.2f',$adi_pac_sep); ?>" />
-                  <? printf('%.2f',$adi_pac_sep); ?></div>
+                  <input name="adi_pac_sep" type="hidden" value="<?php printf('%.2f',$adi_pac_sep); ?>" />
+                  <?php printf('%.2f',$adi_pac_sep); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_sep" type="hidden" value="<? printf('%.2f',$red_pac_sep); ?>" />
-                  <? printf('%.2f',$red_pac_sep); ?></div>
+                  <input name="red_pac_sep" type="hidden" value="<?php printf('%.2f',$red_pac_sep); ?>" />
+                  <?php printf('%.2f',$red_pac_sep); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_sep" type="hidden" value="<? printf('%.2f',$pac_def_sep); ?>" />
-                  <? printf('%.2f',$pac_def_sep); ?> </div>
+                  <input name="pac_def_sep" type="hidden" value="<?php printf('%.2f',$pac_def_sep); ?>" />
+                  <?php printf('%.2f',$pac_def_sep); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_sep" type="hidden" value="<? printf('%.2f',$pac_uti_sep); ?>" />
-                  <? printf('%.2f',$pac_uti_sep); ?> </div>
+                  <input name="pac_uti_sep" type="hidden" value="<?php printf('%.2f',$pac_uti_sep); ?>" />
+                  <?php printf('%.2f',$pac_uti_sep); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_sep" type="hidden" value="<? printf('%.2f',$sal_pac_sep); ?>" />
-                  <? printf('%.2f',$sal_pac_sep); ?> </div>
+                  <input name="sal_pac_sep" type="hidden" value="<?php printf('%.2f',$sal_pac_sep); ?>" />
+                  <?php printf('%.2f',$sal_pac_sep); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -791,43 +791,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="octubre" type="hidden" id="octubre" value="<? printf('%.2f',$octubre); ?>" />
-                    <? printf('%.2f',$octubre); ?> </div>
+                    <input name="octubre" type="hidden" id="octubre" value="<?php printf('%.2f',$octubre); ?>" />
+                    <?php printf('%.2f',$octubre); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_oct" type="hidden" value="<? printf('%.2f',$adi_pac_oct); ?>" />
-                  <? printf('%.2f',$adi_pac_oct); ?></div>
+                  <input name="adi_pac_oct" type="hidden" value="<?php printf('%.2f',$adi_pac_oct); ?>" />
+                  <?php printf('%.2f',$adi_pac_oct); ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_oct" type="hidden" value="<? printf('%.2f',$red_pac_oct); ?>" />
-                  <? printf('%.2f',$red_pac_oct); ?></div>
+                  <input name="red_pac_oct" type="hidden" value="<?php printf('%.2f',$red_pac_oct); ?>" />
+                  <?php printf('%.2f',$red_pac_oct); ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_oct" type="hidden" value="<? printf('%.2f',$pac_def_oct); ?>" />
-                  <? printf('%.2f',$pac_def_oct); ?> </div>
+                  <input name="pac_def_oct" type="hidden" value="<?php printf('%.2f',$pac_def_oct); ?>" />
+                  <?php printf('%.2f',$pac_def_oct); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_oct" type="hidden" value="<? printf('%.2f',$pac_uti_oct); ?>" />
-                  <? printf('%.2f',$pac_uti_oct); ?> </div>
+                  <input name="pac_uti_oct" type="hidden" value="<?php printf('%.2f',$pac_uti_oct); ?>" />
+                  <?php printf('%.2f',$pac_uti_oct); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_oct" type="hidden" value="<? printf('%.2f',$sal_pac_oct); ?>" />
-                  <? printf('%.2f',$sal_pac_oct); ?> </div>
+                  <input name="sal_pac_oct" type="hidden" value="<?php printf('%.2f',$sal_pac_oct); ?>" />
+                  <?php printf('%.2f',$sal_pac_oct); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -840,43 +840,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="noviembre" type="hidden" id="noviembre" value="<? printf('%.2f',$noviembre); ?>" />
-                    <? printf('%.2f',$noviembre); ?> </div>
+                    <input name="noviembre" type="hidden" id="noviembre" value="<?php printf('%.2f',$noviembre); ?>" />
+                    <?php printf('%.2f',$noviembre); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_nov" type="hidden" value="<? printf('%.2f',$adi_pac_nov); ?>" />
-                  <? printf('%.2f',$adi_pac_nov); ?></div>
+                  <input name="adi_pac_nov" type="hidden" value="<?php printf('%.2f',$adi_pac_nov); ?>" />
+                  <?php printf('%.2f',$adi_pac_nov); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_nov" type="hidden" value="<? printf('%.2f',$red_pac_nov); ?>" />
-                  <? printf('%.2f',$red_pac_nov); ?></div>
+                  <input name="red_pac_nov" type="hidden" value="<?php printf('%.2f',$red_pac_nov); ?>" />
+                  <?php printf('%.2f',$red_pac_nov); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_nov" type="hidden" value="<? printf('%.2f',$pac_def_nov); ?>" />
-                  <? printf('%.2f',$pac_def_nov); ?> </div>
+                  <input name="pac_def_nov" type="hidden" value="<?php printf('%.2f',$pac_def_nov); ?>" />
+                  <?php printf('%.2f',$pac_def_nov); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_nov" type="hidden" value="<? printf('%.2f',$pac_uti_nov); ?>" />
-                  <? printf('%.2f',$pac_uti_nov); ?> </div>
+                  <input name="pac_uti_nov" type="hidden" value="<?php printf('%.2f',$pac_uti_nov); ?>" />
+                  <?php printf('%.2f',$pac_uti_nov); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_nov" type="hidden" value="<? printf('%.2f',$sal_pac_nov); ?>" />
-                  <? printf('%.2f',$sal_pac_nov); ?> </div>
+                  <input name="sal_pac_nov" type="hidden" value="<?php printf('%.2f',$sal_pac_nov); ?>" />
+                  <?php printf('%.2f',$sal_pac_nov); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -889,43 +889,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="diciembre" type="hidden" id="diciembre" value="<? printf('%.2f',$diciembre); ?>" />
-                    <? printf('%.2f',$diciembre); ?> </div>
+                    <input name="diciembre" type="hidden" id="diciembre" value="<?php printf('%.2f',$diciembre); ?>" />
+                    <?php printf('%.2f',$diciembre); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_pac_dic" type="hidden" value="<? printf('%.2f',$adi_pac_dic); ?>" />
-                  <? printf('%.2f',$adi_pac_dic); ?></div>
+                  <input name="adi_pac_dic" type="hidden" value="<?php printf('%.2f',$adi_pac_dic); ?>" />
+                  <?php printf('%.2f',$adi_pac_dic); ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_pac_dic" type="hidden" value="<? printf('%.2f',$red_pac_dic); ?>" />
-                  <? printf('%.2f',$red_pac_dic); ?></div>
+                  <input name="red_pac_dic" type="hidden" value="<?php printf('%.2f',$red_pac_dic); ?>" />
+                  <?php printf('%.2f',$red_pac_dic); ?></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_def_dic" type="hidden" value="<? printf('%.2f',$pac_def_dic); ?>" />
-                  <? printf('%.2f',$pac_def_dic); ?> </div>
+                  <input name="pac_def_dic" type="hidden" value="<?php printf('%.2f',$pac_def_dic); ?>" />
+                  <?php printf('%.2f',$pac_def_dic); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="pac_uti_dic" type="hidden" value="<? printf('%.2f',$pac_uti_dic); ?>" />
-                  <? printf('%.2f',$pac_uti_dic); ?> </div>
+                  <input name="pac_uti_dic" type="hidden" value="<?php printf('%.2f',$pac_uti_dic); ?>" />
+                  <?php printf('%.2f',$pac_uti_dic); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_pac_dic" type="hidden" value="<? printf('%.2f',$sal_pac_dic); ?>" />
-                  <? printf('%.2f',$sal_pac_dic); ?> </div>
+                  <input name="sal_pac_dic" type="hidden" value="<?php printf('%.2f',$sal_pac_dic); ?>" />
+                  <?php printf('%.2f',$sal_pac_dic); ?> </div>
               </div>
             </div></td>
           </tr>
@@ -938,43 +938,43 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
                 <div align="center" class="Estilo4">
                   <div align="right">
-                    <input name="rezago" type="hidden" id="rezago" value="<? printf('%.2f',$rezago); ?>" />
-                    <? printf('%.2f',$rezago); ?> </div>
+                    <input name="rezago" type="hidden" id="rezago" value="<?php printf('%.2f',$rezago); ?>" />
+                    <?php printf('%.2f',$rezago); ?> </div>
                 </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="adi_rezago" type="hidden" value="<? printf('%.2f',$adi_rezago); ?>" />
-                  <? printf('%.2f',$adi_rezago); ?></div>
+                  <input name="adi_rezago" type="hidden" value="<?php printf('%.2f',$adi_rezago); ?>" />
+                  <?php printf('%.2f',$adi_rezago); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="red_rezago" type="hidden" value="<? printf('%.2f',$red_rezago); ?>" />
-                  <? printf('%.2f',$red_rezago); ?></div>
+                  <input name="red_rezago" type="hidden" value="<?php printf('%.2f',$red_rezago); ?>" />
+                  <?php printf('%.2f',$red_rezago); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="def_rezago" type="hidden" value="<? printf('%.2f',$def_rezago); ?>" />
-                  <? printf('%.2f',$def_rezago); ?></div>
+                  <input name="def_rezago" type="hidden" value="<?php printf('%.2f',$def_rezago); ?>" />
+                  <?php printf('%.2f',$def_rezago); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="uti_rezago" type="hidden" value="<? printf('%.2f',$uti_rezago); ?>" />
-                  <? printf('%.2f',$uti_rezago); ?></div>
+                  <input name="uti_rezago" type="hidden" value="<?php printf('%.2f',$uti_rezago); ?>" />
+                  <?php printf('%.2f',$uti_rezago); ?></div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="sal_rezago" type="hidden" value="<? printf('%.2f',$sal_rezago); ?>" />
-                  <? printf('%.2f',$sal_rezago); ?></div>
+                  <input name="sal_rezago" type="hidden" value="<?php printf('%.2f',$sal_rezago); ?>" />
+                  <?php printf('%.2f',$sal_rezago); ?></div>
               </div>
             </div></td>
           </tr>
@@ -987,22 +987,22 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                  <div align="right"><strong>
-                   <input name="total" type="hidden" id="total" value="<? printf('%.2f',$total); ?>" />
-                   <? printf('%.2f',$total); ?> </strong></div>
+                   <input name="total" type="hidden" id="total" value="<?php printf('%.2f',$total); ?>" />
+                   <?php printf('%.2f',$total); ?> </strong></div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div class="Estilo8" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="suma_adi" type="hidden" value="<? printf('%.2f',$suma_adi); ?>" />
-                  <? printf('%.2f',$suma_adi); ?> </div>
+                  <input name="suma_adi" type="hidden" value="<?php printf('%.2f',$suma_adi); ?>" />
+                  <?php printf('%.2f',$suma_adi); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5"><div class="Estilo9" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                 <div align="right">
-                  <input name="suma_red" type="hidden" value="<? printf('%.2f',$suma_red); ?>" />
-                  <? printf('%.2f',$suma_red); ?> </div>
+                  <input name="suma_red" type="hidden" value="<?php printf('%.2f',$suma_red); ?>" />
+                  <?php printf('%.2f',$suma_red); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#F5F5F5">&nbsp;</td>
@@ -1018,8 +1018,8 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
             <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <div align="center" class="Estilo4">
                  <div align="right">
-                   <input name="diferencia" type="hidden" id="diferencia" value="<? printf('%.2f',$diferencia); ?>" />
-                   <? printf('%.2f',$diferencia); ?> </div>
+                   <input name="diferencia" type="hidden" id="diferencia" value="<?php printf('%.2f',$diferencia); ?>" />
+                   <?php printf('%.2f',$diferencia); ?> </div>
               </div>
             </div></td>
             <td bgcolor="#FFFFFF">&nbsp;</td>
@@ -1058,28 +1058,28 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
     <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../config.php');				
+          <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="293">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email?>	</div>
 	</div>	</td>
     <td width="293">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -1097,6 +1097,6 @@ echo $ano;
 </table>
 </body>
 </html>
-<?
+<?php
 }
 ?>

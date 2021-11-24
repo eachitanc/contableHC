@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -37,9 +37,9 @@ include('../config.php');
 
 $connection = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sql = "select * from fecha";
-$resultado = mysql_db_query($database, $sql, $connection);
+$resultado = $connection->query($sql);
 
-while($row = mysql_fetch_array($resultado)) 
+while($row = $resultado->fetch_assoc()) 
    {
    $id=$row["id_emp"];
    $idxx=$row["id_emp"];
@@ -47,7 +47,7 @@ while($row = mysql_fetch_array($resultado))
    }
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cxp where id_emp = '$id' order by cod_pptal asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 printf("
 <center>
 <table width='1460' BORDER='1' class='bordepunteado1'>
@@ -109,8 +109,8 @@ while($rw = mysql_fetch_array($re))
 		{
 			$eval1=$rw["cod_fut"];
 			$sql = "SELECT * FROM fut_gastos where cod_fut='$eval1'";
-			$result = mysql_query($sql, $connection) or die(mysql_error());
-			if ((mysql_num_rows($result) == 0))
+			$result = $connection->query($sql);
+			if (($result->num_rows == 0))
 			{
 			 printf("<td align='center' style='background-color:red;'><span class='Estilo4' style='color:white;'>%s</span></td>",$rw["cod_fut"]);
 			}
@@ -125,8 +125,8 @@ while($rw = mysql_fetch_array($re))
 
 			$eval2=$rw["cod_cgr"];
 			$sql = "SELECT * FROM cgr_gastos where cod='$eval2'";
-			$result = mysql_query($sql, $connection) or die(mysql_error());
-			if ((mysql_num_rows($result) == 0))
+			$result = $connection->query($sql);
+			if (($result->num_rows == 0))
 			{
 			 printf("<td align='center' style='background-color:red;'><span class='Estilo4' style='color:white;'>%s</span></td>",$rw["cod_cgr"]);
 			}
@@ -145,8 +145,8 @@ while($rw = mysql_fetch_array($re))
 		printf("<td align='center' class='text'>%s</td>",$rw["ent_recip"]);	
 		$eval13=$rw["cod_sia"];
 			$sql = "SELECT * FROM codigo_sia where cod_sia='$eval13' and clase='2'";
-			$result = mysql_query($sql, $connection) or die(mysql_error());
-			if ((mysql_num_rows($result) == 0))
+			$result = $connection->query($sql);
+			if (($result->num_rows == 0))
 			{
 			 printf("<td align='center' style='background-color:red;'><span class='format' style='color:white;'>%s</span></td>",$rw["cod_sia"]);
 			}
@@ -158,8 +158,8 @@ while($rw = mysql_fetch_array($re))
 			if ($eval14 !='')
 			{
 				$sql = "SELECT * FROM codigo_sia where cod_sia='$eval14' and clase='3'";
-				$result = mysql_query($sql, $connection) or die(mysql_error());
-				if ((mysql_num_rows($result) == 0))
+				$result = $connection->query($sql);
+				if (($result->num_rows == 0))
 				{
 				 printf("<td align='center' style='background-color:red;'><span class='format' style='color:white;'>%s</span></td>",$rw["clase_pago_sia"]);
 				}
@@ -175,8 +175,8 @@ while($rw = mysql_fetch_array($re))
 			if ($eval15 !='')
 			{
 				$sql = "SELECT * FROM pgcp where cod_pptal='$eval15' and tip_dato='D'";
-				$result = mysql_query($sql, $connection) or die(mysql_error());
-				if ((mysql_num_rows($result) == 0))
+				$result = $connection->query($sql);
+				if (($result->num_rows == 0))
 				{
 				 printf("<td align='center' style='background-color:red;'><span class='format' style='color:white;'>%s</span></td>",$rw["banco_pago"]);
 				}
@@ -196,6 +196,6 @@ printf("</table></center>");
 ?>
 </body>
 </html>
-<?
+<?php
 }
 ?>

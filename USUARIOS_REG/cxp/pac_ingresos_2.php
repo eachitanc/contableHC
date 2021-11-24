@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -93,14 +93,14 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
   </tr>
  
   <tr>
-  <?
+  <?php
   
   include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -135,8 +135,8 @@ while($rowxx = mysql_fetch_array($resultadoxx))
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo4">
-            <div align="left"><? printf('%s',$cod_pptal); ?>
-                <input name="cod_pptal" type="hidden" class="Estilo4" id="cod_pptal" value="<? printf('%s',$cod_pptal); ?>"/>
+            <div align="left"><?php printf('%s',$cod_pptal); ?>
+                <input name="cod_pptal" type="hidden" class="Estilo4" id="cod_pptal" value="<?php printf('%s',$cod_pptal); ?>"/>
             </div>
           </div>
         </div></td>
@@ -146,8 +146,8 @@ while($rowxx = mysql_fetch_array($resultadoxx))
          <div align="right"><span class="Estilo4"><strong>CUENTA : </strong></span></div>
        </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-          <div align="left"><span class="Estilo4"><? printf('%s',$nom_rubro); ?>
-            <input name="nom_rubro" type="hidden" class="Estilo4" id="nom_rubro" value="<? printf('%s',$nom_rubro); ?>"/>
+          <div align="left"><span class="Estilo4"><?php printf('%s',$nom_rubro); ?>
+            <input name="nom_rubro" type="hidden" class="Estilo4" id="nom_rubro" value="<?php printf('%s',$nom_rubro); ?>"/>
           </span></div>
         </div></td>
         </tr>
@@ -156,8 +156,8 @@ while($rowxx = mysql_fetch_array($resultadoxx))
           <div align="right"><span class="Estilo4"><strong>VALOR APROPIADO : </strong></span></div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-          <div align="left"><span class="Estilo4"><? printf('%.2f',$definitivo); ?>
-            <input name="definitivo" type="hidden" class="Estilo4" id="definitivo" value="<? printf('%.2f',$definitivo); ?>"/>
+          <div align="left"><span class="Estilo4"><?php printf('%.2f',$definitivo); ?>
+            <input name="definitivo" type="hidden" class="Estilo4" id="definitivo" value="<?php printf('%.2f',$definitivo); ?>"/>
           </span></div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -172,8 +172,8 @@ while($rowxx = mysql_fetch_array($resultadoxx))
         </div></td>
         <td width="250"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="left"><span class="Estilo4">
-		  <? printf('%s',$meses); ?>
-            <input name="meses" type="hidden" class="Estilo4" id="meses" value="<? printf('%s',$meses); ?>"/>
+		  <?php printf('%s',$meses); ?>
+            <input name="meses" type="hidden" class="Estilo4" id="meses" value="<?php printf('%s',$meses); ?>"/>
           </span></div>
         </div></td>
         <td width="250"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -182,7 +182,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
       </tr>
     </table>
 	<br />
-	<?
+	<?php
 
 switch($meses)
 {
@@ -439,7 +439,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="enero" type="text" class="Estilo4" id="enero" size="30" value="<? printf('%.2f',$enero); ?>" />
+              <input name="enero" type="text" class="Estilo4" id="enero" size="30" value="<?php printf('%.2f',$enero); ?>" />
             </div>
           </div>
         </div></td>
@@ -452,7 +452,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="julio" type="text" class="Estilo4" id="julio" size="30" value="<? printf('%.2f',$julio); ?>" />
+              <input name="julio" type="text" class="Estilo4" id="julio" size="30" value="<?php printf('%.2f',$julio); ?>" />
             </div>
           </div>
         </div></td>
@@ -467,7 +467,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="febrero" type="text" class="Estilo4" id="febrero" size="30" value="<? printf('%.2f',$febrero); ?>" />
+              <input name="febrero" type="text" class="Estilo4" id="febrero" size="30" value="<?php printf('%.2f',$febrero); ?>" />
             </div>
           </div>
         </div></td>
@@ -480,7 +480,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="agosto" type="text" class="Estilo4" id="agosto" size="30" value="<? printf('%.2f',$agosto); ?>" />
+              <input name="agosto" type="text" class="Estilo4" id="agosto" size="30" value="<?php printf('%.2f',$agosto); ?>" />
             </div>
           </div>
         </div></td>
@@ -495,7 +495,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="marzo" type="text" class="Estilo4" id="marzo" size="30" value="<? printf('%.2f',$marzo); ?>" />
+              <input name="marzo" type="text" class="Estilo4" id="marzo" size="30" value="<?php printf('%.2f',$marzo); ?>" />
             </div>
           </div>
         </div></td>
@@ -508,7 +508,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="septiembre" type="text" class="Estilo4" id="septiembre" size="30" value="<? printf('%.2f',$septiembre); ?>" />
+              <input name="septiembre" type="text" class="Estilo4" id="septiembre" size="30" value="<?php printf('%.2f',$septiembre); ?>" />
             </div>
           </div>
         </div></td>
@@ -523,7 +523,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="abril" type="text" class="Estilo4" id="abril" size="30" value="<? printf('%.2f',$abril); ?>" />
+              <input name="abril" type="text" class="Estilo4" id="abril" size="30" value="<?php printf('%.2f',$abril); ?>" />
             </div>
           </div>
         </div></td>
@@ -536,7 +536,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="octubre" type="text" class="Estilo4" id="octubre" size="30" value="<? printf('%.2f',$octubre); ?>" />
+              <input name="octubre" type="text" class="Estilo4" id="octubre" size="30" value="<?php printf('%.2f',$octubre); ?>" />
             </div>
           </div>
         </div></td>
@@ -551,7 +551,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="mayo" type="text" class="Estilo4" id="mayo" size="30" value="<? printf('%.2f',$mayo); ?>" />
+              <input name="mayo" type="text" class="Estilo4" id="mayo" size="30" value="<?php printf('%.2f',$mayo); ?>" />
             </div>
           </div>
         </div></td>
@@ -564,7 +564,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="noviembre" type="text" class="Estilo4" id="noviembre" size="30"  value="<? printf('%.2f',$noviembre); ?>" />
+              <input name="noviembre" type="text" class="Estilo4" id="noviembre" size="30"  value="<?php printf('%.2f',$noviembre); ?>" />
             </div>
           </div>
         </div></td>
@@ -579,7 +579,7 @@ $diferencia = $definitivo - $total;
             <div align="center" class="Estilo4">
               <div align="center">
 			 
-                <input name="junio" type="text" class="Estilo4" id="junio" size="30" value="<? printf('%.2f',$junio); ?>" />
+                <input name="junio" type="text" class="Estilo4" id="junio" size="30" value="<?php printf('%.2f',$junio); ?>" />
               </div>
             </div>
         </div></td>
@@ -592,7 +592,7 @@ $diferencia = $definitivo - $total;
             <div align="center" class="Estilo4">
               <div align="center">
 			 
-                <input name="diciembre" type="text" class="Estilo4" id="diciembre" size="30" value="<? printf('%.2f',$diciembre); ?>" />
+                <input name="diciembre" type="text" class="Estilo4" id="diciembre" size="30" value="<?php printf('%.2f',$diciembre); ?>" />
               </div>
             </div>
         </div></td>
@@ -608,7 +608,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="rezago" type="text" class="Estilo4" id="rezago" size="30" value="<? printf('%.2f',$rezago); ?>" />
+              <input name="rezago" type="text" class="Estilo4" id="rezago" size="30" value="<?php printf('%.2f',$rezago); ?>" />
             </div>
           </div>
         </div></td>
@@ -624,7 +624,7 @@ $diferencia = $definitivo - $total;
           <div align="center" class="Estilo4">
             <div align="center">
 			
-              <input name="total" type="text" class="Estilo4" id="total" size="30" value="<? printf('%.2f',$total); ?>" />
+              <input name="total" type="text" class="Estilo4" id="total" size="30" value="<?php printf('%.2f',$total); ?>" />
             </div>
           </div>
         </div></td>
@@ -640,7 +640,7 @@ $diferencia = $definitivo - $total;
             <div align="center" class="Estilo4">
               <div align="center">
 			  
-                <input name="diferencia" type="text" class="Estilo4" id="diferencia" size="30" value="<? printf('%.2f',$diferencia); ?>" />
+                <input name="diferencia" type="text" class="Estilo4" id="diferencia" size="30" value="<?php printf('%.2f',$diferencia); ?>" />
               </div>
             </div>
         </div></td>
@@ -665,29 +665,29 @@ $diferencia = $definitivo - $total;
 	<div style="padding-left:5px; padding-top:0px; padding-right:5px; padding-bottom:5px;">
 	<form action="proc_pac_ing.php" method="post" name="b" class="Estilo4" onsubmit="return confirm('Una vez grabado el P.A.C solo podra realizarle Adiciones y Reducciones, � Desea Continuar ?')">
 	  <div align="center">
-	    <input name="cod_pptal" type="hidden" class="Estilo4" id="cod_pptal" value="<? printf('%s',$cod_pptal); ?>"/>
+	    <input name="cod_pptal" type="hidden" class="Estilo4" id="cod_pptal" value="<?php printf('%s',$cod_pptal); ?>"/>
 	    
-	    <input name="nom_rubro" type="hidden" class="Estilo4" id="nom_rubro" value="<? printf('%s',$nom_rubro); ?>"/>
+	    <input name="nom_rubro" type="hidden" class="Estilo4" id="nom_rubro" value="<?php printf('%s',$nom_rubro); ?>"/>
 	    
-	    <input name="definitivo" type="hidden" class="Estilo4" id="definitivo" value="<? printf('%.2f',$definitivo); ?>"/>
+	    <input name="definitivo" type="hidden" class="Estilo4" id="definitivo" value="<?php printf('%.2f',$definitivo); ?>"/>
 	    
-	    <input name="meses" type="hidden" class="Estilo4" id="meses" value="<? printf('%s',$meses); ?>"/>
+	    <input name="meses" type="hidden" class="Estilo4" id="meses" value="<?php printf('%s',$meses); ?>"/>
 	    
-	    <input name="enero" type="hidden" class="Estilo4" id="enero" size="30" value="<? printf('%.2f',$enero); ?>" />
-	    <input name="febrero" type="hidden" class="Estilo4" id="febrero" size="30" value="<? printf('%.2f',$febrero); ?>" />
-	    <input name="marzo" type="hidden" class="Estilo4" id="marzo" size="30" value="<? printf('%.2f',$marzo); ?>" />
-	    <input name="abril" type="hidden" class="Estilo4" id="abril" size="30" value="<? printf('%.2f',$abril); ?>" />
-	    <input name="mayo" type="hidden" class="Estilo4" id="mayo" size="30" value="<? printf('%.2f',$mayo); ?>" />
-	    <input name="junio" type="hidden" class="Estilo4" id="junio" size="30" value="<? printf('%.2f',$junio); ?>" />
-	    <input name="julio" type="hidden" class="Estilo4" id="julio" size="30" value="<? printf('%.2f',$julio); ?>" />
-	    <input name="agosto" type="hidden" class="Estilo4" id="agosto" size="30" value="<? printf('%.2f',$agosto); ?>" />
-	    <input name="septiembre" type="hidden" class="Estilo4" id="septiembre" size="30" value="<? printf('%.2f',$septiembre); ?>" />
-	    <input name="octubre" type="hidden" class="Estilo4" id="octubre" size="30" value="<? printf('%.2f',$octubre); ?>" />
-	    <input name="noviembre" type="hidden" class="Estilo4" id="noviembre" size="30"  value="<? printf('%.2f',$noviembre); ?>" />
-	    <input name="diciembre" type="hidden" class="Estilo4" id="diciembre" size="30" value="<? printf('%.2f',$diciembre); ?>" />
-	    <input name="rezago" type="hidden" class="Estilo4" id="rezago" size="30" value="<? printf('%.2f',$rezago); ?>" />
-	    <input name="total" type="hidden" class="Estilo4" id="total" size="30" value="<? printf('%.2f',$total); ?>" />
-	    <input name="diferencia" type="hidden" class="Estilo4" id="diferencia" size="30" value="<? printf('%.2f',$diferencia); ?>" />
+	    <input name="enero" type="hidden" class="Estilo4" id="enero" size="30" value="<?php printf('%.2f',$enero); ?>" />
+	    <input name="febrero" type="hidden" class="Estilo4" id="febrero" size="30" value="<?php printf('%.2f',$febrero); ?>" />
+	    <input name="marzo" type="hidden" class="Estilo4" id="marzo" size="30" value="<?php printf('%.2f',$marzo); ?>" />
+	    <input name="abril" type="hidden" class="Estilo4" id="abril" size="30" value="<?php printf('%.2f',$abril); ?>" />
+	    <input name="mayo" type="hidden" class="Estilo4" id="mayo" size="30" value="<?php printf('%.2f',$mayo); ?>" />
+	    <input name="junio" type="hidden" class="Estilo4" id="junio" size="30" value="<?php printf('%.2f',$junio); ?>" />
+	    <input name="julio" type="hidden" class="Estilo4" id="julio" size="30" value="<?php printf('%.2f',$julio); ?>" />
+	    <input name="agosto" type="hidden" class="Estilo4" id="agosto" size="30" value="<?php printf('%.2f',$agosto); ?>" />
+	    <input name="septiembre" type="hidden" class="Estilo4" id="septiembre" size="30" value="<?php printf('%.2f',$septiembre); ?>" />
+	    <input name="octubre" type="hidden" class="Estilo4" id="octubre" size="30" value="<?php printf('%.2f',$octubre); ?>" />
+	    <input name="noviembre" type="hidden" class="Estilo4" id="noviembre" size="30"  value="<?php printf('%.2f',$noviembre); ?>" />
+	    <input name="diciembre" type="hidden" class="Estilo4" id="diciembre" size="30" value="<?php printf('%.2f',$diciembre); ?>" />
+	    <input name="rezago" type="hidden" class="Estilo4" id="rezago" size="30" value="<?php printf('%.2f',$rezago); ?>" />
+	    <input name="total" type="hidden" class="Estilo4" id="total" size="30" value="<?php printf('%.2f',$total); ?>" />
+	    <input name="diferencia" type="hidden" class="Estilo4" id="diferencia" size="30" value="<?php printf('%.2f',$diferencia); ?>" />
         
 	    <span class="Estilo8">Si no tiene cambios que realizar presione -&gt;</span>
         <input name="Submit2" type="submit" class="Estilo4" value="Grabar P.A.C" />	
@@ -712,28 +712,28 @@ $diferencia = $definitivo - $total;
     <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../config.php');				
+          <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email?>	</div>
 	</div>	</td>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -757,6 +757,6 @@ echo $ano;
 
 
 
-<?
+<?php
 }
 ?>

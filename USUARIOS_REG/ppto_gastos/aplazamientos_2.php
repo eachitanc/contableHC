@@ -12,8 +12,6 @@ if (!isset($_SESSION["login"])) {
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>CONTAFACIL</title>
-
-
     <style type="text/css">
       .Estilo2 {
         font-size: 9px

@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!isset($_SESSION["login"]))
 {
@@ -46,6 +46,6 @@ $id1=$_GET['id2'];
 
 </body>
 </html>
-<?
+<?php
 }
 ?>
