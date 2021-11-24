@@ -1,0 +1,82 @@
+body {
+	background-color:#fff;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+#encabezado{
+	margin:auto;
+	font-family: cambria;
+	size:16px;
+	color:#000000;
+	text-align: center;
+	}
+	
+	
+	#tabla{
+	position: relative;
+	margin:auto;
+	
+	}
+
+
+#piedepag{
+	position:relative;
+	top:70px;
+	left:550px;
+	width:150px;
+	height:150px;
+	
+	}
+	
+	
+#formulario{
+	position:relative;
+	top:0px;
+	left:13px;
+	
+	font-family:Arial, Helvetica, sans-serif:;
+	font-size:10px;
+	
+	}	
+	
+	
+#informacion{
+	position:relative;
+	top:25px;
+	left:200px;
+	width:500px;
+	height:200px;
+	font-family:Arial, Helvetica, sans-serif:;
+	font-size:10px;
+	
+	}	
+	
+#eliminar{
+	
+	
+	
+	}		
+	
+	
+#flotante{
+	position:relative;
+	top:30px;
+	left:0px;
+	width:400px;
+	height:500px;
+	font-family:Arial, Helvetica, sans-serif:;
+	font-size:12px;
+	border:groove;
+	border-right-width:2px;
+	border-left-width:2px;
+	border-top-width:2px;
+	border-bottom-width:2px;
+	border:#004080;
+	
+	
+	
+	}	
+		
+	

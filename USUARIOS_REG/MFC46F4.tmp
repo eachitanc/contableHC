@@ -1,0 +1,10 @@
+<?
+$server="localhost";  
+$database="bd_ipiales2015"; 
+$dbpass="12345"; 
+$dbuser="root";
+$nom_emp="";
+$dir_tel="";
+$muni="";
+$email="";
+?>

@@ -1,0 +1,447 @@
+2,GASTOS xx
+2.1,GASTOS DE FUNCIONAMIENTO
+2.1.01,GASTOS DE PERSONAL
+2.1.01.01,Servicios Personales Asociados a la Nómina
+2.1.01.01.01,Sueldos de Personal de Nómina
+2.1.01.01.01.01,Sueldos
+2.1.01.01.03,Gastos de Representación
+2.1.01.01.05,Bonificación por Servicios Prestados
+2.1.01.01.07,Bonificación Especial por Recreación
+2.1.01.01.09,Bonificación por Dirección
+2.1.01.01.11,Otras Remuneraciones que no son Factor Salarial
+2.1.01.01.13,Horas Extras y Días Festivos
+2.1.01.01.13.98,Horas Extras y Dias Festivos - sin diferenciar
+2.1.01.01.15,Prima de Antigüedad o Incremento de Antigüedad
+2.1.01.01.17,Prima de Navidad
+2.1.01.01.19,Prima de Servicios
+2.1.01.01.21,Prima de Vacaciones
+2.1.01.01.23,Prima o Subsidio de Alimentación
+2.1.01.01.25,Prima Técnica
+2.1.01.01.25.01,Prima Tecnica Salarial
+2.1.01.01.25.02,Prima Tecnica No Salarial
+2.1.01.01.27,Prima de Localización
+2.1.01.01.29,Prima de Coordinación
+2.1.01.01.31,Auxilio de Transporte
+2.1.01.01.33,Indemnización por Vacaciones
+2.1.01.01.98,Otros Servicios Personales Asociados a la Nómina
+2.1.01.02,Servicios Personales Indirectos
+2.1.01.02.01,Honorarios Concejales
+2.1.01.02.03,Honorarios Profesionales
+2.1.01.02.05,Jornales
+2.1.01.02.07,Personal Supernumerario
+2.1.01.02.09,Remuneración por Servicios Técnicos
+2.1.01.02.11,Remuneración de Aprendices
+2.1.01.02.98,Otros Servicios Personales Indirectos
+2.1.01.03,Contribuciones Inherentes a la Nómina
+2.1.01.03.01,Al Sector Público
+2.1.01.03.01.01,Aportes Previsión Social
+2.1.01.03.01.01.01,Cesantías
+2.1.01.03.01.01.01.01,Fondos de Cesantías (Fondo Nacional del Ahorro)
+2.1.01.03.01.01.01.03,Cajas de Previsión Social
+2.1.01.03.01.01.03,Pensiones
+2.1.01.03.01.01.03.01,Fondos de Pensiones
+2.1.01.03.01.01.03.03,Instituto de Seguros Sociales -ISS-
+2.1.01.03.01.01.03.05,Cajas de Previsión Social
+2.1.01.03.01.01.05,Salud
+2.1.01.03.01.01.05.01,Empresas Promotoras de Salud
+2.1.01.03.01.01.05.03,Instituto de Seguros Sociales -ISS-
+2.1.01.03.01.03,Aportes Parafiscales
+2.1.01.03.01.03.01,Servicio Nacional de Aprendizaje -SENA-
+2.1.01.03.01.03.03,Instituto Colombiano de Bienestar Familiar -ICBF-
+2.1.01.03.01.03.05,ESAP y otras Universidades (Ley 21 y 812 de 2003)
+2.1.01.03.01.03.07,Escuelas Industriales e Institutos Técnicos
+2.1.01.03.01.03.09,Administradoras Riesgos Profesionales
+2.1.01.03.03,Al Sector Privado
+2.1.01.03.03.01,Aportes Previsión Social
+2.1.01.03.03.01.01,Fondos de Cesantías
+2.1.01.03.03.01.03,Fondos de Pensiones
+2.1.01.03.03.01.05,Empresas Promotoras de Salud
+2.1.01.03.03.02,Administradoras Riesgos Profesionales
+2.1.01.03.03.03,Aportes Parafiscales a las Cajas de Compensación Familiar
+2.1.02,GASTOS GENERALES
+2.1.02.01,Adquisición de Bienes
+2.1.02.01.01,Materiales y Suministros
+2.1.02.01.03,Compra de Equipos
+2.1.02.01.05,Dotación de personal
+2.1.02.01.07,Bienestar Social
+2.1.02.01.98,Otras Adquisiciones de Bienes
+2.1.02.02,Adquisición de Servicios
+2.1.02.02.01,Capacitación
+2.1.02.02.03,Viaticos y Gastos de Viaje
+2.1.02.02.05,Comunicaciones y Transporte
+2.1.02.02.06,Transporte Rural de Concejales
+2.1.02.02.07,Servicios Públicos
+2.1.02.02.09,Seguros
+2.1.02.02.10,Seguros de Vida y Salud para Concejales
+2.1.02.02.11,Públicidad
+2.1.02.02.13,Impresos y Publicaciones
+2.1.02.02.15,Mantenimiento
+2.1.02.02.17,Vigilancia
+2.1.02.02.19,Aseo
+2.1.02.02.21,Arrendamientos
+2.1.02.02.23,Comisiones Intereses y demás Gastos Bancarios y Fiduciarios
+2.1.02.02.25,Sistematización
+2.1.02.02.27,Bienestar Social
+2.1.02.02.29,Gastos Judiciales
+2.1.02.02.98,Otras Adquisiciones de servicios
+2.1.02.03,Impuestos y Multas
+2.1.03,TRANSFERENCIAS CORRIENTES
+2.1.03.01,Al Sector Público
+2.1.03.01.01,Al Nivel Nacional
+2.1.03.01.01.01,Al Nivel Central Nacional
+2.1.03.01.01.01.36,Para garantizar pagos de pensiones - S. G. P. Propósito General Forsoza Inversión
+2.1.03.01.01.01.98,Otros Pagos al Nivel Central Nacional
+2.1.03.01.01.03,A Entidades Descentralizadas Nacionales
+2.1.03.01.01.03.01,A Entidades No Financieras Nacionales
+2.1.03.01.01.03.01.01,A Entidades No Financieras Nacionales no consideradas Empresas
+2.1.03.01.01.03.01.01.01,A las Corporaciones Autonomas Regionales (excluyendo la Sobretasa Ambiental)
+2.1.03.01.01.03.01.01.03,A Establecimientos Educativos Nacionales
+2.1.03.01.01.03.01.01.98,Otros Pagos a Entidades No Financieras Nacionales no consideradas Empresas
+2.1.03.01.01.03.01.03,A Empresas No Financieras Nacionales
+2.1.03.01.01.03.03,A Empresas Financieras Nacionales
+2.1.03.01.01.03.03.01,A Empresas Financieras de Depósito Nacionales
+2.1.03.01.01.03.03.03,A Empresas Financieras de No Depósito Nacionales
+2.1.03.01.03,Al Nivel Departamental
+2.1.03.01.03.01,Al Nivel Central Departamental
+2.1.03.01.03.03,A Entidades Descentralizadas Departamentales
+2.1.03.01.03.03.01,A Entidades No Financieras Departamentales
+2.1.03.01.03.03.01.01,A Entidades No Financieras Departamentales no consideradas Empresas
+2.1.03.01.03.03.01.01.01,A Establecimientos Educativos Departamentales
+2.1.03.01.03.03.01.01.98,A Otras Entidades No Financieras Departamentales no consideradas Empresas
+2.1.03.01.03.03.01.03,A Empresas No Financieras Departamentales
+2.1.03.01.03.03.03,A Empresas Financieras Departamentales
+2.1.03.01.05,Al Nivel Municipal y/o Distrital
+2.1.03.01.05.01,Al Nivel Central Municipal y/o Distrital
+2.1.03.01.05.03,A Entidades Descentralizadas Municipales y/o Distritales
+2.1.03.01.05.03.01,A Entidades No Financieras Municipales y/o Distritales
+2.1.03.01.05.03.01.01,A Entidades No Financieras Municipales y/o Distritales no consideradas Empresas
+2.1.03.01.05.03.01.01.01,A Establecimientos Educativos Municipales y/o Distritales
+2.1.03.01.05.03.01.01.03,Transferencias de Ley a Entidades No Financieras Municipales y/o Distritales no consider. Empresas
+2.1.03.01.05.03.01.01.98,A Otras Entidades No Financieras Municipales y/o Distritales no consideradas Empresas
+2.1.03.01.05.03.01.03,A Empresas No Financieras Municipales y/o Distritales
+2.1.03.01.05.03.03,A Empresas Financieras Municipales y/o Distritales
+2.1.03.02,Transferencias Corrientes de Previsión Social
+2.1.03.02.01,Cesantías
+2.1.03.02.01.02,Cesantías definitivas
+2.1.03.02.01.04,Cesantías parciales
+2.1.03.02.03,Pensiones
+2.1.03.02.03.01,Mesadas Pensionales
+2.1.03.02.03.03,Cuotas  partes pensionales
+2.1.03.02.05,Salud
+2.1.03.02.09,Fondo de Prestaciones Sociales del Magisterio
+2.1.03.02.98,Otras Transferencias Corrientes de Previsión Social
+2.1.03.98,Otras Transferencias
+2.1.03.98.01,Pagos a Particulares y Organismos Privados
+2.1.03.98.01.31,A los Hogares
+2.1.03.98.01.33,A Empresas Privadas No Financieras
+2.1.03.98.01.35,A Empresas Privadas Financieras
+2.1.03.98.03,Pagos a Organismos Internacionales
+2.1.03.98.05,Cuota de Auditaje
+2.1.03.98.07,Sentencias y Conciliaciones
+2.1.03.98.09,Asociación de Municipios
+2.1.03.98.11,Federación de Municipios
+2.1.03.98.17,Indemnizaciones por retiros masivos de Personal
+2.1.03.98.98,Otras Transferencias
+2.1.96,DÉFICIT FISCAL POSTERIOR A DICIEMBRE 31 DE 2000 (POR FUNCIONAMIENTO)
+2.2,GASTOS DE OPERACIÓN
+2.2.01,GASTOS DE COMERCIALIZACIÓN
+2.2.01.01,Compra de Bienes para la Venta
+2.2.01.01.98,Otras Compras de Bienes para la Venta
+2.2.01.03,Compra de Servicios para la Venta
+2.2.01.03.98,Otras Compras de Servicios para la Venta
+2.2.01.98,Otros Gastos de Comercialización
+2.2.01.98.98,Otros Gastos de comercialización no especificados
+2.2.02,GASTOS DE PRODUCCIÓN
+2.2.02.01,Industrial
+2.2.02.01.01,Materia Prima
+2.2.02.03,Agrícola
+2.2.02.03.01,Materia Prima
+2.2.02.05,Otros Gastos
+2.2.02.05.01,Materia Prima
+2.3,GASTOS DE INVERSIÓN
+2.3.01,INFRAESTRUCTURA
+2.3.01.01,Infraestructura propia del Sector
+2.3.01.01.01,Construcción de Infraestructura propia del Sector
+2.3.01.01.01.01,Edificios Públicos
+2.3.01.01.01.13,Acueductos y Plantas
+2.3.01.01.01.15,Alcantarillados y Redes
+2.3.01.01.01.17,Mataderos Plazas de Mercado Cementerios
+2.3.01.01.01.19,Plazas de Ferias
+2.3.01.01.01.21,Rellenos Sanitarios
+2.3.01.01.01.27,Baños Públicos
+2.3.01.01.01.31,Construcción y Pavimentación de Calles Urbanas
+2.3.01.01.01.33,Carreteras Caminos Puentes y Similares
+2.3.01.01.01.37,Centrales de Transporte
+2.3.01.01.01.39,Casas de Cultura Bibliotecas y Similares
+2.3.01.01.01.41,Umatas
+2.3.01.01.01.49,Planteles Educativos
+2.3.01.01.01.51,Escenarios Deportivos y Parques
+2.3.01.01.01.53,Hospitales Centros de Salud y Puestos de Salud
+2.3.01.01.01.55,Torres de Distribución de Energía Plantas y Redes de Electrificación Rural y Urbana
+2.3.01.01.01.57,Gasoductos
+2.3.01.01.01.59,Vivienda Urbana y Rural
+2.3.01.01.01.98,Otros Gastos en Construcción de Infraestructura propia del Sector
+2.3.01.01.02,Adquisición de Infraestructura propia del Sector
+2.3.01.01.02.01,Compra de Terrenos
+2.3.01.01.02.03,Señalización y Semaforización
+2.3.01.01.02.05,Planteles Educativos
+2.3.01.01.02.07,Plantas de Energía
+2.3.01.01.02.09,Compra de Lotes para Vivienda
+2.3.01.01.02.98,Otros Gastos en Adquisición de Infraestructura propia del Sector
+2.3.01.01.03,Mejoramiento y Mantenimiento de Infraestructura propia del Sector
+2.3.01.01.03.01,Edificios Públicos
+2.3.01.01.03.03,Seguros de Bienes
+2.3.01.01.03.05,Rehabilitación de Infraestructura ya Existente
+2.3.01.01.03.07,Protección y Dragado de Cuencas y Hoyas Hidrográficas
+2.3.01.01.03.09,Programas de Control a la Erosión y Reforestación
+2.3.01.01.03.11,Programas de Saneamiento Ambiental
+2.3.01.01.03.13,Acueductos y Plantas
+2.3.01.01.03.15,Alcantarillados y Redes
+2.3.01.01.03.17,Mataderos Plazas de Mercado Cementerios
+2.3.01.01.03.19,Plazas de Ferias
+2.3.01.01.03.21,Recoleccion y Tratamiento de Basuras
+2.3.01.01.03.23,Programas de Saneamiento Básico Rural
+2.3.01.01.03.25,Programas de Potabilización de Aguas Residuales
+2.3.01.01.03.27,Baños Públicos
+2.3.01.01.03.29,Equipos de Comunicación
+2.3.01.01.03.31,Pavimentación de Calles Urbanas
+2.3.01.01.03.33,Carreteras Caminos Puentes y Similares
+2.3.01.01.03.35,Señalización y Semaforización
+2.3.01.01.03.37,Centrales de Transporte
+2.3.01.01.03.39,Casas de Cultura Bibliotecas y Similares
+2.3.01.01.03.41,Umatas
+2.3.01.01.03.43,Programas Especiales de Desarrollo Industrial
+2.3.01.01.03.45,Programas Especiales de Desarrollo Comercial
+2.3.01.01.03.47,Programas Especiales de Desarrollo Turístico
+2.3.01.01.03.49,Planteles Educativos
+2.3.01.01.03.51,Escenarios Deportivos y Parques
+2.3.01.01.03.53,Hospitales Centros de Salud y Puestos de Salud
+2.3.01.01.03.55,Torres de Distribución de Energía Plantas y Redes de Electrificación Rural y Urbana
+2.3.01.01.03.57,Gasoductos
+2.3.01.01.03.98,Otros Gastos en Mejoramiento y Mantenimiento de Infraestructura propia del Sector
+2.3.01.02,Infraestructura Administrativa
+2.3.01.02.01,Construcción de Infraestructura Administrativa
+2.3.01.02.02,Adquisición de Infraestructura Administrativa
+2.3.01.02.03,Mejoramiento y Mantenimiento de Infraestructura Administrativa
+2.3.02,DOTACIÓN
+2.3.02.01,Equipos materiales suministros y servicios propios del Sector
+2.3.02.01.01,Adquisición y/o producción de equipos materiales suministros y servicios propios del Sector
+2.3.02.01.01.01,Dotación y/o Adquisición de Maquinaria y Equipo
+2.3.02.01.01.03,Dotación de Instalaciones
+2.3.02.01.01.05,Adquisición de Semovientes
+2.3.02.01.01.07,Dotación de Material Educativo
+2.3.02.01.01.09,Servicios de Transporte Educativo
+2.3.02.01.01.11,Sistemas de Información Educativos
+2.3.02.01.01.13,Dotación de Hospitales Centros de Salud y Puestos de Salud
+2.3.02.01.01.15,Adquisición de Equipo de Laboratorio
+2.3.02.01.01.17,Adquisición de Equipo Clínico
+2.3.02.01.01.19,Programas Atención Población vínculada IPSs Públicas de 1er Nivel
+2.3.02.01.01.21,Programas Atención Población vínculada IPSs Privadas de 1er Nivel
+2.3.02.01.01.23,Programas Atención Población vínculada IPSs Públicas de 2o Nivel y niveles mayores
+2.3.02.01.01.25,Programas Atención Población vínculada IPSs Privadas de 2o Nivel y niveles mayores
+2.3.02.01.01.27,Explotación Minera
+2.3.02.01.01.98,Otros Gastos Adquisición y/o producción equipos materiales suministros y servicios propios Sector
+2.3.02.01.02,Mantenimiento de equipos materiales suministros y servicios propios del Sector
+2.3.02.01.02.01,Maquinaria y Equipo
+2.3.02.01.02.03,Instalaciones
+2.3.02.01.02.07,Material Educativo
+2.3.02.01.02.09,Servicios de Transporte Educativo
+2.3.02.01.02.11,Sistemas de Información Educativos
+2.3.02.01.02.15,Equipo de Laboratorio
+2.3.02.01.02.17,Equipo Clínico
+2.3.02.01.02.98,Otros Gastos en Mantenimiento de equipos materiales suministros y servicios propios del Sector
+2.3.02.02,Equipos materiales suministros y servicios Administrativos
+2.3.02.02.01,Adquisición y/o producción de equipos materiales suministros y servicios Administrativos
+2.3.02.02.01.01,Servicios Públicos Planteles Educativos
+2.3.02.02.01.03,Arrendamientos de Planta Física Instituciones Educativas
+2.3.02.02.01.05,Dotación -Ley 70/88-
+2.3.02.02.01.98,Otros Gastos Adquisición y/o producción equipos materiales suministros y servicios Administrativos
+2.3.02.02.02,Mantenimiento de equipos materiales suministros y servicios Administrativos
+2.3.02.02.02.01,Servicios Públicos Planteles Educativos
+2.3.02.02.02.98,Otros Gastos en Mantenimiento de equipos materiales suministros y servicios Administrativos
+2.3.03,RECURSO HUMANO
+2.3.03.01,Divulgación Asistencia Técnica y Capacitación del Recurso Humano
+2.3.03.01.01,Capacitación Personal del Sector
+2.3.03.01.03,Educacion y Divulgacion Ambiental
+2.3.03.01.29,Evaluación Educativa
+2.3.03.01.31,Participación Educativa
+2.3.03.01.33,Programas de Capacitación Técnica no Profesional
+2.3.03.01.35,Programas de Educación Superior
+2.3.03.01.37,Programas de Educación de Adultos
+2.3.03.01.39,Programas de Educación Especial
+2.3.03.01.41,Programas Especiales en Educación Preescolar
+2.3.03.01.43,Programas Especiales en Educación Primaria
+2.3.03.01.45,Programas Especiales en Educación Secundaria y Media Vocacional
+2.3.03.01.98,Otros Gastos en Divulgación Asistencia Técnica y Capacitación del Recurso Humano
+2.3.03.02,Protección y Bienestar Social del Recurso Humano
+2.3.03.02.05,Contratos Prestación de Servicios con Instituciones Educativas
+2.3.03.02.07,Programas de Atención a Población de la Tercera Edad
+2.3.03.02.09,Programas de Atención a Población Infantil
+2.3.03.02.11,Programas de Atención a Discapacitados
+2.3.03.02.13,Programas de Atención a Padres y Madres Cabeza de Familia
+2.3.03.02.15,Programas de Atención a Madres Comunitarias
+2.3.03.02.17,Campañas de Salud Directas a Desplazados
+2.3.03.02.19,Atención en Educación a la Población Desplazada
+2.3.03.02.21,Plan Padrinos
+2.3.03.02.23,Red de Solidaridad
+2.3.03.02.25,Financiación de Eventos Culturales y Artísticos
+2.3.03.02.27,Rehabilitación de tierras y sustitución de cultivos
+2.3.03.02.47,Financiación de Eventos Deportivos
+2.3.03.02.49,Programas Especiales de Defensa y Seguridad
+2.3.03.02.51,Reubicación de Asentamientos
+2.3.03.02.53,Adecuación de áreas Urbana y Rurales de Alto Riesgo
+2.3.03.02.55,Programas Especiales de Prevención y Atención de Desastres
+2.3.03.02.57,Contratos de Régimen Subsidiado
+2.3.03.02.59,Ampliación de Contratos de Régimen Subsidiado
+2.3.03.02.61,Campañas Sanitarias de Salud
+2.3.03.02.63,Programa inspección vigilancia y control factores de riesgo vectores y zoonosis
+2.3.03.02.65,Programa de vigilancia y control de medicamentos y alimentos con INVIMA
+2.3.03.02.67,Campaña Directa Enferemedades de Transmisión por vectores ETV
+2.3.03.02.69,Campaña Directa Lepra
+2.3.03.02.71,Campaña Directa Malaria
+2.3.03.02.73,Programa de Centros de Regulación y Urgencias CRUE
+2.3.03.02.98,Otros Gastos en Protección y Bienestar Social del Recurso Humano
+2.3.03.03,Gastos de Personal
+2.3.03.03.01,Gastos de Personal diferentes del Sector Educación y Salud
+2.3.03.03.01.01,Servicios Personales Asociados a la Nómina
+2.3.03.03.01.03,Servicios Personales Indirectos
+2.3.03.03.01.05,Contribuciones Inherentes a la Nómina
+2.3.03.03.03,Docentes Directivos Docentes y Administrativos de Instituciones Educativas
+2.3.03.03.03.01,Servicios Personales Asociados a la Nómina
+2.3.03.03.03.03,Servicios Personales Indirectos
+2.3.03.03.03.05,Contribuciones Inherentes a la Nómina
+2.3.03.03.05,Gastos de Personal Administrativo de Instituciones Educativas
+2.3.03.03.05.01,Servicios Personales Asociados a la Nómina
+2.3.03.03.05.03,Servicios Personales Indirectos
+2.3.03.03.05.05,Contribuciones Inherentes a la Nómina
+2.3.03.03.07,Gastos de Personal Médico
+2.3.03.03.07.01,Servicios Personales Asociados a la Nómina
+2.3.03.03.07.03,Servicios Personales Indirectos
+2.3.03.03.07.05,Contribuciones Inherentes a la Nómina
+2.3.03.03.09,Gastos de Personal Paramédico
+2.3.03.03.09.01,Servicios Personales Asociados a la Nómina
+2.3.03.03.09.03,Servicios Personales Indirectos
+2.3.03.03.09.05,Contribuciones Inherentes a la Nómina
+2.3.03.03.11,Gastos de Personal Promotor
+2.3.03.03.11.01,Servicios Personales Asociados a la Nómina
+2.3.03.03.11.03,Servicios Personales Indirectos
+2.3.03.03.11.05,Contribuciones Inherentes a la Nómina
+2.3.04,INVESTIGACIÓN Y ESTUDIOS
+2.3.04.01,Investigación básica aplicada y Estudios
+2.3.04.01.01,Diseños para Investigación básica aplicada y Estudios
+2.3.04.01.02,Asesorías para Investigación básica aplicada y Estudios
+2.3.04.01.02.01,Investigación Recursos Naturales Renovables y No Renovables
+2.3.04.01.02.03,Estudios Asesorías e Investigaciones Agropecuarias
+2.3.04.01.02.05,Desarrollo de Plantaciones y Mejora de Tierras
+2.3.04.01.02.07,Formación Catastral
+2.3.04.01.02.98,Otros Gastos en Asesorías para Investigación básica aplicada y Estudios
+2.3.04.01.98,Otros Gastos en Investigación básica aplicada y Estudios
+2.3.04.02,Estudios de Preinversión
+2.3.04.02.01,Diseños para Estudios de Preinversión
+2.3.04.02.02,Asesorías para Estudios de Preinversión
+2.3.04.02.98,Otros Gastos en Estudios de Preinversión
+2.3.04.03,Levantamiento de información para procesamiento
+2.3.04.03.01,Diseños para Levantamiento de información para procesamiento
+2.3.04.03.02,Asesorías para Levantamiento de información para procesamiento
+2.3.04.03.98,Otros Gastos en Levantamiento de información para procesamiento
+2.3.04.04,Actualización de información para procesamiento
+2.3.04.04.01,Diseños para Actualización de información para procesamiento
+2.3.04.04.02,Asesorías para Actualización de información para procesamiento
+2.3.04.04.98,Otros Gastos en Actualización de información para procesamiento
+2.3.05,ADMINISTRACIÓN DEL ESTADO
+2.3.05.01,Asistencia técnica divulgación y capacitación a funcionarios del Estado apoyo Administración Estado
+2.3.05.02,Administración Control y Organización Institucional para apoyo a la Gestión del Estado
+2.3.05.02.01,Saneamiento y Ajuste Fiscal
+2.3.05.02.01.01,Pasivo laboral
+2.3.05.02.01.03,Pasivo Prestacional Pensiones y Cesantías
+2.3.05.02.01.05,Indemnizaciones por retiros masivos de Personal
+2.3.05.02.98,Otros Gastos Administración Control y Organización Institucional para apoyo Gestión del Estado
+2.3.05.03,Atención Control y Organización Institucional para apoyo a la Gestión del Estado
+2.3.05.04,Coord. Admón Promoción y/o Seguimiento Cooper. Técnica y/o Financiera apoyo Administración Estado
+2.3.05.05,Interventoría - Régimen Subsidiado
+2.3.05.06,Recursos transf. a la Supersalud destinados a la inspección vigilancia y control del Régimen Subsidiado
+2.3.05.07,Reintegros al Tesoro Nacional - Fondo Nacional de Regalías
+2.3.05.07.01,Devoluciones
+2.3.05.07.03,Rendimientos Financieros
+2.3.06,SUBSIDIOS Y OPERACIONES FINANCIERAS
+2.3.06.01,Créditos
+2.3.06.01.01,Concesión de Préstamos
+2.3.06.02,Subsidios Directos
+2.3.06.02.03,Servicios Publicos Domiciliarios
+2.3.06.02.05,Desarrollo Rural Integrado
+2.3.06.02.07,Apoyo a Juntas de Acción Comunal y Empresas de Economía Solidaria
+2.3.06.02.09,Alimentación Escolar
+2.3.06.02.11,Fomento Minería
+2.3.06.02.13,Para Adquisición de Vivienda de Interés Social
+2.3.06.02.15,Para Adquisición de Lotes
+2.3.06.03,Transferencias
+2.3.06.04,Inversiones y aportes financieros
+2.3.06.04.01,Compra de Bonos Acciones y Otros Títulos Valores
+2.3.06.05,Capitalización
+2.3.06.05.01,Participación en Capital de Empresas Públicas Financieras
+2.3.06.05.03,Participación en Capital de Empresas Públicas No Financieras
+2.3.06.06,Subsidios para el acceso de la población
+2.3.06.06.01,Subsidio para el Acceso de la Población a Servicios Médicos
+2.3.06.07,Cofinanciación
+2.4,SERVICIO DE LA DEUDA
+2.4.01,DEUDA EXTERNA
+2.4.01.01,Amortizaciones
+2.4.01.01.01,Banca Comercial
+2.4.01.01.02,Multilateral
+2.4.01.01.03,Fomento
+2.4.01.01.04,Gobiernos
+2.4.01.01.05,Proveedores
+2.4.01.01.06,Bonos y Títulos
+2.4.01.01.09,Cuenta Especial Deuda Externa
+2.4.01.01.98,Otros
+2.4.01.02,Intereses
+2.4.01.02.01,Banca Comercial
+2.4.01.02.02,Multilateral
+2.4.01.02.03,Fomento
+2.4.01.02.04,Gobiernos
+2.4.01.02.05,Proveedores
+2.4.01.02.06,Bonos y Títulos
+2.4.01.02.09,Cuenta Especial Deuda Externa
+2.4.01.02.98,Otros
+2.4.01.03,Comisiones
+2.4.01.03.01,Banca Comercial
+2.4.01.03.02,Multilateral
+2.4.01.03.03,Fomento
+2.4.01.03.04,Gobiernos
+2.4.01.03.05,Proveedores
+2.4.01.03.06,Bonos y Títulos
+2.4.01.03.09,Cuenta Especial Deuda Externa
+2.4.01.03.98,Otros
+2.4.02,DEUDA INTERNA
+2.4.02.01,Amortizaciones
+2.4.02.01.01,Banca Comercial
+2.4.02.01.05,Proveedores
+2.4.02.01.06,Bonos y Títulos
+2.4.02.01.08,Sector Público
+2.4.02.01.98,Otros
+2.4.02.02,Intereses
+2.4.02.02.01,Banca Comercial
+2.4.02.02.05,Proveedores
+2.4.02.02.06,Bonos y Títulos
+2.4.02.02.08,Sector Público
+2.4.02.02.98,Otros
+2.4.02.03,Comisiones
+2.4.02.03.01,Banca Comercial
+2.4.02.03.05,Proveedores
+2.4.02.03.06,Bonos y Títulos
+2.4.02.03.08,Sector Público
+2.4.02.03.98,Otros
+4,PAGOS A TERCEROS
+4.1,Retención en la Fuente
+4.2,Retención en la Fuente ICA
+4.3,Iva
+4.4,Timbre
+4.5,Sobretasa Ambiental
+4.6,S. G. P. Resguardos Indígenas
+4.8,Otros pagos a terceros
+6,TRASLADOS
+6.2,Al Concejo
+6.3,A la Contraloría
+6.3.01,Transferencia
+6.3.02,Transferencia Cuota de Auditaje
+6.4,A la Personería

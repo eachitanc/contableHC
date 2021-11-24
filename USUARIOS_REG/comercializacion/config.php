@@ -1,0 +1,10 @@
+<?
+$server="localhost";  
+$database="bd_esepotosi2016_FARMA"; 
+$dbpass="12345"; 
+$dbuser="root";
+$nom_emp="";
+$dir_tel="";
+$muni="";
+$email="";
+?>

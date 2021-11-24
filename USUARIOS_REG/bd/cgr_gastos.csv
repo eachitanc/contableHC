@@ -1,0 +1,447 @@
+2,GASTOS,S
+2.1,GASTOS DE FUNCIONAMIENTO,S
+2.1.01,GASTOS DE PERSONAL,S
+2.1.01.01,Servicios Personales Asociados a la Nómina,S
+2.1.01.01.01,Sueldos de Personal de Nómina,S
+2.1.01.01.01.01,Sueldos,D
+2.1.01.01.01.02,Sueldos de Vacaciones,D
+2.1.01.01.01.04,Incapacidades y Licencia de Maternidad,D
+2.1.01.01.01.98,Otros,D
+2.1.01.01.03,Gastos de Representación,D
+2.1.01.01.05,Bonificación por Servicios Prestados,D
+2.1.01.01.07,Bonificación Especial por Recreación,D
+2.1.01.01.09,Bonificación por Dirección,D
+2.1.01.01.11,Otras Remuneraciones que no son Factor Salarial,D
+2.1.01.01.13,Horas Extras y Días Festivos,S
+2.1.01.01.13.98,Horas Extras y Dias Festivos - sin diferenciar,D
+2.1.01.01.15,Prima de Antigüedad o Incremento de Antigüedad,D
+2.1.01.01.17,Prima de Navidad,D
+2.1.01.01.19,Prima de Servicios,D
+2.1.01.01.21,Prima de Vacaciones,D
+2.1.01.01.23,Prima o Subsidio de Alimentación,D
+2.1.01.01.25,Prima Técnica,S
+2.1.01.01.25.01,Prima Tecnica Salarial,D
+2.1.01.01.25.02,Prima Tecnica No Salarial,D
+2.1.01.01.27,Prima de Localización,D
+2.1.01.01.29,Prima de Coordinación,D
+2.1.01.01.30,Prima de Riesgo,D
+2.1.01.01.31,Auxilio de Transporte,D
+2.1.01.01.33,Indemnización por Vacaciones,D
+2.1.01.01.98,Otros Servicios Personales Asociados a la Nómina,D
+2.1.01.02,Servicios Personales Indirectos,S
+2.1.01.02.03,Honorarios Profesionales,D
+2.1.01.02.05,Jornales,D
+2.1.01.02.07,Personal Supernumerario,D
+2.1.01.02.09,Remuneración por Servicios Técnicos,D
+2.1.01.02.11,Remuneración de Aprendices,D
+2.1.01.02.98,Otros Servicios Personales Indirectos,D
+2.1.01.03,Contribuciones Inherentes a la Nómina,S
+2.1.01.03.01,Al Sector Público,S
+2.1.01.03.01.01,Aportes Previsión Social,S
+2.1.01.03.01.01.01,Cesantías,S
+2.1.01.03.01.01.01.01,Fondos de Cesantías (Fondo Nacional del Ahorro),D
+2.1.01.03.01.01.01.03,Cajas de Previsión Social,D
+2.1.01.03.01.01.03,Pensiones,S
+2.1.01.03.01.01.03.01,Fondos de Pensiones,D
+2.1.01.03.01.01.03.03,Instituto de Seguros Sociales -ISS-,D
+2.1.01.03.01.01.03.05,Cajas de Previsión Social,D
+2.1.01.03.01.01.05,Salud,S
+2.1.01.03.01.01.05.01,Empresas Promotoras de Salud,D
+2.1.01.03.01.01.05.03,Instituto de Seguros Sociales -ISS-,D
+2.1.01.03.01.03,Aportes Parafiscales,S
+2.1.01.03.01.03.01,Servicio Nacional de Aprendizaje -SENA-,D
+2.1.01.03.01.03.03,Instituto Colombiano de Bienestar Familiar -ICBF-,D
+2.1.01.03.01.03.05,ESAP y otras Universidades (Ley 21 y 812 de 2003),D
+2.1.01.03.01.03.07,Escuelas Industriales e Institutos Técnicos,D
+2.1.01.03.01.03.09,Administradoras Riesgos Profesionales,D
+2.1.01.03.03,Al Sector Privado,S
+2.1.01.03.03.01,Aportes Previsión Social,S
+2.1.01.03.03.01.01,Fondos de Cesantías,D
+2.1.01.03.03.01.03,Fondos de Pensiones,D
+2.1.01.03.03.01.05,Empresas Promotoras de Salud,D
+2.1.01.03.03.02,Administradoras Riesgos Profesionales,D
+2.1.01.03.03.03,Aportes Parafiscales a las Cajas de Compensación Familiar,D
+2.1.01.93,Pagos vigencias anteriores,D
+2.1.02,GASTOS GENERALES,S
+2.1.02.01,Adquisición de Bienes,S
+2.1.02.01.01,Materiales y Suministros,D
+2.1.02.01.03,Compra de Equipos,D
+2.1.02.01.05,Dotación de personal,D
+2.1.02.01.07,Bienestar Social,D
+2.1.02.01.98,Otras Adquisiciones de Bienes,D
+2.1.02.02,Adquisición de Servicios,S
+2.1.02.02.01,Capacitación,D
+2.1.02.02.03,Viaticos y Gastos de Viaje,D
+2.1.02.02.05,Comunicaciones y Transporte,D
+2.1.02.02.07,Servicios Públicos,D
+2.1.02.02.09,Seguros,D
+2.1.02.02.11,Públicidad,D
+2.1.02.02.13,Impresos y Publicaciones,D
+2.1.02.02.15,Mantenimiento,D
+2.1.02.02.17,Vigilancia,D
+2.1.02.02.19,Aseo,D
+2.1.02.02.21,Arrendamientos,D
+2.1.02.02.23,"Comisiones, Intereses y demás Gastos Bancarios y Fiduciarios",D
+2.1.02.02.25,Sistematización,D
+2.1.02.02.27,Bienestar Social,D
+2.1.02.02.29,Gastos Judiciales,D
+2.1.02.02.98,Otras Adquisiciones de servicios,D
+2.1.02.03,Impuestos y Multas,D
+2.1.02.93,Pagos vigencias anteriores,D
+2.1.03,TRANSFERENCIAS CORRIENTES,S
+2.1.03.01,Al Sector Público,S
+2.1.03.01.01,Al Nivel Nacional,S
+2.1.03.01.01.01,Al Nivel Central Nacional,S
+2.1.03.01.01.01.01,Indemnizaciones,D
+2.1.03.01.01.01.03,Pagos de servicios públicos e impuestos,D
+2.1.03.01.01.01.98,Otros Pagos al Nivel Central Nacional,D
+2.1.03.01.01.03,A Entidades Descentralizadas Nacionales,S
+2.1.03.01.01.03.01,A Entidades No Financieras Nacionales,S
+2.1.03.01.01.03.01.01,A Entidades No Financieras Nacionales no consideradas Empresas,S
+2.1.03.01.01.03.01.01.01,A las Corporaciones Autonomas Regionales (excluyendo la Sobretasa Ambiental),D
+2.1.03.01.01.03.01.01.98,Otros Pagos a Entidades No Financieras Nacionales no consideradas Empresas,D
+2.1.03.01.01.03.01.03,A Empresas No Financieras Nacionales,D
+2.1.03.01.01.03.03,A Empresas Financieras Nacionales,S
+2.1.03.01.01.03.03.01,A Empresas Financieras de Depósito Nacionales,D
+2.1.03.01.01.03.03.03,A Empresas Financieras de No Depósito Nacionales,D
+2.1.03.01.03,Al Nivel Departamental,S
+2.1.03.01.03.01,Al Nivel Central Departamental,D
+2.1.03.01.03.03,A Entidades Descentralizadas Departamentales,S
+2.1.03.01.03.03.01,A Entidades No Financieras Departamentales,S
+2.1.03.01.03.03.01.01,A Entidades No Financieras Departamentales no consideradas Empresas,S
+2.1.03.01.03.03.01.01.98,A Otras Entidades No Financieras Departamentales no consideradas Empresas,D
+2.1.03.01.03.03.01.03,A Empresas No Financieras Departamentales,D
+2.1.03.01.03.03.03,A Empresas Financieras Departamentales,D
+2.1.03.01.05,Al Nivel Municipal y/o Distrital,S
+2.1.03.01.05.01,Al Nivel Central Municipal y/o Distrital,D
+2.1.03.01.05.03,A Entidades Descentralizadas Municipales y/o Distritales,S
+2.1.03.01.05.03.01,A Entidades No Financieras Municipales y/o Distritales,S
+2.1.03.01.05.03.01.01,A Entidades No Financieras Municipales y/o Distritales no consideradas Empresas,S
+2.1.03.01.05.03.01.01.98,A Otras Entidades No Financieras Municipales y/o Distritales no consideradas Empresas,D
+2.1.03.01.05.03.01.03,A Empresas No Financieras Municipales y/o Distritales,D
+2.1.03.01.05.03.03,A Empresas Financieras Municipales y/o Distritales,D
+2.1.03.01.93,Pagos vigencias anteriores,D
+2.1.03.02,Transferencias Corrientes de Previsión Social,S
+2.1.03.02.01,Cesantías,S
+2.1.03.02.01.02,Cesantías definitivas,D
+2.1.03.02.01.04,Cesantías parciales,D
+2.1.03.02.03,Pensiones,S
+2.1.03.02.03.01,Mesadas Pensionales,D
+2.1.03.02.03.03,Cuotas  partes pensionales,D
+2.1.03.02.05,Salud,D
+2.1.03.02.93,Pagos vigencias anteriores,D
+2.1.03.02.98,Otras Transferencias Corrientes de Previsión Social,D
+2.1.03.98,Otras Transferencias,S
+2.1.03.98.01,Pagos a Particulares y Organismos Privados,S
+2.1.03.98.01.31,A los Hogares,D
+2.1.03.98.01.33,A Empresas Privadas No Financieras,D
+2.1.03.98.01.35,A Empresas Privadas Financieras,D
+2.1.03.98.03,Pagos a Organismos Internacionales,D
+2.1.03.98.05,Cuota de Auditaje,D
+2.1.03.98.06,Contribuciones de ley a otras entidades,D
+2.1.03.98.07,Sentencias y Conciliaciones,D
+2.1.03.98.17,Indemnizaciones por retiros masivos de Personal,D
+2.1.03.98.93,Pagos vigencias anteriores,D
+2.1.03.98.98,Otras Transferencias,D
+2.1.05,Gastos no operacionales,S
+2.1.05.01,Perdida en venta de bienes realizables y recibidos en pago,D
+2.1.05.03,Perdida en venta propiedades y equipo,D
+2.1.05.05,Perdida en venta otros activos,D
+2.1.05.07,"Multas, sanciones y litigios",D
+2.1.05.98,Otros Gastos no operacionales no especificados,D
+2.2,GASTOS DE OPERACIÓN,S
+2.2.01,GASTOS DE COMERCIALIZACIÓN,S
+2.2.01.01,Compra de Bienes para la Venta,S
+2.2.01.01.01,Compras e Importaciones,S
+2.2.01.01.01.01,Compra de medicamentos,D
+2.2.01.01.01.98,Otras Compras e Importaciones no especificadas,D
+2.2.01.01.07,"Materiales, mantenimiento y otros",S
+2.2.01.01.07.01,Material medico-quirúrgico,D
+2.2.01.01.07.03,Compra de materiales para mantenimiento de hospitales,D
+2.2.01.01.07.98,"Otros Materiales, mantenimiento y otros no especificados",D
+2.2.01.01.98,Otras Compras de Bienes para la Venta,D
+2.2.01.03,Compra de Servicios para la Venta,S
+2.2.01.03.03,Servicio de Apoyo diagnóstico,D
+2.2.01.03.98,Otras Compras de Servicios para la Venta,D
+2.2.01.93,Pagos vigencias anteriores,D
+2.2.01.98,Otros Gastos de Comercialización,S
+2.2.01.98.01,Servicios CND y SIC (solo sector eléctrico),D
+2.2.01.98.03,Pago de premios de loterías valor bruto,S
+2.2.01.98.03.01,Porcentaje Impuesto a Ganadores,D
+2.2.01.98.03.03,Retención en la fuente,D
+2.2.01.98.03.05,Premio neto a pagar,D
+2.2.01.98.05,Descuentos a distribuidores,S
+2.2.01.98.05.01,Descuento de porcentaje sobre ventas brutas,D
+2.2.01.98.05.03,Bonificación de porcentaje sobre la venta al premio mayor,D
+2.2.01.98.05.05,Incentivos y distribuidores,D
+2.2.01.98.07,Publicidad,D
+2.2.01.98.09,Impresión billetería loterías,D
+2.2.01.98.11,Pago de impuesto de loterías foráneas - porcentaje sobre ventas,D
+2.2.01.98.13,Impresión talonarios de apuestas permanentes,D
+2.2.01.98.98,Otros Gastos de comercialización no especificados,D
+2.2.02,GASTOS DE PRODUCCIÓN,S
+2.2.02.01,Industrial,S
+2.2.02.01.01,Materia Prima,D
+2.2.02.01.98,Otros Gastos de Producción Industrial,D
+2.2.02.03,Agrícola,S
+2.2.02.03.01,Materia Prima,D
+2.2.02.03.98,Otros Gastos de Producción Agrícola,D
+2.2.02.05,Otros Gastos,S
+2.2.02.05.01,Materia Prima,D
+2.2.02.05.98,Otros Gastos no especificados,D
+2.2.02.93,Pagos vigencias anteriores,D
+2.3,GASTOS DE INVERSIÓN,S
+2.3.01,INFRAESTRUCTURA,S
+2.3.01.01,Infraestructura propia del Sector,S
+2.3.01.01.01,Construcción de Infraestructura propia del Sector,S
+2.3.01.01.01.13,Acueductos y Plantas,D
+2.3.01.01.01.15,Alcantarillados y Redes,D
+2.3.01.01.01.17,"Mataderos, Plazas de Mercado, Cementerios",D
+2.3.01.01.01.18,Plantas Industriales,D
+2.3.01.01.01.21,Rellenos Sanitarios,D
+2.3.01.01.01.27,Baños Públicos,D
+2.3.01.01.01.31,Construcción y Pavimentación de Calles Urbanas,D
+2.3.01.01.01.53,"Hospitales, Centros de Salud y Puestos de Salud",D
+2.3.01.01.01.55,"Torres de Distribución de Energía, Plantas y Redes de Electrificación Rural y Urbana",D
+2.3.01.01.01.93,Pagos vigencias anteriores,D
+2.3.01.01.01.98,Otros Gastos en Construcción de Infraestructura propia del Sector,D
+2.3.01.01.02,Adquisición de Infraestructura propia del Sector,S
+2.3.01.01.02.01,Compra de Terrenos,D
+2.3.01.01.02.93,Pagos vigencias anteriores,D
+2.3.01.01.02.98,Otros Gastos en Adquisición de Infraestructura propia del Sector,D
+2.3.01.01.03,Mejoramiento y Mantenimiento de Infraestructura propia del Sector,S
+2.3.01.01.03.03,Seguros de Bienes,D
+2.3.01.01.03.05,Rehabilitación de Infraestructura ya Existente,D
+2.3.01.01.03.13,Acueductos y Plantas,D
+2.3.01.01.03.15,Alcantarillados y Redes,D
+2.3.01.01.03.17,"Mataderos, Plazas de Mercado, Cementerios",D
+2.3.01.01.03.21,Recoleccion y Tratamiento de Basuras,D
+2.3.01.01.03.23,Programas de Saneamiento Básico Rural,D
+2.3.01.01.03.25,Programas de Potabilización de Aguas Residuales,D
+2.3.01.01.03.27,Baños Públicos,D
+2.3.01.01.03.29,Equipos de Comunicación,D
+2.3.01.01.03.31,Pavimentación de Calles Urbanas,D
+2.3.01.01.03.43,Programas Especiales de Desarrollo Industrial,D
+2.3.01.01.03.45,Programas Especiales de Desarrollo Comercial,D
+2.3.01.01.03.47,Programas Especiales de Desarrollo Turístico,D
+2.3.01.01.03.53,"Hospitales, Centros de Salud y Puestos de Salud",D
+2.3.01.01.03.55,"Torres de Distribución de Energía, Plantas y Redes de Electrificación Rural y Urbana",D
+2.3.01.01.03.93,Pagos vigencias anteriores,D
+2.3.01.01.03.98,Otros Gastos en Mejoramiento y Mantenimiento de Infraestructura propia del Sector,D
+2.3.01.02,Infraestructura Administrativa,S
+2.3.01.02.01,Construcción de Infraestructura Administrativa,D
+2.3.01.02.02,Adquisición de Infraestructura Administrativa,D
+2.3.01.02.03,Mejoramiento y Mantenimiento de Infraestructura Administrativa,D
+2.3.01.02.93,Pagos vigencias anteriores,D
+2.3.02,DOTACIÓN,S
+2.3.02.01,"Equipos, materiales, suministros y servicios propios del Sector",S
+2.3.02.01.01,"Adquisición y/o producción de equipos, materiales, suministros y servicios propios del Sector",S
+2.3.02.01.01.01,Dotación y/o Adquisición de Maquinaria y Equipo,D
+2.3.02.01.01.03,Dotación de Instalaciones,D
+2.3.02.01.01.13,"Dotación de Hospitales, Centros de Salud y Puestos de Salud",D
+2.3.02.01.01.15,Adquisición de Equipo de Laboratorio,D
+2.3.02.01.01.17,Adquisición de Equipo Clínico,D
+2.3.02.01.01.27,Explotación Minera,D
+2.3.02.01.01.93,Pagos vigencias anteriores,D
+2.3.02.01.01.98,"Otros Gastos Adquisición y/o producción equipos, materiales, suministros y servicios propios Sector",D
+2.3.02.01.02,"Mantenimiento de equipos, materiales, suministros y servicios propios del Sector",S
+2.3.02.01.02.01,Maquinaria y Equipo,D
+2.3.02.01.02.03,Instalaciones,D
+2.3.02.01.02.15,Equipo de Laboratorio,D
+2.3.02.01.02.17,Equipo Clínico,D
+2.3.02.01.02.93,Pagos vigencias anteriores,D
+2.3.02.01.02.98,"Otros Gastos en Mantenimiento de equipos, materiales, suministros y servicios propios del Sector",D
+2.3.02.02,"Equipos, materiales, suministros y servicios Administrativos",S
+2.3.02.02.01,"Adquisición y/o producción de equipos, materiales, suministros y servicios Administrativos",S
+2.3.02.02.01.93,Pagos vigencias anteriores,D
+2.3.02.02.01.98,"Otros Gastos Adquisición y/o producción equipos, materiales, suministros y servicios Administrativos",D
+2.3.02.02.02,"Mantenimiento de equipos, materiales, suministros y servicios Administrativos",S
+2.3.02.02.02.93,Pagos vigencias anteriores,D
+2.3.02.02.02.98,"Otros Gastos en Mantenimiento de equipos, materiales, suministros y servicios Administrativos",D
+2.3.03,RECURSO HUMANO,S
+2.3.03.01,"Divulgación, Asistencia Técnica y Capacitación del Recurso Humano",S
+2.3.03.01.01,Capacitación Personal del Sector,D
+2.3.03.01.33,Programas de Capacitación Técnica no Profesional,D
+2.3.03.01.93,Pagos vigencias anteriores,D
+2.3.03.01.98,"Otros Gastos en Divulgación, Asistencia Técnica y Capacitación del Recurso Humano",D
+2.3.03.02,Protección y Bienestar Social del Recurso Humano,S
+2.3.03.02.93,Pagos vigencias anteriores,D
+2.3.03.02.98,Otros Gastos en Protección y Bienestar Social del Recurso Humano,D
+2.3.04,INVESTIGACIÓN Y ESTUDIOS,S
+2.3.04.01,"Investigación básica, aplicada y Estudios",S
+2.3.04.01.01,"Diseños para Investigación básica, aplicada y Estudios",D
+2.3.04.01.93,Pagos vigencias anteriores,D
+2.3.04.01.98,"Otros Gastos en Investigación básica, aplicada y Estudios",D
+2.3.04.02,Estudios de Preinversión,S
+2.3.04.02.01,Diseños para Estudios de Preinversión,D
+2.3.04.02.02,Asesorías para Estudios de Preinversión,D
+2.3.04.02.93,Pagos vigencias anteriores,D
+2.3.04.02.98,Otros Gastos en Estudios de Preinversión,D
+2.3.04.03,Levantamiento de información para procesamiento,S
+2.3.04.03.01,Diseños para Levantamiento de información para procesamiento,D
+2.3.04.03.02,Asesorías para Levantamiento de información para procesamiento,D
+2.3.04.03.93,Pagos vigencias anteriores,D
+2.3.04.03.98,Otros Gastos en Levantamiento de información para procesamiento,D
+2.3.04.04,Actualización de información para procesamiento,S
+2.3.04.04.01,Diseños para Actualización de información para procesamiento,D
+2.3.04.04.02,Asesorías para Actualización de información para procesamiento,D
+2.3.04.04.93,Pagos vigencias anteriores,D
+2.3.04.04.98,Otros Gastos en Actualización de información para procesamiento,D
+2.3.06,SUBSIDIOS Y OPERACIONES FINANCIERAS,S
+2.3.06.01,Créditos,S
+2.3.06.01.01,Concesión de Préstamos,D
+2.3.06.04,Inversiones y aportes financieros,S
+2.3.06.04.01,"Compra de Bonos, Acciones y Otros Títulos Valores",D
+2.3.06.05,Capitalización,S
+2.3.06.05.01,Participación en Capital de Empresas Públicas Financieras,D
+2.3.06.05.03,Participación en Capital de Empresas Públicas No Financieras,D
+2.3.06.07,Cofinanciación,D
+2.3.06.93,Pagos vigencias anteriores,D
+2.4,SERVICIO DE LA DEUDA,S
+2.4.01,DEUDA EXTERNA,S
+2.4.01.01,Amortizaciones,S
+2.4.01.01.01,Banca Comercial,D
+2.4.01.01.02,Multilateral,D
+2.4.01.01.03,Fomento,D
+2.4.01.01.04,Gobiernos,D
+2.4.01.01.05,Proveedores,D
+2.4.01.01.06,Bonos y Títulos,D
+2.4.01.01.09,Cuenta Especial Deuda Externa,D
+2.4.01.01.98,Otros,D
+2.4.01.02,Intereses,S
+2.4.01.02.01,Banca Comercial,D
+2.4.01.02.02,Multilateral,D
+2.4.01.02.03,Fomento,D
+2.4.01.02.04,Gobiernos,D
+2.4.01.02.05,Proveedores,D
+2.4.01.02.06,Bonos y Títulos,D
+2.4.01.02.09,Cuenta Especial Deuda Externa,D
+2.4.01.02.98,Otros,D
+2.4.01.03,Comisiones,S
+2.4.01.03.01,Banca Comercial,D
+2.4.01.03.02,Multilateral,D
+2.4.01.03.03,Fomento,D
+2.4.01.03.04,Gobiernos,D
+2.4.01.03.05,Proveedores,D
+2.4.01.03.06,Bonos y Títulos,D
+2.4.01.03.09,Cuenta Especial Deuda Externa,D
+2.4.01.03.98,Otros,D
+2.4.02,DEUDA INTERNA,S
+2.4.02.01,Amortizaciones,S
+2.4.02.01.01,Banca Comercial,D
+2.4.02.01.05,Proveedores,D
+2.4.02.01.06,Bonos y Títulos,D
+2.4.02.01.08,Sector Público,D
+2.4.02.01.98,Otros,D
+2.4.02.02,Intereses,S
+2.4.02.02.01,Banca Comercial,D
+2.4.02.02.05,Proveedores,D
+2.4.02.02.06,Bonos y Títulos,D
+2.4.02.02.08,Sector Público,D
+2.4.02.02.98,Otros,D
+2.4.02.03,Comisiones,S
+2.4.02.03.01,Banca Comercial,D
+2.4.02.03.05,Proveedores,D
+2.4.02.03.06,Bonos y Títulos,D
+2.4.02.03.08,Sector Público,D
+2.4.02.03.98,Otros,D
+2.7,DISPONIBILIDAD FINAL,S
+2.7.01,Caja,D
+2.7.02,Bancos,D
+2.7.03,Inversiones Temporales,D
+2.3.05.01,Asistencia técnica divulgación y capacitación a funcionarios del Estado apoyo Administración Estado,
+2.3.05.02,Administración Control y Organización Institucional para apoyo a la Gestión del Estado,
+2.3.05.02.01,Saneamiento y Ajuste Fiscal,
+2.3.05.02.01.01,Pasivo laboral,
+2.3.05.02.01.03,Pasivo Prestacional Pensiones y Cesantías,
+2.3.05.02.01.05,Indemnizaciones por retiros masivos de Personal,
+2.3.05.02.98,Otros Gastos Administración Control y Organización Institucional para apoyo Gestión del Estado,
+2.3.05.03,Atención Control y Organización Institucional para apoyo a la Gestión del Estado,
+2.3.05.04,Coord. Admón Promoción y/o Seguimiento Cooper. Técnica y/o Financiera apoyo Administración Estado,
+2.3.05.05,Interventoría - Régimen Subsidiado,
+2.3.05.06,Recursos transf. a la Supersalud destinados a la inspección vigilancia y control del Régimen Subsidiado,
+2.3.05.07,Reintegros al Tesoro Nacional - Fondo Nacional de Regalías,
+2.3.05.07.01,Devoluciones,
+2.3.05.07.03,Rendimientos Financieros,
+2.3.06,SUBSIDIOS Y OPERACIONES FINANCIERAS,
+2.3.06.01,Créditos,
+2.3.06.01.01,Concesión de Préstamos,
+2.3.06.02,Subsidios Directos,
+2.3.06.02.03,Servicios Publicos Domiciliarios,
+2.3.06.02.05,Desarrollo Rural Integrado,
+2.3.06.02.07,Apoyo a Juntas de Acción Comunal y Empresas de Economía Solidaria,
+2.3.06.02.09,Alimentación Escolar,
+2.3.06.02.11,Fomento Minería,
+2.3.06.02.13,Para Adquisición de Vivienda de Interés Social,
+2.3.06.02.15,Para Adquisición de Lotes,
+2.3.06.03,Transferencias,
+2.3.06.04,Inversiones y aportes financieros,
+2.3.06.04.01,Compra de Bonos Acciones y Otros Títulos Valores,
+2.3.06.05,Capitalización,
+2.3.06.05.01,Participación en Capital de Empresas Públicas Financieras,
+2.3.06.05.03,Participación en Capital de Empresas Públicas No Financieras,
+2.3.06.06,Subsidios para el acceso de la población,
+2.3.06.06.01,Subsidio para el Acceso de la Población a Servicios Médicos,
+2.3.06.07,Cofinanciación,
+2.4,SERVICIO DE LA DEUDA,
+2.4.01,DEUDA EXTERNA,
+2.4.01.01,Amortizaciones,
+2.4.01.01.01,Banca Comercial,
+2.4.01.01.02,Multilateral,
+2.4.01.01.03,Fomento,
+2.4.01.01.04,Gobiernos,
+2.4.01.01.05,Proveedores,
+2.4.01.01.06,Bonos y Títulos,
+2.4.01.01.09,Cuenta Especial Deuda Externa,
+2.4.01.01.98,Otros,
+2.4.01.02,Intereses,
+2.4.01.02.01,Banca Comercial,
+2.4.01.02.02,Multilateral,
+2.4.01.02.03,Fomento,
+2.4.01.02.04,Gobiernos,
+2.4.01.02.05,Proveedores,
+2.4.01.02.06,Bonos y Títulos,
+2.4.01.02.09,Cuenta Especial Deuda Externa,
+2.4.01.02.98,Otros,
+2.4.01.03,Comisiones,
+2.4.01.03.01,Banca Comercial,
+2.4.01.03.02,Multilateral,
+2.4.01.03.03,Fomento,
+2.4.01.03.04,Gobiernos,
+2.4.01.03.05,Proveedores,
+2.4.01.03.06,Bonos y Títulos,
+2.4.01.03.09,Cuenta Especial Deuda Externa,
+2.4.01.03.98,Otros,
+2.4.02,DEUDA INTERNA,
+2.4.02.01,Amortizaciones,
+2.4.02.01.01,Banca Comercial,
+2.4.02.01.05,Proveedores,
+2.4.02.01.06,Bonos y Títulos,
+2.4.02.01.08,Sector Público,
+2.4.02.01.98,Otros,
+2.4.02.02,Intereses,
+2.4.02.02.01,Banca Comercial,
+2.4.02.02.05,Proveedores,
+2.4.02.02.06,Bonos y Títulos,
+2.4.02.02.08,Sector Público,
+2.4.02.02.98,Otros,
+2.4.02.03,Comisiones,
+2.4.02.03.01,Banca Comercial,
+2.4.02.03.05,Proveedores,
+2.4.02.03.06,Bonos y Títulos,
+2.4.02.03.08,Sector Público,
+2.4.02.03.98,Otros,
+4,PAGOS A TERCEROS,
+4.1,Retención en la Fuente,
+4.2,Retención en la Fuente ICA,
+4.3,Iva,
+4.4,Timbre,
+4.5,Sobretasa Ambiental,
+4.6,S. G. P. Resguardos Indígenas,
+4.8,Otros pagos a terceros,
+6,TRASLADOS,
+6.2,Al Concejo,
+6.3,A la Contraloría,
+6.3.01,Transferencia,
+6.3.02,Transferencia Cuota de Auditaje,
+6.4,A la Personería,

@@ -1,0 +1,158 @@
+001,Rentas propias (administración central) o recursos propios (entidades descentralizadas)
+002,Recursos corrientes de Impuestos
+003,Recursos corrientes de Estampillas
+004,Ingresos corrientes de Impuestos y Contribuciones tributarias
+005,Recursos corrientes de Tasas
+006,Recursos corrientes de Multas
+007,Recursos corrientes de Contribuciones
+008,Recursos corrientes de transferencias del SGP para funcionamiento
+009,Recursos corrientes de transferencias de Ley de las empresas del sector eléctrico para funcionamiento
+010,Recursos corrientes de cuotas de fiscalización
+011,Recursos corrientes de cuotas partes pensionales
+012,Recursos corrientes de otras transferencias para funcionamiento
+013,Recursos corrientes de transferencias del SGP para inversión
+014,Recursos corrientes de transferencias de los Fondos de desarrollo departamental para inversión
+015,Recursos corrientes de transferencias de Ley de empresas del sector eléctrico para inversión
+016,Recursos corrientes de transferencias de Ley de las E. S. P. para subsidio a los servicios públicos
+017,Recursos corrientes de transferencias por Regalías
+018,Recursos corrientes de transferencias por participaciones
+019,Recursos corrientes de otras transferencias para inversión
+020,Recursos corrientes por derechos de explotación de monopolios
+021,Recursos o ingresos corrientes de Rentas cedidas - Prestación
+022,Recursos o ingresos corrientes de Rentas cedidas - Dirección
+023,Ingresos corrientes por Venta de Bienes
+024,Ingresos corrientes por Venta de Servicios
+025,Ingresos corrientes por Operaciones Comerciales
+026,Otros Ingresos corrientes Operacionales
+027,Ingresos corrientes por aportes del SGP
+028,Ingresos corrientes por aportes directos de la Nación para establecimientos públicos nacionales
+029,Ingresos corrientes por aportes de Ley de empresas del sector eléctrico
+030,Ingresos corrientes por aportes de particulares y organismos privados
+031,Ingresos corrientes por aportes de organismos internacionales
+032,Ingresos corrientes por participaciones
+033,Ingresos corrientes por otros aportes
+034,Ingresos corrientes de Concesiones
+035,Ingresos corrientes de Convenios
+036,Otros ingresos corrientes
+037,Recursos de capital del Tesoro de la Nación o de la Tesorería de entidades descentralizadas Crédito
+038,Recursos de capital del Tesoro de la Nación Tenedores de Bonos
+039,Recursos de capital del Tesoro de la Nación o de la Tesorería de entidades descentralizadas Recuperación de Cartera
+040,Recursos de capital del Tesoro de la Nación o de la Tesorería de entidades descentralizadas Rendimientos por Operaciones Financieras
+041,Recursos de capital del Tesoro de la Nación o de la Tesorería de entidades descentralizadas Enajenación de Activos
+042,Recursos de capital del Tesoro de la Nación o de la Tesorería de entidades descentralizadas Reintegros otros Recursos del Balance y Recursos no Apropiados
+043,Recursos de capital del Tesoro de la Nación Utilidades Banco de la República
+044,Recursos de capital del Tesoro de la Nación Otros Excedentes Financieros y Utilidades / Recursos de capital de la Tesorería de entidades descentralizadas Excedentes Financieros y Utilidades
+045,Recursos de capital de la Tesorería de entidades descentralizadas Aportes de Capital
+046,Recursos de capital de la Tesorería de entidades descentralizadas Disponibilidad
+047,Recursos de capital del Tesoro de la Nación Otros Recursos de Tesorería y/o Superávit Fiscal / Recursos de capital de la Tesorería de entidades descentralizadas Otros Recursos de Tesorería
+048,Recursos corrientes de transferencias del SGR para inversión
+101,Ingresos corrientes por Venta de Bienes - Productos Agrícolas
+102,Ingresos corrientes por Venta de Bienes - Productos Forestales
+103,Ingresos corrientes por Venta de Bienes - Productos Piscícolas
+104,Ingresos corrientes por Venta de Bienes - Semovientes
+105,Ingresos corrientes por Venta de Bienes - Productos Agropecuarios de Silvicultura Avicultura y Pesca
+106,Ingresos corrientes por Venta de Bienes - Carbón
+107,Ingresos corrientes por Venta de Bienes - Petróleo Crudo
+108,Ingresos corrientes por Venta de Bienes - Gas Natural
+109,Ingresos corrientes por Venta de Bienes - Gas Natural Asociado
+110,Ingresos corrientes por Venta de Bienes - Productos de Minas
+111,Ingresos corrientes por Venta de Bienes - Sal
+112,Ingresos corrientes por Venta de Bienes - Impresos y Publicaciones
+113,Ingresos corrientes por Venta de Bienes - Combustibles y Otros Derivados del Petróleo
+114,Ingresos corrientes por Venta de Bienes - Lubricantes
+115,Ingresos corrientes por Venta de Bienes - Aditivos
+116,Ingresos corrientes por Venta de Bienes - Productos Químicos
+117,Ingresos corrientes por Venta de Bienes - Subproductos
+118,Ingresos corrientes por Venta de Bienes - Medicamentos
+119,Ingresos corrientes por Venta de Bienes - Medicamentos de Uso Veterinario
+120,Ingresos corrientes por Venta de Bienes - Productos Artesanales
+121,Ingresos corrientes por Venta de Bienes - Productos Metalúrgicos y de Microfundición
+122,Ingresos corrientes por Venta de Bienes - Productos Bélicos y Explosivos
+123,Ingresos corrientes por Venta de Bienes - Productos de Madera
+124,Ingresos corrientes por Venta de Bienes - Licores Bebidas y Alcoholes
+125,Ingresos corrientes por Venta de Bienes - Productos Alimenticios
+126,Ingresos corrientes por Venta de Bienes - Construcciones
+127,Ingresos corrientes por Venta de Bienes - Especies Monetarias
+128,Ingresos corrientes por Venta de Bienes - Productos Petroquímicos
+129,Ingresos corrientes por Venta de Bienes - Prendas de Vestir y Calzado
+130,Ingresos corrientes por Venta de Bienes - Equipos
+131,Ingresos corrientes por Venta de Bienes - Otros Bienes Producidos
+201,Ingresos corrientes por Venta de Servicios - Educación Formal - Preescolar
+202,Ingresos corrientes por Venta de Servicios - Educación Formal - Básica Primaria
+203,Ingresos corrientes por Venta de Servicios - Educación Formal - Básica Secundaria
+204,Ingresos corrientes por Venta de Servicios - Educación Formal - Media Académica
+205,Ingresos corrientes por Venta de Servicios - Educación Formal - Media Técnica
+206,Ingresos corrientes por Venta de Servicios - Educación Formal - Superior - Formación Técnica Profesional
+207,Ingresos corrientes por Venta de Servicios - Educación Formal - Superior - Formación Tecnológica
+208,Ingresos corrientes por Venta de Servicios - Educación Formal - Superior - Formación Profesional
+209,Ingresos corrientes por Venta de Servicios - Educación Formal - Superior - Postgrado
+210,Ingresos corrientes por Venta de Servicios - Educacion No Formal - Formación en Artes y Oficios
+211,Ingresos corrientes por Venta de Servicios - Educacion No Formal - Validación de Niveles y Grados
+212,Ingresos corrientes por Venta de Servicios - Educacion No Formal - Formación Extensiva
+213,Ingresos corrientes por Venta de Servicios - Educacion Informal - Continuada
+214,Ingresos corrientes por Venta de Servicios - Educacion Informal - Validación para la Educación Formal
+215,Ingresos corrientes por Venta de Servicios - Educacion Informal - Difusión Artística y Cultural
+216,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Educación
+251,Ingresos corrientes por Venta de Servicios - Urgencias - Consulta y Procedimientos
+252,Ingresos corrientes por Venta de Servicios - Urgencias - Observación
+253,Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Consulta Externa y Procedimientos
+254,Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Consulta Especializada
+255,Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Salud Oral
+256,Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Promoción y Prevención
+257,Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Otras Actividades Extramurales
+258,Ingresos corrientes por Venta de Servicios - Hospitalización - Estancia General
+259,Ingresos corrientes por Venta de Servicios - Hospitalización - Cuidados Intensivos
+260,Ingresos corrientes por Venta de Servicios - Hospitalización - Cuidados Intermedios
+261,Ingresos corrientes por Venta de Servicios - Hospitalización - Recién Nacidos
+262,Ingresos corrientes por Venta de Servicios - Hospitalización - Salud Mental
+263,Ingresos corrientes por Venta de Servicios - Hospitalización - Quemados
+264,Ingresos corrientes por Venta de Servicios - Hospitalización - Otros Cuidados Especiales
+265,Ingresos corrientes por Venta de Servicios - Quirófanos y Salas de Parto - Quirófanos
+266,Ingresos corrientes por Venta de Servicios - Quirófanos y Salas de Parto - Salas de Parto
+267,Ingresos corrientes por Venta de Servicios - Apoyo Diagnóstico - Laboratorio Clínico
+268,Ingresos corrientes por Venta de Servicios - Apoyo Diagnóstico - Imagenología
+269,Ingresos corrientes por Venta de Servicios - Apoyo Diagnóstico - Anatomía Patológica
+270,Ingresos corrientes por Venta de Servicios - Apoyo Diagnóstico - Otras Unidades de Apoyo Diagnóstico
+271,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Rehabilitación y Terapias
+272,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Banco de Componentes Anatómicos
+273,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Banco de Sangre
+274,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Unidad Renal
+275,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Unidad Hemodinamia
+276,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Terapias Oncológicas
+277,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Farmacia e Insumos Hospitalarios
+278,Ingresos corrientes por Venta de Servicios - Apoyo Terapéutico - Otras Unidades de Apoyo Terapéutico
+279,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Medio Ambiente
+280,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Ancianatos y Albergues
+281,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Centros y Puestos de Salud
+282,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Servicios Docentes
+283,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Investigación Científica
+284,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Medicina Legal
+285,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Servicio de Ambulancias
+286,Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Otros Servicios
+301,Ingresos corrientes por Venta de Servicios - Servicio de Transporte Aéreo
+302,Ingresos corrientes por Venta de Servicios - Servicio de Transporte Terrestre
+303,Ingresos corrientes por Venta de Servicios - Servicios Aeronáuticos
+304,Ingresos corrientes por Venta de Servicios - Servicios Aeroportuarios
+305,Ingresos corrientes por Venta de Servicios - Servicio de Terminal de Transporte Terrrestre
+306,Ingresos corrientes por Venta de Servicios - Servicio de Terminal de Transporte Fluvial o Marítimo
+307,Ingresos corrientes por Venta de Servicios - Servicio de Transporte por Ductos
+308,Ingresos corrientes por Venta de Servicios - Otros Servicios de Transporte
+321,Ingresos corrientes por Venta de Servicios - Energía
+322,Ingresos corrientes por Venta de Servicios - Acueducto
+323,Ingresos corrientes por Venta de Servicios - Alcantarillado
+324,Ingresos corrientes por Venta de Servicios - Aseo
+325,Ingresos corrientes por Venta de Servicios - Gas Combustible
+326,Ingresos corrientes por Venta de Servicios - Telecomunicaciones
+341,Ingresos corrientes por Venta de Servicios - Alojamiento
+342,Ingresos corrientes por Venta de Servicios - Suministro de Bebidas y Alimentos
+343,Ingresos corrientes por Venta de Servicios - Otros Servicios de Hotelería y de Promoción Turística
+371,Ingresos corrientes por Venta de Servicios - Servicios de Documentación e Identificación
+372,Ingresos corrientes por Venta de Servicios - Servicios Informáticos
+373,Ingresos corrientes por Venta de Servicios - Servicios Recreativos Culturales y Deportivos
+374,Ingresos corrientes por Venta de Servicios - Servicios de Apoyo Industrial
+375,Ingresos corrientes por Venta de Servicios - Servicios de Comunicaciones
+376,Ingresos corrientes por Venta de Servicios - Servicios de Investigación Científica y Tecnológica
+377,Ingresos corrientes por Venta de Servicios - Servicios de Matadero
+378,Ingresos corrientes por Venta de Servicios - Servicios de Lavanderia
+379,Ingresos corrientes por Venta de Servicios - Servicios de Programación y Producción de Televisión
+380,Ingresos corrientes por Venta de Servicios - Otros Servicios Producidos

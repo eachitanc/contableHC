@@ -1,0 +1,735 @@
+<?
+session_start();
+if(!isset($_SESSION["login"]))
+{
+header("Location: ../login.php");
+exit;
+} else {
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>CONTAFACIL</title>
+
+<style type="text/css">
+<!--
+.Estilo2 {font-size: 9px}
+.Estilo4 {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; color: #333333; }
+a {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #666666;
+}
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+    color: #666666;
+}
+a:hover {
+    text-decoration: underline;
+    color: #666666;
+}
+a:active {
+    text-decoration: none;
+    color: #666666;
+}
+.Estilo7 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #666666; }
+    .suggestionsBox {
+        position: relative;
+        left: 30px;
+        margin: 0px 0px 0px 0px;
+        width: 600px;
+        background-color:#335194;
+        -moz-border-radius: 7px;
+        -webkit-border-radius: 7px;
+        border: 2px solid #2AAAFF;  
+        color: #fff;
+        font-size: 10px;
+    }
+    
+    .suggestionList {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .suggestionList li {
+        
+        margin: 0px 0px 3px 0px;
+        padding: 3px;
+        cursor: pointer;
+    }
+    
+    .suggestionList li:hover {
+        background-color:#659CD8;
+    }
+-->
+</style>
+
+<style>
+.fc_main { background: #FFFFFF; border: 1px solid #000000; font-family: Verdana; font-size: 10px; }
+.fc_date { border: 1px solid #D9D9D9;  cursor:pointer; font-size: 10px; text-align: center;}
+.fc_dateHover, TD.fc_date:hover { cursor:pointer; border-top: 1px solid #FFFFFF; border-left: 1px solid #FFFFFF; border-right: 1px solid #999999; border-bottom: 1px solid #999999; background: #E7E7E7; font-size: 10px; text-align: center; }
+.fc_wk {font-family: Verdana; font-size: 10px; text-align: center;}
+.fc_wknd { color: #FF0000; font-weight: bold; font-size: 10px; text-align: center;}
+.fc_head { background: #000066; color: #FFFFFF; font-weight:bold; text-align: left;  font-size: 11px; }
+</style>
+<style type="text/css">
+table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-width: 2px; border-color: #004080; }
+.Estilo8 {color: #FFFFFF}
+</style>
+
+<script> 
+function validar(e) { 
+    tecla = (document.all) ? e.keyCode : e.which; 
+    if (tecla==8 || tecla==46) return true; //Tecla de retroceso (para poder borrar) 
+    patron = /\d/; //ver nota 
+    te = String.fromCharCode(tecla); 
+    return patron.test(te);  
+}  
+</script>
+<link type="text/css" rel="stylesheet" href="dhtmlgoodies_calendar/dhtmlgoodies_calendar.css?random=20051112" media="screen"></LINK>
+<SCRIPT type="text/javascript" src="dhtmlgoodies_calendar/dhtmlgoodies_calendar.js?random=20060118"></script>
+<style type="text/css">
+<!--
+.Estilo12 {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; color: #333333; }
+.Estilo12 {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; color: #333333; }
+-->
+</style>
+<script language="JavaScript" type="text/javascript" src="javas.js"></script>
+
+<!--muestra - oculta naturales -->
+<SCRIPT language="javascript">
+function MostrarOcultar (objetoVisualizar) 
+{
+        if (document.all['naturales'].style.display=='none')
+        {
+        document.all['naturales'].style.display='block';
+        document.a.ter_nat.disabled=false;
+        document.all['juridicos'].style.display='none';
+        document.a.ter_jur.disabled=true;
+        }
+        else 
+        {
+        document.a.ter_nat.disabled=true;
+        document.a.ter_jur.disabled=true;
+        document.all['naturales'].style.display='none';
+        document.all['juridicos'].style.display='none';
+        }
+}
+</SCRIPT>
+<!--muestra - oculta juridicos -->
+<SCRIPT language="javascript">
+function MostrarOcultar2 (objetoVisualizar) 
+{
+        if (document.all['juridicos'].style.display=='none')
+        {
+        document.all['naturales'].style.display='none';
+        document.a.ter_nat.disabled=true;
+        document.all['juridicos'].style.display='block';
+        document.a.ter_jur.disabled=false;
+        }
+        else 
+        {
+        document.a.ter_nat.disabled=true;
+        document.a.ter_jur.disabled=true;
+        document.all['naturales'].style.display='none';
+        document.all['juridicos'].style.display='none';
+        }
+}
+
+</SCRIPT>  
+<!--validacion de forms-->
+<script src="../jquery.js"></script>
+<script type="text/javascript" src="../jquery.validate.js"></script>
+<style type="text/css">
+* { font-family: Verdana; font-size: 10px; }
+label { width: 10em; float: left; }
+label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+p { clear: both; }
+.submit { margin-left: 12em; }
+em { font-weight: bold; padding-right: 1em; vertical-align: top; }
+.Estilo10 {
+    color: #990000;
+    font-style: italic;
+}
+.Estilo13 {color: #F5F5F5}
+.Estilo13 { color: #990000;
+    font-style: italic;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+$("#commentForm").validate();
+});
+</script>
+
+<script>
+function chk_ncon(){
+var pos_url = '../comprobadores/comprueba_ncon.php';
+var cod = document.getElementById('id_manu_ncon').value;
+var req = new XMLHttpRequest();
+if (req) {
+req.onreadystatechange = function() {
+if (req.readyState == 4 && (req.status == 200 || req.status == 304)) {
+document.getElementById('res_ncon').innerHTML = req.responseText;
+}
+}
+req.open('GET', pos_url +'?cod='+cod,true);
+req.send(null);
+}
+}
+</script>
+
+<!--fin val forms--> 
+
+</head>
+
+<body onload="Calcular();">
+<table width="800" border="0" align="center">
+  <tr>
+    
+    <td colspan="3">
+    <div class="Estilo2" id="main_div" style="padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px;">
+      <div align="center">
+      <img src="../images/PLANTILLA PNG PARA BANNER COMUN.png" width="585" height="100" />    </div>
+    </div>  </td>
+  </tr>
+  
+  <tr>
+    <td colspan="3">
+    <div style="padding-left:10px; padding-top:30px; padding-right:10px; padding-bottom:10px;">
+      <div align="center" class="Estilo4"><strong>MODIFICA  CAUSACION DE INGRESOS </strong></div>
+    </div>  </td>
+  </tr>
+  
+  <form name="a" method="post" id="commentForm" action='proc_modi_cartera.php'>
+  <tr>
+  <td colspan="3">
+    <table width="915" border="1" align="center" class="bordepunteado1">
+      <tr>
+        <td colspan="4" bgcolor="#DCE9E5">
+        <div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+            <div align="center" class="Estilo4">
+            <?
+$id_ncon_1=$_GET['id'];
+include('../config.php');               
+$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$sqlxx = "select * from fecha";
+$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+while($rowxx = mysql_fetch_array($resultadoxx))
+   {
+   $idxx=$rowxx["id_emp"];
+   $id_emp=$rowxx["id_emp"];
+   $ano=$rowxx["ano"];
+   }
+
+$sqlxxa = "select * from cartera_cont where id_emp = '$id_emp' and consec_cartera ='$id_ncon_1'";
+$resultadoxxa = mysql_db_query($database, $sqlxxa, $connectionxx);
+
+while($rowxxa = mysql_fetch_array($resultadoxxa)) 
+   {
+   
+    $id_manu_ncon = substr($rowxxa["consec_cartera"],4,100);
+    $id_auto_ncon = $rowxxa["consec_cartera"];
+    $fecha_ncon = $rowxxa["fecha_causa"];
+    $tercero = $rowxxa["tercero"];
+    $des_ncon = $rowxxa["ref"];
+	$valor_rec = $rowxxa["valor_rec"];
+	$id_reip = $rowxxa["id_reip"]; 
+	$sqa = "select des from reip_ing where consecutivo  ='$id_reip'";
+	$rsa = mysql_db_query($database, $sqa, $connectionxx);
+    $rwa = mysql_fetch_array($rsa);
+    $pgcp[1] = $rowxxa['pgcp1'];
+    $pgcp[2] = $rowxxa['pgcp2'];
+    $pgcp[3] = $rowxxa['pgcp3'];
+    $pgcp[4] = $rowxxa['pgcp4'];
+    $pgcp[5] = $rowxxa['pgcp5'];
+    $pgcp[6] = $rowxxa['pgcp6'];
+    $pgcp[7] = $rowxxa['pgcp7'];
+    $pgcp[8] = $rowxxa['pgcp8'];
+    $pgcp[9] = $rowxxa['pgcp9'];
+    $pgcp[10] = $rowxxa['pgcp10'];
+    $pgcp[11] = $rowxxa['pgcp11'];
+    $pgcp[12] = $rowxxa['pgcp12'];
+    $pgcp[13] = $rowxxa['pgcp13'];
+    $pgcp[14] = $rowxxa['pgcp14'];
+    $pgcp[15] = $rowxxa['pgcp15'];
+    $pgcp[16] = $rowxxa['pgcp16'];
+    $pgcp[17] = $rowxxa['pgcp17'];
+    $pgcp[18] = $rowxxa['pgcp18'];
+    $pgcp[19] = $rowxxa['pgcp19'];
+    $pgcp[20] = $rowxxa['pgcp20'];
+    $pgcp[21] = $rowxxa['pgcp21'];
+    $pgcp[22] = $rowxxa['pgcp22'];
+    $pgcp[23] = $rowxxa['pgcp23'];
+    $pgcp[24] = $rowxxa['pgcp24'];
+    $pgcp[25] = $rowxxa['pgcp25'];
+    $pgcp[26] = $rowxxa['pgcp26'];
+    $pgcp[27] = $rowxxa['pgcp27'];
+    $pgcp[28] = $rowxxa['pgcp28'];
+    $pgcp[29] = $rowxxa['pgcp29'];
+    $pgcp[30] = $rowxxa['pgcp30'];
+    $pgcp[31] = $rowxxa['pgcp31'];
+    $pgcp[32] = $rowxxa['pgcp32'];
+    $pgcp[33] = $rowxxa['pgcp33'];
+    $pgcp[34] = $rowxxa['pgcp34'];
+    $pgcp[35] = $rowxxa['pgcp35'];
+    $pgcp[36] = $rowxxa['pgcp36'];
+    $pgcp[37] = $rowxxa['pgcp37'];
+    $pgcp[38] = $rowxxa['pgcp38'];
+    $pgcp[39] = $rowxxa['pgcp39'];
+    $pgcp[40] = $rowxxa['pgcp40'];
+    $pgcp[41] = $rowxxa['pgcp41'];
+    $pgcp[42] = $rowxxa['pgcp42'];
+    $pgcp[43] = $rowxxa['pgcp43'];
+    $pgcp[44] = $rowxxa['pgcp44'];
+    $pgcp[45] = $rowxxa['pgcp45'];
+    $pgcp[46] = $rowxxa['pgcp46'];
+    $pgcp[47] = $rowxxa['pgcp47'];
+    $pgcp[48] = $rowxxa['pgcp48'];
+    $pgcp[49] = $rowxxa['pgcp49'];
+    $pgcp[50] = $rowxxa['pgcp50'];
+    for($i=1;$i <= 50;$i++){
+       if($pgcp[$i] == "" or $pgcp[$i]==0){
+         break;
+       }
+    }
+    $contis=$i-1;
+    
+    $vr_deb[1] = $rowxxa['vr_deb_1'];
+    $vr_deb[2] = $rowxxa['vr_deb_2'];
+    $vr_deb[3]= $rowxxa['vr_deb_3'];
+    $vr_deb[4] = $rowxxa['vr_deb_4'];
+    $vr_deb[5] = $rowxxa['vr_deb_5'];
+    $vr_deb[6] = $rowxxa['vr_deb_6'];
+    $vr_deb[7] = $rowxxa['vr_deb_7'];
+    $vr_deb[8] = $rowxxa['vr_deb_8'];
+    $vr_deb[9] = $rowxxa['vr_deb_9'];
+    $vr_deb[10] = $rowxxa['vr_deb_10'];
+    $vr_deb[11] = $rowxxa['vr_deb_11'];
+    $vr_deb[12] = $rowxxa['vr_deb_12'];
+    $vr_deb[13] = $rowxxa['vr_deb_13'];
+    $vr_deb[14] = $rowxxa['vr_deb_14'];
+    $vr_deb[15] = $rowxxa['vr_deb_15'];
+    $vr_deb[16] = $rowxxa['vr_deb_16'];
+    $vr_deb[17] = $rowxxa['vr_deb_17'];
+    $vr_deb[18] = $rowxxa['vr_deb_18'];
+    $vr_deb[19] = $rowxxa['vr_deb_19'];
+    $vr_deb[20] = $rowxxa['vr_deb_20'];
+    $vr_deb[21] = $rowxxa['vr_deb_21'];
+    $vr_deb[22] = $rowxxa['vr_deb_22'];
+    $vr_deb[23] = $rowxxa['vr_deb_23'];
+    $vr_deb[24] = $rowxxa['vr_deb_24'];
+    $vr_deb[25] = $rowxxa['vr_deb_25'];
+    $vr_deb[26] = $rowxxa['vr_deb_26'];
+    $vr_deb[27] = $rowxxa['vr_deb_27'];
+    $vr_deb[28] = $rowxxa['vr_deb_28'];
+    $vr_deb[29] = $rowxxa['vr_deb_29'];
+    $vr_deb[30] = $rowxxa['vr_deb_30'];
+    $vr_deb[31] = $rowxxa['vr_deb_31'];
+    $vr_deb[32] = $rowxxa['vr_deb_32'];
+    $vr_deb[33] = $rowxxa['vr_deb_33'];
+    $vr_deb[34] = $rowxxa['vr_deb_34'];
+    $vr_deb[35] = $rowxxa['vr_deb_35'];
+    $vr_deb[36] = $rowxxa['vr_deb_36'];
+    $vr_deb[37] = $rowxxa['vr_deb_37'];
+    $vr_deb[38] = $rowxxa['vr_deb_38'];
+    $vr_deb[39] = $rowxxa['vr_deb_39'];
+    $vr_deb[40] = $rowxxa['vr_deb_40'];
+    $vr_deb[41] = $rowxxa['vr_deb_41'];
+    $vr_deb[42] = $rowxxa['vr_deb_42'];
+    $vr_deb[43] = $rowxxa['vr_deb_43'];
+    $vr_deb[44] = $rowxxa['vr_deb_44'];
+    $vr_deb[45] = $rowxxa['vr_deb_45'];
+    $vr_deb[46] = $rowxxa['vr_deb_46'];
+    $vr_deb[47] = $rowxxa['vr_deb_47'];
+    $vr_deb[48] = $rowxxa['vr_deb_48'];
+    $vr_deb[49] = $rowxxa['vr_deb_49'];
+    $vr_deb[50] = $rowxxa['vr_deb_50'];
+
+    $vr_cre[1] = $rowxxa['vr_cre_1'];
+    $vr_cre[2] = $rowxxa['vr_cre_2'];
+    $vr_cre[3] = $rowxxa['vr_cre_3'];
+    $vr_cre[4] = $rowxxa['vr_cre_4'];
+    $vr_cre[5] = $rowxxa['vr_cre_5'];
+    $vr_cre[6] = $rowxxa['vr_cre_6'];
+    $vr_cre[7] = $rowxxa['vr_cre_7'];
+    $vr_cre[8] = $rowxxa['vr_cre_8'];
+    $vr_cre[9] = $rowxxa['vr_cre_9'];
+    $vr_cre[10] = $rowxxa['vr_cre_10'];
+    $vr_cre[11] = $rowxxa['vr_cre_11'];
+    $vr_cre[12] = $rowxxa['vr_cre_12'];
+    $vr_cre[13] = $rowxxa['vr_cre_13'];
+    $vr_cre[14] = $rowxxa['vr_cre_14'];
+    $vr_cre[15] = $rowxxa['vr_cre_15'];
+    $vr_cre[16] = $rowxxa['vr_cre_16'];
+    $vr_cre[17] = $rowxxa['vr_cre_17'];
+    $vr_cre[18] = $rowxxa['vr_cre_18'];
+    $vr_cre[19] = $rowxxa['vr_cre_19'];
+    $vr_cre[20] = $rowxxa['vr_cre_20'];
+    $vr_cre[21] = $rowxxa['vr_cre_21'];
+    $vr_cre[22] = $rowxxa['vr_cre_22'];
+    $vr_cre[23] = $rowxxa['vr_cre_23'];
+    $vr_cre[24] = $rowxxa['vr_cre_24'];
+    $vr_cre[25] = $rowxxa['vr_cre_25'];
+    $vr_cre[26] = $rowxxa['vr_cre_26'];
+    $vr_cre[27] = $rowxxa['vr_cre_27'];
+    $vr_cre[28] = $rowxxa['vr_cre_28'];
+    $vr_cre[29] = $rowxxa['vr_cre_29'];
+    $vr_cre[30] = $rowxxa['vr_cre_30'];
+    $vr_cre[31] = $rowxxa['vr_cre_31'];
+    $vr_cre[32] = $rowxxa['vr_cre_32'];
+    $vr_cre[33] = $rowxxa['vr_cre_33'];
+    $vr_cre[34] = $rowxxa['vr_cre_34'];
+    $vr_cre[35] = $rowxxa['vr_cre_35'];
+    $vr_cre[36] = $rowxxa['vr_cre_36'];
+    $vr_cre[37] = $rowxxa['vr_cre_37'];
+    $vr_cre[38] = $rowxxa['vr_cre_38'];
+    $vr_cre[39] = $rowxxa['vr_cre_39'];
+    $vr_cre[40] = $rowxxa['vr_cre_40'];
+    $vr_cre[41] = $rowxxa['vr_cre_41'];
+    $vr_cre[42] = $rowxxa['vr_cre_42'];
+    $vr_cre[43] = $rowxxa['vr_cre_43'];
+    $vr_cre[44] = $rowxxa['vr_cre_44'];
+    $vr_cre[45] = $rowxxa['vr_cre_45'];
+    $vr_cre[46] = $rowxxa['vr_cre_46'];
+    $vr_cre[47] = $rowxxa['vr_cre_47'];
+    $vr_cre[48] = $rowxxa['vr_cre_48'];
+    $vr_cre[49] = $rowxxa['vr_cre_49'];
+    $vr_cre[50] = $rowxxa['vr_cre_50'];
+    
+    $tot_deb = $rowxxa['tot_deb'];
+    $tot_cre = $rowxxa['tot_cre'];
+    $difere = $tot_deb - $tot_cre;
+   }   
+   ?>
+            </div>
+        </div></td>
+      </tr>
+      <tr>
+        <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo12">
+            <div align="right"><strong>Fecha  : </strong></div>
+          </div>
+        </div></td>
+        <td colspan="2" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="left">
+            <input name="fecha_ncon" type="text" class="required Estilo12" id="fecha_ncon" value="<? printf("%s",$fecha_ncon);?>" size="12" />
+            <span class="Estilo8">:::</span>
+            <input name="button2" type="button" class="Estilo12" onclick="displayCalendar(document.forms[0].fecha_ncon,'yyyy/mm/dd',this)" value="Seleccione Fecha" />
+          </div>
+        </div></td>
+        <td bgcolor="#FFFFFF">
+        <input type="hidden" name="id_emp" value="<? printf("%s",$id_emp);?>" />
+        <input name="valor_rec" type="hidden" id="valor_rec" value="<? printf("%.2f",$valor_rec);?>" />
+        </td>
+      </tr>   
+      <tr>
+        <td bgcolor="#F5F5F5" width="200"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo4">
+            <div align="right"><strong>
+              No. Automatico : </strong></div>
+          </div>
+        </div></td>
+        <td bgcolor="#FFFFFF" width="200"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo4">
+            <div align="center"><? printf("%s",$id_auto_ncon);?>
+                <input name="id_auto_ncon" type="hidden" class="Estilo12" id="id_auto_ncon" value="<? printf("%s",$id_auto_ncon);?>"/>
+            </div>
+          </div>
+        </div></td>
+        <td bgcolor="#F5F5F5" width="200"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo12">
+            <div align="right"><strong>Digite Numero : </strong></div>
+          </div>
+        </div></td>
+        <td bgcolor="#FFFFFF" width="200"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo12">
+            <div align="center">
+              <input name="id_manu_ncon" type="text" class="required Estilo4" id="id_manu_ncon" style="text-align:center" onkeypress="return validar(event)" value="<? printf("%s",$id_manu_ncon);?>" onkeyup="chk_ncon();"/>
+              <br />
+<div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+        <div class="Estilo4" align="center" id='res_ncon'></div>
+        </div>
+              
+            </div>
+          </div>
+        </div></td>
+      </tr>
+      <tr>
+        <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo12">
+            <div align="right"><strong>Seleccione Tercero  : </strong></div>
+          </div>
+        </div></td>
+        <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo12">
+
+            <?
+             $tercero = trim($tercero);
+             $tercero = str_replace("  "," ",$tercero);
+             $terce = strrev($tercero);
+             $maos=explode(" ",$tercero);
+             $maos1=explode(" ",$terce);
+             $maos[0] = trim($maos[0]);
+             $maos1[0] = trim($maos1[0]);
+             $maos1[0] = strrev($maos1[0]);
+             $cuantas = substr_count($tercero," ");
+             $sql="SELECT id FROM terceros_naturales WHERE id_emp = '$idxx' and pri_ape like '%$maos[0]%' and (seg_ape like '%$maos1[0]%' or pri_nom like '%$maos1[0]%' or seg_nom like '%$maos1[0]%');";
+             $consulta = mysql_query("$sql");
+             $tuplas=@mysql_num_rows($consulta);
+             if($tuplas > 0){
+                   $band=0;
+                   $xidter = @mysql_result($consulta,0,0);
+                   $sql="SELECT id,pri_ape,seg_ape,pri_nom,seg_nom FROM terceros_naturales  WHERE id_emp = '$idxx' order by pri_ape asc ";}
+             else{
+                $sql="SELECT id FROM terceros_juridicos  WHERE id_emp = '$idxx' and raz_soc2 like '%$tercero%'";
+                $consulta = mysql_query("$sql");
+                $tuplas=@mysql_num_rows($consulta);
+                if($tuplas > 0){
+                   $ban=1;
+                   $xidter = @mysql_result($consulta,0,0);
+                   $sql="SELECT id,raz_soc2 FROM terceros_juridicos  WHERE id_emp = '$idxx' order by raz_soc2 asc";}
+             }
+             if($tuplas == 0){
+                echo '<div align="left">&nbsp;<select name="tercero" class="Estilo4" style="width: 350px;"><option value="">Seleccione...</option>';
+                echo "<option value='$tercero' selected>$tercero</option>";
+                $sql="SELECT id,pri_ape,seg_ape,pri_nom,seg_nom FROM terceros_naturales  WHERE id_emp = '$idxx' order by pri_ape asc ";
+             }
+             else{echo '<div align="left">&nbsp;<select name="tercero" class="Estilo4" style="width: 350px;"><option value="">Seleccione...</option>';}
+             $consulta = @mysql_query("$sql");
+             $tuplas=@mysql_num_rows($consulta);
+             for($j = 0;$j < $tuplas;$j++){
+                $ideter = $xcodme = @mysql_result($consulta,$j,0);
+                if($ban==0){$xcodme = @mysql_result($consulta,$j,1)." ".@mysql_result($consulta,$j,2)." ".@mysql_result($consulta,$j,3)." ".@mysql_result($consulta,$j,4);}
+                else{$xcodme = @mysql_result($consulta,$j,1);}
+                if($xidter == $ideter){echo "<option value='$xcodme' selected>$xcodme</option>";}
+                else{echo "<option value='$xcodme'>$xcodme</option>";}
+             }
+
+            ?></div>
+          </div>
+        </div></td>
+      </tr>
+      <tr>
+        <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo12">
+            <div align="right"><strong>Concepto / Detalle  : </strong></div>
+          </div>
+        </div></td>
+        <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo12">
+            <div align="left">
+              <input name="des_ncon" type="text" class="required Estilo12" id="des_ncon" size="100" onkeyup="a.des_ncon.value=a.des_ncon.value.toUpperCase();" value="<? echo $rwa['des']; ?>" />
+            </div>
+          </div>
+        </div></td>
+        </tr>
+    </table>    </td>
+  </tr>
+  <tr>
+  <td colspan="3">
+  <table width="915" border="1" align="center" class="bordepunteado1">
+    <tr>
+      <td colspan="4" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo4">
+            <div align="center"><strong>IMPORTANTE</strong><br />
+                <br />
+              Si la cuenta que desea utilizar no aparece en el listado de CUENTAS P.G.C.P, posiblemente se encuentra BLOQUEADA. <br />
+              Consulte el Item 4.2 del Menu Principal - Opcion &quot;Maestro P.G.C.P &quot; </div>
+          </div>
+      </div></td>
+    </tr>
+    <tr>
+      <td colspan="4" bgcolor="#DCE9E5"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
+          <div align="center" class="Estilo4"><strong>MOVIMIENTO CONTABLE
+          <input type="hidden" name='contador' value=<? echo $contis; ?> id="contador"><br>
+          <img src="images/mas.png" alt="" title="Agregar Fila" width="20" height="20" border="0" style='cursor: pointer'; onclick='masitem();'>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <span id='contis' class='Estilo4'><? echo $contis; ?></span>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <img src="images/menos.png" alt="" title="Quitar Fila" width="20" height="20" border="0" style='cursor: pointer'; onclick='menitem();'>
+          </strong></div>
+      </div></td>
+    </tr>
+    <tr>
+      <td width="192" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo4"><strong>DIGITE CUENTA P.G.C.P </strong></div>
+      </div></td>
+      <td width="429" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo4"><strong>NOMBRE DE LA CUENTA</strong><strong></strong>
+      </div></td>
+      <td width="130" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo4"><strong>VALOR DEBITO </strong></div>
+      </div></td>
+      <td width="134" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+          <div align="center" class="Estilo4"><strong>VALOR CREDITO </strong></div>
+      </div></td>
+    </tr>
+        <?
+     $acc='block';
+     for($i=1;$i<51;$i++){
+     echo "<tr style='position:relative; display:$acc;' id='fil$i'>
+      <td valign='middle'><div style='padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;'> <span class='Estilo4'>
+          <input name='pgcp$i' type='text' class='Estilo4' id='pgcp$i' style='width:180px;' onkeyup='lookup(this.value,$i);' value='$pgcp[$i]'>
+      </span></div>
+     <div class='suggestionsBox' id='sugges$i' style='display: none; position:absolute; left: 200px; z-index:2'>
+                <img src='images/upArrow.png' style='position: relative; top: -10px; left: 0px;' title='PGCP'>
+                <div class='suggestionList' id='autoSug$i'>
+                    &nbsp;
+                </div>
+     </div>
+      </td>";
+      $nomvcue='';
+      if($i<=$contis && $pgcp[$i] !=0){
+		  $sqlx="Select nom_rubro from pgcp where cod_pptal = '$pgcp[$i]' and id_emp ='$id_emp' and tip_dato = 'D' and cod_pptal !=0";
+        $query = mysql_query($sqlx,$connectionxx);
+		$nomvcue = mysql_result($query,0,0);
+      }
+          echo "<td><div style='padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;'>
+          <div align='center' class='Estilo4'>
+            <div align='left' id='resulta$i'>$nomvcue</div>
+          </div>
+      </div></td>
+      <td><div style='padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;'>
+          <div align='center' class='Estilo4'>
+            <div align='right'>
+              <input name='vr_deb_$i' type='text' class='Estilo4' id='vr_deb_$i' style='text-align:right' onkeypress='return validar(event)' onKeyUp='Calcular();' onfocus='siespgcp($i);' value='$vr_deb[$i]'>
+            </div>
+          </div>
+      </div></td>
+      <td><div style='padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;'>
+          <div align='center' class='Estilo4'>
+            <div align='right'>
+              <input name='vr_cre_$i' type='text' class='Estilo4' id='vr_cre_$i' style='text-align:right' onkeypress='return validar(event)' onKeyUp='Calcular();' onfocus='siespgcp($i);' value='$vr_cre[$i]'>
+            </div>
+          </div>
+      </div></td>
+    </tr>";
+    if($i==$contis){$acc='none';}}
+    ?>
+
+    <tr>
+      <td colspan=2 bgcolor="#990000"><div class="Estilo12 Estilo8" style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
+        <div align="right" class="Estilo8"><strong>VERIFIQUE QUE LAS SUMAS SEAN IGUALES ANTES DE GRABAR: </strong></div>
+      </div></td>
+      <td bgcolor="#990000"><div class="Estilo8" style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
+        <div align="center" class="Estilo12">
+          <div align="right">
+            <input name="tot_deb_a" type="text" class="Estilo12" id="tot_deb_a" style="text-align:right" value=<? echo $tot_deb; ?> onkeyup='Calcular();'>
+          </div>
+        </div>
+      </div></td>
+      <td bgcolor="#990000"><div class="Estilo8" style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
+        <div align="center" class="Estilo12">
+          <div align="right">
+            <input name="tot_cre_a" type="text" class="Estilo12" id="tot_cre_a" style="text-align:right" value=<? echo $tot_cre; ?> onkeyup='Calcular();'>
+          </div>
+        </div>
+      </div></td>
+    </tr>
+    <tr>
+      <td colspan=2 bgcolor="#990000"><div class="Estilo12 Estilo8" style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
+        <div align="right" class="Estilo8"><strong>DIFERENCIA: </strong></div>
+      </div></td>
+      <td bgcolor="#990000" colspan=2><div class="Estilo8" style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
+        <div align="center" class="Estilo12">
+          <div align="center">
+            <input name="total" type="text" class="Estilo12" id="total" style="text-align:right" value=<? echo number_format($difere,2); ?> onkeyup='Calcular();'>
+          </div>
+        </div>
+      </div></td>
+    </tr>
+    <tr>
+      <td colspan="4" bgcolor="#990000"><div class="Estilo12 Estilo8" style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
+          <div align="right" class="Estilo8">
+            <div align="center"><strong>VERIFIQUE FECHA, CONSECUTIVO, TERCERO Y DETALLE ANTES DE GRABAR</strong></div>
+          </div>
+      </div></td>
+    </tr>
+    
+    <tr>
+      <td colspan="4"><div class="Estilo12" style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
+        <div align="center">
+          <input name="Submit" type="submit" class="Estilo4" value="Modificar" onclick="return noVacio3(this.form,this.form.contador.value);" >
+        </div>
+      </div></td>
+    </tr>
+    <!--secciones de fila -->
+    <!--secciones de fila -->
+  </table></td>
+  </tr>
+  </form>
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3">
+    <div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;">
+      <div align="center">
+      
+        <div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:150px'>
+          <div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
+            <div align="center">
+              <?
+printf("
+
+<center class='Estilo4'>
+<form method='post' action='menu_cont.php'>
+<input type='hidden' name='nn' value='CAIC'>
+...::: <input type='submit' name='Submit' value='Volver' class='Estilo4' /> :::...
+</form>
+</center>
+");
+
+?>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>  </td>
+  </tr>
+  <tr>
+    <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+      <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
+          <span class="Estilo4"> <strong>
+          <? include('../config.php');              
+          echo $ano;
+          ?>
+          </strong> </span> <br />
+          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+    </div></td>
+  </tr>
+  <tr>
+    <td width="266">
+    <div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
+      <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
+        <?PHP echo $dir_tel ?><BR />
+        <?PHP echo $muni ?> <br />
+        <?PHP echo $email?> </div>
+    </div>  </td>
+    <td width="266">
+    <div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
+      <div align="center"><a href="../../politicas.php" target="_blank">POLITICAS DE PRIVACIDAD <BR />
+          </a><BR /> 
+        <a href="../../condiciones.php" target="_blank">CONDICIONES DE USO  </a></div>
+    </div>  </td>
+    <td width="266">
+    <div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:15px;">
+      <div align="center">Desarrollado por <br />
+        <a href="http://www.qualisoftsalud.com" target="_blank"><img src="../images/logoqsft2.png" width="150" height="69" border="0" /></a><br />
+      Derechos Reservados - 2009    </div>
+    </div>  </td>
+  </tr>
+</table>
+</body>
+</html>
+<?
+mysql_close();
+}
+?>

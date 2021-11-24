@@ -1,0 +1,24 @@
+15;D;T;Disponibilidad inicial
+11;M;T;Ingresos corrientes
+1101;M;T;Venta de servicios de salud
+110101;D;T;Regimen Subsidiado
+110102;D;T;Regimen Contributivo
+110103;M;T;Atencion a poblacion pobre en lo no cubierto con subsidios a la demanda (incluye con o sin situacion de fondos)
+11010301;D;;Poblacion pobre no afiliada al Regimen Subsidiado
+11010302;D;;Servicios no POS-S para los afiliados al Regimen Subsidiado
+110104;D;T;SOAT (diferentes a Fosyga)
+110105;D;T;FOSYGA
+110106;D;T;Plan de Intervenciones Colectivas (antes PAB)
+110107;M;T;Otras ventas de servicios de Salud
+11010701;D;;Cuotas de recuperacion (Vinculados)
+11010702;D;;Cuotas moderadoras y copagos
+11010703;D;;Otras ventas de servicios de salud
+1102;M;T;Aportes (No ligados a la venta de servicios)
+110201;D;;Aportes de la nacion No ligados a la venta de servicios
+110202;D;;Aportes del departamento No ligados a la venta de servicios
+110203;D;;Aportes del municipio No ligados a la venta de servicios
+1103;D;T;Otros ingresos corrientes
+12;D;T;Ingresos de capital
+13;D;T;Otros ingresos 
+14;D;T;Cuentas por cobrar Otras vigencias
+1;M;T;Total de ingresos

@@ -1,0 +1,100 @@
+001,Libre Destinación
+002,Educación - General
+003,Educación - Educación Preescolar
+004,Educación - Educación Primaria
+005,Educación - Educación Secundaria y Media Vocacional
+006,Educación - Capacitación Técnica no Profesional
+007,Educación - Educación Superior
+008,Educación - Educación de Adultos
+009,Educación - Educación Especial
+010,Salud - General
+011,Salud - Acciones de Salud Pública
+013,Salud - Servicios Especializados de Salud
+014,Salud - Servicios Integrales de Salud
+015,Salud - Subsidios a la demanda
+016,Salud - Prestación de servicios de salud a la población pobre no afiliada
+017,Administración y Protección del Medio Ambiente - General
+018,Administración y Protección del Medio Ambiente - Conservación
+019,Administración y Protección del Medio Ambiente - Manejo
+020,Administración y Protección del Medio Ambiente - Mitigación
+021,Agua Potable y Saneamiento Básico - General
+022,Agua Potable y Saneamiento Básico - Acueducto
+023,Agua Potable y Saneamiento Básico - Manejo y Control de Residuos Sólidos
+024,Agua Potable y Saneamiento Básico - Alcantarillado
+025,Agua Potable y Saneamiento Básico - Agua Potable
+026,Agua Potable y Saneamiento Básico - Mataderos Plazas de Mercado y Cementerios
+027,Agua Potable y Saneamiento Básico - Saneamiento Básico Rural
+028,Atención a Grupos Vulnerables
+029,Ciencia y Tecnología - General
+030,Ciencia y Tecnología - Ciencia
+031,Ciencia y Tecnología - Tecnología
+032,Comunicación - General
+033,Comunicación - Correo
+034,Comunicación - Telefonía
+035,Comunicación - Telegrama y Telex
+036,Comunicación - Radio
+037,Comunicación - Televisión
+038,Comunicación - Servicios de Valor Agregado en Comunicaciones
+039,Transporte - General
+040,Transporte - Red Troncal Nacional Vial - Primaria
+041,Transporte - Red Secundaria Vial
+042,Transporte - Red Terciaria Vial - Caminos Vecinales
+043,Transporte - Red Urbana Vial
+044,Transporte - Transporte Férreo
+045,Transporte - Transporte Fluvial
+046,Transporte - Transporte Marítimo
+047,Transporte - Transporte Aéreo
+048,Cultura
+049,Desarrollo Agropecuario Silvicultura y Pesca - General
+050,Desarrollo Agropecuario Silvicultura y Pesca - Agrícola
+051,Desarrollo Agropecuario Silvicultura y Pesca - Pecuario
+052,Desarrollo Agropecuario Silvicultura y Pesca - Silvicultura
+053,Desarrollo Agropecuario Silvicultura y Pesca - Pesca y Acuicultura
+054,Desarrollo Comunitario - General
+055,Desarrollo Comunitario - Asistencia Directa a la Comunidad
+056,Desarrollo Comunitario - Participación Comunitaria
+057,Desarrollo Comunitario - Formas Asociativas y Cooperativas
+058,Desarrollo Industrial - General
+059,Desarrollo Industrial - Microempresa e Industria Artesanal
+060,Desarrollo Industrial - Pequeña y mediana Industria
+061,Desarrollo Industrial - Gran Industria
+062,Desarrollo Comercial - General
+063,Desarrollo Comercial - Comercio Interno
+065,Desarrollo Turístico
+066,Fortalecimiento Institucional - General
+067,Fortalecimiento Institucional - Procesos integrales de evaluación institucional y reorganización administrativa
+068,Fortalecimiento Institucional - Programas de saneamiento fiscal y financiero
+069,Fortalecimiento Institucional - Programas orientados al desarrollo eficientes de las competencias
+070,Educación Física Deporte y Recreación - General
+071,Educación Física Deporte y Recreación - Educación Física
+072,Educación Física Deporte y Recreación - Deporte
+073,Educación Física Deporte y Recreación - Recreación
+074,Defensa y Seguridad - General
+075,Defensa y Seguridad - Defensa y Seguridad Interna
+077,Defensa y Seguridad - Defensa Civil
+078,Justicia - General
+079,Justicia - Rehabilitación de Menores
+080,Justicia - Sistema Penitenciario y Carcelario
+081,Justicia - Administración de Justicia
+082,Justicia - Prevención de la Delincuencia
+083,Prevención y Atención de Desastres - General
+084,Prevención y Atención de Desastres - Prevención
+085,Prevención y Atención de Desastres - Atención
+086,Sector Eléctrico - General
+087,Sector Eléctrico - Generación Eléctrica
+088,Sector Eléctrico - Transmisión Eléctrica
+089,Sector Eléctrico - Distribución Eléctrica
+090,Sector Eléctrico - Comercialización Eléctrica
+091,Sector Minero
+092,Sector Petróleo y Gas - General
+093,Sector Petróleo y Gas - Petróleo
+094,Sector Petróleo y Gas - Gas
+095,Vivienda - General
+096,Vivienda - Soluciones de Vivienda Interés Social Rural
+097,Vivienda - Soluciones de Vivienda Interés Social Urbana
+098,Servicio de la Deuda
+099,Sector Gobierno - General
+105,Gastos de Funcionamiento - Garantía para pago de pensiones
+106,Gastos de Funcionamiento - Otros
+107,Pagos de previsión social
+108,Destino a organismos de control fiscal

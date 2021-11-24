@@ -1,0 +1,172 @@
+001;Rentas propias (administracion central) o recursos propios (entidades descentralizadas) de libre destinacion
+004;Ingresos corrientes de Impuestos y Contribuciones tributarias
+021;Recursos o ingresos corrientes de Rentas cedidas - Prestacion
+022;Recursos o ingresos corrientes de Rentas cedidas - Direccion
+023;Ingresos corrientes por Venta de Bienes
+024;Ingresos corrientes por Venta de Servicios
+025;Ingresos corrientes por Operaciones Comerciales
+026;Otros Ingresos corrientes Operacionales
+027;Ingresos corrientes por aportes del SGP
+029;Ingresos corrientes por aportes de Ley de empresas del sector electrico
+030;Ingresos corrientes por aportes de particulares y organismos privados
+031;Ingresos corrientes por aportes de organismos internacionales
+032;Ingresos corrientes por participaciones
+033;Ingresos corrientes por otros aportes
+034;Ingresos corrientes de Concesiones
+035;Ingresos corrientes de Convenios
+036;Otros ingresos corrientes
+037;Recursos de capital del Tesoro de la Nacion o de la Tesoreria de entidades descentralizadas, Credito
+039;Recursos de capital del Tesoro de la Nacion o de la Tesoreria de entidades descentralizadas, Recuperacion de Cartera
+040;Recursos de capital del Tesoro de la Nacion o de la Tesoreria de entidades descentralizadas, Rendimientos por Operaciones Financieras
+041;Recursos de capital del Tesoro de la Nacion o de la Tesoreria de entidades descentralizadas, Enajenacion de Activos
+042;Recursos de capital del Tesoro de la Nacion o de la Tesoreria de entidades descentralizadas, Reintegros, otros Recursos del Balance y Recursos no Apropiados
+044;Recursos de capital del Tesoro de la Nacion, Otros Excedentes Financieros y Utilidades / Recursos de capital de la Tesoreria de entidades descentralizadas, Excedentes Financieros y Utilidades
+045;Recursos de capital de la Tesoreria de entidades descentralizadas, Aportes de Capital
+046;Recursos de capital de la Tesoreria de entidades descentralizadas, Disponibilidad
+047;Recursos de capital del Tesoro de la Nacion, Otros Recursos de Tesoreria y/o Superavit Fiscal / Recursos de capital de la Tesoreria de entidades descentralizadas, Otros Recursos de Tesoreria
+100;Ingresos corrientes por Venta de Bienes - Produccion de Bienes
+101;Ingresos corrientes por Venta de Bienes - Productos Agricolas
+102;Ingresos corrientes por Venta de Bienes - Productos Forestales
+103;Ingresos corrientes por Venta de Bienes - Productos Piscicolas
+104;Ingresos corrientes por Venta de Bienes - Semovientes
+105;Ingresos corrientes por Venta de Bienes - Productos Agropecuarios, de Silvicultura, Avicultura y Pesca
+106;Ingresos corrientes por Venta de Bienes - Carbon
+107;Ingresos corrientes por Venta de Bienes - Petroleo Crudo
+108;Ingresos corrientes por Venta de Bienes - Gas Natural
+109;Ingresos corrientes por Venta de Bienes - Gas Natural Asociado
+110;Ingresos corrientes por Venta de Bienes - Productos de Minas
+111;Ingresos corrientes por Venta de Bienes - Sal
+112;Ingresos corrientes por Venta de Bienes - Impresos y Publicaciones
+113;Ingresos corrientes por Venta de Bienes - Combustibles y Otros Derivados del Petroleo
+114;Ingresos corrientes por Venta de Bienes - Lubricantes
+115;Ingresos corrientes por Venta de Bienes - Aditivos
+116;Ingresos corrientes por Venta de Bienes - Productos Quimicos
+117;Ingresos corrientes por Venta de Bienes - Subproductos
+118;Ingresos corrientes por Venta de Bienes - Medicamentos
+119;Ingresos corrientes por Venta de Bienes - Medicamentos de Uso Veterinario
+120;Ingresos corrientes por Venta de Bienes - Productos Artesanales
+121;Ingresos corrientes por Venta de Bienes - Productos Metalurgicos y de Microfundicion
+122;Ingresos corrientes por Venta de Bienes - Productos Belicos y Explosivos
+123;Ingresos corrientes por Venta de Bienes - Productos de Madera
+124;Ingresos corrientes por Venta de Bienes - Licores, Bebidas y Alcoholes
+125;Ingresos corrientes por Venta de Bienes - Productos Alimenticios
+126;Ingresos corrientes por Venta de Bienes - Construcciones
+127;Ingresos corrientes por Venta de Bienes - Especies Monetarias
+128;Ingresos corrientes por Venta de Bienes - Productos Petroquimicos
+129;Ingresos corrientes por Venta de Bienes - Prendas de Vestir y Calzado
+130;Ingresos corrientes por Venta de Bienes - Equipos
+131;Ingresos corrientes por Venta de Bienes - Otros Bienes Producidos
+200;Ingresos corrientes por Venta de Servicios - Servicios Educativos
+201;Ingresos corrientes por Venta de Servicios - Educacion Formal - Preescolar
+202;Ingresos corrientes por Venta de Servicios - Educacion Formal - Basica Primaria
+203;Ingresos corrientes por Venta de Servicios - Educacion Formal - Basica Secundaria
+204;Ingresos corrientes por Venta de Servicios - Educacion Formal - Media Academica
+205;Ingresos corrientes por Venta de Servicios - Educacion Formal - Media Tecnica
+206;Ingresos corrientes por Venta de Servicios - Educacion Formal - Superior - Formacion Tecnica Profesional
+207;Ingresos corrientes por Venta de Servicios - Educacion Formal - Superior - Formacion Tecnologica
+208;Ingresos corrientes por Venta de Servicios - Educacion Formal - Superior - Formacion Profesional
+209;Ingresos corrientes por Venta de Servicios - Educacion Formal - Superior - Postgrado
+210;Ingresos corrientes por Venta de Servicios - Educacion No Formal - Formacion en Artes y Oficios
+211;Ingresos corrientes por Venta de Servicios - Educacion No Formal - Validacion de Niveles y Grados
+212;Ingresos corrientes por Venta de Servicios - Educacion No Formal - Formacion Extensiva
+213;Ingresos corrientes por Venta de Servicios - Educacion Informal - Continuada
+214;Ingresos corrientes por Venta de Servicios - Educacion Informal - Validacion para la Educacion Formal
+215;Ingresos corrientes por Venta de Servicios - Educacion Informal - Difusion Artistica y Cultural
+216;Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Educacion
+250;Ingresos corrientes por Venta de Servicios - Servicios de Salud
+251;Ingresos corrientes por Venta de Servicios - Urgencias - Consulta y Procedimientos
+252;Ingresos corrientes por Venta de Servicios - Urgencias - Observacion
+253;Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Consulta Externa y Procedimientos
+254;Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Consulta Especializada
+255;Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Salud Oral
+256;Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Promocion y Prevencion
+257;Ingresos corrientes por Venta de Servicios - Servicios Ambulatorios - Otras Actividades Extramurales
+258;Ingresos corrientes por Venta de Servicios - Hospitalizacion - Estancia General
+259;Ingresos corrientes por Venta de Servicios - Hospitalizacion - Cuidados Intensivos
+260;Ingresos corrientes por Venta de Servicios - Hospitalizacion - Cuidados Intermedios
+261;Ingresos corrientes por Venta de Servicios - Hospitalizacion - Recien Nacidos
+262;Ingresos corrientes por Venta de Servicios - Hospitalizacion - Salud Mental
+263;Ingresos corrientes por Venta de Servicios - Hospitalizacion - Quemados
+264;Ingresos corrientes por Venta de Servicios - Hospitalizacion - Otros Cuidados Especiales
+265;Ingresos corrientes por Venta de Servicios - Quirofanos y Salas de Parto - Quirofanos
+266;Ingresos corrientes por Venta de Servicios - Quirofanos y Salas de Parto - Salas de Parto
+267;Ingresos corrientes por Venta de Servicios - Apoyo Diagnostico - Laboratorio Clinico
+268;Ingresos corrientes por Venta de Servicios - Apoyo Diagnostico - Imagenologia
+269;Ingresos corrientes por Venta de Servicios - Apoyo Diagnostico - Anatomia Patologica
+270;Ingresos corrientes por Venta de Servicios - Apoyo Diagnostico - Otras Unidades de Apoyo Diagnostico
+271;Ingresos corrientes por Venta de Servicios - Apoyo Terapeutico - Rehabilitacion y Terapias
+272;Ingresos corrientes por Venta de Servicios - Apoyo Terapeutico - Banco de Componentes Anatomicos
+273;Ingresos corrientes por Venta de Servicios - Apoyo Terapeutico - Banco de Sangre
+274;Ingresos corrientes por Venta de Servicios - Apoyo Terapeutico - Unidad Renal
+275;Ingresos corrientes por Venta de Servicios - Apoyo Terapeutico - Unidad Hemodinamia
+276;Ingresos corrientes por Venta de Servicios - Apoyo Terapeutico - Terapias Oncologicas
+277;Ingresos corrientes por Venta de Servicios - Apoyo Terapeutico - Farmacia e Insumos Hospitalarios
+278;Ingresos corrientes por Venta de Servicios - Apoyo Terapeutico - Otras Unidades de Apoyo Terapeutico
+279;Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Medio Ambiente
+280;Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Ancianatos y Albergues
+281;Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Centros y Puestos de Salud
+282;Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Servicios Docentes
+283;Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Investigacion Cientifica
+284;Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Medicina Legal
+285;Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Servicio de Ambulancias
+286;Ingresos corrientes por Venta de Servicios - Servicios Conexos a la Salud - Otros Servicios
+300;Ingresos corrientes por Venta de Servicios - Servicios de Transporte
+301;Ingresos corrientes por Venta de Servicios - Servicio de Transporte Aereo
+302;Ingresos corrientes por Venta de Servicios - Servicio de Transporte Terrestre
+303;Ingresos corrientes por Venta de Servicios - Servicios Aeronauticos
+304;Ingresos corrientes por Venta de Servicios - Servicios Aeroportuarios
+305;Ingresos corrientes por Venta de Servicios - Servicio de Terminal de Transporte Terrrestre
+306;Ingresos corrientes por Venta de Servicios - Servicio de Terminal de Transporte Fluvial o Maritimo
+307;Ingresos corrientes por Venta de Servicios - Servicio de Transporte por Ductos
+308;Ingresos corrientes por Venta de Servicios - Otros Servicios de Transporte
+320;Ingresos corrientes por Venta de Servicios - Servicios Publicos
+321;Ingresos corrientes por Venta de Servicios - Energia
+322;Ingresos corrientes por Venta de Servicios - Acueducto
+323;Ingresos corrientes por Venta de Servicios - Alcantarillado
+324;Ingresos corrientes por Venta de Servicios - Aseo
+325;Ingresos corrientes por Venta de Servicios - Gas Combustible
+326;Ingresos corrientes por Venta de Servicios - Telecomunicaciones
+340;Ingresos corrientes por Venta de Servicios - Servicios Hoteleros y de Promocion Turistica
+341;Ingresos corrientes por Venta de Servicios - Alojamiento
+342;Ingresos corrientes por Venta de Servicios - Suministro de Bebidas y Alimentos
+343;Ingresos corrientes por Venta de Servicios - Otros Servicios de Hoteleria y de Promocion Turistica
+370;Ingresos corrientes por Venta de Servicios - Otros Servicios
+371;Ingresos corrientes por Venta de Servicios - Servicios de Documentacion e Identificacion
+372;Ingresos corrientes por Venta de Servicios - Servicios Informaticos
+373;Ingresos corrientes por Venta de Servicios - Servicios Recreativos Culturales y Deportivos
+374;Ingresos corrientes por Venta de Servicios - Servicios de Apoyo Industrial
+375;Ingresos corrientes por Venta de Servicios - Servicios de Comunicaciones
+376;Ingresos corrientes por Venta de Servicios - Servicios de Investigacion Cientifica y Tecnologica
+377;Ingresos corrientes por Venta de Servicios - Servicios de Matadero
+378;Ingresos corrientes por Venta de Servicios - Servicios de Lavanderia
+379;Ingresos corrientes por Venta de Servicios - Servicios de Programacion y Produccion de Television
+380;Ingresos corrientes por Venta de Servicios - Otros Servicios Producidos
+001;MUN - Rentas propias (administracion central) o recursos propios (entidades descentralizadas) de libre destinacion
+002;MUN - Recursos corrientes de Impuestos
+003;MUN - Recursos corrientes de Estampillas
+005;MUN - Recursos corrientes de Tasas
+006;MUN - Recursos corrientes de Multas
+007;MUN - Recursos corrientes de Contribuciones
+008;MUN - Recursos corrientes de transferencias del SGP para funcionamiento
+009;MUN - Recursos corrientes de transferencias de Ley de las empresas del sector electrico para funcionamiento
+010;MUN - Recursos corrientes de cuotas de fiscalizacion
+011;MUN - Recursos corrientes de cuotas partes pensionales
+012;MUN - Recursos corrientes de otras transferencias para funcionamiento
+013;MUN - Recursos corrientes de transferencias del SGP para inversion
+014;MUN - Recursos corrientes de transferencias de los Fondos de desarrollo departamental para inversion
+015;MUN - Recursos corrientes de transferencias de Ley de empresas del sector electrico para inversion
+016;MUN - Recursos corrientes de transferencias de Ley de las E. S. P. para subsidio a los servicios publicos
+017;MUN - Recursos corrientes de transferencias por Regalias
+018;MUN - Recursos corrientes de transferencias por participaciones
+019;MUN - Recursos corrientes de otras transferencias para inversion
+020;MUN - Recursos corrientes por derechos de explotacion de monopolios
+021;MUN - Recursos o ingresos corrientes de Rentas cedidas - Prestacion
+022;MUN - Recursos o ingresos corrientes de Rentas cedidas - Direccion
+037;MUN - Recursos de capital del Tesoro de la Nacion o de la Tesoreria de entidades descentralizadas, Credito
+038;MUN - Recursos de capital del Tesoro de la Nacion, Tenedores de Bonos
+039;MUN - Recursos de capital del Tesoro de la Nacion o de la Tesoreria de entidades descentralizadas, Recuperacion de Cartera
+040;MUN - Recursos de capital del Tesoro de la Nacion o de la Tesoreria de entidades descentralizadas, Rendimientos por Operaciones Financieras
+041;MUN - Recursos de capital del Tesoro de la Nacion o de la Tesoreria de entidades descentralizadas, Enajenacion de Activos
+042;MUN - Recursos de capital del Tesoro de la Nacion o de la Tesoreria de entidades descentralizadas, Reintegros, otros Recursos del Balance y Recursos no Apropiados
+044;MUN - Recursos de capital del Tesoro de la Nacion, Otros Excedentes Financieros y Utilidades / Recursos de capital de la Tesoreria de entidades descentralizadas, Excedentes Financieros y Utilidades
+047;MUN - Recursos de capital del Tesoro de la Nacion, Otros Recursos de Tesoreria y/o Superavit Fiscal / Recursos de capital de la Tesoreria de entidades descentralizadas, Otros Recursos de Tesoreria
