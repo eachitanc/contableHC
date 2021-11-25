@@ -1,6 +1,7 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!$_SESSION["login"])
+//if( isset($_SESSION[$myusername]) )
 {
 header("Location: ../login.php");
 exit;
@@ -60,7 +61,7 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
 </style>
 <!--solo numeros--> 
 <script language="JavaScript">
-<!--
+
 var nav4 = window.Event ? true : false;
 function acceptNum(evt){
 // NOTE: Backspace = 8, Enter = 13, '0' = 48, '9' = 57
@@ -262,39 +263,33 @@ document.empresa.cod_pptal.value = miTexto;
 		  <div align="right">
 		    <?php
 //-------
-include('../config.php');				
-$connection = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+include('../config.php');	
+global $server, $database, $dbpass,$dbuser,$charset;
+// Conexion con la base de datos
+$cx= new mysqli ($server, $dbuser, $dbpass, $database);			
 $s = "select * from fecha_ini_op";
-$r = mysql_db_query($database, $s, $connection);
-while($rw = mysql_fetch_array($r)) 
+$rs = $cx->query($s);
+while($rw = $rs->fetch_assoc()) 
    {
 //printf("<center class='Estilo4'><b>%s</b><center>",$rw["fecha_ini_op"]);  
 $fecha_ini_op=$rw["fecha_ini_op"];
    }
 
 //--------	
-?>
-		    <?php
-include('../config.php');				
-$connection = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sql = "select * from fecha";
-$resultado = mysql_db_query($database, $sql, $connection);
-while($row = mysql_fetch_array($resultado)) 
+$resultado = $cx->query($sql);
+while($row = $resultado->fetch_assoc())
+
    {
 printf("<input name='ano' type='hidden' id='ano' value='%s' size='10'/><input name='id_emp' type='hidden' id='id_emp' value='%s' size='4'/>",$fecha_ini_op, $row["id_emp"]);  
    }
-?>
 
-<?php 
-	  include('../config.php');				
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $cx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc())
    {
-   
-   $idxx=$rowxx["id_emp"];
+    $idxx=$rowxx["id_emp"];
 //printf("<span class='Estilo4'><b>Fecha de Trabajo ACTUAL = DIA: %s / MES: %s / A&Ntilde;O: %s </b></span><BR><span class='Estilo4'><b>Id Empresa ACTUAL = %s </b></span>", $row["dia"], $row["mes"], $row["ano"], $row["id_emp"]);  
    }
 	  ?>
@@ -306,15 +301,12 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 
 		            <div align="left">
 		              <select name="nn" onchange="cambia()" class="Estilo4" style="width: 400px;">
-		                <?
-include('../config.php');
-$db = new mysqli($server, $dbuser, $dbpass, $database);
-
+		                <?php
 $strSQL = "SELECT * FROM pgcp WHERE id_emp = '$idxx' ORDER BY cod_pptal";
-$rs = mysql_query($strSQL);
-$nr = mysql_num_rows($rs);
+$rs = $cx->query($strSQL);
+$nr = $rs->num_rows;
 for ($i=0; $i<$nr; $i++) {
-	$r = mysql_fetch_array($rs);
+	$r = $rs->fetch_array();
 	echo "<OPTION VALUE=\"".$r["cod_pptal"]."\">".$r["cod_pptal"]." - ".$r["nom_rubro"]."</b></OPTION>";
 }
 ?>
@@ -334,12 +326,14 @@ for ($i=0; $i<$nr; $i++) {
 		            <div align="left">
 										  <!--muestro el ultimo cod_pptal almacenado-->
 					  
-					<?  $consulta=mysql_query("select * from tmp_cod_pptal",$connection);
-						while($row = mysql_fetch_array($consulta)) 
+					<?php
+           $sq3 ="select * from tmp_cod_pptal";
+           $consulta=$cx->query($sq3);
+						while($row = $consulta->fetch_assoc())
    						{	$tmp_cod_pptal=$row["cod"];  }  ?>
 						
 		              <input name="cod_pptal" type="text" class="Estilo7" id="cod_pptal" tabindex="0" 
-					  value="<? printf('%s',$tmp_cod_pptal); ?>" 
+					  value="<?php echo $tmp_cod_pptal; ?>" 
 					  onkeyup="
 var options = this.form.nn.options;for(var i = 0; i < options.length; i++){var match = options[i].value == this.value;if(match)break;}this.form.nn.selectedIndex = i;cambia();" size="40" maxlength="35" />
 					  </div>
@@ -543,7 +537,7 @@ var options = this.form.nn.options;for(var i = 0; i < options.length; i++){var m
         </div></td>
 	    <td colspan="2" bgcolor="#EBEBE4" class="Estilo4"><div id="div20" style="padding-left:30px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
             <div align="left">
-              <select name="cta_maestra" class="Estilo4" id="cta_maestra" disabled="disabled">
+              <select name="cta_maestra" class="Estilo4" id="cta_maestra" readonly>
 			     <option value=""></option>
 				<option value="CMS0">REGIMEN SUBSIDIADO</option>
                 <option value="CMS1">SALUD PUBLICA COLECCTIVA</option>
@@ -556,10 +550,9 @@ var options = this.form.nn.options;for(var i = 0; i < options.length; i++){var m
 	    </tr>
 	  <tr>
 <?php 
-$c1 = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $s1 = "select * from empresa where cod_emp = '$idxx' ";
-$r1 = mysql_db_query($database, $s1, $c1);
-while($rw1 = mysql_fetch_array($r1)) 
+$r1 = $cx->query($s1);
+while($rw1 = $r1->fetch_assoc())
 {
   $uni_eje=$rw1["uni_eje"];
 }
@@ -576,17 +569,17 @@ if ($uni_eje != 'EMPRESA')
 			<option value=""></option>
            	<?php
 			$sq2 ="select * from fut_exedentes order by cod_fut asc";
-			$rs2 = mysql_db_query($database,$sq2,$connection);
-			$fi2 = mysql_num_rows($rs2);
+			$rs2 = $cx->query($sq2);
+			$fi2 = $rs2->num_rows;
 			for ($i=0; $i<$fi2; $i++) {
-				$r = mysql_fetch_array($rs2);
+				$r = $rs2->fetch_assoc();
 				echo "<option value=\"".$r["cod_fut"]."\">".$r["cod_fut"]." - ".$r["nom_fut"]."</b></OPTION>";
 			}
 			  ?>
           </select>
           </div>
 	      </div></td>
-<?
+<?php
 }
 else
 {
@@ -709,22 +702,6 @@ else
             <td>&nbsp;</td>
             <td>&nbsp;</td>
           </tr>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
         </table></td>
 	    </tr>
 	  
@@ -737,19 +714,8 @@ else
           <div align="left">
 		  
             <select name="ent_recip" class="Estilo4" id="ent_recip" style="width: 400px;" disabled="disabled">
-              <?
-/*include('config.php');
-$db = new mysqli($server, $dbuser, $dbpass, $database);
+              <option value=""></option>
 
-$strSQL = "SELECT * FROM terceros_cgr_ing ORDER BY cod_ter";
-$rs = mysql_query($strSQL);
-$nr = mysql_num_rows($rs);
-for ($i=0; $i<$nr; $i++) {
-	$r = mysql_fetch_array($rs);
-	echo "<OPTION VALUE=\"".$r["cod_ter"]."\">".$r["cod_ter"]." - ".$r["nom_ter"]."</OPTION>";
-}*/
-
-?>
             </select>
           </div>
 	      </div></td>
@@ -787,12 +753,10 @@ for ($i=0; $i<$nr; $i++) {
              <div align="center"><span class="Estilo4" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">CARGANDO  A :<br />
                    <?php
 //-------
-include('../config.php');				
-$connectionx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlx = "select * from empresa where cod_emp = '$idxx'";
-$resultadox = mysql_db_query($database, $sqlx, $connectionx);
+$resultadox = $cx->query($sqlx);
 
-while($rowx = mysql_fetch_array($resultadox)) 
+while($rowx = $resultadox->fetch_assoc())
    {
 printf("<span class='Estilo4'><b> %s </b></span>", $rowx["raz_soc"]);  
    }
@@ -806,19 +770,19 @@ printf("<span class='Estilo4'><b> %s </b></span>", $rowx["raz_soc"]);
          <td colspan="2"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
            <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
                <span class="Estilo4"> <strong>
-               <? include('../config.php');				
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+               <?php 
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $cx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc())
+   
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
                </strong> </span> <br />
-               <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+               <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
          </div></td>
        </tr>
      </table>	 </td>
@@ -829,10 +793,10 @@ echo $ano;
   <tr>
     <td width="250">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email ?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email ?>	</div>
 	</div>	</td>
     <td width="250">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -850,6 +814,6 @@ echo $ano;
 </table>
 </body>
 </html>
-<?
+<?php
 }
 ?>

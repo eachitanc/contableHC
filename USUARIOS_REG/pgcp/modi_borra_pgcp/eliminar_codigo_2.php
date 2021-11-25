@@ -11,16 +11,16 @@ exit;
 // recibo informacion del usuario
    $ingresa=$_POST['nn'];      				
 // cx bd
-   if($connection=new mysqli($server, $dbuser, $dbpass, $database)) 
+   if($connection=mysql_connect($server, $dbuser, $dbpass)) 
 	{
-		
+		mysql_select_db($database);
 	} 
 	else 
 	{
 		die("Error conectandose a la base.");
 	} 
 // saco el id de la empresa
-   $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+   $connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 	    $sqlxx = "select * from fecha";
 	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 	    while($rowxx = mysql_fetch_array($resultadoxx)) 
@@ -66,7 +66,7 @@ exit;
 	 					 $nivel = 2;
 	 					 
 						 // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -98,7 +98,7 @@ exit;
 	 					 $nivel = 3;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -130,7 +130,7 @@ exit;
 	 					 $nivel = 4;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -162,7 +162,7 @@ exit;
 	 					 $nivel = 5;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -194,7 +194,7 @@ exit;
 	 					 $nivel = 6;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -227,7 +227,7 @@ exit;
 	 					 $nivel = 7;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -259,7 +259,7 @@ exit;
 	 					 $nivel = 8;
 						 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -291,7 +291,7 @@ exit;
 	 					 $nivel = 9;
 	 					
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -323,7 +323,7 @@ exit;
 	 					 $nivel = 10;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -355,7 +355,7 @@ exit;
 	 					 $nivel = 11;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -387,7 +387,7 @@ exit;
 	 					 $nivel = 12;
 						
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -419,7 +419,7 @@ exit;
 	 					 $nivel = 13;
 						
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -451,7 +451,7 @@ exit;
 	 					 $nivel = 14;
 	 					
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -483,7 +483,7 @@ exit;
 	 					 $nivel = 15;
 	 					
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -515,7 +515,7 @@ exit;
 	 					 $nivel = 16;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = new mysqli($server, $dbuser, $dbpass, $database);
+						 $link = mysql_connect($server, $dbuser, $dbpass);
 						mysql_select_db($database, $link);
 					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
 						$num_rows = mysql_num_rows($result);
@@ -541,8 +541,8 @@ exit;
 		 }
 		printf("%s <br><br></center>",$error);
 		//elimino el registro
-		new mysqli($server, $dbuser, $dbpass, $database);
-		
+		mysql_connect($server, $dbuser, $dbpass);
+		mysql_select_db($database);
 		$sSQL="Delete from pgcp Where cod_pptal='$ingresa' and id_emp = '$idxx'";
 		mysql_query($sSQL);
 		printf("<center class='Estilo4'><br><br>Cuenta <b>ELIMINADA</b> con exito<br><br>

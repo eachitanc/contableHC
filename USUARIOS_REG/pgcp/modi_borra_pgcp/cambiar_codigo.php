@@ -103,7 +103,7 @@ ingresa.value = nn.options[nn.selectedIndex].value;
     <td colspan="3">
 	<?php 
 	  include('../../config.php');				
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 
@@ -141,8 +141,8 @@ while($rowxx = mysql_fetch_array($resultadoxx))
                   <select name="nn" onchange="cambia()" class="Estilo4" style="width: 400px;">
                     <?
 include('config.php');
-$db = new mysqli($server, $dbuser, $dbpass, $database);
-
+$db = mysql_connect($server, $dbuser, $dbpass);
+mysql_select_db($database);
 $strSQL = "SELECT * FROM pgcp WHERE id_emp = '$idxx' AND tip_dato = 'D' AND afectado = '0' ORDER BY cod_pptal";
 $rs = mysql_query($strSQL);
 $nr = mysql_num_rows($rs);
@@ -193,7 +193,7 @@ var options = this.form.nn.options;for(var i = 0; i < options.length; i++){var m
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
           <? include('../../config.php');				
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 

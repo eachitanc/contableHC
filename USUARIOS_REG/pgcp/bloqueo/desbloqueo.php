@@ -12,16 +12,16 @@ exit;
    $ingresa=$_GET['id'];   
    //printf("%s",$ingresa);   				
 // cx bd
-   if($connection=new mysqli($server, $dbuser, $dbpass, $database)) 
+   if($connection=mysql_connect($server, $dbuser, $dbpass)) 
 	{
-		
+		mysql_select_db($database);
 	} 
 	else 
 	{
 		die("Error conectandose a la base.");
 	} 
 // saco el id de la empresa
-   $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+   $connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 	    $sqlxx = "select * from fecha";
 	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 	    while($rowxx = mysql_fetch_array($resultadoxx)) 

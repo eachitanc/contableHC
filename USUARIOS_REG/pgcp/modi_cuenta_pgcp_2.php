@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!$_SESSION["login"])
 {
 header("Location: ../login.php");
 exit;
@@ -15,7 +15,6 @@ exit;
 
 
 <style type="text/css">
-<!--
 a {
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 11px;
@@ -56,7 +55,6 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
 </style>
 
 <script language="JavaScript">
-<!--
 var nav4 = window.Event ? true : false;
 function acceptNum(evt){
 // NOTE: Backspace = 8, Enter = 13, '0' = 48, '9' = 57
@@ -106,23 +104,24 @@ function habilitar2(obj) {
 <body>
 <?php 
 include('../config.php');				
-$cxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-$sxx = "select * from fecha";
-$rxx = mysql_db_query($database, $sxx, $cxx);
+global $server, $database, $dbpass,$dbuser,$charset;
+	// Conexion con la base de datos
+	$cx= new mysqli ($server, $dbuser, $dbpass, $database);
 
-while($rowxxx = mysql_fetch_array($rxx)) 
-   {
+$sxx = "select * from fecha";
+$rxx = $cx->query($sxx);
+while($rowxxx = $rxx->fetch_array()){
+   
    
    $idxxx=$rowxxx["id_emp"];
  
    }
-		   mysql_connect($server,$dbuser,$dbpass); 
-		     
 		   $a=$_GET['id'];  
-		   $a1=mysql_query("select * from pgcp where cod_pptal = '$a' and id_emp ='$idxxx'");  
-		   $result = @mysql_query($a1);
-		   while($row = mysql_fetch_array($a1)) 
-		   { 
+       $sql= "select * from pgcp where cod_pptal = '$a' and id_emp ='$idxxx'";
+		   $a1=$cx->query($sql);
+		   //$result = $a1->fetch_array();
+		   while($row = $a1->fetch_array()){
+		   
 			 $nivel = $row["nivel"];
 			 $tip_dato = $row["tip_dato"];
 			 $c = $row["cod_pptal"];
@@ -159,12 +158,11 @@ while($rowxxx = mysql_fetch_array($rxx))
     <td><div align="center"><span class="Estilo4"><strong>MODIFICA  DATOS CUENTA DEL PLAN GENERAL DE CONTABILIDAD PUBLICA <br />
       P.G.C.P</strong></span><br />
       <?php 
-	  include('../config.php');				
-$cxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sxx = "select * from fecha";
-$rxx = mysql_db_query($database, $sxx, $cxx);
+$rxx = $cx->query($sxx);
 
-while($rowxxx = mysql_fetch_array($rxx)) 
+while($rowxxx = $rxx->fetch_array())
+   
    {
    
    $idxxx=$rowxxx["id_emp"];
@@ -320,7 +318,7 @@ while($rowxxx = mysql_fetch_array($rxx))
               </div></td>
               <td colspan="2" bgcolor="#EBEBE4" class="Estilo4"><div id="div16" style="padding-left:30px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                 <div align="left">
-                  <input name="nom_banco1" type="text" class="Estilo7" id="nom_banco1" tabindex="0" onkeyup="empresa.nom_banco1.value=empresa.nom_banco1.value.toUpperCase();" value="<?php printf("%s", $c3); ?>" size="50" maxlength="200" <?php print($ver_banco); ?>/>
+                  <input name="nom_banco1" type="text" class="Estilo7" id="nom_banco1" tabindex="0" onkeyup="empresa.nom_banco1.value=empresa.nom_banco1.value.toUpperCase();" value="<?php echo  $c3; ?>" size="50" maxlength="200" <?php echo $ver_banco; ?>/>
                 </div>
               </div></td>
             </tr>
@@ -330,7 +328,7 @@ while($rowxxx = mysql_fetch_array($rxx))
               </div></td>
               <td colspan="2" bgcolor="#EBEBE4" class="Estilo4"><div id="div17" style="padding-left:30px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                 <div align="left">
-                  <input name="nom_banco2" type="text" class="Estilo7" id="nom_banco2" tabindex="0" onkeyup="empresa.nom_banco2.value=empresa.nom_banco2.value.toUpperCase();" value="<?php printf("%s", $c4); ?>" size="50" maxlength="200" <?php print($ver_banco); ?>/>
+                  <input name="nom_banco2" type="text" class="Estilo7" id="nom_banco2" tabindex="0" onkeyup="empresa.nom_banco2.value=empresa.nom_banco2.value.toUpperCase();" value="<?php echo $c4; ?>" size="50" maxlength="200" <?php echo $ver_banco; ?>/>
                 </div>
               </div></td>
             </tr>
@@ -506,10 +504,10 @@ while($rowxxx = mysql_fetch_array($rxx))
                    <option value=""></option>
                    	<?php
 						$sq2 ="select * from fut_exedentes order by cod_fut asc";
-						$rs2 = mysql_db_query($database,$sq2,$cxx);
-						$fi2 = mysql_num_rows($rs2);
+						$rs2 = $cx->query($sq2);
+						$fi2 = $rs2->num_rows;
 						for ($i=0; $i<$fi2; $i++) {
-							$r = mysql_fetch_array($rs2);
+							$r = $rs2->fetch_array();
 							if ($c11 == $r["cod_fut"])
 							echo "<option value=\"".$r["cod_fut"]."\" selected>".$r["cod_fut"]." - ".$r["nom_fut"]."</b></OPTION>";
 							else
@@ -767,14 +765,11 @@ while($rowxxx = mysql_fetch_array($rxx))
 				 			 ?>
                   <select name="ent_recip" class="Estilo4" id="ent_recip" style="width: 400px;" >
                     <?
-include('config.php');
-$db = new mysqli($server, $dbuser, $dbpass, $database);
-
 $strSQL = "SELECT * FROM terceros_cgr_ing ORDER BY cod_ter";
-$rs = mysql_query($strSQL);
-$nr = mysql_num_rows($rs);
+$rs = $cx->query($strSQL);
+$nr = $rs->num_rows;
 for ($i=0; $i<$nr; $i++) {
-	$r = mysql_fetch_array($rs);
+	$r = $rs->fetch_array();
 	echo "<OPTION VALUE=\"".$r["cod_ter"]."\">".$r["cod_ter"]." - ".$r["nom_ter"]."</OPTION>";
 }
 
@@ -787,14 +782,11 @@ for ($i=0; $i<$nr; $i++) {
 					  ?>
                   <select name="ent_recip" class="Estilo4" id="ent_recip" style="width: 400px;" disabled="disabled" >
                     <?
-include('config.php');
-$db = new mysqli($server, $dbuser, $dbpass, $database);
-
 $strSQL = "SELECT * FROM terceros_cgr_ing ORDER BY cod_ter";
-$rs = mysql_query($strSQL);
-$nr = mysql_num_rows($rs);
+$rs = $cx->query($strSQL);
+$nr =$rs->num_rows;
 for ($i=0; $i<$nr; $i++) {
-	$r = mysql_fetch_array($rs);
+	$r = $rs->fetch_array();
 	echo "<OPTION VALUE=\"".$r["cod_ter"]."\">".$r["cod_ter"]." - ".$r["nom_ter"]."</OPTION>";
 }
 
@@ -831,6 +823,6 @@ for ($i=0; $i<$nr; $i++) {
 </table>
 </body>
 </html>
-<?
+<?php
 }
 ?>

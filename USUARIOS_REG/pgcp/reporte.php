@@ -53,7 +53,7 @@ header("Expires: 0");
 </tr>
 <?php
    include('../config.php');				
-   $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+   $cx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
    $sq2="select * from pgcp order by cod_pptal asc";
    $rs = mysql_db_query($database, $sq2, $cx);
 	while($rw = mysql_fetch_array($rs))
