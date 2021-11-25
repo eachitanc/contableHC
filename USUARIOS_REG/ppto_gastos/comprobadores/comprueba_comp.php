@@ -1,4 +1,4 @@
-<?
+<?php
 header("Cache-Control: no-store, no-cache, must-revalidate"); 
 	$codigo_pptal =$_REQUEST['cod'];
 	$fecha_corte =$_REQUEST['fecha'];

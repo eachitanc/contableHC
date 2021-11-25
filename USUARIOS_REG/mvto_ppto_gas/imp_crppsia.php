@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -67,7 +67,7 @@ function validar(e) {
     return patron.test(te);  
 }  
 </script>
-<?
+<?php
 class EnLetras
 {
   var $Void = "";
@@ -294,7 +294,7 @@ function Parte($x)
 ?>
 </head>
 <body>
-<?
+<?php
 $id=$_GET['id2'];
 
 //printf("%s",$id);
@@ -336,10 +336,10 @@ if ($crtl_doc == 'SI')
 			
 
 $sqlxx = "select * from crpp where id_auto_crpp ='$id' and id_emp='$id_emp' and vr_digitado >0 order by id desc";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
 $total=0;
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   
   $id_manu_crpp=$rowxx["id_manu_crpp"];
@@ -372,7 +372,7 @@ $rw3 =mysql_fetch_array($re3);
     <td width="370" bgcolor="#FFFFFF">
 	<div style="padding-left:5px; padding-top:20px; padding-right:5px; padding-bottom:20px;">
 	<div align="center" class="Estilo18">
-	  <h4> CERTIFICADO DE REGISTRO PRESUPUESTAL <br> <? if ($logo =='2') printf("No. %s",$id_manu_crpp); ?></h4> 
+	  <h4> CERTIFICADO DE REGISTRO PRESUPUESTAL <br> <?php if ($logo =='2') printf("No. %s",$id_manu_crpp); ?></h4> 
 	</div>
 	</div>	</td>
     <td width="200" bgcolor="#FFFFFF">
@@ -392,14 +392,14 @@ $rw3 =mysql_fetch_array($re3);
       <div align="right">Fecha : </div>
     </div></td>
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="left"><? printf("%s",$fecha_crpp); ?> </div>
+      <div align="left"><?php printf("%s",$fecha_crpp); ?> </div>
     </div></td>
     </tr>
   <tr>
     <td bgcolor="#F5F5F5"><div class="Estilo16" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="right">A Favor de  : </div>
     </div></td>
-    <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;"> <? printf("%s",$tercero); ?> </div></td>
+    <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;"> <?php printf("%s",$tercero); ?> </div></td>
     </tr>
   <tr>
     <td bgcolor="#F5F5F5"><div class="Estilo16" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -410,7 +410,7 @@ $rw3 =mysql_fetch_array($re3);
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
 
           <div align="left">
-          <?
+          <?php
 
 $sql4 = "select * from terceros_naturales where id='$ter_nat' and id_emp='$id_emp' ";
 $resultado4 = mysql_db_query($database, $sql4, $connectionxx);
@@ -442,7 +442,7 @@ printf("%s",$num_id2);
         <div align="right" class="Estilo16">Por Valor de : </div>
     </div></td>
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-        <? 	
+        <?php 	
 	$vr=$total;
 	$num=$vr;
  $V=new EnLetras();
@@ -455,7 +455,7 @@ printf("%s",$num_id2);
       <div align="right" class="Estilo16">No. de Disponibilidad Afectada : </div>
     </div></td>
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-<? printf("%s",$id_manu_cdpp); ?>
+<?php printf("%s",$id_manu_cdpp); ?>
     </div></td>
   </tr>
   <tr>
@@ -463,7 +463,7 @@ printf("%s",$num_id2);
         <div align="right">Detalle del Registro  : </div>
     </div></td>
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-       <? printf("%s",$detalle_crpp); ?>
+       <?php printf("%s",$detalle_crpp); ?>
     </div></td>
   </tr>
 </table>
@@ -478,7 +478,7 @@ printf("%s",$num_id2);
   </tr>
 </table><br>
 <div align="center">
-  <?
+  <?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from crpp where id_emp = '$id_emp' and id_auto_crpp ='$id' and vr_digitado != '0'  order by id asc ";
 $re = mysql_db_query($database, $sq, $cx);
@@ -500,14 +500,14 @@ printf("
 ");
 
 $nuevo_total=0;
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
    
 $cta = $rw["cuenta"];
 
 $sq2 = "select proc_rec, nom_rubro from car_ppto_gas  where id_emp = '$id_emp' and cod_pptal ='$cta' order by id asc ";
-$re2 = mysql_db_query($database, $sq2, $cx);   
-while($rw2 = mysql_fetch_array($re2))
+$re2 = $cx->query($sq2);   
+while($rw2 = $re2->fetch_assoc())
 {
 
 	$fte = $rw2["proc_rec"];  
@@ -595,8 +595,8 @@ printf("
       <div align="center"><img src="../simbolos/fuentes/firma.png" width="200" /></div>
       <div align="center">______________________________<br>
           
-          <span class="Estilo16"><? printf("%s",$nom_jefe_ppto); ?><br></span><span class="Estilo14">
-              <? printf("%s",$cargo_ppto); ?></span></div>
+          <span class="Estilo16"><?php printf("%s",$nom_jefe_ppto); ?><br></span><span class="Estilo14">
+              <?php printf("%s",$cargo_ppto); ?></span></div>
       <br></td>
   </tr>
 </table>
@@ -627,8 +627,8 @@ printf("
       <div align="center" class="Estilo14">
         <!--input name="preparo2" type="text" class="Estilo4" id="preparo2" value="" size="30" onKeyUp="a.preparo2.value=a.preparo2.value.toUpperCase();" style="border:0px"-->
         <div   <?php echo $firmas; ?> >
-        <? printf("%s",$nom_jefe_ppto); ?><br> 
-		   <? printf("%s",$cargo_ppto); ?>
+        <?php printf("%s",$nom_jefe_ppto); ?><br> 
+		   <?php printf("%s",$cargo_ppto); ?>
          </div>
       </div>
     </div></td>
@@ -636,8 +636,8 @@ printf("
       <div align="center" class="Estilo14">
         <!--input name="preparo3" type="text" class="Estilo4" id="preparo3" value="" size="30" onKeyUp="a.preparo3.value=a.preparo3.value.toUpperCase();" style="border:0px"-->
         <div   <?php echo $firmas; ?> >
-        <? printf("%s",$nom_jefe_ppto); ?><br> 
-		  <? printf("%s",$cargo_ppto); ?>
+        <?php printf("%s",$nom_jefe_ppto); ?><br> 
+		  <?php printf("%s",$cargo_ppto); ?>
         </div>
       </div>
     </div></td>
@@ -647,7 +647,7 @@ printf("
 <table width="800" border="0" align="center">
   <tr>
     <td colspan="3"><div align="center">
-      <?
+      <?php
 $consecutivo = $id_manu_crpp; 
 
  include_once("../class.barcode.php");
@@ -667,6 +667,6 @@ $barcode->drawBarCode();
 </form>
 </body>
 </html>
-<?
+<?php
 }
 ?>

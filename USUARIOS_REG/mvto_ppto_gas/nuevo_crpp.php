@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -574,9 +574,9 @@ $id_aux = $id;
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -592,7 +592,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 <div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;"> <span class="Estilo4"><strong>CERTIFICADO DE REGISTRO PRESUPUESTAL<BR />
   ...::: CRPP :::...
 </strong></span></div>
-<?
+<?php
 
 new mysqli($server, $dbuser, $dbpass, $database);
 $resulta = mysql_query("SHOW TABLE STATUS FROM $database LIKE 'crpp'");
@@ -642,7 +642,7 @@ function ocultarVentana()
 	?>
     <td colspan="2"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="left">
-        <input name="fecha_crpp" type="text" class="required Estilo4" id="fecha_crpp" value="<? printf("%s",$fecha_cdpp);?>" size="12" onchange="consecutivo2();" />
+        <input name="fecha_crpp" type="text" class="required Estilo4" id="fecha_crpp" value="<?php printf("%s",$fecha_cdpp);?>" size="12" onchange="consecutivo2();" />
         <span class="Estilo9">:::</span>
         <input name="button2" type="button" class="Estilo4" onclick="displayCalendar(document.forms[0].fecha_crpp,'yyyy/mm/dd',this)" value="Seleccione Fecha" />
       </div>
@@ -655,7 +655,7 @@ function ocultarVentana()
     </div></td>
     <td><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
       <div align="center" class="Estilo12">
-        <div align="center"><? printf("%s",$consecutivo);?></div>
+        <div align="center"><?php printf("%s",$consecutivo);?></div>
       </div>
     </div></td>
     <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
@@ -696,7 +696,7 @@ function ocultarVentana()
     </td>
   </tr>
   <tr>
-  <?
+  <?php
 	$sql0 = "select distinct(consecutivo), fecha_reg, ter_nat, ter_jur, tercero, des, cdpp from cdpp where id_emp ='$id_emp' and consecutivo = '$id' ";
 	$resultado0 = mysql_db_query($database, $sql0, $connectionxx);
 	
@@ -744,12 +744,12 @@ function ocultarVentana()
     </div></td>
     <td><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center" class="Estilo4">
-        <div align="left">CDPP<? printf("%s",$cdpp);?>
-          <input name="id_manu_cdpp" type="hidden" class="Estilo4" id="id_manu_cdpp" value="<? printf("%s",$cdpp);?>"/>
+        <div align="left">CDPP<?php printf("%s",$cdpp);?>
+          <input name="id_manu_cdpp" type="hidden" class="Estilo4" id="id_manu_cdpp" value="<?php printf("%s",$cdpp);?>"/>
         </div>
       </div>
     </div></td>
-    <td><input name="id_auto_cdpp" type="hidden" class="Estilo4" id="id_auto_cdpp" value="<? printf("%s",$id);?>"/></td>
+    <td><input name="id_auto_cdpp" type="hidden" class="Estilo4" id="id_auto_cdpp" value="<?php printf("%s",$id);?>"/></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -760,8 +760,8 @@ function ocultarVentana()
     </div></td>
     <td><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center" class="Estilo4">
-        <div align="left"><? printf("%s",$fecha_reg);?>
-          <input name="fecha_cdpp" type="hidden" class="Estilo4" id="fecha_cdpp" value="<? printf("%s",$fecha_reg);?>"/>
+        <div align="left"><?php printf("%s",$fecha_reg);?>
+          <input name="fecha_cdpp" type="hidden" class="Estilo4" id="fecha_cdpp" value="<?php printf("%s",$fecha_reg);?>"/>
         </div>
       </div>
     </div></td>
@@ -776,8 +776,8 @@ function ocultarVentana()
     </div></td>
     <td colspan="3"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
         <div align="center" class="Estilo4">
-          <div align="left"><? printf("%s",$des);?>
-              <input name="des_cdpp" type="hidden" class="Estilo4" id="des_cdpp" value="<? printf("%s",$des);?>"/>
+          <div align="left"><?php printf("%s",$des);?>
+              <input name="des_cdpp" type="hidden" class="Estilo4" id="des_cdpp" value="<?php printf("%s",$des);?>"/>
           </div>
         </div>
     </div></td>
@@ -792,7 +792,7 @@ function ocultarVentana()
   </tr>
 </table>
 <br />
-<?
+<?php
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select sum(valor) as valor, cuenta,consecutivo from cdpp where id_emp = '$id_emp' and consecutivo ='$id' group by cuenta ";
 $re = mysql_db_query($database, $sq, $cx);
@@ -820,7 +820,7 @@ $contador2=0;
 $total=0;
 $vr1x=0;
 $vr2x=0;
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
 
 		//***** CONSULTA SITUACION DE FONDOS   
@@ -922,7 +922,7 @@ printf("
 //--------	
 
 	?>
-	<input name="contador" type="hidden" class="Estilo4" id="contador" value="<? printf("%s",$contador);?>"/>
+	<input name="contador" type="hidden" class="Estilo4" id="contador" value="<?php printf("%s",$contador);?>"/>
 	
 <script>
 
@@ -930,7 +930,7 @@ var contad = "<?php echo $contador; ?>";
 </script>
 	
 	
-	<input name="total" type="hidden" class="Estilo4" id="total" value="<? printf("%s",$total);?>"/>
+	<input name="total" type="hidden" class="Estilo4" id="total" value="<?php printf("%s",$total);?>"/>
 <br />
 <table width="800" border="1" align="center" class="bordepunteado1">
   <tr>
@@ -1051,7 +1051,7 @@ var contad = "<?php echo $contador; ?>";
         <div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:150px'>
           <div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
             <div align="center">
-              <?
+              <?php
 printf("
 
 <center class='Estilo9'>
@@ -1073,29 +1073,29 @@ printf("
     <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../config.php');				
+          <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
 
-	    <?PHP echo $email?>	</div>
+	    <?php echo $email?>	</div>
 	</div>	</td>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -1133,6 +1133,6 @@ echo $ano;
 
 
 
-<?
+<?php
 }
 ?>

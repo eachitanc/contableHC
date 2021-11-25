@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -78,17 +78,17 @@ $consecutivo=$_GET['consecutivo'];
 // saco el id de la empresa
    $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	    $sqlxx = "select * from fecha";
-	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-	    while($rowxx = mysql_fetch_array($resultadoxx)) 
+	    $resultadoxx = $connectionxx->query($sqlxx);
+	    while($rowxx = $resultadoxx->fetch_assoc()) 
   	    {
      	 $idxx=$rowxx["id_emp"];
     	}
 		
 
 $sqlxxa = "select * from reip_ing where id_emp ='$idxx' and consecutivo ='$consecutivo'";
-$resultadoxxa = mysql_db_query($database, $sqlxxa, $connectionxx);
+$resultadoxxa =$connectionxx->query($sqlxxa);
 
-while($rowxxa = mysql_fetch_array($resultadoxxa)) 
+while($rowxxa = $resultadoxxa->fetch_assoc()) 
 {
   $id_manu_reip=$rowxxa["id_manu_reip"];
 }
@@ -96,7 +96,7 @@ while($rowxxa = mysql_fetch_array($resultadoxxa))
 
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from reip_ing where id_emp = '$idxx' and consecutivo='$consecutivo' and valor > '0' order by cuenta asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -131,7 +131,7 @@ printf("
 
 ");
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
 printf("
 <span class='Estilo4'>
@@ -174,17 +174,17 @@ $rw["id"] , $rw["cuenta"], $rw["consecutivo"], $rw["ter_nat"], $rw["ter_jur"], $
    }
 
 ?>
-  <?
+  <?php
 printf("
 </table>
 </center>
 ");
 ?>
-  <?
+  <?php
    
 	    $sqlxx = "select * from reip_ing where consecutivo ='$consecutivo'";
-	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-	    while($rowxx = mysql_fetch_array($resultadoxx)) 
+	    $resultadoxx = $connectionxx->query($sqlxx);
+	    while($rowxx = $resultadoxx->fetch_assoc()) 
   	    {
      	 $idxx=$rowxx["id_emp"];
 		 
@@ -229,15 +229,15 @@ printf("
       <div align="center">
         <select name="cuenta" class="Estilo9" id="cuenta" style="width: 400px;">
           <option value=""></option>
-          <?
+          <?php
 include('../config.php');
 $db = new mysqli($server, $dbuser, $dbpass, $database);
 
 $strSQL = "SELECT * FROM car_ppto_ing WHERE id_emp = '$idxx' ORDER BY cod_pptal";
-$rs = mysql_query($strSQL);
+$rs = $db->query($strSQL);
 $nr = mysql_num_rows($rs);
 for ($i=0; $i<$nr; $i++) {
-	$r = mysql_fetch_array($rs);
+	$r = $rs->fetch_assoc();
 	echo "<OPTION VALUE=\"".$r["cod_pptal"]."\">".$r["cod_pptal"]." - ".$r["nom_rubro"]."</b></OPTION>";
 }
 ?>
@@ -252,14 +252,14 @@ for ($i=0; $i<$nr; $i++) {
   </tr>
   <tr>
     <td colspan="4" bgcolor="#FFFFFF">
-	<? $conse=substr($consecutivo,4,10); $id_manu=substr($id_manu_reip,4,10); ?>
+	<?php $conse=substr($consecutivo,4,10); $id_manu=substr($id_manu_reip,4,10); ?>
 	
-	<input name="id_manu_reip" type="hidden" value="<? printf("%s",$id_manu); ?>"/>
-	<input name="consecutivo" type="hidden" value="<? printf("%s",$conse); ?>"/>
-	<input name="fecha_reg" type="hidden" value="<? printf("%s",$fecha_reg); ?>"/>
-	<input name="ter_nat" type="hidden" value="<? printf("%s",$ter_nat); ?>"/>
-	<input name="ter_jur" type="hidden" value="<? printf("%s",$ter_jur); ?>"/>
-	<input name="des" type="hidden" value="<? printf("%s",$des); ?>"/>
+	<input name="id_manu_reip" type="hidden" value="<?php printf("%s",$id_manu); ?>"/>
+	<input name="consecutivo" type="hidden" value="<?php printf("%s",$conse); ?>"/>
+	<input name="fecha_reg" type="hidden" value="<?php printf("%s",$fecha_reg); ?>"/>
+	<input name="ter_nat" type="hidden" value="<?php printf("%s",$ter_nat); ?>"/>
+	<input name="ter_jur" type="hidden" value="<?php printf("%s",$ter_jur); ?>"/>
+	<input name="des" type="hidden" value="<?php printf("%s",$des); ?>"/>
 
 	</td>
   </tr>
@@ -281,6 +281,6 @@ for ($i=0; $i<$nr; $i++) {
 </body>
 </html>
 
-<?
+<?php
 }
 ?>

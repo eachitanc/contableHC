@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -44,14 +44,14 @@ a:link {
 table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-width: 2px; border-color: #004080; }
 </style>
 
-<?
+<?php
 
 include("../config.php");
 
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+$resultadoxx = $connectionxx->query($sqlxx);
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 $idxx=$rowxx["id_emp"];
 }
@@ -100,9 +100,9 @@ $consecutivo
 //*****************
 // consulta ppto
 $sql = "select * from car_ppto_ing where id_emp ='$idxx' and cod_pptal ='$new_cuenta'";
-$resultado = mysql_db_query($database, $sql, $connectionxx);
+$resultado = $connectionxx->query($sql);;
 
-while($row = mysql_fetch_array($resultado)) 
+while($row = $resultado->fetch_assoc()) 
 {
  
   $definitivo=$row["definitivo"];
@@ -140,9 +140,9 @@ else
 	//***********
 
 	$sqla = "select * from reip_ing where id_emp ='$idxx' and id ='$id'";
-	$resultadoa = mysql_db_query($database, $sqla, $connectionxx);
+	$resultadoa = $connectionxx->query($sqla);
 
-	while($rowa = mysql_fetch_array($resultadoa)) 
+	while($rowa = $resultadoa->fetch_assoc()) 
 	{
 	  $saldo=$rowa["saldo"];
 	  $valor=$rowa["valor"];
@@ -193,6 +193,6 @@ else
 
 
 
-<?
+<?php
 }
 ?>

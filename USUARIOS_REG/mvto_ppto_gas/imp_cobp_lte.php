@@ -1,7 +1,7 @@
-<?
+<?php
 session_start();
 /*
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -299,7 +299,7 @@ function validar(e) {
 </script>
 </head>
 <body>
-<?
+<?php
 
 //printf("%s",$id);
 include('../config.php');	
@@ -320,10 +320,10 @@ while($row25 = mysql_fetch_array($re25))
 	
 	
 $sqlxx = "select * from cobp where id_auto_cobp ='$row25[id_auto_cobp]'";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
 $total=0;
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   
   $id_manu_cobp=$rowxx["id_manu_cobp"];
@@ -379,7 +379,7 @@ if ($crtl_doc == 'NO') $ver = "style='display:none'";
     <td width="348" bgcolor="#FFFFFF">
 	<div style="padding-left:5px; padding-top:20px; padding-right:5px; padding-bottom:20px;">
 	<div align="center" class="Estilo16">
-	  <h4>OBLIGACION PRESUPUESTAL <br> <? if ($logo =='2') printf("No. %s",$id_manu_cobp); ?></h4> 
+	  <h4>OBLIGACION PRESUPUESTAL <br> <?php if ($logo =='2') printf("No. %s",$id_manu_cobp); ?></h4> 
 	</div>
 	</div>	</td>
     <td width="217" bgcolor="#FFFFFF">
@@ -397,14 +397,14 @@ if ($crtl_doc == 'NO') $ver = "style='display:none'";
       <div align="right">Fecha : </div>
     </div></td>
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="left"><? printf("%s",$fecha_cobp); ?> </div>
+      <div align="left"><?php printf("%s",$fecha_cobp); ?> </div>
     </div></td>
     </tr>
   <tr>
     <td bgcolor="#F5F5F5"><div class="Estilo16" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="right">A Favor de  : </div>
     </div></td>
-    <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;"> <input name="tercerox" class="Estilo4" size="80" id="tercerox" type="text" value="<? printf("%s",$tercero); ?>" style="border:0px" /></div></td>
+    <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;"> <input name="tercerox" class="Estilo4" size="80" id="tercerox" type="text" value="<?php printf("%s",$tercero); ?>" style="border:0px" /></div></td>
     </tr>
   <tr>
     <td bgcolor="#F5F5F5"><div class="Estilo16" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -415,7 +415,7 @@ if ($crtl_doc == 'NO') $ver = "style='display:none'";
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
 
           <div align="left">
-              <? printf("%s",$ccnit); ?>      
+              <?php printf("%s",$ccnit); ?>      
 
 </div>
     </div></td>
@@ -425,7 +425,7 @@ if ($crtl_doc == 'NO') $ver = "style='display:none'";
       <div align="right">Concepto  : </div>
     </div></td>
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-<? printf("%s",$des_cobp); ?>
+<?php printf("%s",$des_cobp); ?>
     </div></td>
     </tr>
   
@@ -434,7 +434,7 @@ if ($crtl_doc == 'NO') $ver = "style='display:none'";
         <div align="right" class="Estilo16">Por Valor de : </div>
     </div></td>
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-        <? 
+        <?php 
 	
 	
 	$vr=$total;
@@ -449,7 +449,7 @@ if ($crtl_doc == 'NO') $ver = "style='display:none'";
       <div align="right" class="Estilo16">No. de Registro que Afecta : </div>
     </div></td>
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-<? printf("%s",$id_manu_crpp); ?>
+<?php printf("%s",$id_manu_crpp); ?>
     </div></td>
   </tr>
 </table>
@@ -464,7 +464,7 @@ if ($crtl_doc == 'NO') $ver = "style='display:none'";
   </tr>
 </table><br>
 <div align="center">
-  <?
+  <?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cobp where id_emp = '$id_emp' and id_auto_cobp ='$row25[id_auto_cobp]' order by id asc ";
 $re = mysql_db_query($database, $sq, $cx);
@@ -486,14 +486,14 @@ printf("
 ");
 
 $nuevo_total=0;
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
    
 $cta = $rw["cuenta"];
 
 $sq2 = "select proc_rec, nom_rubro from car_ppto_gas  where id_emp = '$id_emp' and cod_pptal ='$cta' order by id asc ";
-$re2 = mysql_db_query($database, $sq2, $cx);   
-while($rw2 = mysql_fetch_array($re2))
+$re2 = $cx->query($sq2);   
+while($rw2 = $re2->fetch_assoc())
 {
 
 	$fte = $rw2["proc_rec"];  
@@ -571,9 +571,9 @@ printf("
       <div align="center"><img src="../simbolos/fuentes/firma.png" width="200" /></div>
       <div align="center">______________________________<br>
           
-          <span class="Estilo16"><? printf("%s",$nom_jefe_ppto); ?><br>
+          <span class="Estilo16"><?php printf("%s",$nom_jefe_ppto); ?><br>
           </span><span class="Estilo14">
-              <? printf("%s",$cargo_ppto); ?></span></div>
+              <?php printf("%s",$cargo_ppto); ?></span></div>
       <br></td>
   </tr>
 </table>
@@ -604,8 +604,8 @@ printf("
       <div align="center" class="Estilo4">
         <!--input name="preparo2" type="text" class="Estilo4" id="preparo2" value="" size="30" onKeyUp="a.preparo2.value=a.preparo2.value.toUpperCase();" style="border:0px"-->
           <div   <?php echo $firmas; ?> >
-       <? printf("%s",$nom_jefe_ppto); ?><br> 
-		    <? printf("%s",$cargo_ppto); ?>
+       <?php printf("%s",$nom_jefe_ppto); ?><br> 
+		    <?php printf("%s",$cargo_ppto); ?>
           </div>
       </div>
     </div></td>
@@ -613,8 +613,8 @@ printf("
       <div align="center" class="Estilo4">
         <!--input name="preparo3" type="text" class="Estilo4" id="preparo3" value="" size="30" onKeyUp="a.preparo3.value=a.preparo3.value.toUpperCase();" style="border:0px"-->
           <div   <?php echo $firmas; ?> >
-        <? printf("%s",$nom_jefe_ppto); ?><br> 
-		     <? printf("%s",$cargo_ppto); ?>
+        <?php printf("%s",$nom_jefe_ppto); ?><br> 
+		     <?php printf("%s",$cargo_ppto); ?>
           </div>
       </div>
     </div></td>
@@ -624,7 +624,7 @@ printf("
 <table width="800" border="0" align="center">
   <tr>
     <td colspan="3"><div align="center">
-      <?
+      <?php
 $consecutivo = $id_manu_cobp;
 
  include_once("../class.barcode.php");
@@ -645,7 +645,7 @@ $barcode->drawBarCode();
 </table>
 </form>
 <h1 class='SaltoDePagina'> </h1>
-<?
+<?php
 }
 ?>
 </body>

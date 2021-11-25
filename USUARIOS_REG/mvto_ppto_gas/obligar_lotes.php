@@ -1,6 +1,6 @@
-<? set_time_limit(1200);
+<?php set_time_limit(1200);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;

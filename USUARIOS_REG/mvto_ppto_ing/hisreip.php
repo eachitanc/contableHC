@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -91,13 +91,13 @@ window.close(); //Cierra la hija.
 </form>
 </center>
 
-<?
+<?php
 $var=$_GET['consecutivo'];
 
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from reip_ing where consecutivo = '$var' order by fecha_reg asc";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
 
 printf("
@@ -157,7 +157,7 @@ printf("
 </tr>
 ");
 $tot_cdpp=0;
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 
 $id_manu_cdpp=$rowxx["consecutivo"];
@@ -308,9 +308,9 @@ printf("
 
 
 $sqlxx = "select * from recaudo_roit where id_reip = '$id_manu_cdpp'";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 $tot_crpp=0;
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 	$id_auto_crpp=$rowxx["id_reip"];
 	$id_manu_crpp=$rowxx["id_manu_roit"];
@@ -459,7 +459,7 @@ if($vr_crpp < '0')
 			//****** saldo por registrar 
 			
 $sqlxx = "select sum(valor) as total, sum(vr_recaudado) as total2, cuenta,valor from reip_ing where consecutivo = '$var' group by cuenta";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
 printf("
 <tr bgcolor='#DCE9E5'>
@@ -496,7 +496,7 @@ printf("
 ");
 
 $tot_x_reg=0;
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 
 $cta_cdpp=$rowxx["cuenta"]; 
@@ -514,7 +514,7 @@ while($rowxxq = mysql_fetch_array($resultadoxxq))
 		{
 		
 			$sql = "select * from reip_ing where consecutivo = '$var' and cuenta='$cta_cdpp' and vr_recaudado = '$vr_crppq'";
-			$result = mysql_query($sql, $connectionxx) or die(mysql_error());
+			$result = $connectionxx->query($sql);
 			if (mysql_num_rows($result) == 0)
 			{
 			  	$vr_crppq=$vr_crppq*-1;
@@ -653,6 +653,6 @@ printf("</center></table>");
 </center>
 </body>
 </html>
-<?
+<?php
 }
 ?>

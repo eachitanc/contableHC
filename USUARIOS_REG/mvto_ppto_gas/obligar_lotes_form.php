@@ -1,6 +1,6 @@
-<? set_time_limit(1200);
+<?php set_time_limit(1200);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -224,7 +224,7 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 		// Consulto la tabla de pagos por sumar el valor total pagado del cada rubro
 		$sql2 = "select max(id_manu_cobp) from cobp where fecha_cobp='$fecha'";
 		$res = mysql_db_query($database,$sql2,$cx);
-		$row = mysql_fetch_array($res);
+		$row = $res->fetch_assoc();
 		$dato = $row["max(id_manu_cobp)"];
 		$concec= substr($dato,4,20);
 		if ($concec)

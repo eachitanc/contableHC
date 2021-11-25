@@ -1,4 +1,4 @@
-<?
+<?php
 	header("Cache-Control: no-store, no-cache, must-revalidate"); 
 	$codigo_evento =$_GET['cod'];
 	include('../../config.php');		

@@ -1,10 +1,10 @@
-<?
+<?php
 header("Cache-Control: no-store, no-cache, must-revalidate"); 
 	
 	$codigo_pptal =$_REQUEST['cod'];
 	
 	include('../../../config.php');		
-	$cx = mysql_connect("$server","$dbuser","$dbpass")or die ("Conexion no Exitosa");
+	$cx = new mysqli($server, $dbuser, $dbpass, $database)or die ("Conexion no Exitosa");
 	/* 
 	
 	$val = mysql_query("select definitivo from car_ppto_gas where cod_pptal ='$codigo_pptal'", $cx);

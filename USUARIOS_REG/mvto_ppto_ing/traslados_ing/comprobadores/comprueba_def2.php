@@ -1,11 +1,11 @@
-<?
+<?php
 header("Cache-Control: no-store, no-cache, must-revalidate"); 
 	// Recibo variables que llegan del cliente
 	$codigo_pptal =$_REQUEST['cuenta'];
 	$id =$_REQUEST['id'];
 	
 	include('../../../config.php');		
-	$cx = mysql_connect("$server","$dbuser","$dbpass")or die ("Conexion no Exitosa");
+	$cx = new mysqli($server, $dbuser, $dbpass, $database)or die ("Conexion no Exitosa");
 	//Obtengo el valor definitivo del coidgo presupuestal seleccionado por el usuario
 				$query3 = "SELECT ppto_aprob FROM car_ppto_ing where cod_pptal ='$codigo_pptal'"; 
 				$resp3 = mysql_db_query($database,$query3,$cx);

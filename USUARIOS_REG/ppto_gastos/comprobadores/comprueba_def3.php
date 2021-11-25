@@ -1,4 +1,4 @@
-<?
+<?php
 header("Cache-Control: no-store, no-cache, must-revalidate"); 
 	// Recibo variables que llegan del cliente
 	$codigo_pptal =$_REQUEST['cuenta'];

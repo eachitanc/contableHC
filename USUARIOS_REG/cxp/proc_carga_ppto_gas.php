@@ -80,6 +80,7 @@ if (!isset($_SESSION["login"])) {
 			$longitud = strlen($cadena);
 			printf("<center class='Estilo4'><B>ANALISIS DE LOS DATOS INGRESADOS POR EL USUARIO</B><BR><br>
 	        Codigo presupuestal = %s", $cadena);
+			$mayor_detalle = '';
 			$connection = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 			switch ($longitud) {
 

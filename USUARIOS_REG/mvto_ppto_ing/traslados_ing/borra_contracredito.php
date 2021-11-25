@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -27,7 +27,7 @@ exit;
 </style>
 <title>CONTAFACIL</title><body>
 
-<? 
+<?php 
 /*
 include('config.php');
 
@@ -43,9 +43,9 @@ while($rx = mysql_fetch_array($r))
 
 $id_cuenta=$_GET['borrar'];
 $sqlxx = "select * from adi_ppto_ing where id ='$id_cuenta' and id_emp='$idxx' ";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $cod_pptal=$rowxx["cod_pptal"];
 }
@@ -62,7 +62,7 @@ while($rx2 = mysql_fetch_array($r2))
 */
 ?>
 
-<? 
+<?php 
 /*
 if ($pac == 'NO')
 {
@@ -74,7 +74,7 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $cx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 
 $fecha_s=$rowxx["ano"];
@@ -94,7 +94,7 @@ if ($mes_a <> $mes_s )
 	alert ("La fecha de sesi�n no coincide con la fecha del registro a eliminar... Primero cambie la fecha de sesi�n");
 	history.back(1)
 	</script>
-	<?
+	<?php
 }
 ?>
 <form action="confirma_borra_contracredito.php" method="POST" onSubmit="return confirm('Confirme la Accion')">
@@ -112,7 +112,7 @@ if ($mes_a <> $mes_s )
  <p class="Estilo3"><a href="contracredito.php" target="_parent" class="Estilo1">CANCELAR</a></p>
 </div>
 </form>
-<?
+<?php
 /*
 }
 else
@@ -134,12 +134,12 @@ else
           </div>
         </div>
       </div>-->
-<?
+<?php
 /*}*/
 ?>
 
 </body>
 </html>
-<?
+<?php
 }
 ?>

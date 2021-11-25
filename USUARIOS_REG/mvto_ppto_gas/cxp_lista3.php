@@ -1,4 +1,4 @@
-<?
+<?php
 set_time_limit(1200);
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Content-type: application/vnd.ms-excel");
@@ -52,9 +52,9 @@ echo "<tr>
 	 </tr>";								
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
    	$sq2 ="select * from cobp where vr_digitado > 0 and liq !='SI' group by id_auto_cobp,cuenta";  //distint
-	$re2 = mysql_db_query($database, $sq2, $cx);
+	$re2 = $cx->query($sq2);
 	$contt =0;
-		while($row2 = mysql_fetch_array($re2))
+		while($row2 = $re2->fetch_assoc())
 		{
 			$sq3 = "select * from ceva where id_auto_cobp = '$row2[id_auto_cobp]' or id_auto_ceva ='$row2[ceva]'";
 			$re3 = mysql_db_query($database, $sq3, $cx);

@@ -1,7 +1,7 @@
-<?
+<?php
 set_time_limit(1800);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -32,7 +32,7 @@ header("Expires: 0");
 </style>
 </head>
 <body>
-<?
+<?php
 $fecha_ini = $_POST['fecha_ini'];
 $fecha_fin = $_POST['fecha_fin'];
 $codigo = $_POST['cod_ini'];
@@ -60,7 +60,7 @@ printf("
 ");
 $sq = "SELECT ter_nat, ter_jur, cuenta, detalle_crpp, id_manu_cdpp,id_auto_cdpp,id_manu_crpp, fecha_crpp,fecha_cdpp, vr_orig, sum(vr_digitado) as vr_digitado, tercero, contrato,n_contrato from crpp where fecha_crpp between '$fecha_ini' and '$fecha_fin' $fil group by cuenta,id_manu_crpp ORDER BY cuenta";
 $re = mysql_db_query($database, $sq, $cx);
-		while($rw = mysql_fetch_array($re))
+		while($rw = $re->fetch_assoc())
 		{
 			$ter_nat=$rw["ter_nat"];
 			$ter_jur=$rw["ter_jur"];

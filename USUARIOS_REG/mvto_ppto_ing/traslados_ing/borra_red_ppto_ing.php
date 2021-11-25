@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -29,7 +29,7 @@ exit;
 
 
 
-<? 
+<?php 
 /*
 if ($pac == 'NO')
 {
@@ -41,7 +41,7 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $cx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 
 $fecha_s=$rowxx["ano"];
@@ -61,7 +61,7 @@ if ($mes_a <> $mes_s )
 	alert ("La fecha de sesi�n no coincide con la fecha del registro a eliminar... Primero cambie la fecha de sesi�n");
 	history.back(1)
 	</script>
-	<?
+	<?php
 }
 ?>
 <form action="confirma_borra_red_ppto_ing.php" method="POST" onSubmit="return confirm('Confirme la Accion')">
@@ -79,7 +79,7 @@ if ($mes_a <> $mes_s )
  <p class="Estilo3"><a href="red_ppto_ing.php" target="_parent" class="Estilo1">CANCELAR</a></p>
 </div>
 </form>
-<?
+<?php
 /*
 }
 else
@@ -101,12 +101,12 @@ else
           </div>
         </div>
       </div>-->
-<?
+<?php
 /*}*/
 ?>
 
 </body>
 </html>
-<?
+<?php
 }
 ?>

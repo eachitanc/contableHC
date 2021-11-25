@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -58,7 +58,7 @@ function validar(e) {
     return patron.test(te);  
 }  
 </script>
-<?
+<?php
 class EnLetras
 {
   var $Void = "";
@@ -285,7 +285,7 @@ function Parte($x)
 ?>
 </head>
 <body>
-<?
+<?php
 $id=$_GET['consecutivo'];
 
 //printf("%s",$id);
@@ -305,9 +305,9 @@ while($rowxx1 = mysql_fetch_array($resultadoxx1))
 			
 
 $sqlxx = "select * from reip_ing where consecutivo ='$id' and id_emp='$id_emp'";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $fecha_recaudo=$rowxx["fecha_reg"];
   $tercero=$rowxx["tercero"];
@@ -361,7 +361,7 @@ $total_cdpp = $total;
     </div></td>
     <td width="147" bgcolor="#F5F5F5" align="center">
 
-	<span class="Estilo22"><? printf("%s",$cdpp); ?> </span>
+	<span class="Estilo22"><?php printf("%s",$cdpp); ?> </span>
 		</td>
   </tr>
   
@@ -369,7 +369,7 @@ $total_cdpp = $total;
     <td colspan="3"><table width="800" border="0">
       <tr>
         <td><div class="Estilo4" style="padding-left:30px; padding-top:40px; padding-right:5px; padding-bottom:20px;">
-          <div align="left"><span class="Estilo16">Fecha de Expedicion :</span> <? printf("%s",$fecha_recaudo); ?> </div>
+          <div align="left"><span class="Estilo16">Fecha de Expedicion :</span> <?php printf("%s",$fecha_recaudo); ?> </div>
         </div></td>
       </tr>
       <tr>
@@ -383,7 +383,7 @@ $total_cdpp = $total;
         </div></td>
       </tr>
       <tr>
-<?
+<?php
 $link=mysql_connect($server,$dbuser,$dbpass);
 $resulta=mysql_query("select SUM(valor) AS TOTAL from reip_ing WHERE consecutivo = '$id' AND id_emp='$id_emp' and valor >='0'",$link) or die (mysql_error());
 $row=mysql_fetch_row($resulta);
@@ -392,8 +392,8 @@ $nuevo_total = $total;
 
 ?>	  
         <td><div style="padding-left:10px; padding-top:10px; padding-right:10px; padding-bottom:10px;">
-          <div align="justify"><span class="Estilo4"> Que para el presupuesto de ingresos de(l/la) <? printf("%s",$raz_soc); ?> de la Vigencia Fiscal <? printf("%s",$vf); ?>, se ha reconocido unos recursos por valor de ($<? printf("%.2f",$nuevo_total); ?>) 
-            <? 
+          <div align="justify"><span class="Estilo4"> Que para el presupuesto de ingresos de(l/la) <?php printf("%s",$raz_soc); ?> de la Vigencia Fiscal <?php printf("%s",$vf); ?>, se ha reconocido unos recursos por valor de ($<?php printf("%.2f",$nuevo_total); ?>) 
+            <?php 
 	
 
 	
@@ -412,10 +412,10 @@ $nuevo_total = $total;
       </tr>
       <tr>
         <td><div align="center">
-          <?
+          <?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from reip_ing where id_emp = '$id_emp' and consecutivo ='$id' and valor >= '0' order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -433,13 +433,13 @@ printf("
 </tr>
 ");
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
    
 $cta = $rw["cuenta"];
 						$sq2 = "select proc_rec from car_ppto_ing  where id_emp = '$id_emp' and cod_pptal ='$cta' order by id asc ";
-						$re2 = mysql_db_query($database, $sq2, $cx);   
-						$rw2 = mysql_fetch_array($re2);
+						$re2 = $cx->query($sq2);   
+						$rw2 = $re2->fetch_assoc();
 						$fte = $rw2["proc_rec"];  
 						if($fte == 'P')
 						{
@@ -497,7 +497,7 @@ printf("
       <tr>
         <td><div style="padding-left:10px; padding-top:80px; padding-right:10px; padding-bottom:30px;">
           <div align="center">______________________________<br><br>
-		  <span class="Estilo16"><? printf("%s",$nom_jefe_ppto); ?><br>
+		  <span class="Estilo16"><?php printf("%s",$nom_jefe_ppto); ?><br>
 JEFE DE PRESUPUESTO</span></div>
         </div></td>
       </tr>
@@ -539,7 +539,7 @@ JEFE DE PRESUPUESTO</span></div>
 <table width="800" border="0" align="center">
   <tr>
     <td width="396"><div align="center">
-      <?
+      <?php
 $consec = $cdpp; 
  include_once("../class.barcode.php");
 $barcode = new BarCode($consec);
@@ -556,6 +556,6 @@ $barcode->drawBarCode();
 </form>
 </body>
 </html>
-<?
+<?php
 }
 ?>

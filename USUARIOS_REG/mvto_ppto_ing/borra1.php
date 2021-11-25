@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -43,13 +43,13 @@ a:link {
 <style type="text/css">
 table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-width: 2px; border-color: #004080; }
 </style>
-<?
+<?php
 include("../config.php");
 
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+$resultadoxx = $connectionxx->query($sqlxx);
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 $idxx=$rowxx["id_emp"];
 }
@@ -63,9 +63,9 @@ $consecutivo =$_POST['consecutivo'];
 
 
 $sqla = "select * from reip_ing where id_emp ='$idxx' and id ='$id'";
-$resultadoa = mysql_db_query($database, $sqla, $connectionxx);
+$resultadoa = $connectionxx->query($sqla);
 
-while($rowa = mysql_fetch_array($resultadoa)) 
+while($rowa = $resultadoa->fetch_assoc()) 
 {
   $valor=$rowa["valor"];
   $saldo=$rowa["saldo"];
@@ -76,7 +76,7 @@ while($rowa = mysql_fetch_array($resultadoa))
 $nuevo_saldo= $valor + $saldo;
 
 $sqlx = "update reip_ing set saldo='$nuevo_saldo' where id_emp= '$idxx' and cuenta ='$cuenta' ";
-$resultado = mysql_db_query($database, $sqlx, $connectionxx);
+$resultado = $connectionxx->query($sqlx);
 
 new mysqli($server, $dbuser, $dbpass, $database);
 
@@ -96,6 +96,6 @@ Imputacion <b>ELIMINADA</b> con Exito<br><br>
 ",$consecutivo);
 
 ?>
-<?
+<?php
 }
 ?>

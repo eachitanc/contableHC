@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -45,7 +45,7 @@ a:active {
 <br />
 <br />
 
-<?
+<?php
 
 include('../config.php');
 
@@ -54,9 +54,9 @@ $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo 
 
 // id_emp
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $id_emp=$rowxx["id_emp"];
   $idxx=$rowxx["id_emp"];
@@ -405,8 +405,8 @@ $paso ='1';
                                         //1
                                         $sqlxx = "select * from cdpp 
                                         where id_emp ='$id_emp' and consecutivo ='$id_cdpp' and cuenta ='$cuenta' and valor ='$vr_orig'";
-                                        $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-                                        while($rowxx = mysql_fetch_array($resultadoxx))
+                                        $resultadoxx = $connectionxx->query($sqlxx);
+                                        while($rowxx = $resultadoxx->fetch_assoc())
                                         {$vr_obligado=$rowxx["vr_obligado"];}
                                         //2
                                         $nuevo_vr_obligado=$vr_obligado+$vr_digitado;
@@ -453,7 +453,7 @@ if ($paso == '1')
 </table>
 </center>
 <br />
-<?	
+<?php	
 }
 
 
@@ -461,7 +461,7 @@ if ($paso == '1')
 
 $link=mysql_connect($server,$dbuser,$dbpass);
 $resulta=mysql_query("select SUM(valor) AS TOTAL from cdpp WHERE id_emp='$id_emp' and consecutivo = '$id_cdpp'",$link) or die (mysql_error());
-$row=mysql_fetch_row($resulta);
+$row=$resulta->fetch_assoc();
 $total=$row[0]; 
 $tot_vr_obligado = $total;
 
@@ -498,6 +498,6 @@ printf("
 ?>
 
 
-<?
+<?php
 }
 ?>

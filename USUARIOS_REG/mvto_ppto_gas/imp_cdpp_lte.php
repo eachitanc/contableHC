@@ -66,7 +66,7 @@ function validar(e) {
 </script>
 </head>
 <body>
-<?
+<?php
 
 //printf("%s",$id);
 $sqlxx1 = "select * from fecha";
@@ -81,9 +81,9 @@ while($rowxx1 = mysql_fetch_array($resultadoxx1))
 			
 
 $sqlxx = "select * from cdpp where consecutivo ='$id' and id_emp='$id_emp'  order by id desc";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $fecha_recaudo=$rowxx["fecha_reg"];
   $tercero=$rowxx["tercero"];
@@ -136,7 +136,7 @@ $vf = substr($fecha_fin,0,4);
 
 $link=mysql_connect($server,$dbuser,$dbpass);
 $resulta=mysql_query("select SUM(valor) AS TOTAL from cdpp WHERE id_emp ='$id_emp' and consecutivo ='$id'",$link) or die (mysql_error());
-$row=mysql_fetch_row($resulta);
+$row=$resulta->fetch_assoc();
 $total=$row[0]; 
 $total_cdpp = $total;
 
@@ -148,7 +148,7 @@ $total_cdpp = $total;
     <td width="28%" class="Estilo17"><div align="center"><img src="../images/PLANTILLA PNG PARA LOGO EMPRESA.png" width="200" ><br> <?php echo "NIT: ".$nit."-".$dv; ?></div></td>
     <td width="48%"><div style="padding-left:5px; padding-top:20px; padding-right:5px; padding-bottom:20px;">
       <div align="center" class="Estilo16">
-        <h4>CERTIFICADO DE DISPONIBILIDAD PRESUPUESTAL <span class="Estilo22"> <? if ($logo =='2') printf("No. %s",$cdpp); ?> </span></h4>
+        <h4>CERTIFICADO DE DISPONIBILIDAD PRESUPUESTAL <span class="Estilo22"> <?php if ($logo =='2') printf("No. %s",$cdpp); ?> </span></h4>
       </div>
     </div></td>
     <td width="24%" class="Estilo22" align="center">
@@ -166,16 +166,16 @@ $total_cdpp = $total;
     <table width="800" border="0">
       <tr>
         <td><div class="Estilo4" style="padding-left:30px; padding-top:40px; padding-right:5px; padding-bottom:20px;">
-          <div align="left"><span class="Estilo16">Fecha de Expedicion :</span> <? printf("%s",$fecha_recaudo); ?> </div>
+          <div align="left"><span class="Estilo16">Fecha de Expedicion :</span> <?php printf("%s",$fecha_recaudo); ?> </div>
         </div></td>
         <td><div class="Estilo4" style="padding-left:30px; padding-top:40px; padding-right:5px; padding-bottom:20px;">
-          <div align="right" <? printf("%s",$ven); ?> ><span class="Estilo16">Fecha de Vencimiento :</span> <? printf("%s",$fecha_ven); ?> </div>
+          <div align="right" <?php printf("%s",$ven); ?> ><span class="Estilo16">Fecha de Vencimiento :</span> <?php printf("%s",$fecha_ven); ?> </div>
         </div></td>
 
       </tr>
       <tr>
         <td colspan="2"><div style="padding-left:10px; padding-top:40px; padding-right:10px; padding-bottom:10px;">
-          <div align="center"><span class="Estilo16">EL SUSCRITO <? printf("%s",$cargo_ppto); ?></span></div>
+          <div align="center"><span class="Estilo16">EL SUSCRITO <?php printf("%s",$cargo_ppto); ?></span></div>
         </div></td>
         
       </tr>
@@ -185,16 +185,16 @@ $total_cdpp = $total;
         </div></td>
       </tr>
       <tr>
-<?
+<?php
 $link=mysql_connect($server,$dbuser,$dbpass);
 $resulta=mysql_query("select SUM(valor) AS TOTAL from cdpp WHERE consecutivo = '$id' AND id_emp='$id_emp' and valor >0",$link) or die (mysql_error());
-$row=mysql_fetch_row($resulta);
+$row=$resulta->fetch_assoc();
 $total=$row[0]; 
 $nuevo_total = $total;
 
 ?>	  
         <td colspan="2"><div style="padding-left:10px; padding-top:50px; padding-right:10px; padding-bottom:10px;">
-          <div align="justify"><span class="Estilo4"> Que en el presupuesto de gastos <? printf("%s",$genero); ?> <? printf("%s",$raz_soc); ?>,  aprobado para la Vigencia Fiscal <? printf("%s",$vf); ?>, existe saldo disponible y libre de afectaci&oacute;n para respaldar un compromiso por valor de ($<? printf(number_format($nuevo_total,2,',','.')); ?>) <?php 
+          <div align="justify"><span class="Estilo4"> Que en el presupuesto de gastos <?php printf("%s",$genero); ?> <?php printf("%s",$raz_soc); ?>,  aprobado para la Vigencia Fiscal <?php printf("%s",$vf); ?>, existe saldo disponible y libre de afectaci&oacute;n para respaldar un compromiso por valor de ($<?php printf(number_format($nuevo_total,2,',','.')); ?>) <?php 
 	$vr=$nuevo_total;
 	$num=$vr;
  $V=new EnLetras();
@@ -210,7 +210,7 @@ $nuevo_total = $total;
       </tr>
       <tr>
         <td colspan="2"><div align="center">
-          <?
+          <?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cdpp where id_emp = '$id_emp' and consecutivo ='$id'  order by id asc ";
 $re = mysql_db_query($database, $sq, $cx);
@@ -231,13 +231,13 @@ printf("
 </tr>
 ");
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
    
 $cta = $rw["cuenta"];
 						$sq2 = "select proc_rec from car_ppto_gas  where id_emp = '$id_emp' and cod_pptal ='$cta' order by id asc ";
-						$re2 = mysql_db_query($database, $sq2, $cx);   
-						$rw2 = mysql_fetch_array($re2);
+						$re2 = $cx->query($sq2);   
+						$rw2 = $re2->fetch_assoc();
 						$fte = $rw2["proc_rec"];  
 						if($fte == 'P')
 						{
@@ -315,8 +315,8 @@ $rw3 =mysql_fetch_array($re3);
       <tr>
         <td colspan="2"><div style="padding-left:10px; padding-top:80px; padding-right:10px; padding-bottom:30px;">
           <div align="center">______________________________<br>
-		  <span class="Estilo16"><? printf("%s",$nom_jefe_ppto); ?><br></span><span class="Estilo14">
-              <? printf("%s",$cargo_ppto); ?></span></div>
+		  <span class="Estilo16"><?php printf("%s",$nom_jefe_ppto); ?><br></span><span class="Estilo14">
+              <?php printf("%s",$cargo_ppto); ?></span></div>
 </span></div>
         </div></td>
       </tr>
@@ -350,8 +350,8 @@ $rw3 =mysql_fetch_array($re3);
       <div align="center" class="Estilo14" <?php echo $firmas; ?> >
         <!--input name="preparo2" type="text" class="Estilo4" id="preparo2" value="" size="30" onKeyUp="a.preparo2.value=a.preparo2.value.toUpperCase();" style="border:0px"-->
         <div   <?php echo $firmas; ?> >
-        <? printf("%s",$nom_jefe_ppto); ?><br> 
-		 <? printf("%s",$cargo_ppto); ?>
+        <?php printf("%s",$nom_jefe_ppto); ?><br> 
+		 <?php printf("%s",$cargo_ppto); ?>
         </div>  
       </div>
     </div></td>
@@ -359,8 +359,8 @@ $rw3 =mysql_fetch_array($re3);
       <div align="center" class="Estilo14"  <?php echo $firmas; ?>>
         <!--input name="preparo3" type="text" class="Estilo4" id="preparo3" value="" size="30" onKeyUp="a.preparo3.value=a.preparo3.value.toUpperCase();" style="border:0px"-->
           <div   <?php echo $firmas; ?> >
-         <? printf("%s",$nom_jefe_ppto); ?><br> 
-		 <? printf("%s",$cargo_ppto); ?>
+         <?php printf("%s",$nom_jefe_ppto); ?><br> 
+		 <?php printf("%s",$cargo_ppto); ?>
           </div>
       </div>
     </div></td>
@@ -370,7 +370,7 @@ $rw3 =mysql_fetch_array($re3);
 <table width="800" border="0" align="center">
   <tr>
     <td colspan="3"><div align="center">
-      <?
+      <?php
 $consecutivo = $cdpp;
 
  include_once("../class.barcode.php");

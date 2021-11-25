@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -52,7 +52,7 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
 .Estilo8 {color: #FFFFFF}
 -->
 </style>
-<?
+<?php
 
 $id_unico=$_GET['var'];
 $consecutivo = $_GET['var2'];
@@ -76,7 +76,7 @@ $total=$row[0];
 $tot_vr_obligado = $total;
 
 $resulta2=mysql_query("select SUM(valor) AS TOTAL from reip_ing WHERE consecutivo = '$consecutivo'",$link) or die (mysql_error());
-$row2=mysql_fetch_row($resulta2);
+$row2=$resulta2->fetch_array();
 $total2=$row2[0]; 
 $tot_vr = $total2;
 
@@ -103,13 +103,13 @@ $resultado3 = mysql_db_query($database, $sql3, $connectionxx);
 <font color="#990000"><B>RECUERDE REALIZAR UNA NOTA DE CONTABILIDAD AJUSTANDO LA CUENTA POR COBRAR</B></font>
 <br />
 <br />
-<a href="hisreip.php?consecutivo=<? printf("$consecutivo"); ?>" target="_parent">VOLVER</a>
+<a href="hisreip.php?consecutivo=<?php printf("$consecutivo"); ?>" target="_parent">VOLVER</a>
 </center>
 </TD>
 </TR>
 </TABLE>
 </DIV>
 
-<?
+<?php
 }
 ?>

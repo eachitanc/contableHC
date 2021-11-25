@@ -1,12 +1,12 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../../login.php");
 exit;
 } else {
 ?>
-<?
+<?php
 $id_emp=$_POST['id_emp'];
 $id=$_POST['id']; //echo $id;
 $fecha_adi=$_POST['fecha_a'];
@@ -16,7 +16,7 @@ include('../../config.php');
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	$sqlxx = "select * from vf";
 	$resultadoxx = mysql_db_query($database, $sqlxx, $cx);
-	while($rowxx = mysql_fetch_array($resultadoxx)) 
+	while($rowxx = $resultadoxx->fetch_assoc()) 
 	{
  		 $ax=$rowxx["fecha_ini"]; $bx=$rowxx["fecha_fin"];
 	}
@@ -33,7 +33,7 @@ include('../../config.php');
 	else
 	{ 
 		$sq="Delete From creditos_ing Where id='$id'";
-		$res = mysql_db_query($database, $sq, $cx);
+		$res = $cx->query($sq);
 		printf("%s <br><br></center>",$error);
 		printf("<center class='Estilo4'>REGISTRO ELIMINADO CON EXITO<br><br>");  
 		printf("<div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080;    	width:150px'>
@@ -46,7 +46,7 @@ include('../../config.php');
 	}
 
 ?>
-<?
+<?php
 }
 ?><title>CONTAFACIL</title>
 <style type="text/css">

@@ -1,262 +1,336 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
-{
-header("Location: ../login.php");
-exit;
+if (!isset($_SESSION["login"])) {
+	header("Location: ../login.php");
+	exit;
 } else {
 	// verifico permisos del usuario
-		include('../config.php');
-		$cx = mysql_connect("$server","$dbuser","$dbpass")or die ("Conexion no Exitosa");
-		mysql_select_db("$database"); 
-       	$sql="SELECT ppto FROM usuarios2 where login = '$_SESSION[login]'";
-		$res=mysql_db_query($database,$sql,$cx);
-		$rw =mysql_fetch_array($res);
-if ($rw['ppto']=='SI')
-{
+	include('../config.php');
+	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Conexion no Exitosa");
+
+	$sql = "SELECT ppto FROM usuarios2 where login = '$_SESSION[login]'";
+	$res = $cx->query($sql);
+	$rw = $res->fetch_assoc();
+	if ($rw['ppto'] == 'SI') {
 
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>CONTAFACIL</title>
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml">
+
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+			<title>CONTAFACIL</title>
 
 
 
-<style type="text/css">
+			<style type="text/css">
+				.Estilo2 {
+					font-size: 9px
+				}
 
-<!--
-.Estilo2 {font-size: 9px}
-.Estilo4 {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; color: #333333; }
-a {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 11px;
-    color: #666666;
-}
-a:link {
-    text-decoration: none;
-}
-a:visited {
-    text-decoration: none;
-    color: #666666;
-}
-a:hover {
-    text-decoration: underline;
-    color: #666666;
-}
-a:active {
-    text-decoration: none;
-    color: #666666;
-}
-.Estilo7 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #666666; }
--->
-</style>
+				.Estilo4 {
+					font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+					font-size: 10px;
+					color: #333333;
+				}
 
-<style>
-.fc_main { background: #FFFFFF; border: 1px solid #000000; font-family: Verdana; font-size: 10px; }
-.fc_date { border: 1px solid #D9D9D9;  cursor:pointer; font-size: 10px; text-align: center;}
-.fc_dateHover, TD.fc_date:hover { cursor:pointer; border-top: 1px solid #FFFFFF; border-left: 1px solid #FFFFFF; border-right: 1px solid #999999; border-bottom: 1px solid #999999; background: #E7E7E7; font-size: 10px; text-align: center; }
-.fc_wk {font-family: Verdana; font-size: 10px; text-align: center;}
-.fc_wknd { color: #FF0000; font-weight: bold; font-size: 10px; text-align: center;}
-.fc_head { background: #000066; color: #FFFFFF; font-weight:bold; text-align: left;  font-size: 11px; }
-</style>
-<style type="text/css">
-table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-width: 2px; border-color: #004080; }
-.Estilo8 {color: #990000}
-</style>
+				a {
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					font-size: 11px;
+					color: #666666;
+				}
 
+				a:link {
+					text-decoration: none;
+				}
 
-<script> 
-function validar(e) { 
-    tecla = (document.all) ? e.keyCode : e.which; 
-    if (tecla==8 || tecla==46) return true; //Tecla de retroceso (para poder borrar) 
-    patron = /\d/; //ver nota 
-    te = String.fromCharCode(tecla); 
-    return patron.test(te);  
-}  
-</script>
+				a:visited {
+					text-decoration: none;
+					color: #666666;
+				}
 
+				a:hover {
+					text-decoration: underline;
+					color: #666666;
+				}
 
-<link type="text/css" rel="stylesheet" href="../calendario/dhtmlgoodies_calendar/dhtmlgoodies_calendar.css?random=20051112" media="screen"></LINK>	
-<SCRIPT type="text/javascript" src="../calendario/dhtmlgoodies_calendar/dhtmlgoodies_calendar.js?random=20060118"></script>
+				a:active {
+					text-decoration: none;
+					color: #666666;
+				}
 
-<link href="../nobordeimg.css" rel="stylesheet" type="text/css" />
+				.Estilo7 {
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					font-size: 9px;
+					color: #666666;
+				}
+			</style>
 
+			<style>
+				.fc_main {
+					background: #FFFFFF;
+					border: 1px solid #000000;
+					font-family: Verdana;
+					font-size: 10px;
+				}
 
+				.fc_date {
+					border: 1px solid #D9D9D9;
+					cursor: pointer;
+					font-size: 10px;
+					text-align: center;
+				}
 
-</head>
+				.fc_dateHover,
+				TD.fc_date:hover {
+					cursor: pointer;
+					border-top: 1px solid #FFFFFF;
+					border-left: 1px solid #FFFFFF;
+					border-right: 1px solid #999999;
+					border-bottom: 1px solid #999999;
+					background: #E7E7E7;
+					font-size: 10px;
+					text-align: center;
+				}
 
-<body>
+				.fc_wk {
+					font-family: Verdana;
+					font-size: 10px;
+					text-align: center;
+				}
 
-<table width="800" border="0" align="center">
-  <tr>
-    
-    <td colspan="3">
-    <div class="Estilo2" id="main_div" style="padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px;">
-      <div align="center">
-      <img src="../images/PLANTILLA PNG PARA BANNER COMUN.png" width="585" height="100" />    </div>
-    </div>  </td>
-  </tr>
-  
+				.fc_wknd {
+					color: #FF0000;
+					font-weight: bold;
+					font-size: 10px;
+					text-align: center;
+				}
 
-  <tr>
-    <td colspan="3"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;">
-      <div align="center">
-        <div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:150px'>
-          <div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
-            <div align="center"><a href='../user.php' target='_parent'>VOLVER </a> </div>
-          </div>
-        </div>
-      </div>
-    </div></td>
-  </tr>
-  <tr>
-    <td colspan="3">
-    <div style="padding-left:10px; padding-top:30px; padding-right:10px; padding-bottom:10px;">
-      <div align="center" class="Estilo4"><strong>MOVIMIENTOS - EJECUCION PRESUPUESTO DE GASTOS</strong></div>
-    </div>  </td>
-  </tr>
-  <tr>
-    <td colspan="3"> 
-    <div style="padding-left:0px; padding-top:5px; padding-right:0px; padding-bottom:5px;"> 
-<form method="post" action="mvto.php">
-  <table width="800" border="0" align="center">
-    <tr>
-      <td width="600">
-<?php 
-include('../config.php');
-$mesh = array('cc','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE');                             
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-$sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-// Datos para mostrar listas
-	$ini=$_GET['ini'];
-	$fin=$_GET['fin'];	
-	$indice =$_GET['k'];
-	$muestra = 250;
-	if (!$_GET['ini']) 
-	{
-		$ini=0;
-		$fin=$muestra;	
-	}
+				.fc_head {
+					background: #000066;
+					color: #FFFFFF;
+					font-weight: bold;
+					text-align: left;
+					font-size: 11px;
+				}
+			</style>
+			<style type="text/css">
+				table.bordepunteado1 {
+					border-style: solid;
+					border-collapse: collapse;
+					border-width: 2px;
+					border-color: #004080;
+				}
+
+				.Estilo8 {
+					color: #990000
+				}
+			</style>
 
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
-   {
-   
-   $idxx=$rowxx["id_emp"]; 
-   $id_emp=$rowxx["id_emp"];
-   $ano=$rowxx["ano"];
-   }
-   //list($an, $me, $di)  = explode('/', $ano);
-   //$f1 = "$an/$me/01";
-   //$f2 = "$an/$me/31";
-?>
-        <div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
-          <div align="center"><span class="Estilo4"><strong>Seleccione el Documento Fuente </strong>: </span>
-              <select name="nn" class="Estilo4" style="width: 350px;">
-                <?
-include('../config.php');
-$db = new mysqli($server, $dbuser, $dbpass, $database);
+			<script>
+				function validar(e) {
+					tecla = (document.all) ? e.keyCode : e.which;
+					if (tecla == 8 || tecla == 46) return true; //Tecla de retroceso (para poder borrar) 
+					patron = /\d/; //ver nota 
+					te = String.fromCharCode(tecla);
+					return patron.test(te);
+				}
+			</script>
 
-$strSQL = "SELECT * FROM dctos_fuente_comprobantes  WHERE id_emp = '$idxx' AND ppto_gas = 'SI' ";
-$rs = mysql_query($strSQL);
-$nr = mysql_num_rows($rs);
-for ($i=0; $i<$nr; $i++) {
-    $r = mysql_fetch_array($rs);
-    echo "<OPTION VALUE=\"".$r["cod"]."\">".$r["cod"]." - ".$r["nombre"]."</b></OPTION>";
-}
 
-$sq3 ="select cargo from usuarios2 where login = '$_SESSION[login]'";
-$re3 = mysql_db_query($database,$sq3,$db);
-$rw3 = mysql_fetch_array($re3);
-if ($rw3['cargo'] == "REVISOR")
-{
-	$ver_boton = "style=display:none";
-}
+			<link type="text/css" rel="stylesheet" href="../calendario/dhtmlgoodies_calendar/dhtmlgoodies_calendar.css?random=20051112" media="screen">
+			</LINK>
+			<SCRIPT type="text/javascript" src="../calendario/dhtmlgoodies_calendar/dhtmlgoodies_calendar.js?random=20060118"></script>
 
-?>
-              </select>
-          </div>
-        </div></td>
-      <td width="190"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
-        <div align="center">
-		  <input name="fec" type="hidden" value=" <?php printf ($ano); ?> " /> 
-          <input name="Submit" type="submit" class="Estilo4" value="Seleccionar Documento" />
-        </div>
-      </div></td>
-    </tr>
-  </table>
-</form>
-
-<div align="center">
+			<link href="../nobordeimg.css" rel="stylesheet" type="text/css" />
 
 
 
-<?
+		</head>
 
-$archivo ="mvto.php"; 
+		<body>
 
-$a="";
-if(isset($_POST['nn']))
-{$a=$_POST['nn'];
-}
+			<table width="800" border="0" align="center">
+				<tr>
 
-if(isset($_GET['a']))
-{$a=$_GET['a'];
-}
-
-if ($a == 'CDPP')
-{
-?>
-<br />
-<div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;"> <span class="Estilo4 Estilo8"><strong>CERTIFICADO DE DISPONIBILIDAD PRESUPUESTAL CDP
-  
-</strong></span>
-
-<br /><br />
-<div  style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:500px'>
-  <div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
-  <a href="nuevo_cdpp.php" target="_parent">...::: NUEVO CERTIFICADO DE DISPONIBILIDAD PRESUPUESTAL :::...  </a>  </div>
-  </div>
-<br />
-<br />
-<div align="left" style="padding-left:3px;cursor:pointer" ><input type="button" name="boton" value="Importar" style="background:#72A0CF; color:#FFFFFF; border:none" onclick="window.open('upload.php','_self')" />
-<input type="button" name="boton" value="Nomina" style="background:#72A0CF; color:#FFFFFF; border:none" onclick="window.open('menu_nomina.php','_self')" /></div>
-<?php
-include('../objetos/filtro.php'); 
-
-if  ($pendiente =="") 
-{
-}else{
-//-------
-
-include('../config.php');
-$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-
-if  ($_POST["buscar"] != "")
-{
-$filtro ="and (des LIKE  '%$buscar%' OR cdpp LIKE  '%$buscar%') "; 
-} 
+					<td colspan="3">
+						<div class="Estilo2" id="main_div" style="padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px;">
+							<div align="center">
+								<img src="../images/PLANTILLA PNG PARA BANNER COMUN.png" width="585" height="100" />
+							</div>
+						</div>
+					</td>
+				</tr>
 
 
-$a = "select consecutivo, tercero,  fecha_reg, cdpp, des from cdpp where id_emp = '$id_emp' and contab = 'NO'";
-	if (empty($tercero)){$c = "";}else{$c= "and tercero =$tercero2";}
-	if ($fecha2 == "MES"){$f= "and fecha_reg between '$f1' and '$f2'";}
-	if ($fecha2 == "DIA"){$f= "and fecha_reg ='$fechafil'";}
-	if ($fecha2 == "A�O"){$f= "and fecha_reg between '$a1' and '$a2'";}
-	$gby = "group by consecutivo";
-	$orden = "order by fecha_reg,cdpp desc";
-	$sql = "$a $b $c $filtro $f $gby $orden";
+				<tr>
+					<td colspan="3">
+						<div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;">
+							<div align="center">
+								<div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:150px'>
+									<div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
+										<div align="center"><a href='../user.php' target='_parent'>VOLVER </a> </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<div style="padding-left:10px; padding-top:30px; padding-right:10px; padding-bottom:10px;">
+							<div align="center" class="Estilo4"><strong>MOVIMIENTOS - EJECUCION PRESUPUESTO DE GASTOS</strong></div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<div style="padding-left:0px; padding-top:5px; padding-right:0px; padding-bottom:5px;">
+							<form method="post" action="mvto.php">
+								<table width="800" border="0" align="center">
+									<tr>
+										<td width="600">
+											<?php
+											include('../config.php');
+											$mesh = array('cc', 'ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE');
+											$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
+											$sqlxx = "select * from fecha";
+											$resultadoxx = $connectionxx->query($sqlxx);
+											// Datos para mostrar listas
+											$ini = isset($_GET['ini']) ? $_GET['ini'] : '';
+											$fin = isset($_GET['fin']) ? $_GET['fin'] : '';
+											$indice = isset($_GET['k']) ? $_GET['k'] : '';
+											$muestra = 250;
+											if (!isset($_GET['ini'])) {
+												$ini = 0;
+												$fin = $muestra;
+											}
 
-$re = mysql_db_query($database, $sql, $cx);
+
+											while ($rowxx = $resultadoxx->fetch_assoc()) {
+
+												$idxx = $rowxx["id_emp"];
+												$id_emp = $rowxx["id_emp"];
+												$ano = $rowxx["ano"];
+											}
+											//list($an, $me, $di)  = explode('/', $ano);
+											//$f1 = "$an/$me/01";
+											//$f2 = "$an/$me/31";
+											?>
+											<div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
+												<div align="center"><span class="Estilo4"><strong>Seleccione el Documento Fuente </strong>: </span>
+													<select name="nn" class="Estilo4" style="width: 350px;">
+														<?php
+														include('../config.php');
+														$db = new mysqli($server, $dbuser, $dbpass, $database);
+
+														$strSQL = "SELECT * FROM dctos_fuente_comprobantes  WHERE id_emp = '$idxx' AND ppto_gas = 'SI' ";
+														$rs = $db->query($strSQL);
+														while ($r = $rs->fetch_assoc()) {
+															echo "<OPTION VALUE=\"" . $r["cod"] . "\">" . $r["cod"] . " - " . $r["nombre"] . "</b></OPTION>";
+														}
+
+														$sq3 = "select cargo from usuarios2 where login = '$_SESSION[login]'";
+														$re3 = $db->query($sq3);
+														$rw3 = $re3->fetch_assoc();
+														if ($rw3['cargo'] == "REVISOR") {
+															$ver_boton = "style=display:none";
+														}
+
+														?>
+													</select>
+												</div>
+											</div>
+										</td>
+										<td width="190">
+											<div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
+												<div align="center">
+													<input name="fec" type="hidden" value=" <?php printf($ano); ?> " />
+													<input name="Submit" type="submit" class="Estilo4" value="Seleccionar Documento" />
+												</div>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</form>
+
+							<div align="center">
+
+
+
+								<?php
+
+								$archivo = "mvto.php";
+
+								$a = "";
+								if (isset($_POST['nn'])) {
+									$a = $_POST['nn'];
+								}
+
+								if (isset($_GET['a'])) {
+									$a = $_GET['a'];
+								}
+
+								if ($a == 'CDPP') {
+								?>
+									<br />
+									<div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;"> <span class="Estilo4 Estilo8"><strong>CERTIFICADO DE DISPONIBILIDAD PRESUPUESTAL CDP
+
+											</strong></span>
+
+										<br /><br />
+										<div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:500px'>
+											<div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
+												<a href="nuevo_cdpp.php" target="_parent">...::: NUEVO CERTIFICADO DE DISPONIBILIDAD PRESUPUESTAL :::... </a>
+											</div>
+										</div>
+										<br />
+										<br />
+										<div align="left" style="padding-left:3px;cursor:pointer"><input type="button" name="boton" value="Importar" style="background:#72A0CF; color:#FFFFFF; border:none" onclick="window.open('upload.php','_self')" />
+											<input type="button" name="boton" value="Nomina" style="background:#72A0CF; color:#FFFFFF; border:none" onclick="window.open('menu_nomina.php','_self')" />
+										</div>
+										<?php
+										include('../objetos/filtro.php');
+
+										if ($pendiente == "") {
+										} else {
+											//-------
+
+											include('../config.php');
+											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
+
+											if ($_POST["buscar"] != "") {
+												$filtro = "and (des LIKE  '%$buscar%' OR cdpp LIKE  '%$buscar%') ";
+											}
+
+
+											$a = "select consecutivo, tercero,  fecha_reg, cdpp, des from cdpp where id_emp = '$id_emp' and contab = 'NO'";
+											if (empty($tercero)) {
+												$c = "";
+											} else {
+												$c = "and tercero =$tercero2";
+											}
+											if ($fecha2 == "MES") {
+												$f = "and fecha_reg between '$f1' and '$f2'";
+											}
+											if ($fecha2 == "DIA") {
+												$f = "and fecha_reg ='$fechafil'";
+											}
+											if ($fecha2 == "A�O") {
+												$f = "and fecha_reg between '$a1' and '$a2'";
+											}
+											$gby = "group by consecutivo";
+											$orden = "order by fecha_reg,cdpp desc";
+											$sql = "$a $b $c $filtro $f $gby $orden";
+
+											$re = $cx->query($sql);
 
 
 
 
-printf("
+											printf("
 <center>
 
 <table width='900' BORDER='1' class='bordepunteado1'>
@@ -282,21 +356,20 @@ printf("
 
 ");
 
-while($rw = mysql_fetch_array($re)) 
-   {
-   
-$axz=$rw["consecutivo"]; 
-$resulta=mysql_query("select SUM(valor) AS TOTAL from cdpp WHERE consecutivo = '$axz' AND id_emp='$id_emp'",$cx) or die (mysql_error());
-$row=mysql_fetch_row($resulta);
-$total=$row[0]; 
-$nuevo_total = $total;
+											while ($rw = $re->fetch_assoc()) {
 
-$sq3 = "select sum(vr_digitado) from crpp where id_auto_cdpp ='$axz' group by id_auto_cdpp"; 
-$rs3 = mysql_db_query($database,$sq3,$cx);
-$rw3 = mysql_fetch_array($rs3);
-$saldo_reg = $total - $rw3['sum(vr_digitado)'];
+												$axz = $rw["consecutivo"];
+												$resulta = $cx->query("select SUM(valor) AS TOTAL from cdpp WHERE consecutivo = '$axz' AND id_emp='$id_emp'");
+												$row = $resulta->fetch_array();
+												$total = $row[0];
+												$nuevo_total = $total;
 
-printf("
+												$sq3 = "select sum(vr_digitado) from crpp where id_auto_cdpp ='$axz' group by id_auto_cdpp";
+												$rs3 = $cx->query($sq3);
+												$rw3 = $rs3->fetch_assoc();
+												$saldo_reg = $total - $rw3['sum(vr_digitado)'];
+
+												printf("
 <span class='Estilo4'>
 <tr>
 <td align='left'  bgcolor='#DCE9E5'><span class='Estilo4'>&nbsp; %s </span></td>
@@ -338,63 +411,67 @@ printf("
 </td>
 
 
-</tr>", "CDPP".$rw["cdpp"], $rw["fecha_reg"], substr($rw["des"],0,85), number_format($nuevo_total,2,',','.') , number_format($saldo_reg,2,',','.'), $rw["consecutivo"],$rw["consecutivo"], $rw["consecutivo"], $rw["consecutivo"], $rw["consecutivo"]);
+</tr>", "CDPP" . $rw["cdpp"], $rw["fecha_reg"], substr($rw["des"], 0, 85), number_format($nuevo_total, 2, ',', '.'), number_format($saldo_reg, 2, ',', '.'), $rw["consecutivo"], $rw["consecutivo"], $rw["consecutivo"], $rw["consecutivo"], $rw["consecutivo"]);
+											}
+
+											printf("</table></center><br><br>");
+											//--------  
 
 
-   }
-
-printf("</table></center><br><br>");
-//--------  
-
-
-$cx = null;
-}
-
-
-
-//-------
-if ($registrado =="")
-{
-}
-else
-{
-?>
-		<br />
-		 <div><span class="Estilo4 Estilo8"><strong>CDPP - REGISTRADOS POR EL VALOR TOTAL</strong></span></div>
-	
-<?php
-include('../config.php');               
-$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-//$sq = "select consecutivo, tercero,  fecha_reg, cdpp, des from cdpp where id_emp = '$id_emp' and contab = 'SI'    ";
-//$re = mysql_db_query($database, $sq, $cx);
-$limitar = "limit $ini,$fin";
-if  ($_POST["buscar"] != "")
-{
-$filtro ="and (des LIKE  '%$buscar%' OR cdpp LIKE  '%$buscar%') "; 
-$limitar ='';
-} 
-
-$a = "select consecutivo, tercero,  fecha_reg, cdpp, des from cdpp where id_emp = '$id_emp' and contab = 'SI' ";
-	if (empty($tercero)){$c = "";}else{$c= "and tercero =$tercero2";}
-	if ($fecha2 == "MES"){$f= "and fecha_reg between '$f1' and '$f2'";}
-	if ($fecha2 == "DIA"){$f= "and fecha_reg ='$fechafil'";}
-	if ($fecha2 == "A�O"){$f= "and fecha_reg between '$a1' and '$a2'";}
-	$gby = "group by consecutivo";
-	$orden = "order by fecha_reg desc,cdpp desc";
-	// Gerero listas de paginacion
-	$sql = "$a $b $c $filtro $f $gby $orden";
-	$resf =mysql_db_query($database,$sql,$cx);
-	$filas = mysql_num_rows($resf);
-	$listas = ceil($filas / $muestra);
-	$sql2 = "$a $b $c $filtro $f  $gby  $orden $limitar ";
-
-
-$re = mysql_query($sql2); 
+											$cx = null;
+										}
 
 
 
+										//-------
+										if ($registrado == "") {
+										} else {
+										?>
+											<br />
+											<div><span class="Estilo4 Estilo8"><strong>CDPP - REGISTRADOS POR EL VALOR TOTAL</strong></span></div>
 
-printf("
+										<?php
+											include('../config.php');
+											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
+											//$sq = "select consecutivo, tercero,  fecha_reg, cdpp, des from cdpp where id_emp = '$id_emp' and contab = 'SI'    ";
+											//$re = mysql_db_query($database, $sq, $cx);
+											$limitar = "limit $ini,$fin";
+											if ($_POST["buscar"] != "") {
+												$filtro = "and (des LIKE  '%$buscar%' OR cdpp LIKE  '%$buscar%') ";
+												$limitar = '';
+											}
+
+											$a = "select consecutivo, tercero,  fecha_reg, cdpp, des from cdpp where id_emp = '$id_emp' and contab = 'SI' ";
+											if (empty($tercero)) {
+												$c = "";
+											} else {
+												$c = "and tercero =$tercero2";
+											}
+											if ($fecha2 == "MES") {
+												$f = "and fecha_reg between '$f1' and '$f2'";
+											}
+											if ($fecha2 == "DIA") {
+												$f = "and fecha_reg ='$fechafil'";
+											}
+											if ($fecha2 == "A�O") {
+												$f = "and fecha_reg between '$a1' and '$a2'";
+											}
+											$gby = "group by consecutivo";
+											$orden = "order by fecha_reg desc,cdpp desc";
+											// Gerero listas de paginacion
+											$sql = "$a $b $c $filtro $f $gby $orden";
+											$resf = $cx->query($sql);
+											$filas = $resf->num_rows;
+											$listas = ceil($filas / $muestra);
+											$sql2 = "$a $b $c $filtro $f  $gby  $orden $limitar ";
+
+
+											$re = $cx->query($sql2);
+
+
+
+
+											printf("
 <center>
 
 <table width='900' BORDER='1' class='bordepunteado1'>
@@ -418,17 +495,16 @@ printf("
 
 ");
 
-while($rw = mysql_fetch_array($re)) 
-   {
-   
-			$axz1=$rw["consecutivo"]; 
-			$link=mysql_connect($server,$dbuser,$dbpass);
-			$resulta=mysql_query("select SUM(valor) AS TOTAL from cdpp WHERE consecutivo = '$axz1' AND id_emp='$id_emp'",$link) or die (mysql_error());
-			$row=mysql_fetch_row($resulta);
-			$total=$row[0]; 
-			$nuevo_total1 = $total;    
-			   
-			printf("
+											while ($rw = $re->fetch_assoc()) {
+
+												$axz1 = $rw["consecutivo"];
+												$link = new mysqli($server, $dbuser, $dbpass, $database);
+												$resulta = $link->query("select SUM(valor) AS TOTAL from cdpp WHERE consecutivo = '$axz1' AND id_emp='$id_emp'");
+												$row = $resulta->fetch_assoc();
+												$total = $row[0];
+												$nuevo_total1 = $total;
+
+												printf("
 			<span class='Estilo4'>
 			<tr>
 			
@@ -454,78 +530,77 @@ while($rw = mysql_fetch_array($re))
 			</span>
 			</td>
 			
-			</tr>", "CDPP".$rw["cdpp"], $rw["fecha_reg"], substr($rw["des"],0,95), number_format($nuevo_total1,2,',','.') , $rw["consecutivo"] , $rw["consecutivo"]);
-			
+			</tr>", "CDPP" . $rw["cdpp"], $rw["fecha_reg"], substr($rw["des"], 0, 95), number_format($nuevo_total1, 2, ',', '.'), $rw["consecutivo"], $rw["consecutivo"]);
+											} // fin while
 
-   } // fin while
+											printf("</table></center><br><br>");
+											//--------  
+											echo "<&nbsp;";
+											for ($i = 0; $i < $listas; $i++) {
+												$inicio = ($i * $muestra) + 1;
+												$k = $i + 1;
+												if ($k == $indice) {
+													echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=CDPP&k=$k&nn=CDPP'><b>$k</b></a>&nbsp;";
+												} else {
+													echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=CDPP&k=$k&nn=CDPP'>$k</a>&nbsp;";
+												}
+											}
+											echo ">&nbsp;";
+										} // fin else
 
-printf("</table></center><br><br>");
-//--------  
-echo "<&nbsp;";
-for ($i =0; $i<$listas;$i++)
-{
-	$inicio =($i*$muestra)+1;
-	$k =$i+1;
-	if ($k ==$indice) 
-	{
-		echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=CDPP&k=$k&nn=CDPP'><b>$k</b></a>&nbsp;";
-	}else{
-		echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=CDPP&k=$k&nn=CDPP'>$k</a>&nbsp;";
-	}
-}
-echo ">&nbsp;";
-
-} // fin else
-
-} // fin in CDPP
+									} // fin in CDPP
 
 
 
 
-//****************************************************** FIN CDP
-if ($a == 'CRPP')
-{
-	
-?>
+									//****************************************************** FIN CDP
+									if ($a == 'CRPP') {
 
-<div class="Estilo4 Estilo8" style='padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;'>
-  <div align="center"><strong> CERTIFICADOS DE REGISTRO PRESUPUESTAL<br /><br />
-  </strong>
-</div>
-</div>
-<br />
-<div align="left" style="padding-left:3px;" ><input type="button" name="boton" value="Obligar por lotes" style="background:#72A0CF; color:#FFFFFF; border:none" onclick="window.open('obligar_lotes.php','_self')" /></div>
-<?
-	
-include('../objetos/filtro.php'); 
+										?>
 
-if  ($pendiente =="") 
-{
-}
-else
-{
+										<div class="Estilo4 Estilo8" style='padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;'>
+											<div align="center"><strong> CERTIFICADOS DE REGISTRO PRESUPUESTAL<br /><br />
+												</strong>
+											</div>
+										</div>
+										<br />
+										<div align="left" style="padding-left:3px;"><input type="button" name="boton" value="Obligar por lotes" style="background:#72A0CF; color:#FFFFFF; border:none" onclick="window.open('obligar_lotes.php','_self')" /></div>
+										<?php
+
+										include('../objetos/filtro.php');
+
+										if ($pendiente == "") {
+										} else {
 
 
-$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
+											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 
-if  ($_POST["buscar"] != "")
-{
-$filtro ="and (id_manu_crpp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR detalle_crpp LIKE '%$buscar%' or id_manu_cdpp like '%$buscar%')";
+											if ($_POST["buscar"] != "") {
+												$filtro = "and (id_manu_crpp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR detalle_crpp LIKE '%$buscar%' or id_manu_cdpp like '%$buscar%')";
+											}
 
-} 
+											$a = "select id_auto_crpp,id_auto_cdpp, id_manu_crpp, id_manu_cdpp, fecha_crpp, tercero , contrato, t_humano, inversion, subsidiado  from crpp where id_emp = '$id_emp' and ctrl = 'NO' ";
+											if (empty($tercero)) {
+												$c = "";
+											} else {
+												$c = "and tercero =$tercero2";
+											}
+											if ($fecha2 == "MES") {
+												$f = "and fecha_crpp between '$f1' and '$f2'";
+											}
+											if ($fecha2 == "DIA") {
+												$f = "and fecha_crpp ='$fechafil'";
+											}
+											if ($fecha2 == "A�O") {
+												$f = "and fecha_crpp <= '$a2'";
+											}
+											$gby = "group by id_auto_crpp";
+											$orden = "order by fecha_crpp,id_manu_crpp desc";
+											$sq2 = "$a $b $c $filtro $f $gby $orden";
 
-$a = "select id_auto_crpp,id_auto_cdpp, id_manu_crpp, id_manu_cdpp, fecha_crpp, tercero , contrato, t_humano, inversion, subsidiado  from crpp where id_emp = '$id_emp' and ctrl = 'NO' ";
-	if (empty($tercero)){$c = "";}else{$c= "and tercero =$tercero2";}
-	if ($fecha2 == "MES"){$f= "and fecha_crpp between '$f1' and '$f2'";}
-	if ($fecha2 == "DIA"){$f= "and fecha_crpp ='$fechafil'";}
-	if ($fecha2 == "A�O"){$f= "and fecha_crpp <= '$a2'";}
-	$gby = "group by id_auto_crpp";
-	$orden = "order by fecha_crpp,id_manu_crpp desc";
-	$sq2 = "$a $b $c $filtro $f $gby $orden";
+											$re2 = $cx->query($sq2);
 
-$re2 = mysql_db_query($database, $sq2, $cx);
-
-printf("
+											printf("
 <center>
 <table width='900' BORDER='1' class='bordepunteado1'>
 
@@ -548,21 +623,20 @@ printf("
 
 ");
 
-while($rw2 = mysql_fetch_array($re2)) 
-   {
-   
-$axz11=$rw2["id_auto_crpp"];
-$resulta=mysql_query("select SUM(vr_digitado) AS TOTAL from crpp WHERE id_auto_crpp = '$axz11' AND id_emp='$id_emp'",$cx) or die (mysql_error());
-$row=mysql_fetch_row($resulta);
-$total=$row[0];
-$resulta2=mysql_query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_crpp = '$axz11' AND id_emp='$id_emp'",$cx) or die (mysql_error());
-$row2=mysql_fetch_row($resulta2);
-$total2=$row2[0]; 
- 
-$nuevo_total11 = $total;
-$saldo = $total  - $total2;    
-   
-printf("
+											while ($rw2 = $re2->fetch_assoc()) {
+
+												$axz11 = $rw2["id_auto_crpp"];
+												$resulta = $cx->query("select SUM(vr_digitado) AS TOTAL from crpp WHERE id_auto_crpp = '$axz11' AND id_emp='$id_emp'");
+												$row = $resulta->fetch_array();
+												$total = $row[0];
+												$resulta2 = $cx->query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_crpp = '$axz11' AND id_emp='$id_emp'");
+												$row2 = $resulta2->fetch_array();
+												$total2 = $row2[0];
+
+												$nuevo_total11 = $total;
+												$saldo = $total  - $total2;
+
+												printf("
 <span class='Estilo4'>
 <tr>
 <td align='left' bgcolor='#DCE9E5'>
@@ -626,66 +700,67 @@ printf("
 </span>
 </td>
 
-</tr>", $rw2["id_manu_crpp"], $rw2["id_manu_cdpp"], $rw2["fecha_crpp"], $rw2["tercero"], number_format($nuevo_total11,2,',','.'), number_format($saldo,2,',','.'), $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_crpp"],$rw2["id_auto_crpp"],$rw2["id_auto_cdpp"]);
+</tr>", $rw2["id_manu_crpp"], $rw2["id_manu_cdpp"], $rw2["fecha_crpp"], $rw2["tercero"], number_format($nuevo_total11, 2, ',', '.'), number_format($saldo, 2, ',', '.'), $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_cdpp"]);
+											}
 
-   }
-
-printf("</table></center>");
-
-
+											printf("</table></center>");
+										}
 
 
-}
+										if ($registrado == "") {
+										} else {
+										?>
+											<BR />
+											<div class="Estilo4 " style='padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;'>
+												<div align="center"><strong> CERTIFICADOS DE REGISTRO PRESUPUESTAL<br />
+														<br />
+														<span class="Estilo4 Estilo8"><strong> OBLIGADOS POR EL VALOR TOTAL <br><?php echo $mesh[$me + 0] . " DE " . $an; ?></strong></span> <br />
+													</strong><br />
+												</div>
+											</div>
+											<br />
 
+										<?php
+											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
+											$limitar = "limit $ini,$fin";
+											if ($_POST["buscar"] != "") {
+												$filtro = "and (id_manu_crpp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR detalle_crpp LIKE '%$buscar%' or id_manu_cdpp like '%$buscar%') ";
+												$limitar = '';
+											}
 
-if ($registrado =="")
-{
-}
-else
-{
-?>
-<BR />
-<div class="Estilo4 " style='padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;'>
-  <div align="center"><strong> CERTIFICADOS DE REGISTRO PRESUPUESTAL<br />
-        <br />
-        <span class="Estilo4 Estilo8"><strong> OBLIGADOS POR EL VALOR TOTAL <br><? echo $mesh[$me+0]." DE ".$an; ?></strong></span> <br />
-    </strong><br />
-  </div>
-</div>
-<br />
+											$a = "select id_auto_crpp,id_auto_cdpp, id_manu_crpp, id_manu_cdpp , id_auto_cdpp, fecha_crpp, tercero , contrato, t_humano, inversion, subsidiado  from crpp where id_emp = '$id_emp' and ctrl = 'SI'";
+											if (empty($tercero)) {
+												$c = "";
+											} else {
+												$c = "and tercero =$tercero2";
+											}
+											if ($fecha2 == "MES") {
+												$f = "and fecha_crpp between '$f1' and '$f2'";
+											}
+											if ($fecha2 == "DIA") {
+												$f = "and fecha_crpp ='$fechafil'";
+											}
+											if ($fecha2 == "A�O") {
+												$f = "and fecha_crpp between '$a1' and '$a2'";
+											}
+											$gby = "group by id_auto_crpp";
+											$orden = "order by fecha_crpp desc,id_manu_crpp desc, id desc";
+											// Gerero listas de paginacion
+											$sql = "$a $b $c $filtro $f $gby $orden";
+											$resf = $cx->query($sql);
+											$filas = $resf->num_rows;
+											$listas = ceil($filas / $muestra);
 
-<?
-$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-$limitar = "limit $ini,$fin";
-if  ($_POST["buscar"] != "")
-{
-$filtro ="and (id_manu_crpp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR detalle_crpp LIKE '%$buscar%' or id_manu_cdpp like '%$buscar%') ";
-$limitar ='';
-} 
-
-$a = "select id_auto_crpp,id_auto_cdpp, id_manu_crpp, id_manu_cdpp , id_auto_cdpp, fecha_crpp, tercero , contrato, t_humano, inversion, subsidiado  from crpp where id_emp = '$id_emp' and ctrl = 'SI'";
-	if (empty($tercero)){$c = "";}else{$c= "and tercero =$tercero2";}
-	if ($fecha2 == "MES"){$f= "and fecha_crpp between '$f1' and '$f2'";}
-	if ($fecha2 == "DIA"){$f= "and fecha_crpp ='$fechafil'";}
-	if ($fecha2 == "A�O"){$f= "and fecha_crpp between '$a1' and '$a2'";}
-	$gby = "group by id_auto_crpp";
-	$orden = "order by fecha_crpp desc,id_manu_crpp desc, id desc";
-	// Gerero listas de paginacion
-	$sql = "$a $b $c $filtro $f $gby $orden";
-	$resf =mysql_db_query($database,$sql,$cx);
-	$filas = mysql_num_rows($resf);
-	$listas = ceil($filas / $muestra);
-
-	$sq2 = "$a $b $c $filtro $f $gby $orden $limitar";
-
-
-
+											$sq2 = "$a $b $c $filtro $f $gby $orden $limitar";
 
 
 
-$re2 = mysql_db_query($database, $sq2, $cx);
 
-printf("
+
+
+											$re2 = $cx->query($sq2);
+
+											printf("
 <center>
 <table width='900' BORDER='1' class='bordepunteado1'>
 
@@ -707,21 +782,20 @@ printf("
 
 ");
 
-while($rw2 = mysql_fetch_array($re2)) 
-   {
-   
-$ida1=$rw2["id_auto_cdpp"];
-$ida2=$rw2["id_manu_cdpp"];
+											while ($rw2 = $re2->fetch_assoc()) {
+
+												$ida1 = $rw2["id_auto_cdpp"];
+												$ida2 = $rw2["id_manu_cdpp"];
 
 
-$axz111=$rw2["id_auto_crpp"];
-$link=mysql_connect($server,$dbuser,$dbpass);
-$resulta=mysql_query("select SUM(vr_digitado) AS TOTAL from crpp WHERE id_auto_crpp = '$axz111' AND id_emp='$id_emp'",$link) or die (mysql_error());
-$row=mysql_fetch_row($resulta);
-$total=$row[0]; 
-$nuevo_total111 = $total;  
-   
-printf("
+												$axz111 = $rw2["id_auto_crpp"];
+												$link = new mysqli($server, $dbuser, $dbpass, $database);
+												$resulta = $link->query("select SUM(vr_digitado) AS TOTAL from crpp WHERE id_auto_crpp = '$axz111' AND id_emp='$id_emp'");
+												$row = $resulta->fetch_array();
+												$total = $row[0];
+												$nuevo_total111 = $total;
+
+												printf("
 <span class='Estilo4'>
 <tr>
 <td align='left' bgcolor='#DCE9E5'>
@@ -768,67 +842,68 @@ printf("
 </span>
 </td>
 
-</tr>", $rw2["id_manu_crpp"], $rw2["id_manu_cdpp"], $rw2["fecha_crpp"], $rw2["tercero"], number_format($nuevo_total111,2,',','.'), $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_crpp"],$rw2["id_auto_crpp"],$rw2["id_auto_cdpp"]);
+</tr>", $rw2["id_manu_crpp"], $rw2["id_manu_cdpp"], $rw2["fecha_crpp"], $rw2["tercero"], number_format($nuevo_total111, 2, ',', '.'), $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_crpp"], $rw2["id_auto_cdpp"]);
+											}
+
+											printf("</table></center>");
+											echo "<br><&nbsp;";
+											for ($i = 0; $i < $listas; $i++) {
+												$inicio = ($i * $muestra) + 1;
+												$k = $i + 1;
+												if ($k == $indice) {
+													echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=CRPP&k=$k&nn=CRPP'><b>$k</b></a>&nbsp;";
+												} else {
+													echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=CRPP&k=$k&nn=CRPP'>$k</a>&nbsp;";
+												}
+											}
+											echo ">&nbsp;";
+										}
+									}
+									//******************************************************
+									if ($a == 'COBP') {
+
+										?>
+										<div class="Estilo4 Estilo8" style='padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;'>
+											<div align="center"><strong> CERTIFICADOS DE OBLIGACION PRESUPUESTAL <br />
+													<br />
+												</strong><br />
+											</div>
+										</div>
+										<?php
+
+										include('../objetos/filtro.php');
 
 
-   }
+										if ($pendiente == "") {
+										} else {
+											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 
-printf("</table></center>");
-echo "<br><&nbsp;";
-for ($i =0; $i<$listas;$i++)
-{
-	$inicio =($i*$muestra)+1;
-	$k =$i+1;
-	if ($k ==$indice) 
-	{
-		echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=CRPP&k=$k&nn=CRPP'><b>$k</b></a>&nbsp;";
-	}else{
-		echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=CRPP&k=$k&nn=CRPP'>$k</a>&nbsp;";
-	}
-}
-echo ">&nbsp;";
+											if ($_POST["buscar"] != "") {
+												$filtro = "and (id_manu_cobp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR des_cobp LIKE '%$buscar%') ";
+											}
 
-}
-}
-//******************************************************
-if ($a == 'COBP')
-{
-	
-?>
-<div class="Estilo4 Estilo8" style='padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;'>
-  <div align="center"><strong> CERTIFICADOS DE OBLIGACION PRESUPUESTAL <br />
-      <br />
-  </strong><br />
-</div>
-</div>
-<?
+											$a = "select distinct(id_auto_cobp), id_manu_cobp, des_cobp,  id_manu_crpp, id_manu_cdpp, fecha_cobp, tercero, contab, tesoreria from cobp where id_emp = '$id_emp' and contab='NO' and tesoreria ='NO' and liq = ''";
+											if (empty($tercero)) {
+												$c = "";
+											} else {
+												$c = "and tercero =$tercero2";
+											}
+											if ($fecha2 == "MES") {
+												$f = "and fecha_cobp between '$f1' and '$f2'";
+											}
+											if ($fecha2 == "DIA") {
+												$f = "and fecha_cobp ='$fechafil'";
+											}
+											if ($fecha2 == "A�O") {
+												$f = "and fecha_cobp between '$a1' and '$a2'";
+											}
+											$gby = "";
+											$orden = "order by fecha_cobp,id_manu_cobp desc";
+											$sq2 = "$a $b $c $filtro $f $gby $orden";
 
-include('../objetos/filtro.php'); 
+											$re2 = $cx->query($sq2);
 
-
-if  ($pendiente =="") 
-{
-
-}else{
-$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-
-if  ($_POST["buscar"] != "")
-{
-$filtro ="and (id_manu_cobp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR des_cobp LIKE '%$buscar%') "; 
-} 
-
-$a = "select distinct(id_auto_cobp), id_manu_cobp, des_cobp,  id_manu_crpp, id_manu_cdpp, fecha_cobp, tercero, contab, tesoreria from cobp where id_emp = '$id_emp' and contab='NO' and tesoreria ='NO' and liq = ''";
-	if (empty($tercero)){$c = "";}else{$c= "and tercero =$tercero2";}
-	if ($fecha2 == "MES"){$f= "and fecha_cobp between '$f1' and '$f2'";}
-	if ($fecha2 == "DIA"){$f= "and fecha_cobp ='$fechafil'";}
-	if ($fecha2 == "A�O"){$f= "and fecha_cobp between '$a1' and '$a2'";}
-	$gby = "";
-	$orden = "order by fecha_cobp,id_manu_cobp desc";
-	$sq2 = "$a $b $c $filtro $f $gby $orden";
-
-$re2 = mysql_db_query($database, $sq2, $cx);
-
-printf("
+											printf("
 <center>
 <table width='900' BORDER='1' class='bordepunteado1'>
 
@@ -848,19 +923,18 @@ printf("
 
 ");
 
-while($rw2 = mysql_fetch_array($re2)) 
-   {
-   
-$var1x='OBCG';
+											while ($rw2 = $re2->fetch_assoc()) {
+
+												$var1x = 'OBCG';
 
 
-$a1a=$rw2["id_auto_cobp"];
-$resulta=mysql_query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_cobp = '$a1a' AND id_emp='$id_emp' ",$cx) or die (mysql_error());
-$row=mysql_fetch_row($resulta);
-$total=$row[0]; 
-$nuevo_totala = $total;  
-   
-printf("
+												$a1a = $rw2["id_auto_cobp"];
+												$resulta = $cx->query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_cobp = '$a1a' AND id_emp='$id_emp' ");
+												$row = $resulta->fetch_assoc();
+												$total = $row[0];
+												$nuevo_totala = $total;
+
+												printf("
 <span class='Estilo4'>
 <tr>
 <td align='left' bgcolor='#DCE9E5'>
@@ -915,61 +989,65 @@ printf("
 </td>
 
 
-</tr>", $rw2["id_manu_cobp"],$rw2["id_manu_crpp"], $rw2["fecha_cobp"], $rw2["tercero"], number_format($nuevo_totala,2,',','.') , $var1x, $rw2["id_auto_cobp"], $rw2["id_auto_cobp"], $rw2["id_auto_cobp"], $rw2["id_auto_cobp"], $rw2["id_auto_cobp"]);
-   }
-printf("</table></center>");
+</tr>", $rw2["id_manu_cobp"], $rw2["id_manu_crpp"], $rw2["fecha_cobp"], $rw2["tercero"], number_format($nuevo_totala, 2, ',', '.'), $var1x, $rw2["id_auto_cobp"], $rw2["id_auto_cobp"], $rw2["id_auto_cobp"], $rw2["id_auto_cobp"], $rw2["id_auto_cobp"]);
+											}
+											printf("</table></center>");
+										}
 
-}
-
-if  ($registrado =="") 
-{
-
-}
-else
-{
+										if ($registrado == "") {
+										} else {
 
 
-?>
-<br />
-<div class="Estilo4" style='padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;'>
-  <div align="center"><strong> CERTIFICADOS DE OBLIGACION PRESUPUESTAL <br />
-        <br />
-        <span class="Estilo4 Estilo8"><strong> CONTABILIZADOS </strong></span><BR /><br />
-        </strong><a href="../mvto_contable/menu_cont.php" target="_parent">...::: IR A CONTABILIDAD :::...</a> 
-    <br />
-  </div>
-</div>
-<br />
+										?>
+											<br />
+											<div class="Estilo4" style='padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;'>
+												<div align="center"><strong> CERTIFICADOS DE OBLIGACION PRESUPUESTAL <br />
+														<br />
+														<span class="Estilo4 Estilo8"><strong> CONTABILIZADOS </strong></span><BR /><br />
+													</strong><a href="../mvto_contable/menu_cont.php" target="_parent">...::: IR A CONTABILIDAD :::...</a>
+													<br />
+												</div>
+											</div>
+											<br />
 
-<?
-$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-$limitar = "limit $ini,$fin";
-if  ($_POST["buscar"] != "")
-{
-$filtro ="and (id_manu_cobp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR des_cobp LIKE '%$buscar%') "; 
-$limitar ='';
-} 
+											<?php
+											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
+											$limitar = "limit $ini,$fin";
+											if ($_POST["buscar"] != "") {
+												$filtro = "and (id_manu_cobp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR des_cobp LIKE '%$buscar%') ";
+												$limitar = '';
+											}
 
-$a = "select distinct(id_auto_cobp), id_manu_cobp,  des_cobp, id_manu_crpp, id_manu_cdpp, fecha_cobp, tercero, tesoreria from cobp where id_emp = '$id_emp' and (tesoreria ='NO' OR tesoreria = '') and contab ='SI' AND liq = ''";
-	if (empty($tercero)){$c = "";}else{$c= "and tercero =$tercero2";}
-	if ($fecha2 == "MES"){$f= "and fecha_cobp between '$f1' and '$f2'";}
-	if ($fecha2 == "DIA"){$f= "and fecha_cobp ='$fechafil'";}
-	if ($fecha2 == "A�O"){$f= "and fecha_cobp between '$a1' and '$a2'";}
-	$gby = "";
-	$orden = "order by fecha_cobp desc,id_manu_cobp desc, id desc";
-		// Gerero listas de paginacion
-	$sql = "$a $b $c $filtro $f $gby $orden";
-	$resf =mysql_db_query($database,$sql,$cx);
-	$filas = mysql_num_rows($resf);
-	$listas = ceil($filas / $muestra);
+											$a = "select distinct(id_auto_cobp), id_manu_cobp,  des_cobp, id_manu_crpp, id_manu_cdpp, fecha_cobp, tercero, tesoreria from cobp where id_emp = '$id_emp' and (tesoreria ='NO' OR tesoreria = '') and contab ='SI' AND liq = ''";
+											if (empty($tercero)) {
+												$c = "";
+											} else {
+												$c = "and tercero =$tercero2";
+											}
+											if ($fecha2 == "MES") {
+												$f = "and fecha_cobp between '$f1' and '$f2'";
+											}
+											if ($fecha2 == "DIA") {
+												$f = "and fecha_cobp ='$fechafil'";
+											}
+											if ($fecha2 == "A�O") {
+												$f = "and fecha_cobp between '$a1' and '$a2'";
+											}
+											$gby = "";
+											$orden = "order by fecha_cobp desc,id_manu_cobp desc, id desc";
+											// Gerero listas de paginacion
+											$sql = "$a $b $c $filtro $f $gby $orden";
+											$resf = $cx->query($sql);
+											$filas = $resf->num_rows;
+											$listas = ceil($filas / $muestra);
 
-	$sq5 = "$a $b $c $filtro $f $gby $orden $limitar";
+											$sq5 = "$a $b $c $filtro $f $gby $orden $limitar";
 
 
 
-$re2 = mysql_db_query($database, $sq5, $cx);
+											$re2 = $cx->query($sq5);
 
-printf("
+											printf("
 <center>
 <table width='900' BORDER='1' class='bordepunteado1'>
 
@@ -992,16 +1070,15 @@ printf("
 
 ");
 
-while($rw2 = mysql_fetch_array($re2)) 
-   {
-   
-$a1a1=$rw2["id_auto_cobp"];
-$resulta=mysql_query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_cobp = '$a1a1' AND id_emp='$id_emp'",$cx) or die (mysql_error());
-$row=mysql_fetch_row($resulta);
-$total=$row[0]; 
-$nuevo_totala1 = $total;   
-   
-printf("
+											while ($rw2 = $re2->fetch_assoc()) {
+
+												$a1a1 = $rw2["id_auto_cobp"];
+												$resulta = $cx->query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_cobp = '$a1a1' AND id_emp='$id_emp'");
+												$row = $resulta->fetch_assoc();
+												$total = $row[0];
+												$nuevo_totala1 = $total;
+
+												printf("
 <span class='Estilo4'>
 <tr>
 <td align='left' bgcolor='#DCE9E5'>
@@ -1043,65 +1120,72 @@ printf("
 </td>
 
 
-</tr>", $rw2["id_manu_cobp"],$rw2["id_manu_cdpp"], $rw2["fecha_cobp"], $rw2["tercero"], number_format($nuevo_totala1,2,',','.'), $rw2["id_auto_cobp"], $rw2["id_auto_cobp"],$rw2["id_auto_cobp"],$rw2["id_auto_cobp"]);
-   }
+</tr>", $rw2["id_manu_cobp"], $rw2["id_manu_cdpp"], $rw2["fecha_cobp"], $rw2["tercero"], number_format($nuevo_totala1, 2, ',', '.'), $rw2["id_auto_cobp"], $rw2["id_auto_cobp"], $rw2["id_auto_cobp"], $rw2["id_auto_cobp"]);
+											}
 
-printf("</table></center>");
-echo "<br><&nbsp;";
-for ($i =0; $i<$listas;$i++)
-{
-	$inicio =($i*$muestra)+1;
-	$k =$i+1;
-	if ($k ==$indice) 
-	{
-		echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=COBP&k=$k&nn=COBP'><b>$k</b></a>&nbsp;";
-	}else{
-		echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=COBP&k=$k&nn=COBP'>$k</a>&nbsp;";
-	}
-}
-echo ">&nbsp;";
+											printf("</table></center>");
+											echo "<br><&nbsp;";
+											for ($i = 0; $i < $listas; $i++) {
+												$inicio = ($i * $muestra) + 1;
+												$k = $i + 1;
+												if ($k == $indice) {
+													echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=COBP&k=$k&nn=COBP'><b>$k</b></a>&nbsp;";
+												} else {
+													echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=COBP&k=$k&nn=COBP'>$k</a>&nbsp;";
+												}
+											}
+											echo ">&nbsp;";
 
 
-?>
+											?>
 
-<br />
-<div class="Estilo4" style='padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;'>
-  <div align="center"><strong> CERTIFICADOS DE OBLIGACION PRESUPUESTAL <br />
-        <br />
-        <span class="Estilo4 Estilo8"><strong> ENVIADOS DIRECTAMENTE A TESORERIA ( Nominas y Contribuciones Inherentes a Nomina ) </strong></span><br />
-    <br />
-    </strong><a href="../pagos_tesoreria/pagos_tesoreria.php" target="_parent">...::: IR A TESORERIA :::...</a> <br />
-  </div>
-</div>
-<br />
+											<br />
+											<div class="Estilo4" style='padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;'>
+												<div align="center"><strong> CERTIFICADOS DE OBLIGACION PRESUPUESTAL <br />
+														<br />
+														<span class="Estilo4 Estilo8"><strong> ENVIADOS DIRECTAMENTE A TESORERIA ( Nominas y Contribuciones Inherentes a Nomina ) </strong></span><br />
+														<br />
+													</strong><a href="../pagos_tesoreria/pagos_tesoreria.php" target="_parent">...::: IR A TESORERIA :::...</a> <br />
+												</div>
+											</div>
+											<br />
 
-<?
+									<?php
 
-if  ($_POST["buscar"] != "")
-{
-$filtro ="and (id_manu_cobp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR des_cobp LIKE '%$buscar%')"; 
-} 
+											if ($_POST["buscar"] != "") {
+												$filtro = "and (id_manu_cobp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR des_cobp LIKE '%$buscar%')";
+											}
 
-$a = "select distinct(id_auto_cobp), id_manu_cobp, des_cobp, id_manu_crpp, id_manu_cdpp, fecha_cobp, tercero, contab, tesoreria from cobp where id_emp = '$id_emp' and contab='NO' and tesoreria ='SI'";
-	if (empty($tercero)){$c = "";}else{$c= "and tercero =$tercero2";}
-	if ($fecha2 == "MES"){$f= "and fecha_cobp between '$f1' and '$f2'";}
-	if ($fecha2 == "DIA"){$f= "and fecha_cobp ='$fechafil'";}
-	if ($fecha2 == "A�O"){$f= "and fecha_cobp between '$a1' and '$a2'";}
-	$gby = "";
-	$orden = "order by fecha_cobp desc ,id_manu_cobp desc, id desc";
-	// Gerero listas de paginacion
-	$sql = "$a $b $c $filtro $f $gby $orden";
-	$resf =mysql_db_query($database,$sql,$cx);
-	$filas = mysql_num_rows($resf);
-	$listas = ceil($filas / $muestra);
+											$a = "select distinct(id_auto_cobp), id_manu_cobp, des_cobp, id_manu_crpp, id_manu_cdpp, fecha_cobp, tercero, contab, tesoreria from cobp where id_emp = '$id_emp' and contab='NO' and tesoreria ='SI'";
+											if (empty($tercero)) {
+												$c = "";
+											} else {
+												$c = "and tercero =$tercero2";
+											}
+											if ($fecha2 == "MES") {
+												$f = "and fecha_cobp between '$f1' and '$f2'";
+											}
+											if ($fecha2 == "DIA") {
+												$f = "and fecha_cobp ='$fechafil'";
+											}
+											if ($fecha2 == "A�O") {
+												$f = "and fecha_cobp between '$a1' and '$a2'";
+											}
+											$gby = "";
+											$orden = "order by fecha_cobp desc ,id_manu_cobp desc, id desc";
+											// Gerero listas de paginacion
+											$sql = "$a $b $c $filtro $f $gby $orden";
+											$resf = $cx->query($sql);
+											$filas = $resf->num_rows;
+											$listas = ceil($filas / $muestra);
 
-	$sq6 = "$a $b $c $filtro $f $gby $orden limit $ini,$fin";
+											$sq6 = "$a $b $c $filtro $f $gby $orden limit $ini,$fin";
 
 
 
-$re2 = mysql_db_query($database, $sq6, $cx);
+											$re2 = $cx->query($sq6);
 
-printf("
+											printf("
 <center>
 <table width='900' BORDER='1' class='bordepunteado1'>
 
@@ -1121,15 +1205,14 @@ printf("
 
 ");
 
-while($rw2 = mysql_fetch_array($re2)) 
-   {
-   
-$a1a=$rw2["id_auto_cobp"];
-$resulta=mysql_query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_cobp = '$a1a' AND id_emp='$id_emp'",$cx) or die (mysql_error());
-$row=mysql_fetch_row($resulta);
-$total=$row[0]; 
-$nuevo_totala = $total;  
-printf("
+											while ($rw2 = $re2->fetch_assoc()) {
+
+												$a1a = $rw2["id_auto_cobp"];
+												$resulta = $cx->query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_cobp = '$a1a' AND id_emp='$id_emp'");
+												$row = $resulta->fetch_assoc();
+												$total = $row[0];
+												$nuevo_totala = $total;
+												printf("
 <span class='Estilo4'>
 <tr>
 <td align='left' bgcolor='#DCE9E5'>
@@ -1165,66 +1248,65 @@ printf("
 </td>
 
 
-</tr>", $rw2["id_manu_cobp"], $rw2["fecha_cobp"], $rw2["tercero"], number_format($nuevo_totala,2,',','.') ,  $rw2["id_auto_cobp"], $rw2["id_auto_cobp"], $rw2["id_auto_cobp"]);
+</tr>", $rw2["id_manu_cobp"], $rw2["fecha_cobp"], $rw2["tercero"], number_format($nuevo_totala, 2, ',', '.'),  $rw2["id_auto_cobp"], $rw2["id_auto_cobp"], $rw2["id_auto_cobp"]);
+											}
+											printf("</table></center>");
+											echo "<br><&nbsp;";
+											for ($i = 0; $i < $listas; $i++) {
+												$inicio = ($i * $muestra) + 1;
+												$k = $i + 1;
+												if ($k == $indice) {
+													echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=COBP&k=$k&nn=COBP'><b>$k</b></a>&nbsp;";
+												} else {
+													echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=COBP&k=$k&nn=COBP'>$k</a>&nbsp;";
+												}
+											}
+											echo ">&nbsp;";
+										}
+									}
+									?>
+									</div>
+							</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="3">
+						<div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;">
+							<div align="center">
+
+								<div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:150px'>
+									<div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
+										<div align="center"><a href='../user.php' target='_parent'>VOLVER </a> </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
+							<div align="center"> <span class="Estilo4">Fecha de esta Sesion:</span> <br />
+								<span class="Estilo4"> <strong>
+										<?php echo $ano; ?>
+									</strong> </span> <br />
+								<span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"]; ?></u> </span>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
 
 
-   }
-mysql_close();
-printf("</table></center>");
-echo "<br><&nbsp;";
-for ($i =0; $i<$listas;$i++)
-{
-	$inicio =($i*$muestra)+1;
-	$k =$i+1;
-	if ($k ==$indice) 
-	{
-		echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=COBP&k=$k&nn=COBP'><b>$k</b></a>&nbsp;";
-	}else{
-		echo "<a href='$archivo?ini=$inicio&fin=$muestra&a=COBP&k=$k&nn=COBP'>$k</a>&nbsp;";
+		</body>
+
+		</html>
+
+<?php
+	} else { // si no tiene persisos de usuario
+		echo "<br><br><center>Usuario no tiene permisos en este m&oacute;dulo</center><br>";
+		echo "<center>Click <a href=\"../user.php\">aqu&iacute; para volver</a></center>";
 	}
-}
-echo ">&nbsp;";
-
-}
-}
-?>
-</div>
-    </div></td>
-  </tr>
-  
-  <tr>
-    <td colspan="3">
-    <div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;">
-      <div align="center">
-      
-        <div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:150px'>
-          <div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
-            <div align="center"><a href='../user.php' target='_parent'>VOLVER </a> </div>
-          </div>
-        </div>
-        </div>
-    </div>  </td>
-  </tr>
-  <tr>
-    <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
-          <span class="Estilo4"> <strong>
-          <?echo $ano;?>
-          </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
-    </div></td>
-  </tr>
-</table>
-
-
-</body>
-</html>
-
-<?
-}else{ // si no tiene persisos de usuario
-	echo "<br><br><center>Usuario no tiene permisos en este m&oacute;dulo</center><br>";
-	echo "<center>Click <a href=\"../user.php\">aqu&iacute; para volver</a></center>";
-		
-}
 }
 ?>

@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -78,17 +78,17 @@ $consecutivo=$_GET['consecutivo'];
 // saco el id de la empresa
    $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	    $sqlxx = "select * from fecha";
-	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-	    while($rowxx = mysql_fetch_array($resultadoxx)) 
+	    $resultadoxx = $connectionxx->query($sqlxx);
+	    while($rowxx = $resultadoxx->fetch_assoc()) 
   	    {
      	 $idxx=$rowxx["id_emp"];
     	}
 		
 
 $sqlxxa = "select * from reip_ing where id_emp ='$idxx' and consecutivo ='$consecutivo'";
-$resultadoxxa = mysql_db_query($database, $sqlxxa, $connectionxx);
+$resultadoxxa =$connectionxx->query($sqlxxa);
 
-while($rowxxa = mysql_fetch_array($resultadoxxa)) 
+while($rowxxa = $resultadoxxa->fetch_assoc()) 
 {
   $id_manu_reip=$rowxxa["id_manu_reip"];
 }
@@ -96,7 +96,7 @@ while($rowxxa = mysql_fetch_array($resultadoxxa))
 
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from reip_ing where id_emp = '$idxx' and consecutivo='$consecutivo' order by cuenta asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -132,7 +132,7 @@ printf("
 
 ");
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
 printf("
 <span class='Estilo4'>
@@ -169,7 +169,7 @@ $rw["id"] , $rw["cuenta"], $rw["consecutivo"], $rw["ter_nat"], $rw["ter_jur"], $
    }
 
 ?>
-  <?
+  <?php
 printf("
 </table>
 </center>
@@ -183,6 +183,6 @@ printf("
 </body>
 </html>
 
-<?
+<?php
 }
 ?>

@@ -1,7 +1,7 @@
-<?
+<?php
 set_time_limit(600);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -9,10 +9,10 @@ exit;
 // verifico permisos del usuario
 		include('../config.php');
 		$cx = mysql_connect("$server","$dbuser","$dbpass")or die ("Conexion no Exitosa");
-		mysql_select_db("$database"); 
+		 
        	$sql="SELECT ppto FROM usuarios2 where login = '$_SESSION[login]'";
 		$res=mysql_query($sql,$cx);
-		$rw =mysql_fetch_array($res);
+		$rw =$res->fetch_assoc();
 if ($rw['ppto']=='SI')
 {
 ?>
@@ -287,7 +287,7 @@ if(!mysql_select_db($database,$db))
 	echo "</table>";
 
 ?>
- <?
+ <?php
 printf("
 
 <center >

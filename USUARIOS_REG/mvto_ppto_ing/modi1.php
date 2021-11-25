@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -53,13 +53,13 @@ function validar(e) {
 </head>
 <body>
 
-<?
+<?php
 include("../config.php");
 
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+$resultadoxx = $connectionxx->query($sqlxx);
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 $idxx=$rowxx["id_emp"];
 }
@@ -92,7 +92,7 @@ $nom_rubro =$_POST['nom_rubro'];
     </div></td>
     <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
         <div align="center" class="Estilo4">
-          <? 
+          <?php 
    $query="SELECT * FROM terceros_juridicos  WHERE id_emp = '$idxx' and id = '$ter_jur'";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
@@ -101,7 +101,7 @@ $nom_rubro =$_POST['nom_rubro'];
    	printf("%s",$row["raz_soc2"]);
    }
 ?>
-<? 
+<?php 
    $query="SELECT * FROM terceros_naturales  WHERE id_emp = '$idxx' and id = '$ter_nat'";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
@@ -114,10 +114,10 @@ $nom_rubro =$_POST['nom_rubro'];
         </div>
     </div></td>
     <td width="200" bgcolor="#F5F5F5">
-	  <input name="id" type="hidden" id="id" value="<? printf("%s",$id);?>">
-	  <input name="consecutivo" type="hidden" id="consecutivo" value="<? printf("%s",$consecutivo);?>">
-	  <input name="old_valor" type="hidden" id="old_valor" value="<? printf("%s",$valor);?>">
-	  <input name="old_cuenta" type="hidden" id="old_cuenta" value="<? printf("%s",$cuenta);?>">
+	  <input name="id" type="hidden" id="id" value="<?php printf("%s",$id);?>">
+	  <input name="consecutivo" type="hidden" id="consecutivo" value="<?php printf("%s",$consecutivo);?>">
+	  <input name="old_valor" type="hidden" id="old_valor" value="<?php printf("%s",$valor);?>">
+	  <input name="old_cuenta" type="hidden" id="old_cuenta" value="<?php printf("%s",$cuenta);?>">
 	  </td>
   </tr>
   <tr>
@@ -128,12 +128,12 @@ $nom_rubro =$_POST['nom_rubro'];
     </div></td>
     <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center" class="Estilo4">
-        <div align="center"><? 
+        <div align="center"><?php 
 		
 		$sqlxxa = "select * from reip_ing where id_emp ='$idxx' and consecutivo ='$consecutivo' and id ='$id'";
-$resultadoxxa = mysql_db_query($database, $sqlxxa, $connectionxx);
+$resultadoxxa =$connectionxx->query($sqlxxa);
 
-while($rowxxa = mysql_fetch_array($resultadoxxa)) 
+while($rowxxa = $resultadoxxa->fetch_assoc()) 
 {
   $id_manu_reip=$rowxxa["id_manu_reip"];
   $valor_a=$rowxxa["valor"];
@@ -169,15 +169,15 @@ while($rowxxa = mysql_fetch_array($resultadoxxa))
   <tr>
     <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
       <div align="center">
-	  <center class='Estilo4'><? printf("%s - %s<br>",$cuenta,$nom_rubro); ?>
-	    <input name="cuenta" type="hidden" id="cuenta" value="<? printf("%s",$cuenta);?>">
+	  <center class='Estilo4'><?php printf("%s - %s<br>",$cuenta,$nom_rubro); ?>
+	    <input name="cuenta" type="hidden" id="cuenta" value="<?php printf("%s",$cuenta);?>">
 	  </center>
        
       </div>
     </div></td>
     <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
       <div align="center">
-        <input name="valor" type="text" class="Estilo4" id="valor" size="20" onKeyPress="return validar(event)" style="text-align:right" value="<? printf("%s",$valor_a); ?>" />
+        <input name="valor" type="text" class="Estilo4" id="valor" size="20" onKeyPress="return validar(event)" style="text-align:right" value="<?php printf("%s",$valor_a); ?>" />
       </div>
     </div></td>
   </tr>
@@ -195,7 +195,7 @@ while($rowxxa = mysql_fetch_array($resultadoxxa))
 </table>
 
 </form>
-<?
+<?php
 printf("
 <br>
 <center class='Estilo4'>
@@ -209,6 +209,6 @@ printf("
 </body>
 </html>
 
-<?
+<?php
 }
 ?>

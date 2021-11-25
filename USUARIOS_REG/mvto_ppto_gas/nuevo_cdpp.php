@@ -1,7 +1,7 @@
-<?
+<?php
 session_start();
 header('Content-Type: text/html; charset=latin1');
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -30,7 +30,7 @@ function validar2()
 	var numero = document.getElementById('cdpp').value;
 	if (!numero)
 	{
-		alert("Falta determinar el número de consecutivo del CDPP..");
+		alert("Falta determinar el nï¿½mero de consecutivo del CDPP..");
 		document.getElementById('cdpp').select();
 		return false;
 	}
@@ -38,7 +38,7 @@ function validar2()
 	var libre = document.getElementById('res_cdpp').value;
 	if(libre != 1)
 	{
-		alert("El número de CDP ya fue utilizado...");
+		alert("El nï¿½mero de CDP ya fue utilizado...");
 		document.getElementById('cdpp').select();
 		return false;
 	}
@@ -46,7 +46,7 @@ function validar2()
 	var des = document.getElementById('des').value;
 	if(des =='')
 	{
-		alert("Por favor digite la descripción del CDP...");
+		alert("Por favor digite la descripciï¿½n del CDP...");
 		document.getElementById('des').select();
 		return false;
 	}
@@ -285,7 +285,7 @@ function menos_inputs()
 	if (vari2 >1) 
 	{
 		vari2 =parseFloat(vari2);
-		document.getElementById('filas').value = vari2-1;		// envio el valor de las filas actuales al input para enviar tamaño al post 
+		document.getElementById('filas').value = vari2-1;		// envio el valor de las filas actuales al input para enviar tamaï¿½o al post 
 		var mostrar = 'inputx'+vari2;
 		document.getElementById(mostrar).style.display="none";
 		document.getElementById('course_'+vari2).value ='';
@@ -309,7 +309,7 @@ $num_filas =1;
 include('../config.php');
 $cx=mysql_connect ($server, $dbuser, $dbpass);
 // consulta para estabblecer la fecha de sesion
-mysql_select_db("$database"); 
+ 
 $sqlxx = "select * from fecha where user ='$_SESSION[login]'";
 $result = mysql_query($sqlxx, $cx);
 while($rowxx = mysql_fetch_array($result)) 
@@ -401,6 +401,6 @@ document.getElementById("des").focus();
 </script>
 </body>
 </html>
-<?
+<?php
 }
 ?>
