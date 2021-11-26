@@ -61,7 +61,6 @@ function acceptNum(evt){
 var key = nav4 ? evt.which : evt.keyCode;
 return (key <= 13 || (key >= 48 && key <= 57));
 }
-//-->
 </script>
 
 <!--habilita - desahbilita objeto con opcion de un select - bancos - -->
@@ -70,6 +69,7 @@ function habilitar2(obj) {
   var hab;
   frm=obj.form;
   num=obj.selectedIndex;
+
   if (num==0) 
   {
     hab=true;
@@ -107,7 +107,7 @@ include('../config.php');
 global $server, $database, $dbpass,$dbuser,$charset;
 	// Conexion con la base de datos
 	$cx= new mysqli ($server, $dbuser, $dbpass, $database);
-
+$ver_banco='';
 $sxx = "select * from fecha";
 $rxx = $cx->query($sxx);
 while($rowxxx = $rxx->fetch_array()){
@@ -280,7 +280,7 @@ while($rowxxx = $rxx->fetch_array())
               </div></td>
               <td colspan="2" bgcolor="#EBEBE4" class="Estilo4"><div id="div" style="padding-left:30px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                 <div align="left">
-                <? if ($tipo_dato == 'D' and $cta0 != '0')
+                <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				{
 				?>
 				  <select name="banco" class="Estilo4" id="banco" onchange="habilitar2(this)">
@@ -296,7 +296,7 @@ while($rowxxx = $rxx->fetch_array())
 					}
 					?>
                   </select>
-                <? 
+                <?php
 				}
 			  	else
 			   	{
@@ -305,7 +305,7 @@ while($rowxxx = $rxx->fetch_array())
                     <option value="NO">NO</option>
                     <option value="SI">SI</option>
                   </select>
-                  <?
+                  <?php
 				  $ver_banco = 'disabled="disabled"';
 				}
 				?>
@@ -573,14 +573,14 @@ while($rowxxx = $rxx->fetch_array())
                   </div></td>
                   <td width="200" bgcolor="#EBEBE4"><div id="div23" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                     <div align="center">
-                      <? if ($tipo_dato == 'D' and $cta0 != '0')
+                      <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                       <select name="almacen" class="Estilo4" id="almacen" >
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							else
 							{
@@ -589,7 +589,7 @@ while($rowxxx = $rxx->fetch_array())
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							?>
                   </div></td>
@@ -598,14 +598,14 @@ while($rowxxx = $rxx->fetch_array())
                   </div></td>
                   <td width="204" bgcolor="#FFFFFF"><div id="div24" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                     <div align="center">
-                      <? if ($tipo_dato == 'D' and $cta0 != '0')
+                      <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                       <select name="depreciable" class="Estilo4" id="depreciable" >
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							else
 							{
@@ -614,7 +614,7 @@ while($rowxxx = $rxx->fetch_array())
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							?>
                   </div></td>
@@ -625,14 +625,14 @@ while($rowxxx = $rxx->fetch_array())
                   </div></td>
                   <td><div id="div25" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                     <div align="center">
-                      <? if ($tipo_dato == 'D' and $cta0 != '0')
+                      <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                       <select name="cartera" class="Estilo4" id="cartera" >
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							else
 							{
@@ -650,14 +650,14 @@ while($rowxxx = $rxx->fetch_array())
                   </div></td>
                   <td bgcolor="#EBEBE4"><div id="div26" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                     <div align="center">
-                      <? if ($tipo_dato == 'D' and $cta0 != '0')
+                      <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                       <select name="tercero" class="Estilo4" id="tercero" >
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							else
 							{
@@ -666,7 +666,7 @@ while($rowxxx = $rxx->fetch_array())
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							?>
                   </div></td>
@@ -677,14 +677,14 @@ while($rowxxx = $rxx->fetch_array())
                   </div></td>
                   <td bgcolor="#EBEBE4"><div id="div27" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                     <div align="center">
-                      <? if ($tipo_dato == 'D' and $cta0 != '0')
+                      <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                       <select name="base" class="Estilo4" id="base" >
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							else
 							{
@@ -693,7 +693,7 @@ while($rowxxx = $rxx->fetch_array())
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							?>
                   </div></td>
@@ -702,14 +702,14 @@ while($rowxxx = $rxx->fetch_array())
                   </div></td>
                   <td bgcolor="#FFFFFF"><div id="div29" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                     <div align="center">
-                      <? if ($tipo_dato == 'D' and $cta0 != '0')
+                      <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                       <select name="c_costos" class="Estilo4" id="c_costos" >
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							else
 							{
@@ -718,7 +718,7 @@ while($rowxxx = $rxx->fetch_array())
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							?>
                   </div></td>
@@ -729,14 +729,14 @@ while($rowxxx = $rxx->fetch_array())
                   </div></td>
                   <td><div id="div30" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                     <div align="center">
-                      <? if ($tipo_dato == 'D' and $cta0 != '0')
+                      <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                       <select name="cta_costos" class="Estilo4" id="cta_costos" >
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							else
 							{
@@ -745,7 +745,7 @@ while($rowxxx = $rxx->fetch_array())
                         <option value="NO">NO</option>
                         <option value="SI">SI</option>
                       </select>
-                      <?
+                      <?php
 							}
 							?>
                   </div></td>
@@ -760,11 +760,11 @@ while($rowxxx = $rxx->fetch_array())
               </div></td>
               <td colspan="2" bgcolor="#EBEBE4" class="Estilo4"><div id="div28" style="padding-left:30px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                 <div align="center">
-                  <? if ($tipo_dato == 'D' and $cta0 != '0')
+                  <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                   <select name="ent_recip" class="Estilo4" id="ent_recip" style="width: 400px;" >
-                    <?
+                    <?php
 $strSQL = "SELECT * FROM terceros_cgr_ing ORDER BY cod_ter";
 $rs = $cx->query($strSQL);
 $nr = $rs->num_rows;
@@ -775,7 +775,7 @@ for ($i=0; $i<$nr; $i++) {
 
 ?>
                   </select>
-                  <?
+                  <?php
 					  }
 					  else
 					  {
@@ -792,7 +792,7 @@ for ($i=0; $i<$nr; $i++) {
 
 ?>
                   </select>
-                  <?
+                  <?php
 					  }
 					  ?>
               </div></td>

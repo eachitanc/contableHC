@@ -1,29 +1,21 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!$_SESSION["login"])
 {
 header("Location: ../../login.php");
 exit;
 } else {
-?>
-<?
    include('../../config.php');
 // recibo informacion del usuario
    $ingresa=$_POST['ingresa'];      				
 // cx bd
-   if($connection=mysql_connect($server, $dbuser, $dbpass)) 
-	{
-		mysql_select_db($database);
-	} 
-	else 
-	{
-		die("Error conectandose a la base.");
-	} 
 // saco el id de la empresa
-   $connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+global $server, $database, $dbpass,$dbuser,$charset;
+// Conexion con la base de datos
+$cx= new mysqli ($server, $dbuser, $dbpass, $database);			
 	    $sqlxx = "select * from fecha";
-	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-	    while($rowxx = mysql_fetch_array($resultadoxx)) 
+	    $resultadoxx = $cx->query($sqlxx);
+	    while($rowxx = $resultadoxx->fetch_array())
   	    {
      	 $idxx=$rowxx["id_emp"];
     	}
@@ -50,8 +42,8 @@ exit;
 				
        // consulto si coinciden	
 	   $sql = "select * from pgcp where cod_pptal='$ingresa' and id_emp='$idxx'";
-	   $result = mysql_query($sql, $connection) or die(mysql_error());
-       if (mysql_num_rows($result) == 0)
+	   $result = $cx->query($sql);
+       if ($result->num_rows == 0)
 		 {  
 		 
 			 //calculo la longitud de ingresa
@@ -1347,8 +1339,6 @@ exit;
    }
  
 
-?>
-<?
 }
 ?><title>CONTAFACIL</title>
 <style type="text/css">

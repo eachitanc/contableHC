@@ -4,6 +4,8 @@ if (!isset($_SESSION["login"])) {
 	header("Location: ../login.php");
 	exit;
 } else {
+	$ver_boton='';
+	$filtro='';
 	// verifico permisos del usuario
 	include('../config.php');
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Conexion no Exitosa");
@@ -300,7 +302,7 @@ if (!isset($_SESSION["login"])) {
 
 											include('../config.php');
 											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
-
+											if(isset($_POST["buscar"])) $_POST["buscar"] = trim($_POST["buscar"]); else $_POST["buscar"] = "";				
 											if ($_POST["buscar"] != "") {
 												$filtro = "and (des LIKE  '%$buscar%' OR cdpp LIKE  '%$buscar%') ";
 											}
@@ -323,7 +325,7 @@ if (!isset($_SESSION["login"])) {
 											}
 											$gby = "group by consecutivo";
 											$orden = "order by fecha_reg,cdpp desc";
-											$sql = "$a $b $c $filtro $f $gby $orden";
+											$sql = "$a $c $filtro $f $gby $orden";
 
 											$re = $cx->query($sql);
 
@@ -459,11 +461,11 @@ if (!isset($_SESSION["login"])) {
 											$gby = "group by consecutivo";
 											$orden = "order by fecha_reg desc,cdpp desc";
 											// Gerero listas de paginacion
-											$sql = "$a $b $c $filtro $f $gby $orden";
+											$sql = "$a  $c $filtro $f $gby $orden";
 											$resf = $cx->query($sql);
 											$filas = $resf->num_rows;
 											$listas = ceil($filas / $muestra);
-											$sql2 = "$a $b $c $filtro $f  $gby  $orden $limitar ";
+											$sql2 = "$a $c $filtro $f  $gby  $orden $limitar ";
 
 
 											$re = $cx->query($sql2);
@@ -499,9 +501,10 @@ if (!isset($_SESSION["login"])) {
 
 												$axz1 = $rw["consecutivo"];
 												$link = new mysqli($server, $dbuser, $dbpass, $database);
-												$resulta = $link->query("select SUM(valor) AS TOTAL from cdpp WHERE consecutivo = '$axz1' AND id_emp='$id_emp'");
+												$sql="select SUM(valor) AS TOTAL from cdpp WHERE consecutivo = '$axz1' AND id_emp='$id_emp'";
+												$resulta = $link->query($sql);
 												$row = $resulta->fetch_assoc();
-												$total = $row[0];
+												$total = $row['TOTAL'];
 												$nuevo_total1 = $total;
 
 												printf("
@@ -596,7 +599,7 @@ if (!isset($_SESSION["login"])) {
 											}
 											$gby = "group by id_auto_crpp";
 											$orden = "order by fecha_crpp,id_manu_crpp desc";
-											$sq2 = "$a $b $c $filtro $f $gby $orden";
+											$sq2 = "$a $c $filtro $f $gby $orden";
 
 											$re2 = $cx->query($sq2);
 
@@ -723,6 +726,7 @@ if (!isset($_SESSION["login"])) {
 										<?php
 											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 											$limitar = "limit $ini,$fin";
+											if(isset($_POST["buscar"])) $_POST["buscar"] =$_POST['buscar'];else $_POST["buscar"] ="";
 											if ($_POST["buscar"] != "") {
 												$filtro = "and (id_manu_crpp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR detalle_crpp LIKE '%$buscar%' or id_manu_cdpp like '%$buscar%') ";
 												$limitar = '';
@@ -746,12 +750,12 @@ if (!isset($_SESSION["login"])) {
 											$gby = "group by id_auto_crpp";
 											$orden = "order by fecha_crpp desc,id_manu_crpp desc, id desc";
 											// Gerero listas de paginacion
-											$sql = "$a $b $c $filtro $f $gby $orden";
+											$sql = "$a $c $filtro $f $gby $orden";
 											$resf = $cx->query($sql);
 											$filas = $resf->num_rows;
 											$listas = ceil($filas / $muestra);
 
-											$sq2 = "$a $b $c $filtro $f $gby $orden $limitar";
+											$sq2 = "$a $c $filtro $f $gby $orden $limitar";
 
 
 
@@ -899,7 +903,7 @@ if (!isset($_SESSION["login"])) {
 											}
 											$gby = "";
 											$orden = "order by fecha_cobp,id_manu_cobp desc";
-											$sq2 = "$a $b $c $filtro $f $gby $orden";
+											$sq2 = "$a $c $filtro $f $gby $orden";
 
 											$re2 = $cx->query($sq2);
 
@@ -1036,12 +1040,12 @@ if (!isset($_SESSION["login"])) {
 											$gby = "";
 											$orden = "order by fecha_cobp desc,id_manu_cobp desc, id desc";
 											// Gerero listas de paginacion
-											$sql = "$a $b $c $filtro $f $gby $orden";
+											$sql = "$a $c $filtro $f $gby $orden";
 											$resf = $cx->query($sql);
 											$filas = $resf->num_rows;
 											$listas = ceil($filas / $muestra);
 
-											$sq5 = "$a $b $c $filtro $f $gby $orden $limitar";
+											$sq5 = "$a $c $filtro $f $gby $orden $limitar";
 
 
 
@@ -1174,12 +1178,12 @@ if (!isset($_SESSION["login"])) {
 											$gby = "";
 											$orden = "order by fecha_cobp desc ,id_manu_cobp desc, id desc";
 											// Gerero listas de paginacion
-											$sql = "$a $b $c $filtro $f $gby $orden";
+											$sql = "$a $c $filtro $f $gby $orden";
 											$resf = $cx->query($sql);
 											$filas = $resf->num_rows;
 											$listas = ceil($filas / $muestra);
 
-											$sq6 = "$a $b $c $filtro $f $gby $orden limit $ini,$fin";
+											$sq6 = "$a $c $filtro $f $gby $orden limit $ini,$fin";
 
 
 

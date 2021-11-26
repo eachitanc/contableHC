@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!$_SESSION["login"])
 {
 header("Location: ../login.php");
 exit;
@@ -75,27 +75,23 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
 	  <td>	    <div align="center">
 	    <span class="Estilo1"><BR />MAESTRO PLAN GENERAL DE CONTABILIDAD PUBLICA<BR />P.G.C.P </span><BR />
 	      <?php 
-	  include('../config.php');				
-$cxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+include('../config.php');				
+global $server, $database, $dbpass,$dbuser,$charset;
+// Conexion con la base de datos
+$cx= new mysqli ($server, $dbuser, $dbpass, $database);		
 $sxx = "select * from fecha";
-$rxx = mysql_db_query($database, $sxx, $cxx);
+$rxx = $cx->query($sxx);
 
-while($rowxxx = mysql_fetch_array($rxx)) 
-   {
+while($rowxxx = $rxx->fetch_array()){
+   
    
    $idxxx=$rowxxx["id_emp"];
 //printf("<span class='Estilo4'><b>Fecha de Trabajo ACTUAL = DIA: %s / MES: %s / A&Ntilde;O: %s </b></span><BR><span class='Estilo4'><b>Id Empresa ACTUAL = %s </b></span>", $row["dia"], $row["mes"], $row["ano"], $row["id_emp"]);  
    }
-	  ?>
-	      <?php
-//-------
-include('../config.php');				
-$cx2 = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sq2 = "select * from empresa where cod_emp = '$idxxx'";
-$re2 = mysql_db_query($database, $sq2, $cx2);
-
-while($row2 = mysql_fetch_array($re2)) 
-   {
+$re2 = $cx->query($sq2);
+while($row2 = $re2->fetch_array()){
+   
 printf("<span class='Estilo4'><br><b>...::: %s :::...</b></span><br>", $row2["raz_soc"]);  
    }
 //--------	--------------------------------------------------------------------------------------------
@@ -103,12 +99,10 @@ printf("<span class='Estilo4'><br><b>...::: %s :::...</b></span><br>", $row2["ra
 	      <br />
 	      <?php
 //-------
-include('../config.php');				
-$connection = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sql = "select * from fecha";
-$resultado = mysql_db_query($database, $sql, $connection);
+$resultado = $cx->query($sql);
 
-while($row = mysql_fetch_array($resultado)) 
+while($row = $resultado->fetch_array())
    {
    $id=$row["id_emp"];
    }
@@ -155,15 +149,11 @@ function muestra(queCosa)
     alert(queCosa);
 }
 </script>
-<?
+<?php
 
-include('../config.php');	
-$cx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
-$cxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
 $sxx = "select * from fecha";
-$rxx = mysql_db_query($database, $sxx, $cxx);
-
-while($rowxxx = mysql_fetch_array($rxx)) 
+$rxx = $cx->query($sxx);
+while($rowxxx = $rxx->fetch_array())
    {
    
    $idxxx=$rowxxx["id_emp"];
@@ -171,8 +161,8 @@ while($rowxxx = mysql_fetch_array($rxx))
    }			
 
 $sql="select * from pgcp where id_emp = '$idxxx'";
-$res=mysql_query($sql);
-$numeroRegistros=mysql_num_rows($res);
+$res=$cx->query($sql);
+$numeroRegistros=$res->num_rows;
 if($numeroRegistros<=0)
 {
     echo "<div align='center'>";
@@ -187,7 +177,7 @@ if($numeroRegistros<=0)
     //////////fin elementos de orden
 
     //////////calculo de elementos necesarios para paginacion
-    //tamaño de la pagina
+    //tamaï¿½o de la pagina
     $tamPag=50;
 
     //pagina actual si no esta definida y limites
@@ -229,7 +219,7 @@ if($numeroRegistros<=0)
 
 //////////creacion de la consulta con limites
 $sql="select * from pgcp where id_emp = '$idxxx' ORDER BY ".$orden." ASC LIMIT ".$limitInf.",".$tamPag;
-$res=mysql_query($sql);
+$res=$cx->query($sql);
 
 //////////fin consulta con limites
 echo "<div align='center'>";
@@ -275,16 +265,6 @@ printf("
     </table><br>
 ");
 
-/*printf("
-
-   </td>
-   <td valign='middle'>&nbsp;&nbsp;&nbsp;<a href=\"consulta_pgcp_a.php\"><span class='Estilo4'>Ver Todo el P.G.C.P</span></a></td>   
-	</tr>
-    </table><br>
-");*/
-
-
-////****
 
 printf("
 <table width='750' BORDER='1' class='bordepunteado1' align = 'center'>
@@ -307,7 +287,7 @@ printf("
 
 ");
 
-while($registro=mysql_fetch_array($res))
+while($registro= $res->fetch_array())
 {
 
 printf("
@@ -377,12 +357,12 @@ echo "</table>";
 		<br />
         <span class="Estilo4">
 		<strong>
-<? include('../config.php');				
-$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+<?php 
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $cx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_array())
+
 {
   $ano=$rowxx["ano"];
 }
@@ -405,9 +385,9 @@ echo $ano;
     <td width="283">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
 	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email ?>	</div>
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email ?>	</div>
 	</div>	</td>
     <td width="283">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -425,6 +405,6 @@ echo $ano;
 </table>
 </body>
 </html>
-<?
+<?php
 }
 ?>

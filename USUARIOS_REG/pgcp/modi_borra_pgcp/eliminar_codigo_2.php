@@ -1,29 +1,21 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!$_SESSION["login"])
 {
 header("Location: ../../login.php");
 exit;
 } else {
-?>
-<?
-   include('../../config.php');
 // recibo informacion del usuario
    $ingresa=$_POST['nn'];      				
 // cx bd
-   if($connection=mysql_connect($server, $dbuser, $dbpass)) 
-	{
-		mysql_select_db($database);
-	} 
-	else 
-	{
-		die("Error conectandose a la base.");
-	} 
 // saco el id de la empresa
-   $connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
-	    $sqlxx = "select * from fecha";
-	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-	    while($rowxx = mysql_fetch_array($resultadoxx)) 
+include('../config.php');				
+global $server, $database, $dbpass,$dbuser,$charset;
+// Conexion con la base de datos
+$cx= new mysqli ($server, $dbuser, $dbpass, $database);		   
+ $sqlxx = "select * from fecha";
+	    $resultadoxx = $cx->query($sqlxx);
+	    while($rowxx = $resultadoxx->fetch_array())
   	    {
      	 $idxx=$rowxx["id_emp"];
     	}
@@ -31,8 +23,9 @@ exit;
    
 // verifico que los campos afectado y afectado_otros sean 0   
    	    $sq = "select * from pgcp where id_emp = '$idxx' and cod_pptal = '$ingresa'";
-	    $re = mysql_db_query($database, $sq, $connectionxx);
-	    while($r = mysql_fetch_array($re)) 
+	    $re = $cx->query($sq);
+	    while($r = $re->fetch_array())
+  	    
   	    {
      	 $a1=$r["afectado"]; 
     	}
@@ -66,17 +59,15 @@ exit;
 	 					 $nivel = 2;
 	 					 
 						 // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 
 	                     break;
 						//---------
@@ -98,17 +89,15 @@ exit;
 	 					 $nivel = 3;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 
 	                     break;
 						//---------
@@ -130,17 +119,15 @@ exit;
 	 					 $nivel = 4;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2); 
 						} 
 	                     break;
 						//---------
@@ -162,17 +149,15 @@ exit;
 	 					 $nivel = 5;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 
 	                     break;
 						//---------
@@ -194,17 +179,15 @@ exit;
 	 					 $nivel = 6;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 
 						  
 	                     break;
@@ -227,17 +210,15 @@ exit;
 	 					 $nivel = 7;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 
 	                     break;
 						//---------
@@ -259,17 +240,15 @@ exit;
 	 					 $nivel = 8;
 						 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 						 					 
 	                     break;
 						//---------
@@ -291,17 +270,15 @@ exit;
 	 					 $nivel = 9;
 	 					
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 		
 						 break;
 						//---------
@@ -323,17 +300,15 @@ exit;
 	 					 $nivel = 10;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 	
 						 break;
 						//---------
@@ -355,17 +330,15 @@ exit;
 	 					 $nivel = 11;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 =$cx->query($sql2);
 						} 	
 						 break;
 						//---------
@@ -387,17 +360,15 @@ exit;
 	 					 $nivel = 12;
 						
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 	
 						 break;
 						//---------
@@ -419,17 +390,15 @@ exit;
 	 					 $nivel = 13;
 						
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 	
 						 break;
 						//---------
@@ -451,17 +420,15 @@ exit;
 	 					 $nivel = 14;
 	 					
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 	
 						 break;
 						//---------
@@ -483,17 +450,15 @@ exit;
 	 					 $nivel = 15;
 	 					
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 
 						 break;
 						//---------
@@ -515,17 +480,15 @@ exit;
 	 					 $nivel = 16;
 	 					 
                          // actualizo afectado del padre a 0 si este no tiene mas hijos 
-						 $link = mysql_connect($server, $dbuser, $dbpass);
-						mysql_select_db($database, $link);
-					$result = mysql_query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
-						$num_rows = mysql_num_rows($result);
+						$result = $cx->query("SELECT * from pgcp where padre ='$padre' and id_emp ='$idxx' ", $link);
+						$num_rows = $result->num_rows;
 						if($num_rows > '1')
 						{
 						}	
 						else
 						{
 						 $sql2 = "update pgcp set afectado='0' where cod_pptal ='$padre' and id_emp ='$idxx'";
-					     $resultado2 = mysql_db_query($database, $sql2, $connection); 
+					     $resultado2 = $cx->query($sql2);
 						} 
 						 break;
 						//---------
@@ -541,10 +504,8 @@ exit;
 		 }
 		printf("%s <br><br></center>",$error);
 		//elimino el registro
-		mysql_connect($server, $dbuser, $dbpass);
-		mysql_select_db($database);
 		$sSQL="Delete from pgcp Where cod_pptal='$ingresa' and id_emp = '$idxx'";
-		mysql_query($sSQL);
+		$cx->query($sSQL);
 		printf("<center class='Estilo4'><br><br>Cuenta <b>ELIMINADA</b> con exito<br><br>
 <div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:150px'>
 <div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
@@ -567,12 +528,11 @@ exit;
 	
 	
 
-?>
-<?
 }
-?><title>CONTAFACIL</title>
+?>
+
+<title>CONTAFACIL</title>
 <style type="text/css">
-<!--
 .Estilo1 {
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 12px;

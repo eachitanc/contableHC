@@ -178,7 +178,6 @@ cod_pptal.value = nn.options[nn.selectedIndex].value;
 </script>
 <!--precarga cursor en textbox indicada-->
 <script language="">
-<!--
 
 function cursor()
 {
@@ -190,7 +189,6 @@ document.empresa.cod_pptal.value = miTexto;
 
 }
 
-// -->
 </script>
 
 <script type="text/javascript" language="JavaScript1.2" src="menu/stmenu.js"></script>

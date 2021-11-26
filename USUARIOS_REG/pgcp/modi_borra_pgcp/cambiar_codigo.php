@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!$_SESSION["login"])
 {
 header("Location: ../../login.php");
 exit;
@@ -62,7 +62,6 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
 </style>
 
 <script language="">
-<!--
 function cursor(){document.empresa.ingresa.focus();}
 // -->
 </script>
@@ -70,7 +69,6 @@ function cursor(){document.empresa.ingresa.focus();}
 
 
 <script language="JavaScript">
-<!--
 var nav4 = window.Event ? true : false;
 function acceptNum(evt){
 // NOTE: Backspace = 8, Enter = 13, '0' = 48, '9' = 57
@@ -102,12 +100,14 @@ ingresa.value = nn.options[nn.selectedIndex].value;
   
     <td colspan="3">
 	<?php 
-	  include('../../config.php');				
-$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+include('../../config.php');				
+global $server, $database, $dbpass,$dbuser,$charset;
+// Conexion con la base de datos
+$cx= new mysqli ($server, $dbuser, $dbpass, $database);			
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $cx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_array()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -139,15 +139,12 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 			  		
 		
                   <select name="nn" onchange="cambia()" class="Estilo4" style="width: 400px;">
-                    <?
-include('config.php');
-$db = mysql_connect($server, $dbuser, $dbpass);
-mysql_select_db($database);
+                    <?php
 $strSQL = "SELECT * FROM pgcp WHERE id_emp = '$idxx' AND tip_dato = 'D' AND afectado = '0' ORDER BY cod_pptal";
-$rs = mysql_query($strSQL);
-$nr = mysql_num_rows($rs);
+$rs = $cx->query($strSQL);
+$nr = $rs->num_rows;
 for ($i=0; $i<$nr; $i++) {
-	$r = mysql_fetch_array($rs);
+	$r = $rs->fetch_assoc();
 	echo "<OPTION VALUE=\"".$r["cod_pptal"]."\">".$r["cod_pptal"]." - ".$r["nom_rubro"]."</OPTION>";
 }
 ?>
@@ -243,6 +240,6 @@ echo $ano;
 </table>
 </body>
 </html>
-<?
+<?php
 }
 ?>
