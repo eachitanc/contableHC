@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -550,8 +550,8 @@ $id_recau=$_POST['id_recau'];
 // saco el id de la empresa
    $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	    $sqlxx = "select * from fecha";
-	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-	    while($rowxx = mysql_fetch_array($resultadoxx)) 
+	    $resultadoxx = $connectionxx->query($sqlxx);
+	    while($rowxx = $resultadoxx->fetch_assoc()) 
   	    {
      	 $idxx=$rowxx["id_emp"];
 		 $id_emp=$rowxx["id_emp"];
@@ -561,7 +561,7 @@ $id_recau=$_POST['id_recau'];
 
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from recaudo_roit where id_emp = '$idxx' and id_recau='$id_recau' order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -596,7 +596,7 @@ printf("
 ");
 $cont=0;
 $vr=0;
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 printf("
 <span class='Estilo4'>
@@ -654,7 +654,7 @@ $id=$rw["id"];
    }
 
 ?>
-  <?
+  <?php
 printf("
 </table>
 </center>
@@ -669,17 +669,17 @@ printf("
   <br><br>
   <span class="Estilo4">MODIFICAR CONTABILIDAD</span><br>
   <br>
-  <span class="Estilo4">Este proceso modificara la contabilidad de  <? printf("%s",$cont); ?> Imputacion(es) Presupuestales presentes en el Recibo Oficial de Ingresos </span><br>
+  <span class="Estilo4">Este proceso modificara la contabilidad de  <?php printf("%s",$cont); ?> Imputacion(es) Presupuestales presentes en el Recibo Oficial de Ingresos </span><br>
   <br>
-<?
+<?php
 //************
 include('../config.php');
 //id _emp				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $idxx=$rowxx["id_emp"];
   $id_emp=$rowxx["id_emp"];
@@ -797,256 +797,256 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp1" type="text" class="Estilo20" id="pgcp1" style="width:180px;" onKeyUp="chk_pgcp1();" value="<? printf("%s",$pgcp1); ?>"/>
+            <input name="pgcp1" type="text" class="Estilo20" id="pgcp1" style="width:180px;" onKeyUp="chk_pgcp1();" value="<?php printf("%s",$pgcp1); ?>"/>
             
         </span> </div></td>
         <td class="bordepunteado1"><div align="left" class="Estilo4" id='resultado'></div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_1" type="text" class="Estilo20" id="vr_deb_1" style="text-align:right" onKeyPress="return validar(event)" size="20" value="<? printf("%.2f",$vr_deb_1); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_1" type="text" class="Estilo20" id="vr_deb_1" style="text-align:right" onKeyPress="return validar(event)" size="20" value="<?php printf("%.2f",$vr_deb_1); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_1" type="text" class="Estilo20" id="vr_cre_1" style="text-align:right" onKeyPress="return validar(event)" size="20" value="<? printf("%.2f",$vr_cre_1); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_1" type="text" class="Estilo20" id="vr_cre_1" style="text-align:right" onKeyPress="return validar(event)" size="20" value="<?php printf("%.2f",$vr_cre_1); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp2" type="text" class="Estilo20" id="pgcp2" style="width:180px;" onKeyUp="chk_pgcp2();" value="<? printf("%s",$pgcp2); ?>"/>
+            <input name="pgcp2" type="text" class="Estilo20" id="pgcp2" style="width:180px;" onKeyUp="chk_pgcp2();" value="<?php printf("%s",$pgcp2); ?>"/>
            
         </span> </div></td>
         <td bgcolor="#F5F5F5" class="bordepunteado1"><div align="left" class="Estilo4" id='resultado2'></div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_2" type="text" class="Estilo20" id="vr_deb_2" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_2); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_2" type="text" class="Estilo20" id="vr_deb_2" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_2); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_2" type="text" class="Estilo20" id="vr_cre_2" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_2); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_2" type="text" class="Estilo20" id="vr_cre_2" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_2); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp3" type="text" class="Estilo20" id="pgcp3" style="width:180px;" onKeyUp="chk_pgcp3();" value="<? printf("%s",$pgcp3); ?>"/>
+            <input name="pgcp3" type="text" class="Estilo20" id="pgcp3" style="width:180px;" onKeyUp="chk_pgcp3();" value="<?php printf("%s",$pgcp3); ?>"/>
           
         </span> </div></td>
         <td class="bordepunteado1"><div align="left" class="Estilo4" id='resultado3'></div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_3" type="text" class="Estilo20" id="vr_deb_3" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_3); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_3" type="text" class="Estilo20" id="vr_deb_3" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_3); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_3" type="text" class="Estilo20" id="vr_cre_3" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_3); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_3" type="text" class="Estilo20" id="vr_cre_3" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_3); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp4" type="text" class="Estilo20" id="pgcp4" style="width:180px;" onKeyUp="chk_pgcp4();" value="<? printf("%s",$pgcp4); ?>"/>
+            <input name="pgcp4" type="text" class="Estilo20" id="pgcp4" style="width:180px;" onKeyUp="chk_pgcp4();" value="<?php printf("%s",$pgcp4); ?>"/>
             
         </span> </div></td>
         <td bgcolor="#F5F5F5" class="bordepunteado1"><div align="left" class="Estilo4" id='resultado4'></div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_4" type="text" class="Estilo20" id="vr_deb_4" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_4); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_4" type="text" class="Estilo20" id="vr_deb_4" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_4); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_4" type="text" class="Estilo20" id="vr_cre_4" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_4); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_4" type="text" class="Estilo20" id="vr_cre_4" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_4); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp5" type="text" class="Estilo20" id="pgcp5" style="width:180px;" onKeyUp="chk_pgcp5();" value="<? printf("%s",$pgcp5); ?>"/>
+            <input name="pgcp5" type="text" class="Estilo20" id="pgcp5" style="width:180px;" onKeyUp="chk_pgcp5();" value="<?php printf("%s",$pgcp5); ?>"/>
            
         </span> </div></td>
         <td class="bordepunteado1"><div align="left" class="Estilo4" id='resultado5'></div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_5" type="text" class="Estilo20" id="vr_deb_5" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_5); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_5" type="text" class="Estilo20" id="vr_deb_5" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_5); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_5" type="text" class="Estilo20" id="vr_cre_5" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_5); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_5" type="text" class="Estilo20" id="vr_cre_5" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_5); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp6" type="text" class="Estilo20" id="pgcp6" style="width:180px;" onKeyUp="chk_pgcp6();" value="<? printf("%s",$pgcp6); ?>"/>
+            <input name="pgcp6" type="text" class="Estilo20" id="pgcp6" style="width:180px;" onKeyUp="chk_pgcp6();" value="<?php printf("%s",$pgcp6); ?>"/>
             
         </span> </div></td>
         <td bgcolor="#F5F5F5" class="bordepunteado1"><div align="left" class="Estilo4" id='resultado6'></div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_6" type="text" class="Estilo20" id="vr_deb_6" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_6); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_6" type="text" class="Estilo20" id="vr_deb_6" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_6); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_6" type="text" class="Estilo20" id="vr_cre_6" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_6); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_6" type="text" class="Estilo20" id="vr_cre_6" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_6); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp7" type="text" class="Estilo20" id="pgcp7" style="width:180px;" onKeyUp="chk_pgcp7();" value="<? printf("%s",$pgcp7); ?>"/>
+            <input name="pgcp7" type="text" class="Estilo20" id="pgcp7" style="width:180px;" onKeyUp="chk_pgcp7();" value="<?php printf("%s",$pgcp7); ?>"/>
            
         </span> </div></td>
         <td class="bordepunteado1"><div align="left" class="Estilo4" id='resultado7'></div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_7" type="text" class="Estilo20" id="vr_deb_7" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_7); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_7" type="text" class="Estilo20" id="vr_deb_7" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_7); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_7" type="text" class="Estilo20" id="vr_cre_7" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_7); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_7" type="text" class="Estilo20" id="vr_cre_7" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_7); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp8" type="text" class="Estilo20" id="pgcp8" style="width:180px;" onKeyUp="chk_pgcp8();" value="<? printf("%s",$pgcp8); ?>"/>
+            <input name="pgcp8" type="text" class="Estilo20" id="pgcp8" style="width:180px;" onKeyUp="chk_pgcp8();" value="<?php printf("%s",$pgcp8); ?>"/>
             
         </span> </div></td>
         <td bgcolor="#F5F5F5" class="bordepunteado1"><div align="left" class="Estilo4" id='resultado8'></div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_8" type="text" class="Estilo20" id="vr_deb_8" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_8); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_8" type="text" class="Estilo20" id="vr_deb_8" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_8); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_8" type="text" class="Estilo20" id="vr_cre_8" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_8); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_8" type="text" class="Estilo20" id="vr_cre_8" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_8); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp9" type="text" class="Estilo20" id="pgcp9" style="width:180px;" onKeyUp="chk_pgcp9();" value="<? printf("%s",$pgcp9); ?>"/>
+            <input name="pgcp9" type="text" class="Estilo20" id="pgcp9" style="width:180px;" onKeyUp="chk_pgcp9();" value="<?php printf("%s",$pgcp9); ?>"/>
           
         </span> </div></td>
         <td class="bordepunteado1"><div align="left" class="Estilo4" id='resultado9'></div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_9" type="text" class="Estilo20" id="vr_deb_9" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_9); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_9" type="text" class="Estilo20" id="vr_deb_9" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_9); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_9" type="text" class="Estilo20" id="vr_cre_9" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_9); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_9" type="text" class="Estilo20" id="vr_cre_9" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_9); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp10" type="text" class="Estilo20" id="pgcp10" style="width:180px;" onKeyUp="chk_pgcp10();" value="<? printf("%s",$pgcp10); ?>"/>
+            <input name="pgcp10" type="text" class="Estilo20" id="pgcp10" style="width:180px;" onKeyUp="chk_pgcp10();" value="<?php printf("%s",$pgcp10); ?>"/>
            
         </span> </div></td>
         <td bgcolor="#F5F5F5" class="bordepunteado1"><div align="left" class="Estilo4" id='resultado10'></div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_10" type="text" class="Estilo20" id="vr_deb_10" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_10); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_10" type="text" class="Estilo20" id="vr_deb_10" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_10); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_10" type="text" class="Estilo20" id="vr_cre_10" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_10); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_10" type="text" class="Estilo20" id="vr_cre_10" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_10); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp11" type="text" class="Estilo20" id="pgcp11" style="width:180px;" onKeyUp="chk_pgcp11();" value="<? printf("%s",$pgcp11); ?>"/>
+            <input name="pgcp11" type="text" class="Estilo20" id="pgcp11" style="width:180px;" onKeyUp="chk_pgcp11();" value="<?php printf("%s",$pgcp11); ?>"/>
            
         </span> </div></td>
         <td class="bordepunteado1"><div align="left" class="Estilo4" id='resultado11'></div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_11" type="text" class="Estilo20" id="vr_deb_11" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_11); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_11" type="text" class="Estilo20" id="vr_deb_11" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_11); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_11" type="text" class="Estilo20" id="vr_cre_11" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_11); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_11" type="text" class="Estilo20" id="vr_cre_11" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_11); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp12" type="text" class="Estilo20" id="pgcp12" style="width:180px;" onKeyUp="chk_pgcp12();" value="<? printf("%s",$pgcp12); ?>"/>
+            <input name="pgcp12" type="text" class="Estilo20" id="pgcp12" style="width:180px;" onKeyUp="chk_pgcp12();" value="<?php printf("%s",$pgcp12); ?>"/>
           
         </span> </div></td>
         <td bgcolor="#F5F5F5" class="bordepunteado1"><div align="left" class="Estilo4" id='resultado12'></div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_12" type="text" class="Estilo20" id="vr_deb_12" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_12); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_12" type="text" class="Estilo20" id="vr_deb_12" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_12); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_12" type="text" class="Estilo20" id="vr_cre_12" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_12); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_12" type="text" class="Estilo20" id="vr_cre_12" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_12); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp13" type="text" class="Estilo20" id="pgcp13" style="width:180px;" onKeyUp="chk_pgcp13();" value="<? printf("%s",$pgcp13); ?>"/>
+            <input name="pgcp13" type="text" class="Estilo20" id="pgcp13" style="width:180px;" onKeyUp="chk_pgcp13();" value="<?php printf("%s",$pgcp13); ?>"/>
             
         </span> </div></td>
         <td class="bordepunteado1"><div align="left" class="Estilo4" id='resultado13'></div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_13" type="text" class="Estilo20" id="vr_deb_13" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_13); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_13" type="text" class="Estilo20" id="vr_deb_13" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_13); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_13" type="text" class="Estilo20" id="vr_cre_13" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_13); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_13" type="text" class="Estilo20" id="vr_cre_13" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_13); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp14" type="text" class="Estilo20" id="pgcp14" style="width:180px;" onKeyUp="chk_pgcp14();" value="<? printf("%s",$pgcp14); ?>"/>
+            <input name="pgcp14" type="text" class="Estilo20" id="pgcp14" style="width:180px;" onKeyUp="chk_pgcp14();" value="<?php printf("%s",$pgcp14); ?>"/>
            
         </span> </div></td>
         <td bgcolor="#F5F5F5" class="bordepunteado1"><div align="left" class="Estilo4" id='resultado14'></div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_14" type="text" class="Estilo20" id="vr_deb_14" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_14); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_14" type="text" class="Estilo20" id="vr_deb_14" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_14); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_14" type="text" class="Estilo20" id="vr_cre_14" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_14); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_14" type="text" class="Estilo20" id="vr_cre_14" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_14); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp15" type="text" class="Estilo20" id="pgcp15" style="width:180px;" onKeyUp="chk_pgcp15();" value="<? printf("%s",$pgcp15); ?>"/>
+            <input name="pgcp15" type="text" class="Estilo20" id="pgcp15" style="width:180px;" onKeyUp="chk_pgcp15();" value="<?php printf("%s",$pgcp15); ?>"/>
            
         </span> </div></td>
         <td class="bordepunteado1"><div align="left" class="Estilo4" id='resultado15'></div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_15" type="text" class="Estilo20" id="vr_deb_15" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_15); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_15" type="text" class="Estilo20" id="vr_deb_15" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_15); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_15" type="text" class="Estilo20" id="vr_cre_15" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_cre_15); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_15" type="text" class="Estilo20" id="vr_cre_15" style="text-align:right" onKeyPress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_cre_15); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
       </tr>
@@ -1081,8 +1081,8 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
       <tr>
         <td colspan="4"><div class="Estilo19" style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
           <div align="center">
-            <input name="id_recau" type="hidden" value="<? printf("%s",$aa); ?>">
-            <input name="vr" type="hidden" value="<? printf("%s",$vr); ?>">
+            <input name="id_recau" type="hidden" value="<?php printf("%s",$aa); ?>">
+            <input name="vr" type="hidden" value="<?php printf("%s",$vr); ?>">
             <input name="Submit322" type="submit" class="Estilo19"  value="Modificar" 
 			onclick="this.form.action = 'modifica_cont_roit.php'" />
           </div>
@@ -1111,6 +1111,6 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
 </body>
 </html>
 
-<?
+<?php
 }
 ?>

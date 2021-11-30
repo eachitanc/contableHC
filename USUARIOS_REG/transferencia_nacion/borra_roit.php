@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -29,7 +29,7 @@ exit;
 
 <form action="confirma_borra_roit.php" method="POST">
 <div align="center"><br><br>
-<span class="Estilo1">¿ Desea iniciar el proceso de <b>Eliminacion - Modificacion</b> del Recibo de Caja General ?  </span>
+<span class="Estilo1">ï¿½ Desea iniciar el proceso de <b>Eliminacion - Modificacion</b> del Recibo de Caja General ?  </span>
   <br>
   <input type="hidden" name="id_recau" value="<?php $id_recau=$_GET['id_recau']; printf("$id_recau"); ?>">
   <br>
@@ -44,6 +44,6 @@ exit;
 
 </body>
 </html>
-<?
+<?php
 }
 ?>

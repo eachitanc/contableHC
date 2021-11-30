@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -91,7 +91,7 @@ window.close(); //Cierra la hija.
 </form>
 </center>
 
-<?
+<?php
 $var=$_GET['vr'];
 
 //echo $var;
@@ -169,9 +169,9 @@ while($rowxxa = mysql_fetch_array($resultadoxxa))
 }
 // saca los datos del cdpp
 $sqlxx = "select * from cdpp where consecutivo = '$id_auto_cdpp'";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 $tot_cdpp=0;
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 	$id_manu_cdpp='CDPP'.$rowxx["cdpp"];
 	$id_manu_cdpp2=$rowxx["cdpp"];
@@ -294,9 +294,9 @@ printf("
 </tr>
 ");
 $sqlxx = "select * from crpp where id_auto_cdpp = '$id_auto_cdpp'";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 $tot_crpp=0;
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 	$id_auto_crpp=$rowxx["id_auto_crpp"];
 	$id_manu_crpp=$rowxx["id_manu_crpp"];
@@ -451,10 +451,10 @@ printf("
 </tr>
 ");		
 $sqlxx = "select * from cobp where id_auto_crpp = '$var2'";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 $tot_cobp=0;
 $contt=0;
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 	$id_auto_cobp=$rowxx["id_auto_cobp"];
 	$id_manu_cobp=$rowxx["id_manu_cobp"];
@@ -610,7 +610,7 @@ $contt2=0;
 for ($i=0;$i<$contt;$i++)
 {
 	$sqlxx = "select * from obcg where id_auto_cobp ='$id_cobps[$i]' and liq =''";
-	$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+	$resultadoxx = $connectionxx->query($sqlxx);
 	$filas = mysql_num_rows($resultadoxx);
 	if ($filas==0)
 	{
@@ -618,7 +618,7 @@ for ($i=0;$i<$contt;$i++)
 		 $contt2++;
 	}
 	
-	while($rowxx = mysql_fetch_array($resultadoxx)) 
+	while($rowxx = $resultadoxx->fetch_assoc()) 
 	{
 		$id_auto_cobp=$rowxx["id_auto_cobp"];
 		$id_manu_obcg=$rowxx["id_manu_obcg"];
@@ -761,8 +761,8 @@ $array2=array_unique($id_cobps_sinafec);
 for ($i=0;$i<$contt2;$i++)
 {
 	$sqlxx = "select * from cobp where id_auto_cobp ='$array2[$i]' and liq =''";
-	$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-	while($rowxx = mysql_fetch_array($resultadoxx)) 
+	$resultadoxx = $connectionxx->query($sqlxx);
+	while($rowxx = $resultadoxx->fetch_assoc()) 
 	{
 			$id_auto_cobp=$rowxx["id_auto_cobp"];
 			$id_crpp=$rowxx["id_auto_crpp"];
@@ -882,6 +882,6 @@ printf("</center></table>");
 </center>
 </body>
 </html>
-<?
+<?php
 }
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -63,7 +63,7 @@ function validar(e) {
     return patron.test(te);  
 }  
 </script>
-<?
+<?php
 class EnLetras
 {
   var $Void = "";
@@ -343,7 +343,7 @@ background-color:#FFFFFF;
 
 </head>
 <body>
-<?
+<?php
 $id_ceva=$_GET['id1'];
 
 //printf("%s",$id_ceva);
@@ -359,9 +359,9 @@ while($rowxx1 = mysql_fetch_array($resultadoxx1))
 }
 
 $sqlxx = "select * from ceva where id_auto_ceva ='$id_ceva' and id_emp='$id_emp'";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $id_manu_ceva = $rowxx["id_manu_ceva"];
   $fecha_ceva = $rowxx["fecha_ceva"];
@@ -467,7 +467,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
     <td width="217" bgcolor="#FFFFFF">
 	<div class="Estilo4" style="padding-left:5px; padding-top:20px; padding-right:5px; padding-bottom:20px;">
 	<div align="center">
-	  <span class="Estilo9"><h3>No. <? printf("%s",$id_manu_ceva); ?>	 </h3> </span></div>
+	  <span class="Estilo9"><h3>No. <?php printf("%s",$id_manu_ceva); ?>	 </h3> </span></div>
 	</div>	</td>
   </tr>
   <tr>
@@ -498,7 +498,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
       <div align="right" class="Estilo22">Fecha  : </div>
     </div></td>
     <td width="196" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="left" class="Estilo22"><? printf("%s",$fecha_ceva); ?></div>
+      <div align="left" class="Estilo22"><?php printf("%s",$fecha_ceva); ?></div>
     </div></td>
     <td width="158" bgcolor="#F5F5F5"><div class="Estilo16" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center" class="Estilo21">
@@ -506,7 +506,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
       </div>
     </div></td>
     <td bgcolor="#FFFFFF"><div class="Estilo21" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="left" class="Estilo22"><? printf("%s",$ccnit); ?></div>
+      <div align="left" class="Estilo22"><?php printf("%s",$ccnit); ?></div>
     </div></td>
   </tr>
   <tr>
@@ -514,7 +514,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
       <div align="right" class="Estilo22">A Favor de  : </div>
     </div></td>
     <td colspan="3" bgcolor="#FFFFFF"><div class="Estilo21" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="left" class="Estilo22"><? printf("%s",$tercero); ?></div>
+      <div align="left" class="Estilo22"><?php printf("%s",$tercero); ?></div>
     </div></td>
   </tr>
   
@@ -523,7 +523,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
       <div align="right" class="Estilo22">Concepto  : </div>
     </div></td>
     <td colspan="3" bgcolor="#FFFFFF"><div class="Estilo21" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="left" class="Estilo22"><? printf("%s",$concepto_pago); ?></div>
+      <div align="left" class="Estilo22"><?php printf("%s",$concepto_pago); ?></div>
     </div></td>
   </tr>
   
@@ -533,7 +533,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
       <div align="right" class="Estilo22">Por valor de   : </div>
     </div></td>
     <td colspan="3" bgcolor="#FFFFFF"><div class="Estilo22" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-        <? 
+        <?php 
 	
 	
 	$vr=$total_pagado;
@@ -545,7 +545,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 </table>
 <br>
 <div align="center">
-  <?
+  <?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select cuenta,sum(vr_digitado) from cobp where id_emp = '$id_emp' and ceva ='$id_ceva' group by cuenta order by id asc ";
 $re = mysql_db_query($database, $sq, $cx);
@@ -582,7 +582,7 @@ while($rw = mysql_fetch_array($re))
 $cta = $rw["cuenta"];
 
 $sq2 = "select proc_rec, nom_rubro from car_ppto_gas  where id_emp = '$id_emp' and cod_pptal ='$cta' order by id asc ";
-$re2 = mysql_db_query($database, $sq2, $cx);   
+$re2 = $cx->query($sq2);   
 while($rw2 = mysql_fetch_array($re2))
 {
 
@@ -638,14 +638,14 @@ printf("
 </div>
 <br>
 <div align="center">
-  <?
+  <?php
 	
 $sq2 = "select distinct(id_auto_ceva), 
 		pgcp1, pgcp2, pgcp3, pgcp4, pgcp5, pgcp6, pgcp7, pgcp8, pgcp9, pgcp10, pgcp11, pgcp12, pgcp13, pgcp14, pgcp15, 
 		vr_deb_1, vr_deb_2, vr_deb_3, vr_deb_4, vr_deb_5, vr_deb_6, vr_deb_7, vr_deb_8, vr_deb_9, vr_deb_10, vr_deb_11, vr_deb_12, vr_deb_13, vr_deb_14, vr_deb_15
 		, vr_cre_1, vr_cre_2, vr_cre_3, vr_cre_4, vr_cre_5, vr_cre_6, vr_cre_7, vr_cre_8, vr_cre_9, vr_cre_10, vr_cre_11, vr_cre_12, vr_cre_13, vr_cre_14, vr_cre_15
         from ceva where id_emp = '$id_emp' and id_auto_ceva ='$id_ceva' order by id asc ";
-$re2 = mysql_db_query($database, $sq2, $cx);
+$re2 = $cx->query($sq2);
 
 printf("
 <center>
@@ -729,17 +729,17 @@ printf("</table></center>");
       <div align="right" class="Estilo4"><strong>SUMAS IGUALES </strong>: </div>
     </div></td>
     <td width="200" bgcolor="#F5F5F5"><div class="Estilo4" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="right"><? printf("%s,00",number_format($acu2,0,',','.')); ?> </div>
+      <div align="right"><?php printf("%s,00",number_format($acu2,0,',','.')); ?> </div>
     </div></td>
     <td width="200" bgcolor="#F5F5F5"><div class="Estilo4" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="right"><? printf("%s,00",number_format($acu2,0,',','.')); ?> </div>
+      <div align="right"><?php printf("%s,00",number_format($acu2,0,',','.')); ?> </div>
     </div></td>
   </tr>
 </table>
 <table width="800" border="0" align="center">
   <tr>
     <td colspan="4" bgcolor="#DCE9E5"><div class="Estilo16" style="padding-left:20px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="left">Forma de Pago : <span class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"><? printf("%s",$forma_pago); ?></span></div>
+      <div align="left">Forma de Pago : <span class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"><?php printf("%s",$forma_pago); ?></span></div>
     </div></td>
   </tr>
   <tr>
@@ -774,7 +774,7 @@ printf("</table></center>");
       </div>
     </div></td>
   </tr>
- <?
+ <?php
  for($j=0;$j<=15;$j++)
  {
             $sqle = "select * from ceva where id_auto_ceva = '$id_ceva'";
@@ -802,14 +802,14 @@ printf("</table></center>");
 							?>
                              <tr>
    
-    <td><div class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"><span class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"><? printf("%s",$no_banco); ?></span></div></td>
-    <td><div class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"> <? printf("%s",$no_cuenta); ?> </div></td>
-    <td><div class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"> <? printf("%s",$no_cheque); ?></div></td>
-    <td align="right"><div class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"> <? printf("%s",number_format($valor_cr,0,',','.')); ?></div></td>
+    <td><div class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"><span class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"><?php printf("%s",$no_banco); ?></span></div></td>
+    <td><div class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"> <?php printf("%s",$no_cuenta); ?> </div></td>
+    <td><div class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"> <?php printf("%s",$no_cheque); ?></div></td>
+    <td align="right"><div class="Estilo21" style="padding-left:3px; padding-top:3x; padding-right:3px; padding-bottom:3px;"> <?php printf("%s",number_format($valor_cr,0,',','.')); ?></div></td>
    
   </tr>
                             
-                            <?
+                            <?php
 							}
 						}
 			  		  
@@ -836,7 +836,7 @@ printf("</table></center>");
     <td width="200"></td>
   </tr>
   <tr>
-      <? if($salud =='0') {
+      <?php if($salud =='0') {
   }
   else
   {
@@ -849,11 +849,11 @@ printf("</table></center>");
     <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
       <div align="center" class="Estilo4">
         
-		<div align="right"><? printf("%s",number_format($salud,2,',','.')); ?>		</div>
+		<div align="right"><?php printf("%s",number_format($salud,2,',','.')); ?>		</div>
       </div>
     </div></td>
-	<? } ?>
-	      <? if($pension =='0') {
+	<?php } ?>
+	      <?php if($pension =='0') {
   }
   else
   {
@@ -865,13 +865,13 @@ printf("</table></center>");
     </div></td>
     <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
       <div align="center" class="Estilo4">
-         <div align="right"><? printf("%s",number_format($pension,2,',','.')); ?> </div>
+         <div align="right"><?php printf("%s",number_format($pension,2,',','.')); ?> </div>
       </div>
     </div></td>
-	<? } ?>
+	<?php } ?>
   </tr>
   <tr>
-        <? if($libranza =='0') {
+        <?php if($libranza =='0') {
   }
   else
   {
@@ -883,11 +883,11 @@ printf("</table></center>");
     </div></td>
     <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
       <div align="center" class="Estilo4">
-         <div align="right"><? printf("%s",number_format($libranza,2,',','.')); ?> </div>
+         <div align="right"><?php printf("%s",number_format($libranza,2,',','.')); ?> </div>
       </div>
     </div></td>
-	<? } ?>
-	      <? if($f_solidaridad =='0') {
+	<?php } ?>
+	      <?php if($f_solidaridad =='0') {
   }
   else
   {
@@ -899,13 +899,13 @@ printf("</table></center>");
     </div></td>
     <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
       <div align="center" class="Estilo4">
-         <div align="right"><? printf("%s",number_format($f_solidaridad,2,',','.')); ?> </div>
+         <div align="right"><?php printf("%s",number_format($f_solidaridad,2,',','.')); ?> </div>
       </div>
     </div></td>
-	<? } ?>
+	<?php } ?>
   </tr>
   <tr>
-        <? if($f_empleados =='0') {
+        <?php if($f_empleados =='0') {
   }
   else
   {
@@ -917,11 +917,11 @@ printf("</table></center>");
     </div></td>
     <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
       <div align="center" class="Estilo4">
-         <div align="right"><? printf("%s",number_format($f_empleados,2,',','.')); ?> </div>
+         <div align="right"><?php printf("%s",number_format($f_empleados,2,',','.')); ?> </div>
       </div>
     </div></td>
-	<? } ?>
-	      <? if($sindicato =='0') {
+	<?php } ?>
+	      <?php if($sindicato =='0') {
   }
   else
   {
@@ -933,13 +933,13 @@ printf("</table></center>");
     </div></td>
     <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
       <div align="center" class="Estilo4">
-         <div align="right"><? printf("%s",number_format($sindicato,2,',','.')); ?> </div>
+         <div align="right"><?php printf("%s",number_format($sindicato,2,',','.')); ?> </div>
       </div>
     </div></td>
-	<? } ?>
+	<?php } ?>
   </tr>
   <tr>
-        <? if($embargo =='0') {
+        <?php if($embargo =='0') {
   }
   else
   {
@@ -951,11 +951,11 @@ printf("</table></center>");
     </div></td>
     <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
       <div align="center" class="Estilo4">
-         <div align="right"><? printf("%s",number_format($embargo,2,',','.')); ?> </div>
+         <div align="right"><?php printf("%s",number_format($embargo,2,',','.')); ?> </div>
       </div>
     </div></td>
-	<? } ?>
-	      <? if($cruce =='0') {
+	<?php } ?>
+	      <?php if($cruce =='0') {
   }
   else
   {
@@ -967,13 +967,13 @@ printf("</table></center>");
     </div></td>
     <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
       <div align="center" class="Estilo4">
-         <div align="right"><? printf("%s",number_format($cruce,2,',','.')); ?> </div>
+         <div align="right"><?php printf("%s",number_format($cruce,2,',','.')); ?> </div>
       </div>
     </div></td>
-	<? } ?>
+	<?php } ?>
   </tr>
   <tr>
-    <? if($otros =='0') {
+    <?php if($otros =='0') {
   }
   else
   {
@@ -985,10 +985,10 @@ printf("</table></center>");
     </div></td>
     <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
         <div align="center" class="Estilo4">
-          <div align="right"><? printf("%s",number_format($otros,2,',','.')); ?> </div>
+          <div align="right"><?php printf("%s",number_format($otros,2,',','.')); ?> </div>
         </div>
     </div></td>
-    <? } ?>
+    <?php } ?>
     <td bgcolor="#FFFFFF"></td>
     <td bgcolor="#FFFFFF"></td>
   </tr>
@@ -1003,7 +1003,7 @@ printf("</table></center>");
         <td width="200"></td>
       </tr>
       <tr>
-        <? if($retefuente =='' and $vr_retefuente == '') {
+        <?php if($retefuente =='' and $vr_retefuente == '') {
   }
   else
   {
@@ -1015,20 +1015,20 @@ printf("</table></center>");
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="left"><? printf("%s",$retefuente); ?> </div>
+              <div align="left"><?php printf("%s",$retefuente); ?> </div>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="right"><? printf("%s",number_format($vr_retefuente,2,',','.')); ?> </div>
+              <div align="right"><?php printf("%s",number_format($vr_retefuente,2,',','.')); ?> </div>
             </div>
         </div></td>
-        <?
+        <?php
  }
  ?>
       </tr>
       <tr>
-        <? if($reteiva =='' and $vr_reteiva == '') {
+        <?php if($reteiva =='' and $vr_reteiva == '') {
   }
   else
   {
@@ -1040,18 +1040,18 @@ printf("</table></center>");
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="left"><? printf("%s",$reteiva); ?> </div>
+              <div align="left"><?php printf("%s",$reteiva); ?> </div>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="right"><? printf("%s",number_format($vr_reteiva,2,',','.')); ?> </div>
+              <div align="right"><?php printf("%s",number_format($vr_reteiva,2,',','.')); ?> </div>
             </div>
         </div></td>
-        <? } ?>
+        <?php } ?>
       </tr>
       <tr>
-        <? if($reteica =='' and $vr_reteica == '0') {
+        <?php if($reteica =='' and $vr_reteica == '0') {
   }
   else
   {
@@ -1063,18 +1063,18 @@ printf("</table></center>");
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="left"><? printf("%s",$reteica); ?> </div>
+              <div align="left"><?php printf("%s",$reteica); ?> </div>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="right"><? printf("%s",number_format($vr_reteica,2,',','.')); ?> </div>
+              <div align="right"><?php printf("%s",number_format($vr_reteica,2,',','.')); ?> </div>
             </div>
         </div></td>
-        <? } ?>
+        <?php } ?>
       </tr>
       <tr>
-        <? if($estampilla1 =='' and $vr_estampilla1 == '0') {
+        <?php if($estampilla1 =='' and $vr_estampilla1 == '0') {
   }
   else
   {
@@ -1086,18 +1086,18 @@ printf("</table></center>");
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="left"><? printf("%s",$estampilla1); ?> </div>
+              <div align="left"><?php printf("%s",$estampilla1); ?> </div>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="right"><? printf("%s",number_format($vr_estampilla1,2,',','.')); ?> </div>
+              <div align="right"><?php printf("%s",number_format($vr_estampilla1,2,',','.')); ?> </div>
             </div>
         </div></td>
-        <? } ?>
+        <?php } ?>
       </tr>
       <tr>
-        <? if($estampilla2 =='' and $vr_estampilla2 == '0') {
+        <?php if($estampilla2 =='' and $vr_estampilla2 == '0') {
   }
   else
   {
@@ -1109,18 +1109,18 @@ printf("</table></center>");
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="left"><? printf("%s",$estampilla2); ?> </div>
+              <div align="left"><?php printf("%s",$estampilla2); ?> </div>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="right"><? printf("%s",number_format($vr_estampilla2,2,',','.')); ?> </div>
+              <div align="right"><?php printf("%s",number_format($vr_estampilla2,2,',','.')); ?> </div>
             </div>
         </div></td>
-        <? } ?>
+        <?php } ?>
       </tr>
       <tr>
-        <? if($estampilla3 =='' and $vr_estampilla3 == '0') {
+        <?php if($estampilla3 =='' and $vr_estampilla3 == '0') {
   }
   else
   {
@@ -1132,18 +1132,18 @@ printf("</table></center>");
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="left"><? printf("%s",$estampilla3); ?> </div>
+              <div align="left"><?php printf("%s",$estampilla3); ?> </div>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="right"><? printf("%s",number_format($vr_estampilla3,2,',','.')); ?> </div>
+              <div align="right"><?php printf("%s",number_format($vr_estampilla3,2,',','.')); ?> </div>
             </div>
         </div></td>
-        <? } ?>
+        <?php } ?>
       </tr>
       <tr>
-        <? if($estampilla4 =='' and $vr_estampilla4 == '0') {
+        <?php if($estampilla4 =='' and $vr_estampilla4 == '0') {
   }
   else
   {
@@ -1155,18 +1155,18 @@ printf("</table></center>");
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="left"><? printf("%s",$estampilla4); ?> </div>
+              <div align="left"><?php printf("%s",$estampilla4); ?> </div>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="right"><? printf("%s",number_format($vr_estampilla4,2,',','.')); ?> </div>
+              <div align="right"><?php printf("%s",number_format($vr_estampilla4,2,',','.')); ?> </div>
             </div>
         </div></td>
-        <? } ?>
+        <?php } ?>
       </tr>
       <tr>
-        <? if($estampilla5 =='' and $vr_estampilla5 == '0') {
+        <?php if($estampilla5 =='' and $vr_estampilla5 == '0') {
   }
   else
   {
@@ -1178,19 +1178,19 @@ printf("</table></center>");
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="left"><? printf("%s",$estampilla5); ?> </div>
+              <div align="left"><?php printf("%s",$estampilla5); ?> </div>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
-              <div align="right"><? printf("%s",number_format($vr_estampilla5,2,',','.')); ?> </div>
+              <div align="right"><?php printf("%s",number_format($vr_estampilla5,2,',','.')); ?> </div>
             </div>
         </div></td>
-        <? } ?>
+        <?php } ?>
       </tr>
       <tr>
         <td>
-		            <? 
+		            <?php 
 		$tot_desc = $salud+$pension+$libranza+$f_solidaridad+$f_empleados+$sindicato+$embargo+$cruce+$otros;
 		//printf("%s",number_format($tot_desc,2,',','.')); 
 		
@@ -1203,7 +1203,7 @@ printf("</table></center>");
         <td bgcolor="#CCCCCC"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo21">
               <div align="right"><strong>
-                <? 
+                <?php 
 		$tot_rete=$vr_retefuente+$vr_reteica+$vr_reteiva+$vr_estampilla1+$vr_estampilla2+$vr_estampilla3+$vr_estampilla4+$vr_estampilla5 + $tot_desc;
 		printf("%s",number_format($tot_rete,2,',','.'));
 		
@@ -1222,7 +1222,7 @@ printf("</table></center>");
       <div align="center" class="Estilo9">
         <div align="right">
 		
-		<b>VALOR NETO PAGADO&nbsp;&nbsp;&nbsp;&nbsp; = $<? printf("%s",number_format($valor_cr,2,',','.'));?>        </b>
+		<b>VALOR NETO PAGADO&nbsp;&nbsp;&nbsp;&nbsp; = $<?php printf("%s",number_format($valor_cr,2,',','.'));?>        </b>
         
 		</div>
       </div>
@@ -1236,7 +1236,7 @@ printf("</table></center>");
   </tr>
 </table>
 <span class="Estilo4">
-<?
+<?php
 	  $sqlxx2 = "select * from empresa where cod_emp='$id_emp'";
 $resultadoxx2 = mysql_db_query($database, $sqlxx2, $connectionxx);
 
@@ -1260,8 +1260,8 @@ if ($crtl_doc == 'SI' or $crtl_doc == '' )
 }
   
 $sq3= "select nombre, apaterno,amaterno,cargo from usuarios2 where login = '$_SESSION[login]'";
-$re3 = mysql_db_query($database, $sq3, $connectionxx);
-$rw3 =mysql_fetch_array($re3); 
+$re3 = $connectionxx->query($sq3);
+$rw3 =$re3->fetch_assoc(); 
 ?>
 </span><BR>
 <table width="800" border="1" align="center" class="bordepunteado1">
@@ -1290,15 +1290,15 @@ $rw3 =mysql_fetch_array($re3);
     </div></td>
     <td><div style="padding-left:5px; padding-top:30px; padding-right:5px; padding-bottom:5px;">
       <div align="center" class="Estilo4"><div   <?php echo $firmas; ?> >
-        <? printf("%s",$nom_otr_resp ); ?><br> 
-		   <? printf("%s",$cargo_teso); ?>
+        <?php printf("%s",$nom_otr_resp ); ?><br> 
+		   <?php printf("%s",$cargo_teso); ?>
          </div>
     </div>
     </div></td>
     <td><div style="padding-left:5px; padding-top:30px; padding-right:5px; padding-bottom:5px;">
       <div align="center" class="Estilo4"><div   <?php echo $firmas; ?> >
-        <? printf("%s",$nom_rep_leg ); ?><br> 
-		   <? printf("%s",$cargo_rep_leg ); ?>
+        <?php printf("%s",$nom_rep_leg ); ?><br> 
+		   <?php printf("%s",$cargo_rep_leg ); ?>
          </div>
 
       </div>
@@ -1342,6 +1342,6 @@ $barcode->drawBarCode();
 </form>
 </body>
 </html>
-<?
+<?php
 }
 ?>

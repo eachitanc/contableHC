@@ -1,17 +1,17 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../../login.php");
 exit;
 } else {
 ?>
-<?
+<?php
    include('../../config.php');
 // recibo informacion del usuario
    $ingresa=$_POST['nn'];      				
 // cx bd
-   if($connection=mysql_connect($server, $dbuser, $dbpass)) 
+   if($connection=new mysqli($server, $dbuser, $dbpass, $database)) 
 	{
 		mysql_select_db($database);
 	} 
@@ -20,7 +20,7 @@ exit;
 		die("Error conectandose a la base.");
 	} 
 // saco el id de la empresa
-   $connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+   $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	    $sqlxx = "select * from fecha";
 	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 	    while($rowxx = mysql_fetch_array($resultadoxx)) 
@@ -42,7 +42,7 @@ echo "<br><br><center class='Estilo4'>Cuenta <b>BLOQUEADA</b> con exito<br><br>
 </div></center>"; 
 	
 ?>
-<?
+<?php
 }
 ?>
 

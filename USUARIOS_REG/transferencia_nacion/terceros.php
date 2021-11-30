@@ -1,21 +1,21 @@
 <?php
 include('../config.php');
-header('Content-Type: text/html; charset=latin1'); 
+header('Content-Type: text/html; charset=latin1');
 $q = $_GET["q"];
 if (!$q) return;
 $conn = new mysqli($server, $dbuser, $dbpass, $database);
 
 $sql = "select num_id as num_id, nombre  as nombre from z_terceros where num_id LIKE '$q%' or nombre like '$q%' ";
-$rsd = mysql_query($sql);
-$fil = mysql_num_rows($rsd);
-while($rs = mysql_fetch_array($rsd)) {
-	$cid = $rs['num_id'];
-	$cname = $rs['num_id'] ." - ". $rs['nombre'];
-	echo "$cname|$cid\n";
-}
-if ($fil==0){
+$rsd = $conn->query($sql) or die(mysqli_error($conn));
+$fil = $rsd->fetch_assoc();
+if (empty($fil)) {
 	$cid = '';
 	$cname = 'Sin resultados...';
 	echo "$cname|$cid\n";
+} else {
+	while ($fil = $rsd->fetch_assoc()) {
+		$cid = $fil['num_id'];
+		$cname = $fil['num_id'] . " - " . $fil['nombre'];
+		echo "$cname|$cid\n";
+	}
 }
-?>

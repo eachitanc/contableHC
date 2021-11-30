@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -1956,9 +1956,9 @@ $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo 
 
 // id_emp
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $idxx=$rowxx["id_emp"];
   $id_emp=$rowxx["id_emp"];
@@ -2101,8 +2101,8 @@ $rw11 = mysql_fetch_array($re11);
 if ($rw11['embargo'] =='SI') $embargo = $rw11['monto']; else $embargo =0;
   
   ?>
- <input name="id_obcg" id="id_obcg" type="hidden" value="<? printf("%s",$id_obcg);?>" />
- <input name="fechaobcghidden" id="fechaobcghidden" type="hidden" value="<? printf("%s",$fechaobcg);?>" />
+ <input name="id_obcg" id="id_obcg" type="hidden" value="<?php printf("%s",$id_obcg);?>" />
+ <input name="fechaobcghidden" id="fechaobcghidden" type="hidden" value="<?php printf("%s",$fechaobcg);?>" />
 
  
         COMPROBANTE DE EGRESO VIGENCIA ACTUAL </strong></div>
@@ -2136,12 +2136,12 @@ if ($rw11['embargo'] =='SI') $embargo = $rw11['monto']; else $embargo =0;
           </div>
         </div></td>
         <td bgcolor="#FFFFFF" width="200"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-          <div align="center" class="Estilo4"><? printf("%s",$id_manu_crpp);?>
+          <div align="center" class="Estilo4"><?php printf("%s",$id_manu_crpp);?>
 		
-              <input name="id_obcg" type="hidden" value="<? printf("%s",$id_obcg);?>" />
+              <input name="id_obcg" type="hidden" value="<?php printf("%s",$id_obcg);?>" />
 			  
-			  <input name="id_manu_crpp" type="hidden" value="<? printf("%s",$id_manu_crpp);?>" />
-              <input name="id_auto_crpp" type="hidden" value="<? printf("%s",$id_auto_crpp);?>" />
+			  <input name="id_manu_crpp" type="hidden" value="<?php printf("%s",$id_manu_crpp);?>" />
+              <input name="id_auto_crpp" type="hidden" value="<?php printf("%s",$id_auto_crpp);?>" />
           </div>
         </div></td>
         <td bgcolor="#F5F5F5" width="200"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
@@ -2150,8 +2150,8 @@ if ($rw11['embargo'] =='SI') $embargo = $rw11['monto']; else $embargo =0;
           </div>
         </div></td>
         <td bgcolor="#FFFFFF" width="200"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-          <div align="center" class="Estilo4"><? printf("%s",$fecha_crpp);?>
-              <input name="fecha_crpp" type="hidden" id="fecha_crpp" value="<? printf("%s",$fecha_crpp);?>" />
+          <div align="center" class="Estilo4"><?php printf("%s",$fecha_crpp);?>
+              <input name="fecha_crpp" type="hidden" id="fecha_crpp" value="<?php printf("%s",$fecha_crpp);?>" />
           </div>
         </div></td>
       </tr>
@@ -2166,7 +2166,7 @@ if ($rw11['embargo'] =='SI') $embargo = $rw11['monto']; else $embargo =0;
           <div align="center" class="Estilo4">
             <div align="left">
 			
-			<?
+			<?php
 
 $sql3 = "select * from recaudo_ncbt where id_recau='$id' and id_emp='$id_emp' limit 1 ";
 $resultado3 = mysql_db_query($database, $sql3, $connectionxx);
@@ -2289,9 +2289,9 @@ function MostrarOcultar (objetoVisualizar)
 </SCRIPT>  
           
             
-               <input name="tercero" type="hidden" id="tercero" value="<? printf("%s",$tercero);?>" />
+               <input name="tercero" type="hidden" id="tercero" value="<?php printf("%s",$tercero);?>" />
 
-              <input name="ccnit" type="hidden" id="ccnit"  value="<? printf("%s",$ccnit);?>" />
+              <input name="ccnit" type="hidden" id="ccnit"  value="<?php printf("%s",$ccnit);?>" />
               </div>
           </div>
         </div>
@@ -2350,7 +2350,7 @@ target="_parent">&iquest; NUEVO ?</a> </div>
                   <div align="left">
             <select name="ter_nat" class="Estilo4" id="ter_nat" style="width: 350px;" <?php echo $ver_d; ?> >
                       <option value="" selected="selected"></option>
-					  <?
+					  <?php
 
 include('../config.php');
 $db = new mysqli($server, $dbuser, $dbpass, $database);
@@ -2360,7 +2360,7 @@ $rs = mysql_query($strSQL);
 $nr = mysql_num_rows($rs);
 for ($i=0; $i<$nr; $i++) 
 						{
-							$r = mysql_fetch_array($rs);
+							$r = $rs->fetch_assoc();
 							if ($r['id']==$ter_natural)
 							{
 								echo "<OPTION selected=".$r['pri_ape'].' '.$r['seg_ape'].' '.$r['pri_nom'].' '.$r['seg_nom']." VALUE=\"".$r["id"]."\">".$r["pri_ape"]." ".$r["seg_ape"]." ".$r["pri_nom"]." ".$r["seg_nom"]."</b></OPTION>";
@@ -2381,7 +2381,7 @@ for ($i=0; $i<$nr; $i++)
                   <div align="left">
                     <select name="ter_jur" class="Estilo4" id="ter_jur" style="width: 350px;"   >
 					  <option value="" selected="selected"></option>
-                      <?
+                      <?php
 include('../config.php');
 $db = new mysqli($server, $dbuser, $dbpass, $database);
 
@@ -2389,7 +2389,7 @@ $strSQL = "SELECT * FROM terceros_juridicos  WHERE id_emp = '$idxx' order by raz
 $rs = mysql_query($strSQL);
 $nr = mysql_num_rows($rs);
 for ($i=0; $i<$nr; $i++) {
-							$r = mysql_fetch_array($rs);
+							$r = $rs->fetch_assoc();
 							if ($r['id']==$ter_juridico)
 							{
 								echo "<OPTION selected=".$r['raz_soc2']." VALUE=\"".$r["id"]."\">".$r["raz_soc2"]."</b></OPTION>";
@@ -2405,9 +2405,9 @@ for ($i=0; $i<$nr; $i++) {
               </div>
         
         
-         <input name="tercero" type="hidden" id="tercero" value="<? printf("%s",$tercero);?>" />
+         <input name="tercero" type="hidden" id="tercero" value="<?php printf("%s",$tercero);?>" />
 
-              <input name="ccnit" type="hidden" id="ccnit"  value="<? printf("%s",$ccnit);?>" />
+              <input name="ccnit" type="hidden" id="ccnit"  value="<?php printf("%s",$ccnit);?>" />
         
         
         
@@ -2423,8 +2423,8 @@ for ($i=0; $i<$nr; $i++) {
         <td colspan="2" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo4">
             <div align="left">
-              <? printf("%s",$pago); ?>
-              <input name="pago" type="hidden" id="pago" value="<? printf("%s",$pago);?>" />
+              <?php printf("%s",$pago); ?>
+              <input name="pago" type="hidden" id="pago" value="<?php printf("%s",$pago);?>" />
             </div>
           </div>
         </div></td>
@@ -2434,7 +2434,7 @@ for ($i=0; $i<$nr; $i++) {
 	
 	<br />
 	  
-	<div align="center"><?
+	<div align="center"><?php
 
 	
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
@@ -2477,7 +2477,7 @@ while($rw = mysql_fetch_array($re))
 $cta = $rw["cuenta"];
 
 $sq2 = "select proc_rec, nom_rubro, opc1, vigencia from car_ppto_gas  where id_emp = '$id_emp' and cod_pptal ='$cta' order by id asc ";
-$re2 = mysql_db_query($database, $sq2, $cx);   
+$re2 = $cx->query($sq2);   
 while($rw2 = mysql_fetch_array($re2))
 {
 
@@ -2552,9 +2552,9 @@ printf("
           </div>
 	      </div></td>
 	    <td width="200" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-          <div align="center" class="Estilo4"><? printf("%s",$id_manu_cobp);?>
-              <input name="id_manu_cobp"  type="hidden" value="<? printf("%s",$id_manu_cobp);?>" />
-              <input name="id_auto_cobp" type="hidden" id="id_auto_cobp" value="<? printf("%s",$id_auto_cobp);?>" />
+          <div align="center" class="Estilo4"><?php printf("%s",$id_manu_cobp);?>
+              <input name="id_manu_cobp"  type="hidden" value="<?php printf("%s",$id_manu_cobp);?>" />
+              <input name="id_auto_cobp" type="hidden" id="id_auto_cobp" value="<?php printf("%s",$id_auto_cobp);?>" />
           </div>
 	      </div></td>
 	    <td width="200" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
@@ -2563,8 +2563,8 @@ printf("
           </div>
 	      </div></td>
 	    <td width="200" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-          <div align="center" class="Estilo4"><? printf("%s",$fecha_cobp);?>
-              <input name="fecha_cobp" type="hidden" value="<? printf("%s",$fecha_cobp);?>"  />
+          <div align="center" class="Estilo4"><?php printf("%s",$fecha_cobp);?>
+              <input name="fecha_cobp" type="hidden" value="<?php printf("%s",$fecha_cobp);?>"  />
           </div>
 	      </div></td>
 	    </tr>
@@ -2576,8 +2576,8 @@ printf("
         </div></td>
 	    <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo4">
-              <div align="left"> <? printf("%s",$des_cobp); ?>
-                  <input name="des_cobp" type="hidden" id="des_cobp" value="<? printf("%s",$des_cobp);?>" />
+              <div align="left"> <?php printf("%s",$des_cobp); ?>
+                  <input name="des_cobp" type="hidden" id="des_cobp" value="<?php printf("%s",$des_cobp);?>" />
               </div>
             </div>
 	      </div></td>
@@ -2590,8 +2590,8 @@ printf("
         </div></td>
 	    <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo4">
-              <div align="left"> <? printf("%s",$ref); ?>
-                  <input name="ref" type="hidden" id="ref" value="<? printf("%s",$ref);?>" />
+              <div align="left"> <?php printf("%s",$ref); ?>
+                  <input name="ref" type="hidden" id="ref" value="<?php printf("%s",$ref);?>" />
               </div>
             </div>
 	      </div></td>
@@ -2611,7 +2611,7 @@ printf("
 	        </div>
 	      </div></td>
 	    <td width="200" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-	      <div align="center" class="Estilo4"> <? printf("%s",$id_obcg_e);?> </div>
+	      <div align="center" class="Estilo4"> <?php printf("%s",$id_obcg_e);?> </div>
 	      </div></td>
 	    <td width="200" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
 	      <div align="center" class="Estilo12">
@@ -2619,7 +2619,7 @@ printf("
 	        </div>
 	      </div></td>
 	    <td width="200" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-	      <div align="center" class="Estilo4"><? printf("%s",$fechaobcg);?> </div>
+	      <div align="center" class="Estilo4"><?php printf("%s",$fechaobcg);?> </div>
 	      </div></td>
 	    </tr>
 	  <tr>
@@ -2630,7 +2630,7 @@ printf("
 	      </div></td>
 	    <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
 	      <div align="center" class="Estilo4">
-	        <div align="left"> <? printf("%s",$concepto_obcg_e); ?> </div>
+	        <div align="left"> <?php printf("%s",$concepto_obcg_e); ?> </div>
 	        </div>
 	      </div></td>
 	    </tr>
@@ -2641,7 +2641,7 @@ printf("
 	  
 	
 	<div align="center"></div>
-	<div align="center"><?
+	<div align="center"><?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cobp where id_emp = '$id_emp' and id_auto_cobp ='$a2x' order by id asc ";
 $re = mysql_db_query($database, $sq, $cx);
@@ -2680,7 +2680,7 @@ while($rw = mysql_fetch_array($re))
 $cta = $rw["cuenta"];
 
 $sq2 = "select proc_rec, nom_rubro from car_ppto_gas  where id_emp = '$id_emp' and cod_pptal ='$cta' order by id asc ";
-$re2 = mysql_db_query($database, $sq2, $cx);   
+$re2 = $cx->query($sq2);   
 while($rw2 = mysql_fetch_array($re2))
 {
 
@@ -2756,7 +2756,7 @@ printf("
       </div></td>
       <td colspan="2" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
         <div align="left">
-          <input name="fecha_ceva" type="text" class="required Estilo12" id="fecha_ceva" value="<? echo $fechat; ?>" size="12" />
+          <input name="fecha_ceva" type="text" class="required Estilo12" id="fecha_ceva" value="<?php echo $fechat; ?>" size="12" />
           <span class="Estilo8">:::</span>
           <input name="button2" type="button" class="Estilo12" onclick="displayCalendar(document.a.fecha_ceva,'yyyy/mm/dd',this)" value="Seleccione Fecha" />
         </div>
@@ -2771,7 +2771,7 @@ printf("
       </div></td>
       <td width="200" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
           <div align="center" class="Estilo4">
-            <?
+            <?php
 
 new mysqli($server, $dbuser, $dbpass, $database);
 $resulta = mysql_query("SHOW TABLE STATUS FROM $database LIKE 'ceva'");
@@ -2781,8 +2781,8 @@ $conse = $array[Auto_increment];
 }
 
 ?>
-            <? printf("%s",$conse);?>
-            <input name="id_auto_ceva" type="hidden" class="Estilo12" id="id_auto_ceva" value="<? printf("%s",$conse);?>"/>
+            <?php printf("%s",$conse);?>
+            <input name="id_auto_ceva" type="hidden" class="Estilo12" id="id_auto_ceva" value="<?php printf("%s",$conse);?>"/>
           </div>
       </div></td>
       <td width="200" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
@@ -2795,7 +2795,7 @@ $conse = $array[Auto_increment];
             <div align="center">
               <input name="id_manu_ceva" type="text" class="required Estilo4" id="id_manu_ceva" style="text-align:center" onkeypress="return validar(event)"               
               
-			  value="<? $id_manu_ceva = $_POST['id_manu_ceva']; printf("%s",$id_manu_ceva); ?>" onkeyup="chk_ceva();" />
+			  value="<?php $id_manu_ceva = $_POST['id_manu_ceva']; printf("%s",$id_manu_ceva); ?>" onkeyup="chk_ceva();" />
               
              
                
@@ -2837,7 +2837,7 @@ $conse = $array[Auto_increment];
       </div></td>
       <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
         <div align="left" class="Estilo20">
-          <input name="des_ceva" type="text"   id="des_ceva" onblur="this.value=this.value.toUpperCase();" value="<? echo 'PAGO '.$desseva; ?>" style="width:600px;" />
+          <input name="des_ceva" type="text"   id="des_ceva" onblur="this.value=this.value.toUpperCase();" value="<?php echo 'PAGO '.$desseva; ?>" style="width:600px;" />
         </div>
       </div></td>
       </tr>
@@ -2848,7 +2848,7 @@ $conse = $array[Auto_increment];
           <div align="center"><strong>Si el pago a realizar no tiene IVA, deje la casilla en BLANCO,<br />
             caso contrario, Digite Tarifa del IVA ( Ejemplo : 16 %)<br /><br />
             </strong>
-            <input name="iva" size="5" type="text" class="Estilo12" id="iva" style="text-align:center" onchange="autoCree();" onkeyup="cinco();" onkeypress="return validar(event)"  value="<? $iva=$_POST['iva']; printf("%s",$iva); ?>" />
+            <input name="iva" size="5" type="text" class="Estilo12" id="iva" style="text-align:center" onchange="autoCree();" onkeyup="cinco();" onkeypress="return validar(event)"  value="<?php $iva=$_POST['iva']; printf("%s",$iva); ?>" />
             <span class="Estilo14"> <font color="#000000">%</font>::</span></div></div>
       </div></td>
       </tr>
@@ -2867,7 +2867,7 @@ $conse = $array[Auto_increment];
   </script>
   
   
-      <?
+      <?php
 	  
 
 
@@ -3130,7 +3130,7 @@ printf("
     </tr>
 </table>
   <br />
-<?
+<?php
 $sqlxx2 = "select * from modo_estampillas";
 $resultadoxx2 = mysql_db_query($database, $sqlxx2, $connectionxx);
 while($rowxx2 = mysql_fetch_array($resultadoxx2)) 
@@ -3141,7 +3141,7 @@ while($rowxx2 = mysql_fetch_array($resultadoxx2))
 if($auto=='SI' and $manu=='NO')
 {   
 ?>
-<?
+<?php
 }
 else
 {
@@ -3180,7 +3180,7 @@ else
           <div align="center">
             <select name="retefuente" class="Estilo12" id="retefuente" style="width: 300px;"  onchange="retefuentef(value);">
               <option value=""></option>
-              <? 
+              <?php 
    $retefuente = $_POST['retefuente'];		  
    include('../config.php');
    $query="SELECT * FROM retefuente";
@@ -3208,7 +3208,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
       <td><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center" class="Estilo12">
             <div align="center" id="partir">
-              <? 
+              <?php 
 
 /*$sqlxx2a = "SELECT * FROM retefuente WHERE concepto = '$retefuente' ";
 $resultadoxx2a = mysql_db_query($database, $sqlxx2a, $connectionxx);
@@ -3227,13 +3227,13 @@ echo number_format($a_partir_retefuente,2,',','.');
       </div></td>
       <td><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center" class="Estilo12">
-            <div align="center" id="tarifa_e"> <? //printf("%s",$tarifa_retefuente);//echo number_format($tarifa_retefuente,2,',','.'); //printf("%s",$tarifa_retefuente);?> </div>
+            <div align="center" id="tarifa_e"> <?php //printf("%s",$tarifa_retefuente);//echo number_format($tarifa_retefuente,2,',','.'); //printf("%s",$tarifa_retefuente);?> </div>
           </div>
       </div></td>
       <td><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <? 
+              <?php 
 /*if($vr_tot_obli_sin_iva >= $a_partir_retefuente)
 {
  $vr_retefuente = $vr_obli_para_pago_sin_iva * $tarifa_retefuente;
@@ -3253,10 +3253,10 @@ else
  $vr_retefuente = 0;
 }*/
 ?>
-<!--              <input name="vr_retefuente" type="text" class="Estilo12" id="vr_retefuente" style="text-align:right" onkeypress="return validar(event)" value="<? /*printf("%.0f",$vr_retefuente);*/ ?>" />-->
+<!--              <input name="vr_retefuente" type="text" class="Estilo12" id="vr_retefuente" style="text-align:right" onkeypress="return validar(event)" value="<?php /*printf("%.0f",$vr_retefuente);*/ ?>" />-->
 			  
 <input name="vr_retefuente" type="text" class="Estilo12" id="vr_retefuente" style="text-align:right" onChange="ceros();" onkeypress="return validar(event)" 
-			  value="<? $vr_retefuente=$_POST['vr_retefuente']; printf("%s",$vr_retefuente); ?>" onkeyup="tres();" />			  
+			  value="<?php $vr_retefuente=$_POST['vr_retefuente']; printf("%s",$vr_retefuente); ?>" onkeyup="tres();" />			  
 			  
             </div>
           </div>
@@ -3291,7 +3291,7 @@ else
           <div align="center">
             <select name="retecree" class="Estilo12" id="retecree" style="width: 300px;"  onchange="retecree2(value);">
               <option value=""></option>
-              <? 
+              <?php 
 			   $retefuente = $_POST['retefuente'];		  
 			   include('../config.php');
 			   $query="SELECT * FROM retecree";
@@ -3327,7 +3327,7 @@ else
           <div align="center" class="Estilo12">
             <div align="center">
 			<input name="vr_retecree" type="text" class="Estilo12" id="vr_retecree" style="text-align:right" onChange="ceros();" onkeypress="return validar(event)" 
-			  value="<? $vr_retecree=$_POST['vr_retecree']; printf("%s",$vr_retecree); ?>" onkeyup="tres();" onfocus="autoCree()" />			  
+			  value="<?php $vr_retecree=$_POST['vr_retecree']; printf("%s",$vr_retecree); ?>" onkeyup="tres();" onfocus="autoCree()" />			  
 			  
             </div>
           </div>
@@ -3356,7 +3356,7 @@ else
           <div align="center">
             <select name="reteiva" class="Estilo12" id="reteiva" style="width: 300px;" onchange="ret_iva(value)">
               <option value=""></option>
-				  <? 
+				  <?php 
 				   $reteiva = $_POST['reteiva'];		  
 				   include('../config.php');
 				   $query="SELECT * FROM reteiva";
@@ -3381,7 +3381,7 @@ else
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center" class="Estilo12">
             <div align="center" id="partir_iva">
-              <? 
+              <?php 
 
 /*$sqlxx2b = "SELECT * FROM reteiva WHERE concepto = '$reteiva' ";
 $resultadoxx2b = mysql_db_query($database, $sqlxx2b, $connectionxx);
@@ -3400,13 +3400,13 @@ echo number_format($a_partir_reteiva,2,',','.');*/
       </div></td>
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center" class="Estilo12">
-            <div align="center" id="tarifa_iva"> <? //printf("%s",$tarifa_reteiva);//echo number_format($tarifa_reteiva,2,',','.'); //printf("%s",$tarifa_reteiva); ?> </div>
+            <div align="center" id="tarifa_iva"> <?php //printf("%s",$tarifa_reteiva);//echo number_format($tarifa_reteiva,2,',','.'); //printf("%s",$tarifa_reteiva); ?> </div>
           </div>
       </div></td>
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <? 
+              <?php 
 /*if($vr_tot_obli_sin_iva >= $a_partir_reteiva)
 {
  $vr_reteiva = $iva_vr_obli_pago * $tarifa_reteiva;
@@ -3427,10 +3427,10 @@ else
 */
 ?>
               
-              <!--              <input name="vr_reteiva" type="text" class="Estilo12" id="vr_reteiva" style="text-align:right" onkeypress="return validar(event)" value="<? //printf("%.0f",$vr_reteiva); ?>" />-->
+              <!--              <input name="vr_reteiva" type="text" class="Estilo12" id="vr_reteiva" style="text-align:right" onkeypress="return validar(event)" value="<?php //printf("%.0f",$vr_reteiva); ?>" />-->
 			  
 			  <input name="vr_reteiva" type="text" class="Estilo12" id="vr_reteiva" style="text-align:right" onChange="ceros();" onkeypress="return validar(event)" 
-			  value="<? $vr_reteiva=$_POST['vr_reteiva']; printf("%s",$vr_reteiva); ?>" onkeyup="tres();" />	
+			  value="<?php $vr_reteiva=$_POST['vr_reteiva']; printf("%s",$vr_reteiva); ?>" onkeyup="tres();" />	
             </div>
           </div>
       </div></td>
@@ -3456,7 +3456,7 @@ else
           <div align="center"><span class="Estilo4">
             <select name="reteica" class="Estilo12" id="reteica" style="width: 300px;" onchange="ret_ica(value)">
               <option value=""></option>
-				  <? 
+				  <?php 
 				   $reteiva = $_POST['reteica'];		  
 				   include('../config.php');
 				   $query="SELECT * FROM reteica";
@@ -3525,7 +3525,7 @@ else
           <div align="center"><span class="Estilo4">
             <select name="estampilla1" class="Estilo12" id="estampilla1" style="width: 300px;" onchange="estamp1(value,id);" >
               <option value=""></option>
-              <? 
+              <?php 
    $estampilla2 = $_POST['estampilla1'];		  
    include('../config.php');
    $query="SELECT * FROM estampillas";
@@ -3587,7 +3587,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
           <div align="center"><span class="Estilo4">
             <select name="estampilla2" class="Estilo12" id="estampilla2" style="width: 300px;" onchange="estamp1(value,id);" >
               <option value=""></option>
-              <? 
+              <?php 
    $estampilla2 = $_POST['estampilla2'];		  
    include('../config.php');
    $query="SELECT * FROM estampillas";
@@ -3649,7 +3649,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
         <div align="center"><span class="Estilo20">
           <select name="estampilla3" class="Estilo12" id="estampilla3" style="width: 300px;" onchange="estamp1(value,id);">
               <option value=""></option>
-              <? 
+              <?php 
    $estampilla3 = $_POST['estampilla3'];		  
    include('../config.php');
    $query="SELECT * FROM estampillas";
@@ -3711,7 +3711,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
         <div align="center"><span class="Estilo20">
           <select name="estampilla4" class="Estilo12" id="estampilla4" style="width: 300px;" onchange="estamp1(value,id);">
             <option value=""></option>
-            <? 
+            <?php 
    $estampilla4 = $_POST['estampilla4'];		  
    include('../config.php');
    $query="SELECT * FROM estampillas";
@@ -3773,7 +3773,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
         <div align="center"><span class="Estilo20">
           <select name="estampilla5" class="Estilo12" id="estampilla5" style="width: 300px;" onchange="estamp1(value,id);">
             <option value=""></option>
-            <? 
+            <?php 
    $estampilla5 = $_POST['estampilla5'];		  
    include('../config.php');
    $query="SELECT * FROM estampillas";
@@ -3820,7 +3820,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
           <div align="center" class="Estilo4">
             <div align="center"><b>FORMA DE PAGO </b> <span class="Estilo12">
               <select name="forma_pago" class="Estilo4" id="forma_pago">
-                <? 
+                <?php 
 		 $forma = array('CHEQUE','EFECTIVO','TRANSFERENCIA','CRUCE DE CUETAS','OTRO');
 		 $forma_pago =$_POST['forma_pago']; 
 		 $i=0;
@@ -3846,7 +3846,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
       </div></td>
     </tr>
 </table>
-<? 
+<?php 
 } 
 ?>  
   
@@ -3875,8 +3875,8 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
 	  <div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
 		  <div align="center" class="Estilo4">
 		    <p><strong>MOVIMIENTO CONTABLE
-		      <input type="hidden" name='contador' value='<? print $contador1; ?>' id="contador" >
-		      <input type="hidden" name='contini' value='<? print $numpost; ?>' id="contini">
+		      <input type="hidden" name='contador' value='<?php print $contador1; ?>' id="contador" >
+		      <input type="hidden" name='contini' value='<?php print $numpost; ?>' id="contini">
 		    </strong><strong><br />
 		      </strong>
 		      
@@ -3885,7 +3885,7 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
 <p>
   <strong><img src="images/mas.png" alt="" title="Agregar Fila" width="20" height="20" border="0" style='cursor: pointer'; onclick='agregar();'>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <span id='contis' class='Estilo4'><? printf("%s",$contador1); ?></span>
+    <span id='contis' class='Estilo4'><?php printf("%s",$contador1); ?></span>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <img src="images/menos.png" alt="" title="Quitar Fila" width="20" height="20" border="0" style='cursor: pointer'; onclick='borrarUltima();'>
   </strong></p>
@@ -3994,19 +3994,19 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
     <td colspan="3"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../config.php');				
+          <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   
@@ -4023,7 +4023,7 @@ echo $ano;
 
 
 
-<?
+<?php
 
 }
 ?>

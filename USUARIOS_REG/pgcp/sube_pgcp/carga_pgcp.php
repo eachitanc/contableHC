@@ -1,4 +1,4 @@
-<?
+<?php
 set_time_limit(600);
 include('../../config.php');
 $base=$database;

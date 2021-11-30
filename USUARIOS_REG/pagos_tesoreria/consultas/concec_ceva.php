@@ -7,7 +7,7 @@ include('../../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $cx);
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
   $vigen =split("/",$ano);

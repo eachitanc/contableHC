@@ -16,7 +16,6 @@ if (!$_SESSION["login"]) {
     <title>CONTAFACIL</title>
 
     <style type="text/css">
-      <!--
       .Estilo2 {
         font-size: 9px
       }
@@ -57,7 +56,6 @@ if (!$_SESSION["login"]) {
         font-size: 9px;
         color: #666666;
       }
-      -->
     </style>
 
     <style>
@@ -171,7 +169,6 @@ if (!$_SESSION["login"]) {
 
 
     <script language="JavaScript">
-      <!--
       var nav4 = window.Event ? true : false;
 
       function acceptNum(evt) {
@@ -180,7 +177,6 @@ if (!$_SESSION["login"]) {
         return (key <= 13 || (key >= 48 && key <= 57));
       }
       //
-      -->
     </script>
 
 
@@ -388,23 +384,20 @@ if (!$_SESSION["login"]) {
 
 
     <SCRIPT TYPE="text/javascript" LANGUAGE="javascript">
-      <!-- PreLoad Wait - Script 
-      -->
-    <!-- This script and more from http://www.rainbow.arch.scriptmania.com 
+      //PreLoad Wait - Script This script and more from http: //www.rainbow.arch.scriptmania.com 
 
-function waitPreloadPage() { //DOM
-if (document.getElementById){
-document.getElementById('prepage').style.visibility='hidden';
-}else{
-if (document.layers){ //NS4
-document.prepage.visibility = 'hidden';
-}
-else { //IE4
-document.all.prepage.style.visibility = 'hidden';
-}
-}
-}
-// End -->
+      function waitPreloadPage() { //DOM
+        if (document.getElementById) {
+          document.getElementById('prepage').style.visibility = 'hidden';
+        } else {
+          if (document.layers) { //NS4
+            document.prepage.visibility = 'hidden';
+          } else { //IE4
+            document.all.prepage.style.visibility = 'hidden';
+          }
+        }
+      }
+      // End -->
     </SCRIPT>
     <link type="text/css" rel="stylesheet" href="dhtmlgoodies_calendar/dhtmlgoodies_calendar.css?random=20051112" media="screen">
     </LINK>
@@ -455,20 +448,20 @@ document.all.prepage.style.visibility = 'hidden';
             include('../config.php');
             $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
             $sqlxx = "select * from fecha";
-            $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+            $resultadoxx = $connectionxx->query($sqlxx);
             // Datos para mostrar listas
-            $ini = $_GET['ini'];
-            $fin = $_GET['fin'];
-            $indice = $_GET['k'];
+            $ini = isset($_GET['ini']) ? $_GET['ini'] : '';
+            $fin = isset($_GET['fin']) ? $_GET['fin'] : '';
+            $indice = isset($_GET['k']) ? $_GET['k'] : '';
             $muestra = 250;
-            if (!$_GET['ini']) {
+            if (!isset($_GET['ini'])) {
               $ini = 0;
               $fin = $muestra;
             }
 
 
 
-            while ($rowxx = mysql_fetch_array($resultadoxx)) {
+            while ($rowxx = $resultadoxx->fetch_assoc()) {
 
               $idxx = $rowxx["id_emp"];
               $id_emp = $rowxx["id_emp"];
@@ -480,8 +473,8 @@ document.all.prepage.style.visibility = 'hidden';
             $archivo = "pagos_tesoreria.php";  // Para que el formulario del filtro me procese el nombre del archivo como action
 
             $sq3 = "select cargo from usuarios2 where login = '$_SESSION[login]'";
-            $re3 = mysql_db_query($database, $sq3, $connectionxx);
-            $rw3 = mysql_fetch_array($re3);
+            $re3 = $connectionxx->query($sq3);
+            $rw3 = $re3->fetch_assoc();
             if ($rw3['cargo'] == "REVISOR") {
               $ver_boton = "style=display:none";
             }
@@ -558,7 +551,7 @@ document.all.prepage.style.visibility = 'hidden';
                     $gby = "";
                     $orden = "order by id asc ";
                     $sq2p = "$a $b $c $filtro $f $gby $orden";
-                    $re2p = mysql_db_query($database, $sq2p, $cx);
+                    $re2p = $cx->query($sq2p);
                     echo "<form name='pagos' id='pagos' action='pagos_lote.php' method='post'>";
                     printf("
 <center>
@@ -586,19 +579,19 @@ document.all.prepage.style.visibility = 'hidden';
 <tbody>
 ");
                     $k = 0;
-                    while ($rw2p = mysql_fetch_array($re2p)) {
+                    while ($rw2p = $re2p->fetch_assoc()) {
                       $k++;
                       $vara1 = 'CEVA';
                       $vara2 = $rw2p["id_auto_cobp"];
                       ///****
-                      $link = mysql_connect($server, $dbuser, $dbpass);
-                      $resulta = mysql_query("select SUM(vr_digitado) AS TOTAL from cobp where id_emp = '$id_emp' and id_auto_cobp ='$vara2'", $link) or die(mysql_error());
-                      $row = mysql_fetch_row($resulta);
+                      $link = new mysqli($server, $dbuser, $dbpass, $database);
+                      $resulta = $link->query("select SUM(vr_digitado) AS TOTAL from cobp where id_emp = '$id_emp' and id_auto_cobp ='$vara2'");
+                      $row = $resulta->fetch_array();
                       $total = $row[0];
                       //cdpp consultar
                       $sq2 = "select id_manu_cdpp from cobp where id_auto_cobp = '$vara2'";
-                      $rs2 = mysql_query($sq2);
-                      $rw2 = mysql_fetch_array($rs2);
+                      $rs2 = $link->query($sq2);
+                      $rw2 = $rs2->fetch_assoc();
 
                       //*************** edad
                       $startDate = $rw2p["fecha_obcg"];
@@ -679,7 +672,7 @@ document.all.prepage.style.visibility = 'hidden';
                     $sq8 = "$a $filtro $c  $f  $gby $orden";
 
 
-                    $re2q = mysql_db_query($database, $sq8, $cx);
+                    $re2q = $cx->query($sq8);
                     echo "<form name='pagos2' id='pagos2' action='pagos_lote_tes.php' method='post'>";
                     printf("
 <center>
@@ -705,12 +698,12 @@ document.all.prepage.style.visibility = 'hidden';
 ");
                     $aa = 'CEVA';
                     $r;
-                    while ($rw2q = mysql_fetch_array($re2q)) {
+                    while ($rw2q = $re2q->fetch_assoc()) {
                       $r++;
                       $a1a1 = $rw2q["id_auto_cobp"];
-                      $link = mysql_connect($server, $dbuser, $dbpass);
-                      $resulta = mysql_query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_cobp = '$a1a1' AND id_emp='$id_emp'", $link) or die(mysql_error());
-                      $row = mysql_fetch_row($resulta);
+                      $link = new mysqli($server, $dbuser, $dbpass, $database);
+                      $resulta = $link->query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_cobp = '$a1a1' AND id_emp='$id_emp'");
+                      $row = $resulta->fetch_array();
                       $total = $row[0];
                       $nuevo_totala1 = $total;
 
@@ -790,13 +783,13 @@ document.all.prepage.style.visibility = 'hidden';
                     $gby = "";
                     $orden = "order by fecha_ceva desc, id desc";
                     $sq9 = "$a $c $filtro $f $gby $orden";
-                    $resf = mysql_db_query($database, $sq9, $cx);
-                    $filas = mysql_num_rows($resf);
+                    $resf = $cx->query($sq9);
+                    $filas = $resf->num_rows;
                     $listas = ceil($filas / $muestra);
                     $sq2 = "$a $c $filtro $f $gby $orden $limitar";
 
 
-                    $re2r = mysql_db_query($database, $sq2, $cx);
+                    $re2r = $cx->query($sq2);
 
                     printf("
 <center>
@@ -823,7 +816,7 @@ document.all.prepage.style.visibility = 'hidden';
 
 ", $mesh[$me + 0], $an);
 
-                    while ($rw2r = mysql_fetch_array($re2r)) {
+                    while ($rw2r = $re2r->fetch_assoc()) {
                       $vara1 = 'CEVA';
 
                       $tot_cheques = "";
@@ -975,9 +968,9 @@ document.all.prepage.style.visibility = 'hidden';
                   <?php include('../config.php');
                   $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
                   $sqlxx = "select * from fecha";
-                  $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+                  $resultadoxx = $connectionxx->query($sqlxx);
 
-                  while ($rowxx = mysql_fetch_array($resultadoxx)) {
+                  while ($rowxx = $resultadoxx->fetch_assoc()) {
                     $ano = $rowxx["ano"];
                   }
                   echo $ano;
@@ -991,11 +984,11 @@ document.all.prepage.style.visibility = 'hidden';
       <tr>
         <td width="266">
           <div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-            <div align="center"><?phpPHP include('../config.php');
+            <div align="center"><?php include('../config.php');
                                 echo $nom_emp ?><br />
-              <?phpPHP echo $dir_tel ?><BR />
-              <?phpPHP echo $muni ?> <br />
-              <?phpPHP echo $email ?> </div>
+              <?php echo $dir_tel ?><BR />
+              <?php echo $muni ?> <br />
+              <?php echo $email ?> </div>
           </div>
         </td>
         <td width="266">

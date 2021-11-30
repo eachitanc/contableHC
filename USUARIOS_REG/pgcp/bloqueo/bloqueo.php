@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../../login.php");
 exit;
@@ -72,7 +72,7 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
     <td colspan="3">
 	<?php 
 	  include('../../config.php');				
-$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 
@@ -105,15 +105,15 @@ while($rowxx = mysql_fetch_array($resultadoxx))
             <div align="center"><strong>CUENTAS DETALLE CARGADAS EN P.G.C.P </strong><br />
               <br />
               <select name="nn" class="Estilo4" style="width: 400px;">
-                <?
+                <?php
 include('../../config.php');
-$db = mysql_connect($server, $dbuser, $dbpass);
+$db = new mysqli($server, $dbuser, $dbpass, $database);
 mysql_select_db($database);
 $strSQL = "SELECT * FROM pgcp WHERE id_emp = '$idxx' AND tip_dato ='D' AND bloqueo = 'NO' ORDER BY cod_pptal";
 $rs = mysql_query($strSQL);
 $nr = mysql_num_rows($rs);
 for ($i=0; $i<$nr; $i++) {
-	$r = mysql_fetch_array($rs);
+	$r = $rs->fetch_assoc();
 	echo "<OPTION VALUE=\"".$r["cod_pptal"]."\">".$r["cod_pptal"]." - ".$r["nom_rubro"]."</OPTION>";
 }
 ?>
@@ -140,7 +140,7 @@ for ($i=0; $i<$nr; $i++) {
 	<?php
 //-------
 include('../../config.php');				
-$cx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from pgcp where id_emp = '$idxx' and bloqueo = 'SI' order by cod_pptal asc ";
 $re = mysql_db_query($database, $sq, $cx);
 
@@ -192,8 +192,8 @@ printf("</table></center>");
     <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../../config.php');				
-$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+          <?php include('../../config.php');				
+$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 
@@ -204,7 +204,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
     <td>&nbsp;</td>
   </tr>
@@ -222,10 +222,10 @@ echo $ano;
   <tr>
     <td width="250">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email ?>	</div>
+	  <div align="center"><?php include('../../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email ?>	</div>
 	</div>	</td>
     <td width="250">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -243,6 +243,6 @@ echo $ano;
 </table>
 </body>
 </html>
-<?
+<?php
 }
 ?>

@@ -7,8 +7,8 @@ include('../../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 		// Consulto la tabla de pagos por sumar el valor total pagado del cada rubro
 		$sql2 = "select max(id_manu_tnat) from recaudo_tnat where fecha_recaudo='$fecha'";
-		$res = mysql_db_query($database,$sql2,$cx);
-		$row = mysql_fetch_array($res);
+		$res = $cx->query($sql2);
+		$row = $res->fetch_assoc();
 		$dato = $row["max(id_manu_tnat)"];
 		$concec= substr($dato,4,20);
 		if ($concec)

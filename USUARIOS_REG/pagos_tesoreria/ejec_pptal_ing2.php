@@ -1,4 +1,4 @@
-<?
+<?php
 set_time_limit(2600);
 session_start();
 if(!$_SESSION["login"])
@@ -143,7 +143,7 @@ $ruta_img = "http://$_SERVER[HTTP_HOST]/USUARIOS_REG/images/PLANTILLA PNG PARA L
 </tr>
 </table>
 <br />
-<?
+<?php
 	printf("
 	<div style='padding-left:3px; padding-top:10px; padding-right:3px; padding-bottom:10px;'>
 	<center class ='Estilo4'>Usted ha seleccionado como <b>Fecha Inicial</b> : %s y como <b>Fecha Final</b> : %s</center>
@@ -975,6 +975,6 @@ $resulta82=mysql_query("select SUM(vr_digitado) AS TOTAL from recaudo_rica2 WHER
 <br />
 </body>
 </html>
-<?
+<?php
 }
 ?>

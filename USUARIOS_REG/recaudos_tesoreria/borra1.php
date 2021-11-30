@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -31,7 +31,7 @@ a:active {
 .Estilo9 {font-size: 10px; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;}
 -->
 </style>
-<?
+<?php
 $id = $_POST['id'];
 $id_reip = $_POST['id_reip'];
 $id_caic = $_POST['id_caic'];
@@ -50,9 +50,9 @@ $id ,$id_reip, $id_caic, $id_recau, $cuenta ,$nombre
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $id_emp=$rowxx["id_emp"];
 }
@@ -130,6 +130,6 @@ printf("
 ",$id_recau);
 
 ?>
-<?
+<?php
 }
 ?>

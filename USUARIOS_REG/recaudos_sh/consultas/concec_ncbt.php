@@ -1,14 +1,14 @@
 <?php
 header("Cache-Control: no-store, no-cache, must-revalidate"); 
 $fecha = $_REQUEST['cod'];
-$anno =split("/",$fecha);
+$anno =explode("/",$fecha);
 $anno2 =$anno[0]."/01/01";
 include('../../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 		// Consulto la tabla de pagos por sumar el valor total pagado del cada rubro
 		$sql2 = "select max(id_manu_ncbt) from recaudo_ncbt where fecha_recaudo='$fecha'";
-		$res = mysql_db_query($database,$sql2,$cx);
-		$row = mysql_fetch_array($res);
+		$res = $cx->query($sql2);
+		$row =$res->fetch_assoc();
 		$dato = $row["max(id_manu_ncbt)"];
 		$concec= substr($dato,4,20);
 		if ($concec)
@@ -17,12 +17,12 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 			do {
 					$con = $concec + $i;
 					$con2 ="NCBT".$con;
-					$sq2 =mysql_db_query($database,"select * from recaudo_ncbt where id_manu_ncbt ='$con2'",$cx);
-					$fil = mysql_num_rows($sq2);
+					$sq2 =$cx->query("select * from recaudo_ncbt where id_manu_ncbt ='$con2'");
+					$fil = $sq2->num_rows;
 					$conant = $con-1;
 					$conant2 = "NCBT".$conant;
-					$sq3 =mysql_db_query($database,"select * from recaudo_ncbt where id_manu_ncbt ='$conant2'",$cx);
-					$row3 = mysql_fetch_array($sq3);
+					$sq3 =$cx->query("select * from recaudo_ncbt where id_manu_ncbt ='$conant2'");
+					$row3 = $sq3->fetch_assoc();
 					$fecha2 =$row3["id_manu_ncbt"]; 
 					if ($fil >0)
 					{
@@ -45,10 +45,10 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 					if ($fecha_b < $anno2) break;
 					// busco el valor maximo del consecutivo para la fecha reducida
 					$sql4 = "select max(id_manu_ncbt) from recaudo_ncbt where fecha_recaudo='$fecha_b'";
-					$res4 = mysql_db_query($database,$sql4,$cx);
-					$row4 = mysql_fetch_array($res4);
+					$res4 = $cx->query($sql4);
+					$row4 = $res4->fetch_assoc();
 					// Evaluo si la consulta arroja resultados
-					$fila4 = mysql_num_rows($res4);
+					$fila4 = $res4->num_rows;
 					$dato = $row4["max(id_manu_ncbt)"];
 					$concec2= substr($dato,4,20);
 					if ($concec2)
@@ -59,12 +59,12 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 								do {
 									$con = $concec2 + $i;
 									$con2= "NCBT".$con;
-									$sq2 =mysql_db_query($database,"select * from recaudo_ncbt where id_manu_ncbt ='$con2'",$cx);
-									$fil = mysql_num_rows($sq2);
+									$sq2 =$cx->query("select * from recaudo_ncbt where id_manu_ncbt ='$con2'");
+									$fil = $sq2->num_rows;
 									$conant = $con-1;
 									$conant2 = "NCBT".$conant;
-									$sq3 =mysql_db_query($database,"select * from recaudo_ncbt where id_manu_ncbt ='$conant2'",$cx);
-									$row3 = mysql_fetch_array($sq3);
+									$sq3 =$cx->query("select * from recaudo_ncbt where id_manu_ncbt ='$conant2'");
+									$row3 = $sq3->fetch_assoc();
 									$fecha2 =$row3["fecha_recaudo"]; 
 									if ($fil >0)
 									{
@@ -87,4 +87,3 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 		 
 		}
 $cx = null;
-?>

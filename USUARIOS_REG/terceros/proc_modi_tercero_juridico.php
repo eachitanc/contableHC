@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -71,7 +71,7 @@ printf("<div style='padding-left:3px; padding-top:3px; padding-right:3px; paddin
         </div></center>"); 
    
    ?>
-<?
+<?php
 }
 ?>
 <style type="text/css">

@@ -1,7 +1,7 @@
-<?
+<?php
 set_time_limit(600);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -53,41 +53,41 @@ header("Expires: 0");
 </tr>
 <?php
    include('../config.php');				
-   $cx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+   $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
    $sq2="select * from pgcp order by cod_pptal asc";
-   $rs = mysql_db_query($database, $sq2, $cx);
-	while($rw = mysql_fetch_array($rs))
+   $rs = $cx->query($sq2);
+	while($rw = $rs->fetch_assoc())
 	{
 echo("
 <tr>
-    <td align='left'>$rw[cod_pptal]</td>
-    <td>$rw[nom_rubro]</td>
-    <td>$rw[tip_dato]</td>
-    <td>$rw[nivel]</td>
-    <td>$rw[afectado]</td>
-    <td>$rw[banco]</td>
-    <td>$rw[nom_banco1]</td>
-    <td>$rw[nom_banco2]</td>
-    <td>$rw[num_cta]</td>
-    <td>$rw[fuentes_recursos]</td>
-    <td>$rw[sispro]</td>
-    <td>$rw[naturaleza]</td>
-    <td>$rw[c_nc]</td>
-    <td>$rw[almacen]</td>
-    <td>$rw[depreciable]</td>
-    <td>$rw[cartera]</td>
-    <td>$rw[tercero]</td>
-    <td>$rw[base]</td>
-    <td>$rw[c_costos]</td>
-    <td>$rw[cta_costos]</td>
-    <td>$rw[ent_recip]</td>
-    <td>$rw[cod_sia]</td>
-    <td>$rw[tip_cta]</td>
-    <td>$rw[sispro2]</td>
-    <td>$rw[cod_fut_el]</td>
-    <td>$rw[afectado2]</td>
-    <td>$rw[bloqueo]</td>
-    <td>$rw[cta_maestra]</td>");
+    <td align='left'>".$rw['cod_pptal']."</td>
+    <td>".$rw['nom_rubro']."</td>
+    <td>".$rw['tip_dato']."</td>
+    <td>".$rw['nivel']."</td>
+    <td>".$rw['afectado']."</td>
+    <td>".$rw['banco']."</td>
+    <td>".$rw['nom_banco1']."</td>
+    <td>".$rw['nom_banco2']."</td>
+    <td>".$rw['num_cta']."</td>
+    <td>".$rw['fuentes_recursos']."</td>
+    <td>".$rw['sispro']."</td>
+    <td>".$rw['naturaleza']."</td>
+    <td>".$rw['c_nc']."</td>
+    <td>".$rw['almacen']."</td>
+    <td>".$rw['depreciable']."</td>
+    <td>".$rw['cartera']."</td>
+    <td>".$rw['tercero']."</td>
+    <td>".$rw['base']."</td>
+    <td>".$rw['c_costos']."</td>
+    <td>".$rw['cta_costos']."</td>
+    <td>".$rw['ent_recip']."</td>
+    <td>".$rw['cod_sia']."</td>
+    <td>".$rw['tip_cta']."</td>
+    <td>".$rw['sispro2']."</td>
+    <td>".$rw['cod_fut_el']."</td>
+    <td>".$rw['afectado2']."</td>
+    <td>".$rw['bloqueo']."</td>
+    <td>".$rw['cta_maestra']."</td>");
 	}
 ?>
 </tr>

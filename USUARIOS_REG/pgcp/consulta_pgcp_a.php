@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -72,7 +72,7 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
 	    <p><span class="Estilo1"><BR />MAESTRO PLAN GENERAL DE CONTABILIDAD PUBLICA<BR />P.G.C.P </span><br /><BR />
 	      <?php 
 	  include('../config.php');				
-$cxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+$cxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sxx = "select * from fecha";
 $rxx = mysql_db_query($database, $sxx, $cxx);
 
@@ -86,7 +86,7 @@ while($rowxxx = mysql_fetch_array($rxx))
 	      <?php
 //-------
 include('../config.php');				
-$cx2 = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+$cx2 = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq2 = "select * from empresa where cod_emp = '$idxxx'";
 $re2 = mysql_db_query($database, $sq2, $cx2);
 
@@ -100,7 +100,7 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
 	      <?php
 //-------
 include('../config.php');				
-$connection = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+$connection = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sql = "select * from fecha";
 $resultado = mysql_db_query($database, $sql, $connection);
 
@@ -187,7 +187,7 @@ while($row = mysql_fetch_array($resultado))
 	          <?php
 //-------
 include('../config.php');				
-$cx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from pgcp where id_emp = '$id' order by cod_pptal asc ";
 $re = mysql_db_query($database, $sq, $cx);
 
@@ -266,8 +266,8 @@ printf("</table></center>");
 		<br />
         <span class="Estilo4">
 		<strong>
-<? include('../config.php');				
-$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+<?php include('../config.php');				
+$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 
@@ -280,7 +280,7 @@ echo $ano;
 		</strong>
 		</span>
 		<br />
-        <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u>
+        <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u>
 		</span> 
 		</div>
 	    </div>
@@ -293,10 +293,10 @@ echo $ano;
   <tr align="center">
     <td width="283">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email ?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email ?>	</div>
 	</div>	</td>
     <td width="283">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -314,6 +314,6 @@ echo $ano;
 </table>
 </body>
 </html>
-<?
+<?php
 }
 ?>

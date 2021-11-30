@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -58,15 +58,15 @@ function validar(e) {
     return patron.test(te);  
 }  
 </script>
-<?
+<?php
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 
 // id emp
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 $idxx=$rowxx["id_emp"];
 $id_emp=$rowxx["id_emp"];
@@ -137,23 +137,23 @@ $("#commentForm").validate();
         <td colspan="2"><div id="main_div" style="padding-left:3px; padding-top:10px; padding-right:3px; padding-bottom:10px;">
           <div align="center">
 		  
-		    <input type="hidden" name="id_auto_cobp" value="<? printf("$id_auto_cobp"); ?>" />
-			<input type="hidden" name="id_manu_cobp" value="<? printf("$id_manu_cobp"); ?>" />
-			<input type="hidden" name="tercero" value="<? printf("$tercero"); ?>" />            
-			<input type="hidden" name="cuenta" value="<? printf("$cuenta"); ?>" />             
-			<input type="hidden" name="vr_cobp" value="<? printf("$vr_cobp"); ?>" />            
-			<input type="hidden" name="fecha_cobp" value="<? printf("$fecha_cobp"); ?>" />
-			<input type="hidden" name="des_cobp" value="<? printf("$des_cobp"); ?>" />
+		    <input type="hidden" name="id_auto_cobp" value="<?php printf("$id_auto_cobp"); ?>" />
+			<input type="hidden" name="id_manu_cobp" value="<?php printf("$id_manu_cobp"); ?>" />
+			<input type="hidden" name="tercero" value="<?php printf("$tercero"); ?>" />            
+			<input type="hidden" name="cuenta" value="<?php printf("$cuenta"); ?>" />             
+			<input type="hidden" name="vr_cobp" value="<?php printf("$vr_cobp"); ?>" />            
+			<input type="hidden" name="fecha_cobp" value="<?php printf("$fecha_cobp"); ?>" />
+			<input type="hidden" name="des_cobp" value="<?php printf("$des_cobp"); ?>" />
             <input type="hidden" name="liq1" value="SI" />
-            <input type="hidden" name="id_auto_crpp" value="<? printf("$id_auto_crpp"); ?>" />
-            <input type="hidden" name="id" value="<? printf("$id"); ?>" />
+            <input type="hidden" name="id_auto_crpp" value="<?php printf("$id_auto_crpp"); ?>" />
+            <input type="hidden" name="id" value="<?php printf("$id"); ?>" />
 			          
             
 			<?php
 			$sqlxx = "select * from fecha";
-			$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+			$resultadoxx = $connectionxx->query($sqlxx);
 
-			while($rowxx = mysql_fetch_array($resultadoxx)) 
+			while($rowxx = $resultadoxx->fetch_assoc()) 
 			{
   			$ano=$rowxx["ano"];
 			}
@@ -180,7 +180,7 @@ $("#commentForm").validate();
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center">
-            <input name="vr_digitado" type="text" class="required max Estilo4" id="vr_digitado" onkeypress="return validar(event)" style="text-align:center" value="<? printf("%s",$valcobp);?>" max="<? printf("%s",$valcobp);?>" readonly="readonly"/>
+            <input name="vr_digitado" type="text" class="required max Estilo4" id="vr_digitado" onkeypress="return validar(event)" style="text-align:center" value="<?php printf("%s",$valcobp);?>" max="<?php printf("%s",$valcobp);?>" readonly="readonly"/>
          </div>
         </div></td>
       </tr>
@@ -201,7 +201,7 @@ $("#commentForm").validate();
   
 <!--*********************************************************************************************************-->  
 
-<?
+<?php
 
 $id_empa=$id_emp; 						// printf("id_empa : $id_empa<br>"); 
 $id_auto_cobp=$_POST['id_auto_cobp']; 	//printf("id_auto_cobp : $id_auto_cobp<br>"); 
@@ -257,14 +257,14 @@ if($liq1a != '')
 <B>LA LIQUIDACION SE REALIZO CON EXITO  </B>
 <br />
 <br />
-<a href="hiscobp2.php?vr=<? printf($id_auto_cobp); ?>" target="_parent">VOLVER</a>
+<a href="hiscobp2.php?vr=<?php printf($id_auto_cobp); ?>" target="_parent">VOLVER</a>
 </center>
 </TD>
 </TR>
 </TABLE>
 </DIV>
 
-<?
+<?php
 		
 } //en if
 
@@ -274,6 +274,6 @@ if($liq1a != '')
 <input type="button" value="Atr�s" onclick="history.back()" class = "Estilo4">
 </form>
 </center>
-<?
+<?php
 }
 ?>

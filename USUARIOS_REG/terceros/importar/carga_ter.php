@@ -1,7 +1,7 @@
-<?
+<?php
 set_time_limit(600);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -145,7 +145,7 @@ if(!mysql_select_db($database,$db))
 	echo "</table>";
 
 ?>
- <?
+ <?php
 printf("
 
 <center >

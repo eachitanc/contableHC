@@ -75,7 +75,7 @@ for ($i=1;$i<=$filas;$i++)
 			) VALUES ( 
 '$id_emp','$id_auto_cobp','$id_manu_cobp','$id_auto_cdpp','$id_manu_cdpp','$fecha_cdpp','$id_auto_crpp','$id_manu_crpp','$fecha_crpp','$tercero','$ccnit','$des_cdpp','$ref','$cuenta','$nom_rubro','$vr_digitado','$situacion','$fecha_cobp','$des_cobp','$tesoreria','$t_humano','$abc','$detalle_crpp','$contab','$pagado'
 			)";
-mysql_query($sql, $cx) or die(mysql_error());
+$cx->query($sql) or die(mysql_error());
 		}
 //sacar total de vr_digitado y comparar con total de vr_cobp, si son =0 -> ctrl = si
 	// compromisos

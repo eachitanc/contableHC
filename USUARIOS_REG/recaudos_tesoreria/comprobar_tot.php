@@ -1,12 +1,12 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
 } else {
 ?>
-<?
+<?php
 
 include('../config.php');
 
@@ -15,9 +15,9 @@ $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo 
 
 // id_emp
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $id_emp=$rowxx["id_emp"];
 }
@@ -435,7 +435,7 @@ else
 }
 
 ?>
-<?
+<?php
 }
 ?>
 <style type="text/css">

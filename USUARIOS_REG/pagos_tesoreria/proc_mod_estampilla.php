@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -31,7 +31,7 @@ a:active {
 .Estilo9 {font-size: 10px; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;}
 -->
 </style>
-<?
+<?php
 
 include('../config.php');
 // conexion				
@@ -59,6 +59,6 @@ $resultado = mysql_db_query($database, $sql, $connectionxx);
 <script type="text/javascript"> 
 window.location="desctos.php"; 
 </script>
-<?
+<?php
 }
 ?>

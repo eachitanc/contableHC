@@ -4,20 +4,16 @@ if (!isset($_SESSION["login"])) {
   header("Location: ../login.php");
   exit;
 } else {
-?>
-
-  <?php
   $form = isset($_POST['Submit3222']) ? $_POST['Submit3222'] : ''; // printf("boton %s",$form);
-
+  $pri_ape = '';
+  $seg_ape = '';
+  $pri_nom = '';
+  $seg_nom = '';
   if (isset($_POST['Submit3222'])) {
-  ?>
-
-    <?php
-
     $consecutivo = 'REIP' . $_POST['consecutivo'];
     $id_manu_reip = 'REIP' . $_POST['id_manu_reip'];
     $fecha_reg = $_POST['fecha_reg'];
-    $ter_nat = $_POST['ter_nat'];
+    $ter_nat = isset($_POST['ter_nat']) ? $_POST['ter_nat'] : '';
     $ter_jur = isset($_POST['ter_jur']) ? $_POST['ter_jur'] : '';
     $des = $_POST['des'];
     $cuenta = $_POST['cuenta'];
@@ -62,7 +58,6 @@ cta: %s<br>vr: %s
       $definitivo = $row["definitivo"];
       $nom_rubro = $row["nom_rubro"];
     }
-
     // consulta tercero nat
     $sqla = "SELECT * from terceros_naturales where id_emp ='$id_emp' and id ='$ter_nat'";
     $resultadoa = $connectionxx->query($sqla);
@@ -224,7 +219,7 @@ else
       //}	
       //}	
     }
-    ?>
+?>
     <html>
 
     <head>
@@ -525,7 +520,7 @@ else
     $id_manu_reip = strtoupper('REIP' . $_POST['id_manu_reip']);
     $consecutivo = 'REIP' . $_POST['consecutivo'];
     $fecha_reg = $_POST['fecha_reg'];
-    $ter_nat = $_POST['ter_nat'];
+    $ter_nat = isset($_POST['ter_nat']) ? $_POST['ter_nat'] : '';
     $ter_jur = isset($_POST['ter_jur']) ? $_POST['ter_jur'] : '';
     $des = $_POST['des'];
     $cuenta = $_POST['cuenta'];

@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -366,8 +366,8 @@ $id_recau=$_GET['id_recau2'];
 // saco el id de la empresa
    $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	    $sqlxx = "select * from fecha";
-	    $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-	    while($rowxx = mysql_fetch_array($resultadoxx)) 
+	    $resultadoxx = $connectionxx->query($sqlxx);
+	    while($rowxx = $resultadoxx->fetch_assoc()) 
   	    {
      	 $idxx=$rowxx["id_emp"];
 		 $id_emp=$rowxx["id_emp"];
@@ -470,7 +470,7 @@ $ter_jur = $rw["ter_jur"];
    
    
 ?>
-  <?
+  <?php
 printf("
 </table>
 </center>
@@ -492,16 +492,16 @@ printf("
     </tr>
     <tr>
       <td colspan="3" bgcolor="#F5F5F5">
-	 <? $a = substr($id_recau,4,10);
+	 <?php $a = substr($id_recau,4,10);
 	    $aa = substr($id_manu_ncbt,4,10);
 	  ?>
-	  <input name="consec_ncbt" type="hidden" id="consec_ncbt" value="<? printf("%s",$a); ?>">
-	  <input name="id_manu_ncbt" type="hidden" id="id_manu_ncbt" value="<? printf("%s",$aa); ?>">
-	  <input name="fecha_recaudo" type="hidden" id="fecha_recaudo" value="<? printf("%s",$fecha); ?>">
-	  <input name="des_recaudo" type="hidden" id="des_recaudo" value="<? printf("%s",$desrec); ?>">
-	  <input name="ter_nat" type="hidden" id="ter_nat" value="<? printf("%s",$ter_nat); ?>">
-  	  <input name="ter_jur" type="hidden" id="ter_jur" value="<? printf("%s",$ter_jur); ?>">
-	  <input name="tercero" type="hidden" id="tercero" value="<? printf("%s",$tercero); ?>">
+	  <input name="consec_ncbt" type="hidden" id="consec_ncbt" value="<?php printf("%s",$a); ?>">
+	  <input name="id_manu_ncbt" type="hidden" id="id_manu_ncbt" value="<?php printf("%s",$aa); ?>">
+	  <input name="fecha_recaudo" type="hidden" id="fecha_recaudo" value="<?php printf("%s",$fecha); ?>">
+	  <input name="des_recaudo" type="hidden" id="des_recaudo" value="<?php printf("%s",$desrec); ?>">
+	  <input name="ter_nat" type="hidden" id="ter_nat" value="<?php printf("%s",$ter_nat); ?>">
+  	  <input name="ter_jur" type="hidden" id="ter_jur" value="<?php printf("%s",$ter_jur); ?>">
+	  <input name="tercero" type="hidden" id="tercero" value="<?php printf("%s",$tercero); ?>">
 	  
 	  	  
 	  <div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
@@ -519,7 +519,7 @@ printf("
           <div align="center">
             <select name="cuenta" class="required Estilo12" id="cuenta" style="width: 400px;">
               <option value=""></option>
-              <?
+              <?php
 include('config.php');
 $db = new mysqli($server, $dbuser, $dbpass, $database);
 
@@ -651,7 +651,7 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
     
     <p>&nbsp;</p>
 </form>
-  <?
+  <?php
 printf("
 
 <center class='Estilo9'>
@@ -670,6 +670,6 @@ printf("
 </body>
 </html>
 
-<?
+<?php
 }
 ?>

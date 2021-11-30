@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -21,16 +21,16 @@ exit;
 }
 -->
 </style>
-<?
+<?php
 include('../config.php');
 
 //*** luis hillon
 
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $id_emp=$rowxx["id_emp"];
 }
@@ -43,7 +43,7 @@ $conexion = mysql_connect($servidor, $usuario, $password) or die("no se pudo con
 
 $selec = mysql_select_db($database,$conexion);
 
-$usuarios = mysql_query("Select * from pgcp where id_emp ='$id_emp' and tip_dato = 'D' and cod_pptal = '".$_REQUEST['cod']."'",$conexion);
+$usuarios = $conexion->query("Select * from pgcp where id_emp ='$id_emp' and tip_dato = 'D' and cod_pptal = '".$_REQUEST['cod']."'");
 
 $num = mysql_num_rows($usuarios);
 
@@ -64,7 +64,7 @@ else
 }
 mysql_close($conexion);
 ?>
-<?
+<?php
 }
 ?>
 

@@ -17,7 +17,7 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 	$row = mysql_fetch_array($res);
 	$tarifa = $row['tarifa'];
 	$sq2="select * from retecree";
-	$rs2=mysql_db_query($database, $sq2, $cx);
+	$rs2=$cx->query($sq2);
 	while ($rw2 = mysql_fetch_array($rs2))
 	{
 		$sq3="select * from rango where tarifa = '$tarifa' and concepto = '$rw2[concepto]'";

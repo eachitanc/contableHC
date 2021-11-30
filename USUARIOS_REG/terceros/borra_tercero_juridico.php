@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -41,6 +41,6 @@ exit;
 </form>
 </body>
 </html>
-<?
+<?php
 }
 ?>

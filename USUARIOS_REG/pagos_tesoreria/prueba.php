@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -18,7 +18,7 @@ if($_SESSION["rol"] == 'USUARIO')
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Documento sin t&iacute;tulo</title>
 </head>
-<?
+<?php
 
 include('config.php');	
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
@@ -34,7 +34,7 @@ print ("link  : $link");
 <body>
 </body>
 </html>
-<?
+<?php
 }//FIN IF
 }//FIN ELSE
 ?>

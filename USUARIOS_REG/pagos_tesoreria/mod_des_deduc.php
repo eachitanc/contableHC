@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -116,9 +116,9 @@ function validar(e) {
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -161,11 +161,11 @@ $contab = $rw["contab"];
 			<div class="Estilo4" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <strong>CONCEPTO </strong></div></td>
             <td width="320"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-              <input disabled="disabled" name="concepto" type="text" class="Estilo4" id="concepto" style="width:300px;" value="<? printf("%s",$concepto); ?>"/>
+              <input disabled="disabled" name="concepto" type="text" class="Estilo4" id="concepto" style="width:300px;" value="<?php printf("%s",$concepto); ?>"/>
 			</div>			</td>
           </tr>
           <tr>
-		  <?
+		  <?php
 					 //$acc='block';
 					 for($i=1;$i<2;$i++){
 					 echo "<tr aling='left' style='position:relative; display:$acc;' id='fil$i' >
@@ -191,7 +191,7 @@ $contab = $rw["contab"];
 			<td colspan="2">
 			<div class="Estilo4" style="padding-left:145px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
               <strong>REGISTRO AUTOMATICO </strong> 
-			  <? 
+			  <?php 
 				  if($contab=='SI')
 				  {
 				  	if($concepto=='ReteICA')
@@ -212,7 +212,7 @@ $contab = $rw["contab"];
 		  <tr>
             <td colspan="2"><div style="padding-left:5px; padding-top:15px; padding-right:5px; padding-bottom:5px;">
 			              <div align="center">
-						  <input type="hidden" name="idd" value="<? printf("%s",$id); ?>" />
+						  <input type="hidden" name="idd" value="<?php printf("%s",$id); ?>" />
 			                <input name="Submit322" type="submit" class="Estilo4"  value="Procesa Cambios" 
 			onclick="this.form.action = 'p_mod_des_deduc.php'" />
                     </div>
@@ -242,28 +242,28 @@ $contab = $rw["contab"];
     <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../config.php');				
+          <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email?>	</div>
 	</div>	</td>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -287,6 +287,6 @@ echo $ano;
 
 
 
-<?
+<?php
 }
 ?>

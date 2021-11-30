@@ -8,9 +8,9 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 		for ($i=1;$i<=161;$i++)
 		{
 		$sql = "select pgcp$i,vr_deb_$i,vr_cre_$i,cheque_$i from recaudo_tnat where id_recau='$id'";
-		$res = mysql_db_query($database, $sql, $cx);
-		//$numf=mysql_num_rows($res);
-		while ($row = mysql_fetch_array($res))
+		$res = $cx->query($sql);
+		//$numf=$res->num_rows;
+		while ($row = $res->fetch_assoc())
 		{			
 		     if ($row["pgcp".$i] != '')
 			 {

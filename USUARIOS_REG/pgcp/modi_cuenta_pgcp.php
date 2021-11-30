@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -70,7 +70,7 @@ return (key <= 13 || (key >= 48 && key <= 57));
 
 <?php 
 include('../config.php');				
-$cxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+$cxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sxx = "select * from fecha";
 $rxx = mysql_db_query($database, $sxx, $cxx);
 
@@ -189,7 +189,7 @@ function habilitar2(obj) {
 	  <td>	    <div align="center"><span class="Estilo4"><strong>MODIFICA  DATOS CUENTA DEL PLAN GENERAL DE CONTABILIDAD PUBLICA  <br />P.G.C.P</strong></span><br />
               <?php 
 	  include('../config.php');				
-$cxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+$cxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sxx = "select * from fecha";
 $rxx = mysql_db_query($database, $sxx, $cxx);
 
@@ -203,7 +203,7 @@ while($rowxxx = mysql_fetch_array($rxx))
               <?php
 //-------
 include('../config.php');				
-$cx2 = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+$cx2 = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq2 = "select * from empresa where cod_emp = '$idxxx'";
 $re2 = mysql_db_query($database, $sq2, $cx2);
 
@@ -305,14 +305,14 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
               </div></td>
               <td colspan="2" bgcolor="#EBEBE4" class="Estilo4"><div id="div" style="padding-left:30px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                   <div align="left">
-				  <? if ($tipo_dato == 'D' and $cta0 != '0')
+				  <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  {
 				  ?>
                     <select name="banco" class="Estilo4" id="banco" onchange="habilitar2(this)">
                       <option value="NO">NO</option>
                       <option value="SI">SI</option>
                     </select>
-			<? }
+			<?php }
 			   else
 			   {
 			?>	
@@ -321,7 +321,7 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                       <option value="SI">SI</option>
                     </select>
 			
-			<?
+			<?php
 			}
 			?>	
                     <strong>ALMACENADO</strong> : <?php printf("%s", $c2); ?>                  </div>
@@ -548,14 +548,14 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                     <td width="200" bgcolor="#EBEBE4"><div id="div23" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                         
                           <div align="center">
-						  <? if ($tipo_dato == 'D' and $cta0 != '0')
+						  <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                             <select name="almacen" class="Estilo4" id="almacen" >
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							else
 							{
@@ -565,7 +565,7 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                               <option value="SI">SI</option>
                             </select>
 							
-							<?
+							<?php
 							}
 							?>
                             <BR />
@@ -578,14 +578,14 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                     <td width="204" bgcolor="#FFFFFF"><div id="div24" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                         
                           <div align="center">
-						   <? if ($tipo_dato == 'D' and $cta0 != '0')
+						   <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                             <select name="depreciable" class="Estilo4" id="depreciable" >
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							else
 							{
@@ -594,7 +594,7 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							?>
 							
@@ -613,14 +613,14 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                     <td><div id="div25" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                         
                           <div align="center">
-						  <? if ($tipo_dato == 'D' and $cta0 != '0')
+						  <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                             <select name="cartera" class="Estilo4" id="cartera" >
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							else
 							{
@@ -629,7 +629,7 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							?>
                             <BR />
@@ -642,14 +642,14 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                     <td bgcolor="#EBEBE4"><div id="div26" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                         
                           <div align="center">
-						  <? if ($tipo_dato == 'D' and $cta0 != '0')
+						  <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                             <select name="tercero" class="Estilo4" id="tercero" >
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							else
 							{
@@ -658,7 +658,7 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							?>
                             <BR />
@@ -673,14 +673,14 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                     <td bgcolor="#EBEBE4"><div id="div27" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                         
                           <div align="center">
-						   <? if ($tipo_dato == 'D' and $cta0 != '0')
+						   <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                             <select name="base" class="Estilo4" id="base" >
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							else
 							{
@@ -690,7 +690,7 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                               <option value="SI">SI</option>
                             </select>
 							
-							<?
+							<?php
 							}
 							?>
                             <BR />
@@ -703,14 +703,14 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                     <td bgcolor="#FFFFFF"><div id="div29" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                         
                           <div align="center">
-						    <? if ($tipo_dato == 'D' and $cta0 != '0')
+						    <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                             <select name="c_costos" class="Estilo4" id="c_costos" >
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							else
 							{
@@ -719,7 +719,7 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							?>
                             <BR />
@@ -734,14 +734,14 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                     <td><div id="div30" style="padding-left:10px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                         
                           <div align="center">
-						  <? if ($tipo_dato == 'D' and $cta0 != '0')
+						  <?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                             <select name="cta_costos" class="Estilo4" id="cta_costos" >
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							else
 							{
@@ -750,7 +750,7 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
-							<?
+							<?php
 							}
 							?>
                             <BR />
@@ -769,45 +769,45 @@ printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_so
               <td colspan="2" bgcolor="#EBEBE4" class="Estilo4"><div id="div28" style="padding-left:30px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
                   
                     <div align="center">
-					<? if ($tipo_dato == 'D' and $cta0 != '0')
+					<?php if ($tipo_dato == 'D' and $cta0 != '0')
 				  			{
 				 			 ?>
                       <select name="ent_recip" class="Estilo4" id="ent_recip" style="width: 400px;" >
-                        <?
+                        <?php
 include('config.php');
-$db = mysql_connect($server, $dbuser, $dbpass);
+$db = new mysqli($server, $dbuser, $dbpass, $database);
 mysql_select_db($database);
 $strSQL = "SELECT * FROM terceros_cgr_ing ORDER BY cod_ter";
 $rs = mysql_query($strSQL);
 $nr = mysql_num_rows($rs);
 for ($i=0; $i<$nr; $i++) {
-	$r = mysql_fetch_array($rs);
+	$r = $rs->fetch_assoc();
 	echo "<OPTION VALUE=\"".$r["cod_ter"]."\">".$r["cod_ter"]." - ".$r["nom_ter"]."</OPTION>";
 }
 
 ?>
                       </select>
-					  <?
+					  <?php
 					  }
 					  else
 					  {
 					  ?>
 					  <select name="ent_recip" class="Estilo4" id="ent_recip" style="width: 400px;" disabled="disabled" >
-                        <?
+                        <?php
 include('config.php');
-$db = mysql_connect($server, $dbuser, $dbpass);
+$db = new mysqli($server, $dbuser, $dbpass, $database);
 mysql_select_db($database);
 $strSQL = "SELECT * FROM terceros_cgr_ing ORDER BY cod_ter";
 $rs = mysql_query($strSQL);
 $nr = mysql_num_rows($rs);
 for ($i=0; $i<$nr; $i++) {
-	$r = mysql_fetch_array($rs);
+	$r = $rs->fetch_assoc();
 	echo "<OPTION VALUE=\"".$r["cod_ter"]."\">".$r["cod_ter"]." - ".$r["nom_ter"]."</OPTION>";
 }
 
 ?>
                       </select>
-					  <?
+					  <?php
 					  }
 					  ?>
                       <br />
@@ -863,8 +863,8 @@ for ($i=0; $i<$nr; $i++) {
 	  <div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
         <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
             <span class="Estilo4"> <strong>
-            <? include('../config.php');				
-$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+            <?php include('../config.php');				
+$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 
@@ -875,7 +875,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 echo $ano;
 ?>
             </strong> </span> <br />
-            <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+            <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
 	    </div></td>
 	</tr>
 	</table>
@@ -885,10 +885,10 @@ echo $ano;
   <tr align="center">
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email ?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email ?>	</div>
 	</div>	</td>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -906,6 +906,6 @@ echo $ano;
 </table>
 </body>
 </html>
-<?
+<?php
 }
 ?>

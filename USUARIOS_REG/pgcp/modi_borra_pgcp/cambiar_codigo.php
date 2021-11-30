@@ -189,8 +189,8 @@ var options = this.form.nn.options;for(var i = 0; i < options.length; i++){var m
     <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../../config.php');				
-$connectionxx = mysql_connect($server, $dbuser, $dbpass) or die ("Fallo en la Conexion a la Base de Datos");
+          <?php include('../../config.php');				
+$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 
@@ -201,7 +201,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
     <td>&nbsp;</td>
   </tr>
@@ -219,10 +219,10 @@ echo $ano;
   <tr>
     <td width="250">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email ?>	</div>
+	  <div align="center"><?php include('../../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email ?>	</div>
 	</div>	</td>
     <td width="250">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">

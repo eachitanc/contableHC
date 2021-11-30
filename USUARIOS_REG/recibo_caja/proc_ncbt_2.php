@@ -1,12 +1,12 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
 } else {
 ?>
-<?
+<?php
 
 include('../config.php');
 
@@ -15,9 +15,9 @@ $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo 
 
 // id_emp
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $id_emp=$rowxx["id_emp"];
 }
@@ -36,9 +36,9 @@ $ter_nat = $_POST['ter_nat'];//printf("<br>ter_nat %s<br>",$ter_nat);
 $ter_jur = $_POST['ter_jur'];//printf("<br>ter_jur %s<br>",$ter_jur);
 // consulta tercero nat
 $sqla = "select * from terceros_naturales where id_emp ='$id_emp' and id ='$ter_nat'";
-$resultadoa = mysql_db_query($database, $sqla, $connectionxx);
+$resultadoa = $connectionxx->query($sqla);
 
-while($rowa = mysql_fetch_array($resultadoa)) 
+while($rowa = $resultadoa->fetch_assoc()) 
 {
   $pri_ape=$rowa["pri_ape"];
   $seg_ape=$rowa["seg_ape"];
@@ -53,9 +53,9 @@ $nat_com = $natural;
 
 // consulta tercero jur
 $sqla = "select * from terceros_juridicos where id_emp ='$id_emp' and id ='$ter_jur'";
-$resultadoa = mysql_db_query($database, $sqla, $connectionxx);
+$resultadoa = $connectionxx->query($sqla);
 
-while($rowa = mysql_fetch_array($resultadoa)) 
+while($rowa = $resultadoa->fetch_assoc()) 
 {
   $raz_soc=$rowa["raz_soc2"];
 }
@@ -148,78 +148,78 @@ while($rowx = mysql_fetch_array($consultax))
 
 // consulta tipo_dato de pgcp
 $sqla = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp1'";
-$resultadoa = mysql_db_query($database, $sqla, $connectionxx);
-while($rowa = mysql_fetch_array($resultadoa)) 
+$resultadoa = $connectionxx->query($sqla);
+while($rowa = $resultadoa->fetch_assoc()) 
 {  $tipa=$rowa["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlb = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp2'";
-$resultadob = mysql_db_query($database, $sqlb, $connectionxx);
-while($rowb = mysql_fetch_array($resultadob)) 
+$resultadob = $connectionxx->query($sqlb);
+while($rowb = $resultadob->fetch_assoc()) 
 {  $tipb=$rowb["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlc = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp3'";
-$resultadoc = mysql_db_query($database, $sqlc, $connectionxx);
-while($rowc = mysql_fetch_array($resultadoc)) 
+$resultadoc = $connectionxx->query($sqlc);
+while($rowc = $resultadoc->fetch_assoc()) 
 {  $tipc=$rowc["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqld = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp4'";
-$resultadod = mysql_db_query($database, $sqld, $connectionxx);
-while($rowd = mysql_fetch_array($resultadod)) 
+$resultadod = $connectionxx->query($sqld);
+while($rowd = $resultadod->fetch_assoc()) 
 {  $tipd=$rowd["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqle = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp5'";
-$resultadoe = mysql_db_query($database, $sqle, $connectionxx);
-while($rowe = mysql_fetch_array($resultadoe)) 
+$resultadoe = $connectionxx->query($sqle);
+while($rowe = $resultadoe->fetch_assoc()) 
 {  $tipe=$rowe["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlf = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp6'";
-$resultadof = mysql_db_query($database, $sqlf, $connectionxx);
-while($rowf = mysql_fetch_array($resultadof)) 
+$resultadof = $connectionxx->query($sqlf);
+while($rowf = $resultadof->fetch_assoc()) 
 {  $tipf=$rowf["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlg = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp7'";
-$resultadog = mysql_db_query($database, $sqlg, $connectionxx);
-while($rowg = mysql_fetch_array($resultadog)) 
+$resultadog = $connectionxx->query($sqlg);
+while($rowg = $resultadog->fetch_assoc()) 
 {  $tipg=$rowg["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlh = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp8'";
-$resultadoh = mysql_db_query($database, $sqlh, $connectionxx);
-while($rowh = mysql_fetch_array($resultadoh)) 
+$resultadoh = $connectionxx->query($sqlh);
+while($rowh = $resultadoh->fetch_assoc()) 
 {  $tiph=$rowh["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqli = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp9'";
-$resultadoi = mysql_db_query($database, $sqli, $connectionxx);
-while($rowi = mysql_fetch_array($resultadoi)) 
+$resultadoi = $connectionxx->query($sqli);
+while($rowi = $resultadoi->fetch_assoc()) 
 {  $tipi=$rowi["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlj = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp10'";
-$resultadoj = mysql_db_query($database, $sqlj, $connectionxx);
-while($rowj = mysql_fetch_array($resultadoj)) 
+$resultadoj = $connectionxx->query($sqlj);
+while($rowj = $resultadoj->fetch_assoc()) 
 {  $tipj=$rowj["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlk = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp11'";
-$resultadok = mysql_db_query($database, $sqlk, $connectionxx);
-while($rowk = mysql_fetch_array($resultadok)) 
+$resultadok = $connectionxx->query($sqlk);
+while($rowk = $resultadok->fetch_assoc()) 
 {  $tipk=$rowk["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqll = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp12'";
-$resultadol = mysql_db_query($database, $sqll, $connectionxx);
-while($rowl = mysql_fetch_array($resultadol)) 
+$resultadol = $connectionxx->query($sqll);
+while($rowl = $resultadol->fetch_assoc()) 
 {  $tipl=$rowl["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlm = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp13'";
-$resultadom = mysql_db_query($database, $sqlm, $connectionxx);
-while($rowm = mysql_fetch_array($resultadom)) 
+$resultadom = $connectionxx->query($sqlm);
+while($rowm = $resultadom->fetch_assoc()) 
 {  $tipm=$rowm["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqln = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp14'";
-$resultadon = mysql_db_query($database, $sqln, $connectionxx);
-while($rown = mysql_fetch_array($resultadon)) 
+$resultadon = $connectionxx->query($sqln);
+while($rown = $resultadon->fetch_assoc()) 
 {  $tipn=$rown["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlo = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp15'";
-$resultadoo = mysql_db_query($database, $sqlo, $connectionxx);
-while($rowo = mysql_fetch_array($resultadoo)) 
+$resultadoo = $connectionxx->query($sqlo);
+while($rowo = $resultadoo->fetch_assoc()) 
 {  $tipo=$rowo["tip_dato"]; }
 
 
@@ -1082,19 +1082,19 @@ function valida_form()
     <td width="215" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center" class="Estilo13">
         <div align="center" class="Estilo4">
-		<? 
+		<?php 
 		$a = substr($id_recau,4,10);
 		$aa = substr($id_manu_rcgt,4,10);
 		printf("%s",$a); 
 		?>
-          <input name="consec_ncbt" type="hidden" id="consec_ncbt" value="<? printf("%s",$a); ?>">
+          <input name="consec_ncbt" type="hidden" id="consec_ncbt" value="<?php printf("%s",$a); ?>">
         </div>
       </div>
     </div></td>
     <td width="275" bgcolor="#F5F5F5">
-	<input type="hidden" name="ter_nat" value="<? printf("%s",$ter_nat); ?>"></input>
-    <input name="ter_jur" type="hidden" id="ter_jur" value="<? printf("%s",$ter_jur); ?>">
-	<input name="id_manu_ncbt" type="hidden" id="id_manu_ncbt" value="<? printf("%s",$aa); ?>"></td>
+	<input type="hidden" name="ter_nat" value="<?php printf("%s",$ter_nat); ?>"></input>
+    <input name="ter_jur" type="hidden" id="ter_jur" value="<?php printf("%s",$ter_jur); ?>">
+	<input name="id_manu_ncbt" type="hidden" id="id_manu_ncbt" value="<?php printf("%s",$aa); ?>"></td>
   </tr>
   <tr>
     <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -1104,8 +1104,8 @@ function valida_form()
     </div></td>
     <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center" class="Estilo13">
-        <div align="center" class="Estilo4"><? printf("%s",$fecha_recaudo); ?>
-          <input name="fecha_recaudo" type="hidden" id="fecha_recaudo" value="<? printf("%s",$fecha_recaudo); ?>">
+        <div align="center" class="Estilo4"><?php printf("%s",$fecha_recaudo); ?>
+          <input name="fecha_recaudo" type="hidden" id="fecha_recaudo" value="<?php printf("%s",$fecha_recaudo); ?>">
         </div>
       </div>
     </div></td>
@@ -1119,7 +1119,7 @@ function valida_form()
     </div></td>
     <td colspan="2" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center" class="Estilo13">
-        <div align="center" class="Estilo4"><? printf("%s",$tercero); ?></div>
+        <div align="center" class="Estilo4"><?php printf("%s",$tercero); ?></div>
       </div>
     </div></td>
   </tr>
@@ -1131,15 +1131,15 @@ function valida_form()
     </div></td>
     <td colspan="2" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center" class="Estilo13">
-        <div align="center" class="Estilo4"><? printf("%s",$des_recaudo); ?>
-          <input name="des_recaudo" type="hidden" id="des" value="<? printf("%s",$des_recaudo); ?>">
+        <div align="center" class="Estilo4"><?php printf("%s",$des_recaudo); ?>
+          <input name="des_recaudo" type="hidden" id="des" value="<?php printf("%s",$des_recaudo); ?>">
         </div>
       </div>
     </div></td>
   </tr>
 </table>
 <div align="center"><br />
-  <span class="Estilo15">IMPUTACIONES PRESUPUESTALES ADICIONADAS AL RECIBO ...::: <? printf("%s",$id_manu_rcgt); ?> :::...    </span><br>
+  <span class="Estilo15">IMPUTACIONES PRESUPUESTALES ADICIONADAS AL RECIBO ...::: <?php printf("%s",$id_manu_rcgt); ?> :::...    </span><br>
   <br>
   
  <?php
@@ -1215,7 +1215,7 @@ printf("</table></center><br><br>");
       <div align="center">
         <select name="cuenta" class="required Estilo4" id="cuenta" style="width: 400px;" onChange="valida_form();">
           <option value=""></option>
-          <?
+          <?php
 include('config.php');
 $db = new mysqli($server, $dbuser, $dbpass, $database);
 
@@ -1384,28 +1384,28 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
     <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../config.php');				
+          <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email?>	</div>
 	</div>	</td>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -1429,13 +1429,13 @@ echo $ano;
 
 
 
-<?
+<?php
 //*********************************
 //*********************************
 
 
 ?>
-<?
+<?php
 }
 ?>
 <style type="text/css">

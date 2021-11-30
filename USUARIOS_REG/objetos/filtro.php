@@ -30,7 +30,6 @@
 		}
 	</style>
 </head>
-
 <body>
 	<?php
 	$document1='';
@@ -173,7 +172,7 @@
 	<table border="0" width="100%">
 		<tr align="center">
 			<td>
-				<form class="form" action="<?php echo $archivo; ?>" method="post" name="form1">
+				<form class="form" action="<?php //echo $archivo; ?>" method="post" name="form1">
 					<?php
 					if (empty($pendiente)) {
 					?><input name="pendiente" type="checkbox" value="1" style="display: <?php echo $ver_pendiente ?>" /><span class="sidebar" style="display:<?php echo $ver_pendiente ?>"><?php echo $nom_pendientes; ?></span><?
@@ -216,7 +215,7 @@
 					</select>
 					<input name="buscar" type="text" size="50" class="Estilo4" />
 					<input name="nn" type="hidden" value="<?php echo $a; ?>" />
-					<input name="archivo" type="hidden" value="<?php echo $archivo; ?>" />
+					<input name="archivo" type="hidden" value="<?php //echo $archivo; ?>" />
 					<input type="submit" class="Estilo4" value="Filtrar" />
 				</form>
 			</td>

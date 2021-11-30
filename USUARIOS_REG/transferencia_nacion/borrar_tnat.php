@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -58,7 +58,7 @@ a:active {
 .Estilo7 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #666666; }
 -->
 </style>
-<?
+<?php
 include('../config.php');
 $cx = mysql_connect($server,$dbuser,$dbpass)or die ("Conexion no Exitosa");
 mysql_select_db( "$database"); 
@@ -95,6 +95,6 @@ else
 			",$id_recau);
 }
 ?>
-<?
+<?php
 }
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -158,17 +158,17 @@ include('../config.php');
 $mesh = array('cc','ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE');               
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
 $sq3 ="select cargo from usuarios2 where login = '$_SESSION[login]'";
 $re3 = mysql_db_query($database,$sq3,$connectionxx);
-$rw3 = mysql_fetch_array($re3);
+$rw3 = $re3->fetch_assoc();
 if ($rw3['cargo'] == "REVISOR")
 {
 	$ver_boton = "style=display:none";
 }
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -188,7 +188,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 
 
   <div align="center">
-    <?
+    <?php
 $a="CECP";$b=""; 
 if ($a == 'CECP')
 {
@@ -207,12 +207,12 @@ if ($a == 'CECP')
   </span></strong></div>
 </div>
 <br />
-<?
+<?php
 $document2 = "CECP";
 include('../objetos/filtro.php'); 
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlz1 = "select * from ceva where id_emp = '$id_emp' and fecha_cecp between '$f1' and '$f2' order by id_manu_cecp asc ";
-$resz1 = mysql_db_query($database, $sqlz1, $cx);
+$resz1 = $cx->query($sqlz1);
 
 
 if  ($_POST["buscar"] != "")
@@ -229,7 +229,7 @@ $a = "select * from ceva where id_emp='$id_emp' and id_auto_cobp ='AUTO'";
 	$orden = "order by fecha_ceva desc";
 	$sq2 = "$a $b $c $filtro $f $gby $orden";
 
-$resz1 = mysql_db_query($database, $sq2, $cx);
+$resz1 = $cx->query($sq2);
 
 
 printf("
@@ -335,7 +335,7 @@ printf("</table></center>");
 
 ?>
 <br />
-<?
+<?php
 }
 ?>
   </div></td>
@@ -358,18 +358,18 @@ printf("</table></center>");
     <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? echo $ano;?>
+          <?php echo $ano;?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="266">
     <div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-      <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-        <?PHP echo $dir_tel ?><BR />
-        <?PHP echo $muni ?> <br />
-        <?PHP echo $email?> </div>
+      <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+        <?php echo $dir_tel ?><BR />
+        <?php echo $muni ?> <br />
+        <?php echo $email?> </div>
     </div>  </td>
     <td width="266">
     <div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -393,6 +393,6 @@ printf("</table></center>");
 
 
 
-<?
+<?php
 }
 ?>

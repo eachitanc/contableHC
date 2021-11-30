@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -52,7 +52,7 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
 .Estilo8 {color: #FFFFFF}
 -->
 </style>
-<?
+<?php
 
 $id_unico=$_GET['var'];
 $id_auto = $_GET['var2'];
@@ -85,13 +85,13 @@ $resultado3 = mysql_db_query($database, $sql3, $connectionxx);
 <B>LA LIQUIDACION SE ELIMINO CON EXITO</B>
 <br />
 <br />
-<a href="hiscobp2.php?vr=<? printf("$id_auto"); ?>" target="_parent">VOLVER</a>
+<a href="hiscobp2.php?vr=<?php printf("$id_auto"); ?>" target="_parent">VOLVER</a>
 </center>
 </TD>
 </TR>
 </TABLE>
 </DIV>
 
-<?
+<?php
 }
 ?>

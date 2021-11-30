@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!session_is_registered("login"))
 {
@@ -43,7 +43,7 @@ a:active {
 </style>
 <title>CONTAFACIL</title>
 <body>
-<?
+<?php
 include('../config.php');	
 		
 $id_obcg=$_GET['id']; 
@@ -51,9 +51,9 @@ $vr_obcg=$_GET['val'];
 
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $id_emp=$rowxx["id_emp"];
 }
@@ -139,7 +139,7 @@ else
 		
 		?>
 <!--<br><center><a href="../ppto_gastos/adi_red_pac_ing.php" target="_parent" class="Estilo2"><strong>...::: HACER ADICION AL P.A.C :::...</strong></a></center><BR>
---><?
+--><?php
 		/*}
 		else
 		{*/
@@ -158,13 +158,13 @@ else
 			</div>
 			</form>
 
-			<?
+			<?php
 //}
 }
 ?>
 
 <div align="center">
-<?
+<?php
 printf("
 
 <center class='Estilo9'>
@@ -179,6 +179,6 @@ printf("
 </div>
 </body>
 </html>
-<?
+<?php
 }
 ?>

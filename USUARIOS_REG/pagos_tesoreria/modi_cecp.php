@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -605,7 +605,7 @@ if (concepto =='')
 <!--fin val forms--> 
 </head> 																																	<!-- Cabecera con funciones y javascript -->
 <body onload="Calcular();">
-<?
+<?php
 		  	$veaternat="display:none";
 			$veaterjur="display:none";
 			$aut=$_GET["siauto"];
@@ -636,7 +636,7 @@ if (concepto =='')
 	<div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:150px'>
       <div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
         <div align="center">
-          <?
+          <?php
 include('../objetos/redondear.php');
 printf("
 <center class='Estilo4'>
@@ -665,14 +665,14 @@ printf("
         <td width="197"></td>
       </tr>
       <tr>
-        <td colspan="4" bgcolor="#DCE9E5"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;"><? echo "$ultimo"; ?>
+        <td colspan="4" bgcolor="#DCE9E5"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;"><?php echo "$ultimo"; ?>
           <div align="center" class="Estilo12"><strong>
             <?php 
 			include('../config.php');
 			$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 			$sqlxx = "select * from fecha";
-			$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-			while($rowxx = mysql_fetch_array($resultadoxx)) 
+			$resultadoxx = $connectionxx->query($sqlxx);
+			while($rowxx = $resultadoxx->fetch_assoc()) 
 			{
 			  $idxx=$rowxx["id_emp"];
 			  $id_emp=$rowxx["id_emp"];
@@ -690,7 +690,7 @@ printf("
         </div></td>
         <td colspan="2" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="left">
-		  <?
+		  <?php
 		  	if (empty($_POST['fecha_cecpp']))
 			{
 				$fecha_cecp=$ano; //printf("%s",$fecha_cecp); echo "entra if";
@@ -702,7 +702,7 @@ printf("
 			
 			if ($modi =='modi'){$fecha_cecp =$rowx["fecha_cecp"];}
 			?>
-            <input name="fecha_cecpp" type="text" class="required Estilo12" readonly="" id="fecha_cecpp" value="<? printf($fecha_cecp);?>" size="12" />
+            <input name="fecha_cecpp" type="text" class="required Estilo12" readonly="" id="fecha_cecpp" value="<?php printf($fecha_cecp);?>" size="12" />
             <span class="Estilo8">:::</span>
             <input name="button2" type="button" class="Estilo12" onclick="displayCalendar(document.a.fecha_cecpp,'yyyy/mm/dd',this)" value="Seleccione Fecha" />
           </div>
@@ -717,7 +717,7 @@ printf("
         </div></td>
         <td bgcolor="#FFFFFF" width="208"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo4">
-              <?
+              <?php
 
 				new mysqli($server, $dbuser, $dbpass, $database);
 				$resulta = mysql_query("SHOW TABLE STATUS FROM $database LIKE 'cecp'");
@@ -727,13 +727,13 @@ printf("
 				}
 				
 				?>
-               <? printf("%s",$conse);
+               <?php printf("%s",$conse);
 			   
 			   $id_auto_cecp =$_POST['id_auto_cecp'];
 			   
 			   if ($modi=='modi'){$id_auto_cecp=$rowx['id_auto_cecp'];}
 			   ?>
-			  <input name="id_auto_cecp" type="hidden" class="Estilo12" id="id_auto_cecp" value="<? printf($id_auto_cecp);?>"/>
+			  <input name="id_auto_cecp" type="hidden" class="Estilo12" id="id_auto_cecp" value="<?php printf($id_auto_cecp);?>"/>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5" width="180"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -745,7 +745,7 @@ printf("
         <td bgcolor="#FFFFFF" width="197"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo12">
               <div align="center">
-			<?
+			<?php
 			    $ultimo2=$_POST['id_manu_cecp']; 
 				if ($ultimo2 =='')
 				{
@@ -765,7 +765,7 @@ printf("
 				{ $ultimoo=substr($rowx["id_manu_cecp"],4);}
 				
 	          ?>
-                <input name="id_manu_cecp" type="text" class="required Estilo4" id="id_manu_cecp" style="text-align:center" onkeypress="return validar(event)" value="<? printf ("%s",$ultimoo);?>"  onkeyup="chk_cecp();"/>
+                <input name="id_manu_cecp" type="text" class="required Estilo4" id="id_manu_cecp" style="text-align:center" onkeypress="return validar(event)" value="<?php printf ("%s",$ultimoo);?>"  onkeyup="chk_cecp();"/>
 				<!--<input name="id_auto_cecp" type="hidden" value="<?php// print ($rowx['id_auto_cecp']; ?>"  />-->
 			<br />
 <div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -783,7 +783,7 @@ printf("
         </div></td>
         <td colspan="3"><table border="0" align="left">
           <tr>
-		  <?
+		  <?php
 			//echo "$_POST[ter_nat] ** $_POST[ter_jur] ** $_POST[chkretefte]";
 			if(isset($_POST['Submit']) or isset($_POST['Submit2']) or isset($_POST['Submit3']) or isset($_POST['Submit32']) or $_POST['chkretefte']=="SIAUT" or $_POST['chkretefte']=="")
 			{
@@ -854,11 +854,11 @@ printf("
             </div></td>
           </tr>
           <tr>
-			<td id="naturales" style=" <? print $veaternat ?> ">
+			<td id="naturales" style=" <?php print $veaternat ?> ">
 			<div style="padding-left:5px; padding-top:0px; padding-right:5px; padding-bottom:0px;">
                 <div align="left">
-				<select name="ter_nat" class="Estilo4" id="ter_nat" style="width: 350px;" <? print $enaternat; ?>>
-                 <option value="nat"></option>   <?
+				<select name="ter_nat" class="Estilo4" id="ter_nat" style="width: 350px;" <?php print $enaternat; ?>>
+                 <option value="nat"></option>   <?php
 						
 						include('../config.php');
 						$db = new mysqli($server, $dbuser, $dbpass, $database);
@@ -868,7 +868,7 @@ printf("
 						$nr = mysql_num_rows($rs);
 						for ($i=0; $i<$nr; $i++) 
 						{
-							$r = mysql_fetch_array($rs);
+							$r = $rs->fetch_assoc();
 							if ($r['id']==$ter_natural or $r['id']=='$ternatidaut' or $r['id']=='$ternatidman')
 							{
 								echo "<OPTION selected=".$r['pri_ape'].' '.$r['seg_ape'].' '.$r['pri_nom'].' '.$r['seg_nom']." VALUE=\"".$r["id"]."\">".$r["pri_ape"]." ".$r["seg_ape"]." ".$r["pri_nom"]." ".$r["seg_nom"]."</b></OPTION>";
@@ -884,12 +884,12 @@ printf("
             </div></td>
           </tr>
           <tr>
-				<td id="juridicos" style=" <? print $veaterjur ?>">
+				<td id="juridicos" style=" <?php print $veaterjur ?>">
 				<div style="padding-left:5px; padding-top:0px; padding-right:5px; padding-bottom:0px;">
 				<div align="left">
-				  <select name="ter_jur" class="Estilo4" id="ter_jur" style="width: 350px;" <? print $enaterjur; ?>>
+				  <select name="ter_jur" class="Estilo4" id="ter_jur" style="width: 350px;" <?php print $enaterjur; ?>>
                    <option value="jur"></option> 
-				    <?
+				    <?php
 						include('../config.php');
 						$db = new mysqli($server, $dbuser, $dbpass, $database);
 						
@@ -898,7 +898,7 @@ printf("
 						$nr = mysql_num_rows($rs);
 						for ($i=0; $i<$nr; $i++) 
 						{
-							$r = mysql_fetch_array($rs);
+							$r = $rs->fetch_assoc();
 							if ($r['id']==$ter_juridico or $r['id']=='$terjuridaut' or $r['id']=='$terjuridman')
 							{
 								echo "<OPTION selected=".$r['raz_soc2']." VALUE=\"".$r["id"]."\">".$r["raz_soc2"]."</b></OPTION>";
@@ -928,7 +928,7 @@ printf("
 			$conce=$_POST['concepto_pago'];
 			if ($modi =='modi') {$conce =$rowx["concepto_pago"];} ?>
 			
-			<input name="concepto_pago" type="text" class="required Estilo4" id="concepto_pago" onkeyup="a.concepto_pago.value=a.concepto_pago.value.toUpperCase();" style="width: 520px;" value="<?  printf("%s",$conce); ?>"/>
+			<input name="concepto_pago" type="text" class="required Estilo4" id="concepto_pago" onkeyup="a.concepto_pago.value=a.concepto_pago.value.toUpperCase();" style="width: 520px;" value="<?php  printf("%s",$conce); ?>"/>
           </div>
         </div></td>
         </tr>
@@ -1067,10 +1067,10 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? $vr_obli_para_pago_mas_iva=$_POST['vr_obli_para_pago_mas_iva'];
+                <?php $vr_obli_para_pago_mas_iva=$_POST['vr_obli_para_pago_mas_iva'];
 				if ($modi=='modi'){$vr_obli_para_pago_mas_iva=$rowx["vr_obli_para_pago_mas_iva"];}
 				 ?>
-                <input name="vr_obli_para_pago_mas_iva" type="text" class="required Estilo12" id="vr_obli_para_pago_mas_iva" style="text-align:right" onkeypress="return validar(event)" value="<?  printf("%.0f",$vr_obli_para_pago_mas_iva); ?>" onchange="valvrob()" />
+                <input name="vr_obli_para_pago_mas_iva" type="text" class="required Estilo12" id="vr_obli_para_pago_mas_iva" style="text-align:right" onkeypress="return validar(event)" value="<?php  printf("%.0f",$vr_obli_para_pago_mas_iva); ?>" onchange="valvrob()" />
               </div>
             </div>
         </div></td>
@@ -1085,7 +1085,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				if ($modi =='modi') {$iva= $rowx["iva"];}
 				?>
 				
-				<input name="iva" type="text" class="Estilo12" id="iva" style="text-align:center" onkeypress="return validar(event)" onchange="iva2()" value="<?  printf("%s",$iva); ?>" />
+				<input name="iva" type="text" class="Estilo12" id="iva" style="text-align:center" onkeypress="return validar(event)" onchange="iva2()" value="<?php  printf("%s",$iva); ?>" />
                 <span class="Estilo14">:::</span>
               </div></div>
         </div></td>
@@ -1105,11 +1105,11 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 				$new_iva = $iva + 1;
 				$vr_obli_para_pago_sin_iva = $vr_obli_para_pago_mas_iva / $new_iva; 
 			?>
-                <input name="vr_obli_para_pago_sin_iva" type="text" class="required Estilo12" id="vr_obli_para_pago_sin_iva" style="text-align:right" onkeypress="return validar(event)" value="<? printf("%.0f",$vr_obli_para_pago_sin_iva); ?>" readonly />
+                <input name="vr_obli_para_pago_sin_iva" type="text" class="required Estilo12" id="vr_obli_para_pago_sin_iva" style="text-align:right" onkeypress="return validar(event)" value="<?php printf("%.0f",$vr_obli_para_pago_sin_iva); ?>" readonly />
               </div>
             </div>
         </div></td>
@@ -1124,10 +1124,10 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <? 
+              <?php 
 			$iva_vr_obli_pago = $vr_obli_para_pago_mas_iva - $vr_obli_para_pago_sin_iva;
 			?>
-              <input name="iva_vr_obli_pago" type="text" class="required Estilo12" id="iva_vr_obli_pago" style="text-align:right" onkeypress="return validar(event)" value="<? printf("%.0f",$iva_vr_obli_pago); ?>" readonly />
+              <input name="iva_vr_obli_pago" type="text" class="required Estilo12" id="iva_vr_obli_pago" style="text-align:right" onkeypress="return validar(event)" value="<?php printf("%.0f",$iva_vr_obli_pago); ?>" readonly />
             </div>
           </div>
         </div></td>
@@ -1146,7 +1146,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         </div></td>
         </tr>
       <tr>
-        <?
+        <?php
 			$post=array(salud,pension,libranza,f_solidaridad,f_empleados,sindicato,embargo,cruce,otros,ReteICA);
 			$sql4 = "select * from dctos_deduc_cecp";
 			$resultado4 = mysql_db_query($database, $sql4, $connectionxx);
@@ -1196,8 +1196,8 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <input name="salud" type="text" class="Estilo12" id="salud" style="text-align:right" onkeypress="return validar(event)" value="<?   printf("%.0f",$salud);	 ?>" />
-				<?
+                <input name="salud" type="text" class="Estilo12" id="salud" style="text-align:right" onkeypress="return validar(event)" value="<?php   printf("%.0f",$salud);	 ?>" />
+				<?php
 				if ($autom[0]=='SI')
 					echo "<input name='checksalud' type='checkbox' id='checksalud' disabled='disabled' checked='checked'/>";
 			    else
@@ -1214,8 +1214,8 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <input name="pension" type="text" class="Estilo12" id="pension" style="text-align:right" onkeypress="return validar(event)" value="<?   printf("%.0f",$pension);	 ?>" />
-				<?
+                <input name="pension" type="text" class="Estilo12" id="pension" style="text-align:right" onkeypress="return validar(event)" value="<?php   printf("%.0f",$pension);	 ?>" />
+				<?php
 				if ($autom[1]=='SI')
 					echo "<input name='checkpenciones' type='checkbox' id='checkpenciones' disabled='disabled' checked='checked'/>";
 			    else
@@ -1234,8 +1234,8 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="libranza" type="text" class="Estilo12" id="libranza" style="text-align:right" onkeypress="return validar(event)" value="<?   printf("%.0f",$libranza);	 ?>" />
-			  <?
+              <input name="libranza" type="text" class="Estilo12" id="libranza" style="text-align:right" onkeypress="return validar(event)" value="<?php   printf("%.0f",$libranza);	 ?>" />
+			  <?php
 				if ($autom[2]=='SI')
 					echo "<input name='checklibranza' type='checkbox' id='checklibranza' disabled='disabled' checked='checked'/>";
 			    else
@@ -1252,8 +1252,8 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="f_solidaridad" type="text" class="Estilo12" id="f_solidaridad" style="text-align:right" onkeypress="return validar(event)" value="<?   printf("%.0f",$f_solidaridad);	 ?>" />
-			  <?
+              <input name="f_solidaridad" type="text" class="Estilo12" id="f_solidaridad" style="text-align:right" onkeypress="return validar(event)" value="<?php   printf("%.0f",$f_solidaridad);	 ?>" />
+			  <?php
 				if ($autom[3]=='SI')
 					echo "<input name='checkfsolidaridad' type='checkbox' id='checkfsolidaridad' disabled='disabled' checked='checked'/>";
 			    else
@@ -1272,8 +1272,8 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td width="200"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="f_empleados" type="text" class="Estilo12" id="f_empleados" style="text-align:right" onkeypress="return validar(event)" value="<?   printf("%.0f",$f_empleados);	 ?>" />
-			  <?
+              <input name="f_empleados" type="text" class="Estilo12" id="f_empleados" style="text-align:right" onkeypress="return validar(event)" value="<?php   printf("%.0f",$f_empleados);	 ?>" />
+			  <?php
 				if ($autom[4]=='SI')
 					echo "<input name='checkfempleados' type='checkbox' id='checkfempleados' disabled='disabled' checked='checked'/>";
 			    else
@@ -1290,8 +1290,8 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td width="200"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="sindicato" type="text" class="Estilo12" id="sindicato" style="text-align:right" onkeypress="return validar(event)" value="<?  printf("%.0f",$sindicato);	 ?>" />
-			  <?
+              <input name="sindicato" type="text" class="Estilo12" id="sindicato" style="text-align:right" onkeypress="return validar(event)" value="<?php  printf("%.0f",$sindicato);	 ?>" />
+			  <?php
 				if ($autom[5]=='SI')
 					echo "<input name='checksindicato' type='checkbox' id='checksindicato' disabled='disabled' checked='checked'/>";
 			    else
@@ -1310,8 +1310,8 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="embargo" type="text" class="Estilo12" id="embargo" style="text-align:right" onkeypress="return validar(event)" value="<?   printf("%.0f",$embargo);	 ?>" />
-			  <?
+              <input name="embargo" type="text" class="Estilo12" id="embargo" style="text-align:right" onkeypress="return validar(event)" value="<?php   printf("%.0f",$embargo);	 ?>" />
+			  <?php
 				if ($autom[6]=='SI')
 					echo "<input name='checkembargo' type='checkbox' id='checksembargo' disabled='disabled' checked='checked'/>";
 			    else
@@ -1328,8 +1328,8 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="cruce" type="text" class="Estilo12" id="cruce" style="text-align:right" onkeypress="return validar(event)" value="<?  printf("%.0f",$cruce);	 ?>" />
-			  <?
+              <input name="cruce" type="text" class="Estilo12" id="cruce" style="text-align:right" onkeypress="return validar(event)" value="<?php  printf("%.0f",$cruce);	 ?>" />
+			  <?php
 				if ($autom[7]=='SI')
 					echo "<input name='checkcruce' type='checkbox' id='checkcruce' disabled='disabled' checked='checked'/>";
 			    else
@@ -1348,8 +1348,8 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="otros" type="text" class="Estilo12" id="otros" style="text-align:right" onkeypress="return validar(event)" value="<?  printf("%.0f",$otros);	 ?>" />
-			  <?
+              <input name="otros" type="text" class="Estilo12" id="otros" style="text-align:right" onkeypress="return validar(event)" value="<?php  printf("%.0f",$otros);	 ?>" />
+			  <?php
 				if ($autom[8]=='SI')
 					echo "<input name='checkotros' type='checkbox' id='checkotros' disabled='disabled' checked='checked'/>";
 			    else
@@ -1408,7 +1408,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center">
               <select name="retefuente" class="Estilo12" id="retefuente" style="width: 300px;" onchange="ValorRetencion(id);">
                 <option value=""></option>
-                <? 
+                <?php 
 				   $retefuente = $_POST['retefuente'];		  
 				   if ($modi =='modi'){$retefuente = $rowx['retefuente'];}
 				   include('../config.php');
@@ -1428,7 +1428,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   }
 				 ?>
               </select>
-              <?
+              <?php
 					if ($aut=="AUT")
 					{
 						echo "<a name=fte><input name='chkretefte' type='checkbox' value='SIAUT'checked='checked' id='chkretefte' onclick='envias(chkretefte.id,fte)'/> </a>";
@@ -1448,7 +1448,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					$r=0;
 					if ($modi =='modi')
 					{
@@ -1491,19 +1491,19 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 		<!-- TOPE -->
 		<td><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tope_info);?> </div>
+              <div align="center"> <?php printf("%s",$tope_info);?> </div>
             </div>
         </div></td>
 		<!--FIN TOPE -->
         <td width="100"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tarifa_info);?> </div>
+              <div align="center"> <?php printf("%s",$tarifa_info);?> </div>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					if ($aut=="AUT")
 					{
 						$vr_retefuente=$vr_retefuente;
@@ -1555,7 +1555,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center">
               <select name="reteiva" class="Estilo12" id="reteiva" style="width: 300px;" onchange="ValorRetencion(id);">
                 <option value=""></option>
-                <? 
+                <?php 
 				   $reteiva = $_POST['reteiva'];		  
 				   if ($modi =='modi'){$reteiva = $rowx['reteiva'];}
 				   include('../config.php');
@@ -1575,7 +1575,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   }
 				 ?>
               </select>
-              <?
+              <?php
 					if ($autiva=="AUTIVA")
 					{
 						echo "<input name='chkreteiva' type='checkbox' value='SIAUT' checked='checked' id='chkreteiva' onclick='envias(chkreteiva.id)'/>";
@@ -1593,7 +1593,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 				if ($modi =='modi')
 					{
 					$_POST["reteiva"] =1;
@@ -1632,19 +1632,19 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 		<!-- TOPE -->
 		<td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tope_iva); ?> </div>
+              <div align="center"> <?php printf("%s",$tope_iva); ?> </div>
             </div>
         </div></td>
 		<!-- TOPE -->
         <td width="100" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tarifa_iva); ?> </div>
+              <div align="center"> <?php printf("%s",$tarifa_iva); ?> </div>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					
 					
 					if ($autiva=="AUTIVA")
@@ -1673,7 +1673,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         </div></td>
       </tr>
       <tr>
-          <?
+          <?php
 			if ($_POST["vr_reteica"]>0)
 			{
 				$vr_reteica = $_POST["vr_reteica"];
@@ -1715,7 +1715,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center" class="Estilo12">
               <div align="center">
                 <input name="a_partir_reteica" type="text" class="Estilo12" id="a_partir_reteica" style="text-align:right" onkeypress="return validar(event)" 
-			  value="<? $a_partir_reteica=$_POST['a_partir_reteica']; printf("%s",$a_partir_reteica); ?>" />
+			  value="<?php $a_partir_reteica=$_POST['a_partir_reteica']; printf("%s",$a_partir_reteica); ?>" />
               </div>
             </div>
         </div></td>
@@ -1724,7 +1724,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center" class="Estilo12">
               <div align="center">
                 <input name="tarifa_reteica" type="text" class="Estilo12" id="tarifa_reteica" style="text-align:right" onkeypress="return validar(event)" 
-			  value="<? $tarifa_reteica=$_POST['tarifa_reteica']; printf("%s",$tarifa_reteica); ?>" />
+			  value="<?php $tarifa_reteica=$_POST['tarifa_reteica']; printf("%s",$tarifa_reteica); ?>" />
               </div>
             </div>
         </div></td>
@@ -1733,7 +1733,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center" class="Estilo12">
               <div align="center">
                 <input name="tarifa_reteica" type="text" class="Estilo12" id="tarifa_reteica" style="text-align:right" width="80" onkeypress="return validar(event)" 
-			  value="<? $tarifa_reteica=$_POST['tarifa_reteica']; printf("%s",$tarifa_reteica); ?>" />
+			  value="<?php $tarifa_reteica=$_POST['tarifa_reteica']; printf("%s",$tarifa_reteica); ?>" />
               </div>
             </div>
         </div></td>
@@ -1741,7 +1741,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center" class="Estilo12">
               <div align="center">
               <input name="vr_reteica" type="text" class="Estilo12" id="vr_reteica" style="text-align:right" onkeypress="return validar(event)" 
-			  value="<? $vr_reteica=$_POST['vr_reteica']; printf("%s",$vr_reteica);?>" />
+			  value="<?php $vr_reteica=$_POST['vr_reteica']; printf("%s",$vr_reteica);?>" />
               </div>
             </div>
         </div></td>
@@ -1770,7 +1770,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center">
               <select name="estampilla1" class="Estilo12" id="estampilla1" style="width: 300px;" onchange="ValorRetencion(id);">
                 <option value=""></option>
-                <? 
+                <?php 
 				   $estampilla1 = $_POST['estampilla1'];	  
 				   if ($modi =='modi'){$estampilla1 = $rowx['estampilla1'];}
 				   include('../config.php');
@@ -1790,7 +1790,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   }
 				 ?>
               </select>
-              <?
+              <?php
 					if ($autestun=="AUTESTUN")
 					{
 						echo "<input name='chkest1' type='checkbox' value='SIAUT' checked='checked' id='chkest1' onclick='envias(chkest1.id)'/>";
@@ -1808,7 +1808,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					if ($modi =='modi')
 					{
 					$_POST["estampilla1"] =1;
@@ -1847,19 +1847,19 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 		<!--TOPE -->
 		<td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tope_e1);?> </div>
+              <div align="center"> <?php printf("%s",$tope_e1);?> </div>
             </div>
         </div></td>
 		<!--TOPE -->
         <td width="100" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tarifa_e1);?> </div>
+              <div align="center"> <?php printf("%s",$tarifa_e1);?> </div>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					if ($autestun=="AUTESTUN")
 					{
 						$vr_estampilla1=$vr_estampilla1;
@@ -1912,7 +1912,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center">
               <select name="estampilla2" class="Estilo12" id="estampilla2" style="width: 300px;" onchange="ValorRetencion(id);">
                 <option value=""></option>
-                <? 
+                <?php 
 				   $estampilla2 = $_POST['estampilla2'];		  
                    if ($modi =='modi'){$estampilla2 = $rowx['estampilla2'];}
 				   include('../config.php');
@@ -1933,7 +1933,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   }
 				 ?>
               </select>
-              <?
+              <?php
 					if ($autestdo=="AUTESTDO")
 					{
 						echo "<input name='chkest2' type='checkbox' value='SIAUT' checked='checked' id='chkest2' onclick='envias(chkest2.id)'/>";
@@ -1951,7 +1951,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					if ($modi =='modi')
 					{
 					$_POST["estampilla2"] =1;
@@ -1992,19 +1992,19 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 		<!--TOPE -->
 		<td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tope_e2);?> </div>
+              <div align="center"> <?php printf("%s",$tope_e2);?> </div>
             </div>
         </div></td>
 		<!--TOPE -->
         <td width="100" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tarifa_e2);?> </div>
+              <div align="center"> <?php printf("%s",$tarifa_e2);?> </div>
             </div>
         </div></td>
         <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					
 					if ($autestdo=="AUTESTDO")
 					{
@@ -2056,7 +2056,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center">
               <select name="estampilla3" class="Estilo12" id="estampilla3" style="width: 300px;" onchange="ValorRetencion(id);">
                 <option value=""></option>
-                <? 
+                <?php 
 				   $estampilla3 = $_POST['estampilla3'];		  
 				   if ($modi =='modi'){$estampilla3 = $rowx['estampilla3'];}
 				   include('../config.php');
@@ -2076,7 +2076,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   }
 				 ?>
               </select>
-              <?
+              <?php
 					if ($autesttr=="AUTESTTR")
 					{
 						echo "<input name='chkest3' type='checkbox' value='SIAUT' checked='checked' id='chkest3' onclick='envias(chkest3.id)'/>";
@@ -2094,7 +2094,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					if ($modi =='modi')
 					{
 					$_POST["estampilla3"] =1;
@@ -2133,19 +2133,19 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 		<!--TOPE -->
 		<td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tope_e3);?> </div>
+              <div align="center"> <?php printf("%s",$tope_e3);?> </div>
             </div>
         </div></td>
 		<!--TOPE -->
         <td width="100" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tarifa_e3);?> </div>
+              <div align="center"> <?php printf("%s",$tarifa_e3);?> </div>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					
 					if ($autesttr=="AUTESTTR")
 					{
@@ -2196,7 +2196,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center">
               <select name="estampilla4" class="Estilo12" id="estampilla4" style="width: 300px;" onchange="ValorRetencion(id);">
                 <option value=""></option>
-                <? 
+                <?php 
 					   $estampilla4 = $_POST['estampilla4'];		  
 					   if ($modi =='modi'){$estampilla4 = $rowx['estampilla4'];}
 					   include('../config.php');
@@ -2216,7 +2216,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 					   }
 				?>
               </select>
-              <?
+              <?php
 					if ($autestcu=="AUTESTCU")
 					{
 						echo "<input name='chkest4' type='checkbox' value='SIAUT' checked='checked' id='chkest4' onclick='envias(chkest4.id)'/>";
@@ -2234,7 +2234,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					if ($modi =='modi')
 					{
 					$_POST["estampilla4"] =1;
@@ -2273,19 +2273,19 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 		<!--TOPE -->
 		<td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tope_e4);?> </div>
+              <div align="center"> <?php printf("%s",$tope_e4);?> </div>
             </div>
         </div></td>
 		<!--TOPE -->
         <td width="100" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tarifa_e4);?> </div>
+              <div align="center"> <?php printf("%s",$tarifa_e4);?> </div>
             </div>
         </div></td>
         <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					
 					if ($autestcu=="AUTESTCU")
 					{
@@ -2335,7 +2335,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center">
               <select name="estampilla5" class="Estilo12" id="estampilla5" style="width: 300px;" onchange="ValorRetencion(id);">
                 <option value=""></option>
-                <? 
+                <?php 
 				   $estampilla5 = $_POST['estampilla5'];		  
 				   if ($modi =='modi'){$estampilla5 = $rowx['estampilla5'];}
 				   include('../config.php');
@@ -2356,7 +2356,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   }
 				 ?>
 				  </select>
-				  <?
+				  <?php
 					if ($autestci=="AUTESTCI")
 					{
 						echo "<input name='chkest5' type='checkbox' value='SIAUT' checked='checked' id='chkest5' onclick='envias(chkest5.id)'/>";
@@ -2374,7 +2374,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					if ($modi =='modi')
 					{
 					$_POST["estampilla5"] =1;
@@ -2413,19 +2413,19 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 		<!--TOPE -->
 		<td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tope_e5);?> </div>
+              <div align="center"> <?php printf("%s",$tope_e5);?> </div>
             </div>
         </div></td>
 		<!--TOPE -->
         <td width="100" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
-              <div align="center"> <? printf("%s",$tarifa_e5);?> </div>
+              <div align="center"> <?php printf("%s",$tarifa_e5);?> </div>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
             <div align="center" class="Estilo12">
               <div align="center">
-                <? 
+                <?php 
 					
 					if ($autestci=="AUTESTCI")
 					{
@@ -2467,13 +2467,13 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         </div></td>
 		<td bgcolor="#990000"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
             <div align="center" class="Estilo12"><span class="Estilo8"><strong> VALOR NETO A PAGAR : $
-              <? 
+              <?php 
 				$total_pagado = $vr_obli_para_pago_mas_iva - ($salud + $pension + $libranza + $f_solidaridad + $f_empleados + $sindicato + $embargo + $cruce + $otros + 
 				$vr_retefuente +  $vr_reteiva + $vr_reteica + $vr_estampilla1 + $vr_estampilla2 + $vr_estampilla3 + $vr_estampilla4 + $vr_estampilla5); 
 				echo number_format($total_pagado,2,',','.');
 			?>
                </strong></span>
-				<input name="total_pagado" type="hidden" class="Estilo12" id="total_pagado" value="<? printf("%.0f",$total_pagado); ?>"/>
+				<input name="total_pagado" type="hidden" class="Estilo12" id="total_pagado" value="<?php printf("%.0f",$total_pagado); ?>"/>
             </div>
         </div></td>
 	  </tr>
@@ -2486,7 +2486,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 	 </tr>
 	  <tr>
 	  	<td align="center">	
-		  <? $forma_pago =$_POST['forma_pago']; 
+		  <?php $forma_pago =$_POST['forma_pago']; 
 			  if ($modi =='modi'){$forma_pago = $rowx['forma_pago'];}
 			if($forma_pago == 'CHEQUE')
 			{
@@ -2497,10 +2497,10 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <option value="TRANSFERENCIA">TRANSF. ELECTRONICA</option>
 			<option value="CRUCE DE CUENTAS">CRUCE DE CUENTAS</option>
           </select>
-          <?  
+          <?php  
 			}
 			?>
-          <?  
+          <?php  
 			if($forma_pago == 'EFECTIVO')
 			{
 			?>
@@ -2510,10 +2510,10 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <option value="TRANSFERENCIA">TRANSF. ELECTRONICA</option>
 			<option value="CRUCE DE CUENTAS">CRUCE DE CUENTAS</option>
           </select>
-          <?  
+          <?php  
 			}
 			?>
-          <? 
+          <?php 
 			if($forma_pago == 'TRANSFERENCIA')
 			{
 			?>
@@ -2523,10 +2523,10 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <option value="TRANSFERENCIA" selected="selected">TRANSF. ELECTRONICA</option>
 			<option value="CRUCE DE CUENTAS">CRUCE DE CUENTAS</option>
           </select>
-          <?  
+          <?php  
 			}
 			?>
-			<? 
+			<?php 
 			if($forma_pago == 'CRUCE DE CUENTAS')
 			{
 			?>
@@ -2536,10 +2536,10 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 			<option value="TRANSFERENCIA">TRANSF. ELECTRONICA</option>
             <option value="CRUCE DE CUENTAS" selected="selected">CRUCE DE CUENTAS</option>
           </select>
-          <?  
+          <?php  
 			}
 			?>
-          <?  
+          <?php  
 			if($forma_pago == '')
 			{
 			?>
@@ -2549,7 +2549,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <option value="TRANSFERENCIA">TRANSF. ELECTRONICA</option>
 			<option value="CRUCE DE CUENTAS">CRUCE DE CUENTAS</option>
           </select>
-          <?  
+          <?php  
 			}
     		?>
 		    </td>
@@ -2572,7 +2572,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             </div>
         </div></td>
       </tr>
-	  <?
+	  <?php
 		$ia=0; $zz=0; $v_deb=0;
 		for($ef=1;$ef<=20;$ef++)
 		{
@@ -2709,11 +2709,11 @@ $link=mysql_connect($server,$dbuser,$dbpass);
       <td colspan="5" bgcolor="#DCE9E5">
 	  <div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
 		  <div align="center" class="Estilo4"><strong>MOVIMIENTO CONTABLE
-          	<input type="hidden" name='contador' value='<? print $contador1; ?>' id="contador">
-			<input type="hidden" name='contini' value='<? print $numpost; ?>' id="contini"><br />
+          	<input type="hidden" name='contador' value='<?php print $contador1; ?>' id="contador">
+			<input type="hidden" name='contini' value='<?php print $numpost; ?>' id="contini"><br />
           <img src="images/mas.png" alt="" title="Agregar Fila" width="20" height="20" border="0" style='cursor: pointer'; onclick='masitem();'>
           &nbsp;&nbsp;&nbsp;&nbsp;
-	  <span id='contis' class='Estilo4'><? printf("%s",$contador1); ?></span>
+	  <span id='contis' class='Estilo4'><?php printf("%s",$contador1); ?></span>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <img src="images/menos.png" alt="" title="Quitar Fila" width="20" height="20" border="0" style='cursor: pointer'; onclick='menitem();'>
           </strong></div>
@@ -2736,7 +2736,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
             <div align="center" class="Estilo4"><strong>No. Dcto / Cheque </strong></div>
         </div></td>
       </tr>
-      <?
+      <?php
 				
 			$aa=0;
 			$vrete=0;
@@ -2886,7 +2886,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
         <div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:150px'>
           <div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
             <div align="center">
-			  <?
+			  <?php
 				printf("
 				
 				<center class='Estilo4'>
@@ -2908,29 +2908,29 @@ $link=mysql_connect($server,$dbuser,$dbpass);
     <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? 
+          <?php 
 		  		include('../config.php');				
 				$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 				$sqlxx = "select * from fecha";
-				$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+				$resultadoxx = $connectionxx->query($sqlxx);
 				
-				while($rowxx = mysql_fetch_array($resultadoxx)) 
+				while($rowxx = $resultadoxx->fetch_assoc()) 
 				{
 				  $ano=$rowxx["ano"];
 				}
 				echo $ano;
 			?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email?>	</div>
 	</div>	</td>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -2948,6 +2948,6 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 </table>																																<!-- Fin de la tabla -->	
 </body>
 </html>
-<?
+<?php
 }
 ?>

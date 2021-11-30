@@ -70,9 +70,9 @@ function validar(e) {
 
 //printf("%s",$id);
 $sqlxx1 = "select * from fecha";
-$resultadoxx1 = mysql_db_query($database, $sqlxx1, $connectionxx);
+$resultadoxx1 = $connectionxx->query($sqlxx1);
 
-while($rowxx1 = mysql_fetch_array($resultadoxx1)) 
+while($rowxx1 = $resultadoxx1->fetch_assoc()) 
 {
   $id_emp=$rowxx1["id_emp"];
 }
@@ -95,9 +95,9 @@ while($rowxx = $resultadoxx->fetch_assoc())
 
 
 $sqlxx2 = "select * from empresa where cod_emp='$id_emp'";
-$resultadoxx2 = mysql_db_query($database, $sqlxx2, $connectionxx);
+$resultadoxx2 = $connectionxx->query($sqlxx2);;
 
-while($rowxx2 = mysql_fetch_array($resultadoxx2)) 
+while($rowxx2 = $resultadoxx2->fetch_assoc()) 
 {
   $nom_jefe_ppto=$rowxx2["nom_jefe_ppto"];
   $raz_soc=$rowxx2["raz_soc"];
@@ -120,7 +120,7 @@ if ($crtl_doc == 'SI')
 }
 if ($vencimiento =='SI') $ven = "style='display:'";
 $sqlxx3 = "select * from vf";
-$resultadoxx3 = mysql_db_query($database, $sqlxx3, $connectionxx);
+$resultadoxx3 = $connectionxx->query($sqlxx3);
 
 while($rowxx3 = mysql_fetch_array($resultadoxx3)) 
 {
@@ -213,7 +213,7 @@ $nuevo_total = $total;
           <?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cdpp where id_emp = '$id_emp' and consecutivo ='$id'  order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -307,7 +307,7 @@ printf("
 </table></center>",number_format($nuevo_total,2,',','.'));
 //--------	
 $sq3= "select nombre, apaterno,amaterno,cargo from usuarios2 where login = '$_SESSION[login]'";
-$re3 = mysql_db_query($database, $sq3, $cx);
+$re3 = $cx->query($sq3);
 $rw3 =mysql_fetch_array($re3); 
 	?>
         </div></td>

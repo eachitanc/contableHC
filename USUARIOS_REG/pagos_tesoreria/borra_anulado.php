@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -28,16 +28,16 @@ exit;
 <title>CONTAFACIL</title><body>
 
 <div align="center">
-  <?
+  <?php
 
 $id_ceva=$_GET['id_ceva']; 
 
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $id_emp=$rowxx["id_emp"];
 }
@@ -66,7 +66,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 </form>
 
 <div align="center">
-  <?
+  <?php
 printf("
 
 <center class='Estilo9'>
@@ -81,6 +81,6 @@ printf("
 </div>
 </body>
 </html>
-<?
+<?php
 }
 ?>

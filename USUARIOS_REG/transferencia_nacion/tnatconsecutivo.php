@@ -42,9 +42,9 @@ setInterval("initialize()",1)
 <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
@@ -57,13 +57,13 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 include('../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 			$sql2 = "SELECT fecha_recaudo , id_manu_tnat FROM recaudo_tnat order by fecha_recaudo, id_manu_tnat asc;";
-			$res = mysql_db_query($database,$sql2,$cx);
-		   // $row = mysql_fetch_array($res);
+			$res = $cx->query($sql2);
+		   // $row = $res->fetch_assoc();
 			
 			 echo"<center>";
       		 echo "<table  align=center border=0  class='bordepunteado1'>"; 
        		 $columnes = 2; # numero de columnas (variable) 
-             if (($rows=mysql_num_rows($res))==0)
+             if (($rows=$res->num_rows)==0)
 			 {   
                        echo " No Se Han Encontrado  datos";
              } 

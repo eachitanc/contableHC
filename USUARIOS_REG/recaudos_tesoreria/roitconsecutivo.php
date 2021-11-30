@@ -42,9 +42,9 @@ setInterval("initialize()",1)
 <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
@@ -58,7 +58,7 @@ include('../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 			$sql2 = "SELECT fecha_recaudo , id_manu_roit FROM recaudo_roit order by fecha_recaudo, id_manu_roit asc;";
 			$res = mysql_db_query($database,$sql2,$cx);
-		   // $row = mysql_fetch_array($res);
+		   // $row = $res->fetch_assoc();
 			
 			 echo"<center>";
       		 echo "<table  align=center border=0  class='bordepunteado1'>"; 

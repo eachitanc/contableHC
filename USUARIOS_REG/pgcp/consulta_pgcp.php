@@ -371,7 +371,7 @@ echo $ano;
 		</strong>
 		</span>
 		<br />
-        <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u>
+        <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u>
 		</span> 
 		</div>
 	    </div>
@@ -384,7 +384,7 @@ echo $ano;
   <tr align="center">
     <td width="283">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
 	    <?php echo $dir_tel ?><BR />
 	    <?php echo $muni ?> <br />
 	    <?php echo $email ?>	</div>

@@ -88,7 +88,7 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 		while($row2 = $re2->fetch_assoc())
 		{
 			$sq3 = "select * from ceva where fecha_ceva <= '$fecha' and (id_auto_cobp = '$row2[id_auto_cobp]' or id_auto_ceva ='$row2[ceva]')";
-			$re3 = mysql_db_query($database, $sq3, $cx);
+			$re3 = $cx->query($sq3);
 			$filas = mysql_num_rows($re3);
 			if ($filas == 0)
 			{

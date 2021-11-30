@@ -118,7 +118,7 @@ while($rowxx = $resultadoxx->fetch_assoc())
    }
    
 $sqlxx3 = "select * from fecha_ini_op";
-$resultadoxx3 = mysql_db_query($database, $sqlxx3, $connectionxx);
+$resultadoxx3 = $connectionxx->query($sqlxx3);
 
 while($rowxx3 = mysql_fetch_array($resultadoxx3)) 
    {

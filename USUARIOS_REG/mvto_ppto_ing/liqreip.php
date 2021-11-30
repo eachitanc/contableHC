@@ -124,7 +124,8 @@ if (!isset($_SESSION["login"])) {
 	$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 	$sqlxx = "select * from fecha";
 	$resultadoxx = $connectionxx->query($sqlxx);
-
+	$consecutivo = isset($_GET['var']) ? $_GET['var'] : '';
+	$cuenta = isset($_GET['cta_cdpp']) ? $_GET['cta_cdpp'] : '';
 	while ($rowxx = $resultadoxx->fetch_assoc()) {
 		$idxx = $rowxx["id_emp"];
 		$id_emp = $rowxx["id_emp"];
@@ -210,13 +211,12 @@ if (!isset($_SESSION["login"])) {
 						<div id="main_div" style="padding-left:3px; padding-top:10px; padding-right:3px; padding-bottom:10px;">
 							<div align="center">
 								<?php
-								$consecutivo = $_GET['var'];
-								$cuenta = $_GET['cta_cdpp'];
 								//aplica para cuando se hace el proceso liquidando al reves.... crpp to cdpp
 
 								$sqlxxq = "select * from reip_ing where consecutivo = '$consecutivo' and cuenta = '$cuenta'";
-								$resultadoxxq = mysql_db_query($database, $sqlxxq, $connectionxx);
-								while ($rowxxq = mysql_fetch_array($resultadoxxq)) {
+								$resultadoxxq = $connectionxx->query($sqlxxq);
+
+								while ($rowxxq = $resultadoxxq->fetch_assoc()) {
 									$vr_crppq = $rowxxq["vr_recaudado"];
 
 									if ($vr_crppq < 0) {
@@ -229,18 +229,14 @@ if (!isset($_SESSION["login"])) {
 								//************************
 
 								?>
-								<input type="hidden" name="consecutivo" value="<?php $consecutivo = $_GET['var'];
-																				printf("$consecutivo"); ?>" />
-								<input type="hidden" name="cuenta" value="<?php $cuenta = $_GET['cta_cdpp'];
-																			printf("$cuenta"); ?>" />
-								<input type="hidden" name="nom_rubro" value="<?php $nom_rubro;
-																				printf("$nom_rubro"); ?>" />
-								<input type="hidden" name="cdpp" value="<?php $cdpp = $_GET['id_manu_cdpp'];
-																		printf("$cdpp"); ?>" />
-								<input type="hidden" name="vr_obligado" value="<?php printf("$vr_obligado"); ?>" />
+								<input type="hidden" name="consecutivo" value="<?php printf("$consecutivo"); ?>" />
+								<input type="hidden" name="cuenta" value="<?php printf("$cuenta"); ?>" />
+								<input type="hidden" name="nom_rubro" value="<?php printf(isset($nom_rubro) ? "$nom_rubro" : ''); ?>" />
+								<input type="hidden" name="cdpp" value="<?php printf(isset($cdpp) ? "$cdpp" : ''); ?>" />
+								<input type="hidden" name="vr_obligado" value="<?php printf(isset($vr_obligado) ? "$vr_obligado" : ''); ?>" />
 								<input type="hidden" name="liq1" value="<?php $liq1 = 'SI';
 																		printf("$liq1"); ?>" />
-								<input type="hidden" name="liq2" value="<?php $liq2 = $_GET['vr_x_reg'] * (-1);
+								<input type="hidden" name="liq2" value="<?php $liq2 = isset($_GET['vr_x_reg']) ? $_GET['vr_x_reg'] * (-1) : '';
 																		printf("$liq2"); ?>" />
 
 								<input name="fecha_reg" type="text" class="Estilo4" id="fecha_reg" value="<?php $bb = date("Y/m/d");
@@ -301,16 +297,16 @@ if (!isset($_SESSION["login"])) {
 		<?php
 
 		$id_empa = $id_emp;
-		$consecutivoa = $_POST['consecutivo'];
-		$fecha_rega = $_POST['fecha_reg'];
-		$desa = $_POST['des'];
-		$cuentaa = $_POST['cuenta'];
-		$nom_rubroa = $_POST['nom_rubro'];
-		$valora = $_POST['valor'] * (-1);
-		$cdppa = $_POST['cdpp'];
-		$vr_obligadoa = $_POST['vr_obligado'];
-		$liq1a = $_POST['liq1'];
-		$liq2a = $_POST['liq2'];
+		$consecutivoa = isset($_POST['consecutivo']) ? $_POST['consecutivo'] : '';
+		$fecha_rega = isset($_POST['fecha_reg']) ? $_POST['fecha_reg'] : '';
+		$desa = isset($_POST['des']) ? $_POST['des'] : '';
+		$cuentaa = isset($_POST['cuenta']) ? $_POST['cuenta'] : '';
+		$nom_rubroa = isset($_POST['nom_rubro']) ? $_POST['nom_rubro'] : '';
+		$valora = isset($_POST['valor']) ? $_POST['valor'] * (-1) : 0;
+		$cdppa = isset($_POST['cdpp']) ? $_POST['cdpp'] : '';
+		$vr_obligadoa = isset($_POST['vr_obligado']) ? $_POST['vr_obligado'] : '';
+		$liq1a = isset($_POST['liq1']) ? $_POST['liq1'] : '';
+		$liq2a = isset($_POST['liq2']) ? $_POST['liq2'] : '';
 
 
 		if ($liq1a != '') {
@@ -324,21 +320,21 @@ if (!isset($_SESSION["login"])) {
 
 			//sacar total de vr_obligado y comparar con total de valor, si son =0 -> contab = si
 
-			$link = mysql_connect($server, $dbuser, $dbpass);
-			$resulta = mysql_query("select SUM(vr_recaudado) AS TOTAL from reip_ing WHERE consecutivo = '$consecutivoa'", $link) or die(mysql_error());
-			$row = mysql_fetch_row($resulta);
+			$link = new mysqli($server, $dbuser, $dbpass, $database);
+			$resulta = $link->query("select SUM(vr_recaudado) AS TOTAL from reip_ing WHERE consecutivo = '$consecutivoa'");
+			$row = $resulta->fetch_row();
 			$total = $row[0];
 			$tot_vr_obligado = $total;
 
-			$resulta2 = mysql_query("select SUM(valor) AS TOTAL from reip_ing WHERE consecutivo = '$consecutivoa'", $link) or die(mysql_error());
+			$resulta2 = $link->query("select SUM(valor) AS TOTAL from reip_ing WHERE consecutivo = '$consecutivoa'");
 			$row2 = $resulta2->fetch_array();
 			$total2 = $row2[0];
 			$tot_vr = $total2;
 
 			if ($tot_vr == $tot_vr_obligado) {
 
-				$sql3 = "update reip_ing set contab='SI' where consecutivo = '$consecutivoa'";
-				$resultado3 = mysql_db_query($database, $sql3, $connectionxx);
+				$sql3 = "UPDATE reip_ing set contab='SI' where consecutivo = '$consecutivoa'";
+				$resultado3 = $connectionxx->query($sql3);
 			}
 
 		?>

@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -62,7 +62,7 @@ function validar(e) {
     return patron.test(te);  
 }  
 </script>
-<?
+<?php
 class EnLetras
 {
   var $Void = "";
@@ -289,7 +289,7 @@ function Parte($x)
 ?>
 </head>
 <body>
-<?
+<?php
 $id=$_GET['id2'];
 
 //printf("%s",$id);
@@ -309,9 +309,9 @@ while($rowxx1 = mysql_fetch_array($resultadoxx1))
 			
 
 $sqlxx = "select * from recaudo_ncbt where id_recau ='$id' and id_emp='$id_emp'";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $fecha_recaudo=$rowxx["fecha_recaudo"];
   $tercero=$rowxx["tercero"];
@@ -340,7 +340,7 @@ $id_unico = $rowxx["id"];
     <td width="217" bgcolor="#FFFFFF">
 	<div class="Estilo4" style="padding-left:5px; padding-top:20px; padding-right:5px; padding-bottom:20px;">
 	<div align="center">
-	  <span class="Estilo9"><strong class="Estilo17">No. <? printf("%s",$id_manu_ncbt); ?></strong>	  </span></div>
+	  <span class="Estilo9"><strong class="Estilo17">No. <?php printf("%s",$id_manu_ncbt); ?></strong>	  </span></div>
 	</div>	</td>
   </tr>
   <tr>
@@ -348,14 +348,14 @@ $id_unico = $rowxx["id"];
       <div align="right">Fecha : </div>
     </div></td>
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="left"><? printf("%s",$fecha_recaudo); ?> </div>
+      <div align="left"><?php printf("%s",$fecha_recaudo); ?> </div>
     </div></td>
     </tr>
   <tr>
     <td bgcolor="#F5F5F5"><div class="Estilo16" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="right">Recibi de : </div>
     </div></td>
-    <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;"> <? printf("%s",$tercero); ?> </div></td>
+    <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;"> <?php printf("%s",$tercero); ?> </div></td>
     </tr>
   
   <tr>
@@ -363,7 +363,7 @@ $id_unico = $rowxx["id"];
       <div align="right">Concepto : </div>
     </div></td>
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <? printf("%s",$des_recaudo); ?>
+      <?php printf("%s",$des_recaudo); ?>
     </div></td>
     </tr>
   
@@ -372,10 +372,10 @@ $id_unico = $rowxx["id"];
       <div align="right" class="Estilo16">Valor en Letras (Presupuestal) : </div>
     </div></td>
     <td colspan="2" bgcolor="#FFFFFF"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <? 
+      <?php 
 	
 $link=mysql_connect($server,$dbuser,$dbpass);
-$resulta=mysql_query("select SUM(vr_digitado) AS TOTAL from recaudo_ncbt WHERE id_recau = '$id' AND id_emp='$id_emp'",$link) or die (mysql_error());
+$resulta=$link->query("select SUM(vr_digitado) AS TOTAL from recaudo_ncbt WHERE id_recau = '$id' AND id_emp='$id_emp'") or die (mysqli_error($link));
 $row=mysql_fetch_row($resulta);
 $total=$row[0]; 
 $nuevo_total = $total;
@@ -399,7 +399,7 @@ $nuevo_total = $total;
   </tr>
 </table><br>
 <div align="center">
-  <?
+  <?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from recaudo_ncbt where id_emp = '$id_emp' and id_recau ='$id' order by id asc ";
 $re = mysql_db_query($database, $sq, $cx);
@@ -451,10 +451,10 @@ printf("</table></center>");
 </table>
 <br>
 <div align="center">
-  <?
+  <?php
 	
 $sq2 = "select * from recaudo_ncbt where id_emp = '$id_emp' and id_recau ='$id' order by id asc ";
-$re2 = mysql_db_query($database, $sq2, $cx);
+$re2 = $cx->query($sq2);
 
 printf("
 <center>
@@ -529,10 +529,10 @@ printf("</table></center>");
 	</div>	</td>
     <td width="200">
 	<div class="Estilo4" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-	  <div align="right"><? echo number_format($acu1,2,',','.'); // printf("%.2f",$nuevo_total); ?>	</div>
+	  <div align="right"><?php echo number_format($acu1,2,',','.'); // printf("%.2f",$nuevo_total); ?>	</div>
 	</div>	</td>
     <td width="200"><div class="Estilo4" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;"> 
-      <div align="right"><? echo number_format($acu2,2,',','.'); //  printf("%.2f",$nuevo_total); ?> </div>
+      <div align="right"><?php echo number_format($acu2,2,',','.'); //  printf("%.2f",$nuevo_total); ?> </div>
     </div></td>
   </tr>
   
@@ -614,7 +614,7 @@ printf("</table></center>");
 <table width="800" border="0" align="center">
   <tr>
     <td width="396"><div align="center">
-      <?
+      <?php
 $consecutivo = $id_manu_ncbt;
 
  include_once("../class.barcode.php");
@@ -636,6 +636,6 @@ $barcode->drawBarCode();
 </form>
 </body>
 </html>
-<?
+<?php
 }
 ?>

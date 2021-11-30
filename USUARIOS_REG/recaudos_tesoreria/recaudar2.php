@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -633,7 +633,7 @@ function PunteroNormal()
     <td colspan="3">
 	<div style="padding-left:10px; padding-top:30px; padding-right:10px; padding-bottom:10px;">
       <div align="center" class="Estilo4"><strong>RECIBO OFICIAL DE INGRESO  </strong>
-        <?
+        <?php
 
 $id = $_GET['id'];
 //printf("%s",$id);
@@ -645,9 +645,9 @@ $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo 
 
 // extraer datos
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $id_emp=$rowxx["id_emp"];
   $ano=$rowxx["ano"];
@@ -758,7 +758,7 @@ while($row3a = mysql_fetch_array($resultado3a)) {  $id_manu_reip=$row3a["id_manu
       </div>
 	</div>	</td>
   </tr>
-<?  
+<?php  
 
 $sqlxx2 = "select * from reip_ing where id_emp = '$id_emp' and consecutivo = '$id_reip'";
 $resultadoxx2 = mysql_db_query($database, $sqlxx2, $connectionxx);
@@ -783,7 +783,7 @@ $num_rows = mysql_num_rows($result);
   <form name="a" method="post" id="commentForm">
   <tr>
   <td colspan="3">
-<?
+<?php
 if($num_rows == $a)
 {
 printf("
@@ -828,7 +828,7 @@ else
         </div></td>
         <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo4">
-		  <? 
+		  <?php 
 		  
 		  
 		  
@@ -836,7 +836,7 @@ else
 		  printf("%s",$id_manu_reip);
 		  
 		  
-		  ?><input name="id_reip" type="hidden" id="id_reip" value="<? printf("%s",$id_reip);?>" />
+		  ?><input name="id_reip" type="hidden" id="id_reip" value="<?php printf("%s",$id_reip);?>" />
           </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -845,8 +845,8 @@ else
           </div>
         </div></td>
         <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-          <div align="center" class="Estilo4"><? printf("%s",$fecha_reg);?>
-            <input name="fecha_reg" type="hidden" id="fecha_reg" value="<? printf("%s",$fecha_reg);?>" />
+          <div align="center" class="Estilo4"><?php printf("%s",$fecha_reg);?>
+            <input name="fecha_reg" type="hidden" id="fecha_reg" value="<?php printf("%s",$fecha_reg);?>" />
           </div>
         </div></td>
       </tr>
@@ -857,8 +857,8 @@ else
           </div>
         </div></td>
         <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-          <div align="left" class="Estilo4"><? printf("%s",$tercero);?>
-            <input name="tercero" type="hidden" id="tercero" value="<? printf("%s",$tercero);?>" />
+          <div align="left" class="Estilo4"><?php printf("%s",$tercero);?>
+            <input name="tercero" type="hidden" id="tercero" value="<?php printf("%s",$tercero);?>" />
           </div>
         </div></td>
         </tr>
@@ -869,8 +869,8 @@ else
           </div>
         </div></td>
         <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-          <div align="left" class="Estilo4"><? printf("%s",$des);?>
-            <input name="des" type="hidden" id="des" value="<? printf("%s",$des);?>" />
+          <div align="left" class="Estilo4"><?php printf("%s",$des);?>
+            <input name="des" type="hidden" id="des" value="<?php printf("%s",$des);?>" />
           </div>
         </div></td>
         </tr>
@@ -886,8 +886,8 @@ else
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-            <div align="center"> <span class="Estilo4"> <? printf("%s",$consec_cartera); ?>
-                  <input name="consec_cartera" type="hidden" id="consec_cartera" value="<? printf("%s",$consec_cartera); ?>" />
+            <div align="center"> <span class="Estilo4"> <?php printf("%s",$consec_cartera); ?>
+                  <input name="consec_cartera" type="hidden" id="consec_cartera" value="<?php printf("%s",$consec_cartera); ?>" />
             </span></div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -896,8 +896,8 @@ else
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-            <div align="center" class="Estilo4"> <? printf("%s",$fecha_causa);?>
-                <input name="fecha_causa" type="hidden" id="fecha_causa" value="<? printf("%s",$fecha_causa);?>" />
+            <div align="center" class="Estilo4"> <?php printf("%s",$fecha_causa);?>
+                <input name="fecha_causa" type="hidden" id="fecha_causa" value="<?php printf("%s",$fecha_causa);?>" />
             </div>
         </div></td>
       </tr>
@@ -909,8 +909,8 @@ else
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo4">
-              <div align="left"> <? printf("%s",$ref);?>
-                  <input name="ref" type="hidden" value="<? printf("%s",$ref);?>" />
+              <div align="left"> <?php printf("%s",$ref);?>
+                  <input name="ref" type="hidden" value="<?php printf("%s",$ref);?>" />
               </div>
             </div>
         </div></td>
@@ -923,8 +923,8 @@ else
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-            <div align="center" class="Estilo4"> <? printf("%s",$fecha_ven);?>
-                <input name="fecha_ven" type="hidden" value="<? printf("%s",$fecha_ven);?>" />
+            <div align="center" class="Estilo4"> <?php printf("%s",$fecha_ven);?>
+                <input name="fecha_ven" type="hidden" value="<?php printf("%s",$fecha_ven);?>" />
             </div>
         </div></td>
         <td colspan="2"></td>
@@ -942,7 +942,7 @@ else
         </div></td>
         <td colspan="2"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="left">
-            <input name="fecha_recaudo" type="text" class="required Estilo4" id="fecha_recaudo" value="<? printf("%s",$ano);?>" size="12" />
+            <input name="fecha_recaudo" type="text" class="required Estilo4" id="fecha_recaudo" value="<?php printf("%s",$ano);?>" size="12" />
             <span class="Estilo8">:::</span>
             <input name="button2" type="button" class="Estilo4" onclick="displayCalendar(document.forms[0].fecha_recaudo,'yyyy/mm/dd',this)" value="Seleccione Fecha" />
           </div>
@@ -957,7 +957,7 @@ else
         </div></td>
         <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center"> <span class="Estilo4">
-            <?
+            <?php
 
 new mysqli($server, $dbuser, $dbpass, $database);
 $resulta = mysql_query("SHOW TABLE STATUS FROM $database LIKE 'recaudo_roit'");
@@ -967,8 +967,8 @@ $consec_recaudo = $array[Auto_increment];
 }
 
 ?>
-            <? printf("%s",$consec_recaudo);?>
-            <input name="consec_recaudo" type="hidden" id="consec_recaudo" value="<? printf("%s",$consec_recaudo);?>" />
+            <?php printf("%s",$consec_recaudo);?>
+            <input name="consec_recaudo" type="hidden" id="consec_recaudo" value="<?php printf("%s",$consec_recaudo);?>" />
           </span></div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -1023,7 +1023,7 @@ $consec_recaudo = $array[Auto_increment];
         <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo4">
               <div align="left">
-                <input name="des_recaudo" type="text" class="required Estilo4" id="des_recaudo"  size="100" value="<? printf("%s",$des);?>" />
+                <input name="des_recaudo" type="text" class="required Estilo4" id="des_recaudo"  size="100" value="<?php printf("%s",$des);?>" />
               </div>
             </div>
         </div></td>
@@ -1057,7 +1057,7 @@ $consec_recaudo = $array[Auto_increment];
 				
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select id,sum(valor),cuenta,nom_rubro from reip_ing where id_emp = '$id_emp' and consecutivo ='$id_reip' group by cuenta order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -1081,7 +1081,7 @@ printf("
 ");
 $cont=0; 
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
    	$sq32 = "select sum(vr_digitado) from recaudo_roit where id_reip = '$id_reip' and cuenta ='$rw[cuenta]'";
 	$rs32 = mysql_db_query($database,$sq32,$cx); 
@@ -1136,7 +1136,7 @@ printf("</table></center>");
 //--------	
 ?>
 
-              <input name="cont" type="hidden" id="cont" value="<? printf("%s",$cont); ?>" />
+              <input name="cont" type="hidden" id="cont" value="<?php printf("%s",$cont); ?>" />
             </div>
         </div></td>
 	    </tr>
@@ -1144,11 +1144,11 @@ printf("</table></center>");
 	    <td colspan="4" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
           <div class="Estilo4">
             <div align="center">Valor Total del Reconocimiento : $
-              <?
+              <?php
 printf("%.2f",$valor_rec); 
 ?>
               =
-              <input name="valor_rec" type="hidden" id="valor_rec" value="<? printf("%s",$valor_rec);?>" />
+              <input name="valor_rec" type="hidden" id="valor_rec" value="<?php printf("%s",$valor_rec);?>" />
             </div>
           </div>
 	      </div></td>
@@ -1203,17 +1203,17 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
       </tr>
       <tr>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;"> <span class="Estilo20">
-            <input name="pgcp1" type="text" class="Estilo20" id="pgcp1" style="width:180px;" onkeyup="chk_pgcp1();" value="<? printf("%s",$pgcp1); ?>"/>
+            <input name="pgcp1" type="text" class="Estilo20" id="pgcp1" style="width:180px;" onkeyup="chk_pgcp1();" value="<?php printf("%s",$pgcp1); ?>"/>
             </span> </div></td>
         <td class="bordepunteado1"><div align="left" class="Estilo4" id='resultado'></div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_1" type="text" class="Estilo20" id="vr_cre_1" style="text-align:right" onkeypress="return validar(event)" size="20" value="<? printf("%.2f",$vr_cre_1); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_1" type="text" class="Estilo20" id="vr_cre_1" style="text-align:right" onkeypress="return validar(event)" size="20" value="<?php printf("%.2f",$vr_cre_1); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
         <td><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_1" type="text" class="Estilo20" id="vr_deb_1" style="text-align:right" onkeypress="return validar(event)" size="20" value=" <? printf("%s",$dif); ?> " onKeyUp="Calcular();"/>
+              <input name="vr_deb_1" type="text" class="Estilo20" id="vr_deb_1" style="text-align:right" onkeypress="return validar(event)" size="20" value=" <?php printf("%s",$dif); ?> " onKeyUp="Calcular();"/>
             </div>
         </div></td>
       </tr>
@@ -1225,12 +1225,12 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
         <td bgcolor="#F5F5F5" class="bordepunteado1"><div align="left" class="Estilo4" id='resultado2'></div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_cre_2" type="text" class="Estilo20" id="vr_cre_2" style="text-align:right" onkeypress="return validar(event)"  size="20" value="<? printf("%s",$dif); ?>" onKeyUp="Calcularc();"/>
+              <input name="vr_cre_2" type="text" class="Estilo20" id="vr_cre_2" style="text-align:right" onkeypress="return validar(event)"  size="20" value="<?php printf("%s",$dif); ?>" onKeyUp="Calcularc();"/>
             </div>
         </div></td>
         <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
             <div align="center" class="Estilo20">
-              <input name="vr_deb_2" type="text" class="Estilo20" id="vr_deb_2" style="text-align:right" onkeypress="return validar(event)"  size="20" value="<? printf("%.2f",$vr_deb_2); ?>" onKeyUp="Calcular();"/>
+              <input name="vr_deb_2" type="text" class="Estilo20" id="vr_deb_2" style="text-align:right" onkeypress="return validar(event)"  size="20" value="<?php printf("%.2f",$vr_deb_2); ?>" onKeyUp="Calcular();"/>
             </div>
         </div></td>
       </tr>
@@ -1490,7 +1490,7 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
   </tr>
   </form>
 
-<?
+<?php
 }
 ?>  
   
@@ -1514,28 +1514,28 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
     <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../config.php');				
+          <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email?>	</div>
 	</div>	</td>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -1559,6 +1559,6 @@ echo $ano;
 
 
 
-<?
+<?php
 }
 ?>

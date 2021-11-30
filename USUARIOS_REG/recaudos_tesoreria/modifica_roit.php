@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -82,7 +82,7 @@ function validar(e) {
 </head>
 <body>
 
-<?
+<?php
 $id = $_POST['id'];
 $id_reip = $_POST['id_reip'];
 $id_caic = $_POST['id_caic'];
@@ -115,16 +115,16 @@ $id ,$id_reip, $id_caic, $id_recau, $cuenta ,$nombre ,$vr_digitado ,$tercero ,$d
         </div>
       </div></td>
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-        <div align="center" class="Estilo4"><? printf("%s",$tercero); ?></div>
+        <div align="center" class="Estilo4"><?php printf("%s",$tercero); ?></div>
       </div></td>
       <td width="200" bgcolor="#F5F5F5">
-	  <input name="id" type="hidden" value="<? printf("%s",$id); ?>" />
-	  <input name="id_reip" type="hidden" value="<? printf("%s",$id_reip); ?>" />
-	  <input name="id_caic" type="hidden" value="<? printf("%s",$id_caic); ?>" />
-	  <input name="id_recau" type="hidden" value="<? printf("%s",$id_recau); ?>" />
-	  <input name="cuenta" type="hidden" value="<? printf("%s",$cuenta); ?>" />
-	  <input name="nombre" type="hidden" value="<? printf("%s",$nombre); ?>" />
-	  <input name="tercero" type="hidden" value="<? printf("%s",$tercero); ?>" /></td>
+	  <input name="id" type="hidden" value="<?php printf("%s",$id); ?>" />
+	  <input name="id_reip" type="hidden" value="<?php printf("%s",$id_reip); ?>" />
+	  <input name="id_caic" type="hidden" value="<?php printf("%s",$id_caic); ?>" />
+	  <input name="id_recau" type="hidden" value="<?php printf("%s",$id_recau); ?>" />
+	  <input name="cuenta" type="hidden" value="<?php printf("%s",$cuenta); ?>" />
+	  <input name="nombre" type="hidden" value="<?php printf("%s",$nombre); ?>" />
+	  <input name="tercero" type="hidden" value="<?php printf("%s",$tercero); ?>" /></td>
     </tr>
     <tr>
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -135,7 +135,7 @@ $id ,$id_reip, $id_caic, $id_recau, $cuenta ,$nombre ,$vr_digitado ,$tercero ,$d
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
         <div align="center" class="Estilo4">
           <div align="center">
-          <input name="des_recaudo" type="text" class="Estilo4" id="des_recaudo" onKeyUp="a.des_recaudo.value=a.des_recaudo.value.toUpperCase();" size="80" value="<? printf("%s",$des_recaudo); ?>" />
+          <input name="des_recaudo" type="text" class="Estilo4" id="des_recaudo" onKeyUp="a.des_recaudo.value=a.des_recaudo.value.toUpperCase();" size="80" value="<?php printf("%s",$des_recaudo); ?>" />
           </div>
         </div>
       </div></td>
@@ -165,14 +165,14 @@ $id ,$id_reip, $id_caic, $id_recau, $cuenta ,$nombre ,$vr_digitado ,$tercero ,$d
       <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
         <div align="center">
           <center class='Estilo4'>
-            <span class="Estilo10"><? printf("%s",$cuenta); ?></span>
-          - <span class="Estilo10"><? printf("%s",$nombre); ?></span>
+            <span class="Estilo10"><?php printf("%s",$cuenta); ?></span>
+          - <span class="Estilo10"><?php printf("%s",$nombre); ?></span>
           </center>
         </div>
       </div></td>
       <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
         <div align="center">
-          <input name="vr_digitado" type="text" class="Estilo4" id="vr_digitado" size="20" onKeyPress="return validar(event)" style="text-align:right" value="<? printf("%s",$vr_digitado); ?>" />
+          <input name="vr_digitado" type="text" class="Estilo4" id="vr_digitado" size="20" onKeyPress="return validar(event)" style="text-align:right" value="<?php printf("%s",$vr_digitado); ?>" />
         </div>
       </div></td>
     </tr>
@@ -189,7 +189,7 @@ $id ,$id_reip, $id_caic, $id_recau, $cuenta ,$nombre ,$vr_digitado ,$tercero ,$d
 </form>
 </body>
 </html>
-<?
+<?php
 printf("
 <br>
 <center class='Estilo8'>

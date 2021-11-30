@@ -1,44 +1,36 @@
 <?php
 session_start();
-if(!isset($_SESSION["login"]))
-{
-header("Location: ../login.php");
-exit;
+if (!isset($_SESSION["login"])) {
+  header("Location: ../login.php");
+  exit;
 } else {
-include('../config.php');
+  include('../config.php');
 
-//*** luis hillon
+  //*** luis hillon
 
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-$sqlxx = "select * from fecha";
-$resultadoxx = $connectionxx->query($sqlxx);
+  $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
+  $sqlxx = "select * from fecha";
+  $resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = $resultadoxx->fetch_assoc()) 
-{
-  $id_emp=$rowxx["id_emp"];
-}
+  while ($rowxx = $resultadoxx->fetch_assoc()) {
+    $id_emp = $rowxx["id_emp"];
+  }
 
-$servidor = $server;
-$usuario = $dbuser;
-$password = $dbpass;
+  $servidor = $server;
+  $usuario = $dbuser;
+  $password = $dbpass;
 
-$conexion = mysql_connect($servidor, $usuario, $password) or die("no se pudo conectar a base de datos".mysql_error());
+  $conexion = new mysqli($server, $dbuser, $dbpass, $database) or die("no se pudo conectar a base de datos");
+  $mcrpp = "CRPP" . $_REQUEST['cod'];
+  $usuarios = $conexion->query("Select * from crpp where id_emp ='$id_emp' and id_manu_crpp = '$mcrpp'");
 
-$selec = mysql_select_db($database,$conexion);
+  $num = $usuarios->num_rows;
 
-$usuarios = mysql_query("Select * from crpp where id_emp ='$id_emp' and id_manu_crpp = '".CRPP.$_REQUEST['cod']."'",$conexion);
-
-$num = mysql_num_rows($usuarios);
-
-if ($num==0)
-{
-
-}
-else
-{
-printf("<font color ='#FF0000'>COD. YA UTILIZADO</font>");
-}
-mysql_close($conexion);
+  if ($num == 0) {
+  } else {
+    printf("<font color ='#FF0000'>COD. YA UTILIZADO</font>");
+  }
+  $conexion = null;
 ?>
 <?php
 }

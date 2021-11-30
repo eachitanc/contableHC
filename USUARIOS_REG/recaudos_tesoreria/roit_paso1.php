@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -63,7 +63,7 @@ function validar(e) {
     return patron.test(te);  
 }  
 </script>
-<?
+<?php
 class EnLetras
 {
   var $Void = "";
@@ -290,7 +290,7 @@ function Parte($x)
 ?>
 </head>
 <body>
-<?
+<?php
 $id=$_GET['id2'];
 
 //printf("%s",$id);
@@ -310,9 +310,9 @@ while($rowxx1 = mysql_fetch_array($resultadoxx1))
 			
 
 $sqlxx = "select * from recaudo_roit where id_recau ='$id' and id_emp='$id_emp'";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $fecha_recaudo=$rowxx["fecha_recaudo"];
   $tercero=$rowxx["tercero"];
@@ -339,7 +339,7 @@ $id_unico_reip2 = $rowxx["id_unico_reip"];
 	<div class="Estilo4" style="padding-left:5px; padding-top:20px; padding-right:5px; padding-bottom:20px;">
 	<div align="center">
 	  <span class="Estilo19"><strong>No.</strong>
-	  <? printf("%s",$id_manu_roit); ?>	</span></div>
+	  <?php printf("%s",$id_manu_roit); ?>	</span></div>
 	</div>	</td>
   </tr>
   
@@ -350,7 +350,7 @@ $id_unico_reip2 = $rowxx["id_unico_reip"];
 	</div>	</td>
     <td colspan="2">
 	<div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-	  <div align="left"><? printf("%s",$fecha_recaudo); ?>	</div>
+	  <div align="left"><?php printf("%s",$fecha_recaudo); ?>	</div>
 	</div>	</td>
     </tr>
   <tr>
@@ -360,7 +360,7 @@ $id_unico_reip2 = $rowxx["id_unico_reip"];
 	</div>	</td>
     <td colspan="2">
 	<div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-	<? printf("%s",$tercero); ?>	</div>	</td>
+	<?php printf("%s",$tercero); ?>	</div>	</td>
   </tr>
   
   <tr>
@@ -372,7 +372,7 @@ $id_unico_reip2 = $rowxx["id_unico_reip"];
     <td colspan="2"><div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
 
           <div align="left">
-            <?
+            <?php
 
 $sql3 = "select * from reip_ing where id='$id_unico_reip' and id_emp='$id_emp' ";
 $resultado3 = mysql_db_query($database, $sql3, $connectionxx);
@@ -414,7 +414,7 @@ printf("%s",$num_id2);
 	</div>	</td>
     <td colspan="2">
 	<div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-<? printf("%s",$des_recaudo); ?>	</div>	</td>
+<?php printf("%s",$des_recaudo); ?>	</div>	</td>
   </tr>
   <tr>
     <td colspan="3" bgcolor="#F5F5F5" class="Estilo1">
@@ -429,7 +429,7 @@ printf("%s",$num_id2);
 	</div>	</td>
     <td colspan="2">
 	<div class="Estilo4" style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-	<? 
+	<?php 
 	
 $link=mysql_connect($server,$dbuser,$dbpass);
 $resulta=mysql_query("select SUM(vr_digitado) AS TOTAL from recaudo_roit WHERE id_recau = '$id' AND id_emp='$id_emp'",$link) or die (mysql_error());
@@ -455,10 +455,10 @@ $nuevo_total = $total;
   </tr>
 </table><br>
 <div align="center">
-  <?
+  <?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from recaudo_roit where id_emp = '$id_emp' and id_recau ='$id' order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -471,13 +471,13 @@ printf("
 </tr>
 ");
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
    
 $aa= $rw["id_reip"];  
 $sqlxx1a = "select * from reip_ing where id_emp = '$id_emp' and consecutivo = '$aa' ";
-$resultadoxx1a = mysql_db_query($database, $sqlxx1a, $cx);
-while($rowxx1a = mysql_fetch_array($resultadoxx1a)) 
+$resultadoxx1a = $cx->query($sqlxx1a);
+while($rowxx1a = $resultadoxx1a->fetch_assoc()) 
 {
   $id_manu_reip=$rowxx1a["id_manu_reip"];
 }
@@ -515,10 +515,10 @@ printf("</table></center>");
 </table>
 <br>
 <div align="center">
-  <?
+  <?php
 	
 $sq2 = "select * from recaudo_roit where id_emp = '$id_emp' and id_recau ='$id' order by id asc ";
-$re2 = mysql_db_query($database, $sq2, $cx);
+$re2 = $cx->query($sq2);
 
 printf("
 <center>
@@ -535,7 +535,7 @@ $acu2=0;
 
 
 
-$rw2 = mysql_fetch_array($re2);
+$rw2 = $re2->fetch_assoc();
 
 for($i=1;$i < 16 ; $i++)
 {
@@ -593,10 +593,10 @@ printf("</table></center>");
 	</div>	</td>
     <td width="200">
 	<div class="Estilo4" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-	  <div align="right"><? printf("%.2f",$acu1); ?>	</div>
+	  <div align="right"><?php printf("%.2f",$acu1); ?>	</div>
 	</div>	</td>
     <td width="200"><div class="Estilo4" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;"> 
-      <div align="right"><? printf("%.2f",$acu2); ?> </div>
+      <div align="right"><?php printf("%.2f",$acu2); ?> </div>
     </div></td>
   </tr>
   <tr>
@@ -622,7 +622,7 @@ printf("</table></center>");
     <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center" class="Estilo4">
         <div align="right">
-          <input name="sum_efectivo" type="text" class="Estilo4" id="sum_efectivo" style="text-align:right; border:0px" onKeyPress="return validar(event)" value="<? printf("%.2f",$acu2); ?>" size="30">
+          <input name="sum_efectivo" type="text" class="Estilo4" id="sum_efectivo" style="text-align:right; border:0px" onKeyPress="return validar(event)" value="<?php printf("%.2f",$acu2); ?>" size="30">
           </div>
       </div>
     </div></td>
@@ -705,7 +705,7 @@ printf("</table></center>");
 <table width="800" border="0" align="center">
   <tr>
     <td width="396"><div align="center">
-      <?
+      <?php
 $consecutivo = $id_manu_roit;
 
 include_once("../class.barcode.php");
@@ -723,6 +723,6 @@ www.qualisoft.com.co </span></div></td>
 </form>
 </body>
 </html>
-<?
+<?php
 }
 ?>

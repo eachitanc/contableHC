@@ -1,4 +1,4 @@
-<?
+<?php
 set_time_limit(1800);
 session_start();
 ?>
@@ -72,7 +72,7 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
 .Estilo9 {font-weight: bold}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></head>
-<?				// verifico permisos del usuario
+<?php				// verifico permisos del usuario
 		include('../config.php');
 		$cx = mysql_connect("$server","$dbuser","$dbpass")or die ("Conexion no Exitosa");
 		mysql_select_db("$database"); 
@@ -178,7 +178,7 @@ if ($rw['teso']=='SI')
 
 </body>
 </html>
-<?
+<?php
 }else{ // si no tiene persisos de usuario
 	echo "<br><br><center>Usuario no tiene permisos en este m&oacute;dulo</center><br>";
 	echo "<center>Click <a href=\"../user.php\">aqu&iacute; para volver</a></center>";

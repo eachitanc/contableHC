@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -2191,9 +2191,9 @@ while($rowe3=mysql_fetch_array($rese3))
 //*********************************************************
 ///////////////////////////
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $idxx=$rowxx["id_emp"];
   $id_emp=$rowxx["id_emp"];
@@ -2330,113 +2330,113 @@ while($rowxx4 = mysql_fetch_array($resultadoxx4))
 }  
   
   ?>
- <input name="id_obcg" id="id_obcg" type="hidden" value="<? printf("%s",$id_obcg_e);?>" />
- <input name="fechaobcghidden" id="fechaobcghidden" type="hidden" value="<? printf("%s",$fechaobcg);?>" />
+ <input name="id_obcg" id="id_obcg" type="hidden" value="<?php printf("%s",$id_obcg_e);?>" />
+ <input name="fechaobcghidden" id="fechaobcghidden" type="hidden" value="<?php printf("%s",$fechaobcg);?>" />
  
- <input name="p1" id="p1" type="hidden" value="<? printf("%s",$p1);?>" /> 
-  <input name="p2" id="p2" type="hidden" value="<? printf("%s",$p2);?>" />
-   <input name="p3" id="p3" type="hidden" value="<? printf("%s",$p3);?>" />
-    <input name="p4" id="p4" type="hidden" value="<? printf("%s",$p4);?>" />
-     <input name="p5" id="p5" type="hidden" value="<? printf("%s",$p5);?>" />
-      <input name="p6" id="p6" type="hidden" value="<? printf("%s",$p6);?>" />
-       <input name="p7" id="p7" type="hidden" value="<? printf("%s",$p7);?>" />
-        <input name="p8" id="p8" type="hidden" value="<? printf("%s",$p8);?>" />
-         <input name="p9" id="p9" type="hidden" value="<? printf("%s",$p9);?>" />
-          <input name="p10" id="p10" type="hidden" value="<? printf("%s",$p10);?>" />
-           <input name="p11" id="p11" type="hidden" value="<? printf("%s",$p11);?>" />
-            <input name="p12" id="p12" type="hidden" value="<? printf("%s",$p12);?>" />
-             <input name="p13" id="p13" type="hidden" value="<? printf("%s",$p13);?>" />
-              <input name="p14" id="p14" type="hidden" value="<? printf("%s",$p14);?>" />
-               <input name="p15" id="p15" type="hidden" value="<? printf("%s",$p15);?>" />
+ <input name="p1" id="p1" type="hidden" value="<?php printf("%s",$p1);?>" /> 
+  <input name="p2" id="p2" type="hidden" value="<?php printf("%s",$p2);?>" />
+   <input name="p3" id="p3" type="hidden" value="<?php printf("%s",$p3);?>" />
+    <input name="p4" id="p4" type="hidden" value="<?php printf("%s",$p4);?>" />
+     <input name="p5" id="p5" type="hidden" value="<?php printf("%s",$p5);?>" />
+      <input name="p6" id="p6" type="hidden" value="<?php printf("%s",$p6);?>" />
+       <input name="p7" id="p7" type="hidden" value="<?php printf("%s",$p7);?>" />
+        <input name="p8" id="p8" type="hidden" value="<?php printf("%s",$p8);?>" />
+         <input name="p9" id="p9" type="hidden" value="<?php printf("%s",$p9);?>" />
+          <input name="p10" id="p10" type="hidden" value="<?php printf("%s",$p10);?>" />
+           <input name="p11" id="p11" type="hidden" value="<?php printf("%s",$p11);?>" />
+            <input name="p12" id="p12" type="hidden" value="<?php printf("%s",$p12);?>" />
+             <input name="p13" id="p13" type="hidden" value="<?php printf("%s",$p13);?>" />
+              <input name="p14" id="p14" type="hidden" value="<?php printf("%s",$p14);?>" />
+               <input name="p15" id="p15" type="hidden" value="<?php printf("%s",$p15);?>" />
                
-   <input name="d1" id="d1" type="hidden" value="<? printf("%s",$d1);?>" />
-   <input name="d2" id="d2" type="hidden" value="<? printf("%s",$d2);?>" />
-   <input name="d3" id="d3" type="hidden" value="<? printf("%s",$d3);?>" />
-   <input name="d4" id="d4" type="hidden" value="<? printf("%s",$d4);?>" />
-   <input name="d5" id="d5" type="hidden" value="<? printf("%s",$d5);?>" />
-   <input name="d6" id="d6" type="hidden" value="<? printf("%s",$d6);?>" />
-   <input name="d7" id="d7" type="hidden" value="<? printf("%s",$d7);?>" />
-   <input name="d8" id="d8" type="hidden" value="<? printf("%s",$d8);?>" />
-   <input name="d9" id="d9" type="hidden" value="<? printf("%s",$d9);?>" />
-   <input name="d10" id="d10" type="hidden" value="<? printf("%s",$d10);?>" />
-   <input name="d10" id="d11" type="hidden" value="<? printf("%s",$d11);?>" />
-   <input name="d12" id="d12" type="hidden" value="<? printf("%s",$d12);?>" />
-   <input name="d13" id="d13" type="hidden" value="<? printf("%s",$d13);?>" />
-   <input name="d14" id="d14" type="hidden" value="<? printf("%s",$d14);?>" />
-   <input name="d15" id="d15" type="hidden" value="<? printf("%s",$d15);?>" /> 
+   <input name="d1" id="d1" type="hidden" value="<?php printf("%s",$d1);?>" />
+   <input name="d2" id="d2" type="hidden" value="<?php printf("%s",$d2);?>" />
+   <input name="d3" id="d3" type="hidden" value="<?php printf("%s",$d3);?>" />
+   <input name="d4" id="d4" type="hidden" value="<?php printf("%s",$d4);?>" />
+   <input name="d5" id="d5" type="hidden" value="<?php printf("%s",$d5);?>" />
+   <input name="d6" id="d6" type="hidden" value="<?php printf("%s",$d6);?>" />
+   <input name="d7" id="d7" type="hidden" value="<?php printf("%s",$d7);?>" />
+   <input name="d8" id="d8" type="hidden" value="<?php printf("%s",$d8);?>" />
+   <input name="d9" id="d9" type="hidden" value="<?php printf("%s",$d9);?>" />
+   <input name="d10" id="d10" type="hidden" value="<?php printf("%s",$d10);?>" />
+   <input name="d10" id="d11" type="hidden" value="<?php printf("%s",$d11);?>" />
+   <input name="d12" id="d12" type="hidden" value="<?php printf("%s",$d12);?>" />
+   <input name="d13" id="d13" type="hidden" value="<?php printf("%s",$d13);?>" />
+   <input name="d14" id="d14" type="hidden" value="<?php printf("%s",$d14);?>" />
+   <input name="d15" id="d15" type="hidden" value="<?php printf("%s",$d15);?>" /> 
    
    
-   <input name="c1" id="c1" type="hidden" value="<? printf("%s",$c1);?>" /> 
-   <input name="c2" id="c2" type="hidden" value="<? printf("%s",$c2);?>" /> 
-   <input name="c3" id="c3" type="hidden" value="<? printf("%s",$c3);?>" /> 
-   <input name="c4" id="c4" type="hidden" value="<? printf("%s",$c4);?>" /> 
-   <input name="c5" id="c5" type="hidden" value="<? printf("%s",$c5);?>" /> 
-   <input name="c6" id="c6" type="hidden" value="<? printf("%s",$c6);?>" /> 
-   <input name="c7" id="c7" type="hidden" value="<? printf("%s",$c7);?>" /> 
-   <input name="c8" id="c8" type="hidden" value="<? printf("%s",$c8);?>" /> 
-   <input name="c9" id="c9" type="hidden" value="<? printf("%s",$c9);?>" /> 
-   <input name="c10" id="c10" type="hidden" value="<? printf("%s",$c10);?>" /> 
-   <input name="c11" id="c11" type="hidden" value="<? printf("%s",$c12);?>" /> 
-   <input name="c12" id="c12" type="hidden" value="<? printf("%s",$c13);?>" /> 
-   <input name="c13" id="c13" type="hidden" value="<? printf("%s",$c14);?>" /> 
-   <input name="c14" id="c14" type="hidden" value="<? printf("%s",$c15);?>" /> 
-   <input name="c15" id="c15" type="hidden" value="<? printf("%s",$c16);?>" /> 
+   <input name="c1" id="c1" type="hidden" value="<?php printf("%s",$c1);?>" /> 
+   <input name="c2" id="c2" type="hidden" value="<?php printf("%s",$c2);?>" /> 
+   <input name="c3" id="c3" type="hidden" value="<?php printf("%s",$c3);?>" /> 
+   <input name="c4" id="c4" type="hidden" value="<?php printf("%s",$c4);?>" /> 
+   <input name="c5" id="c5" type="hidden" value="<?php printf("%s",$c5);?>" /> 
+   <input name="c6" id="c6" type="hidden" value="<?php printf("%s",$c6);?>" /> 
+   <input name="c7" id="c7" type="hidden" value="<?php printf("%s",$c7);?>" /> 
+   <input name="c8" id="c8" type="hidden" value="<?php printf("%s",$c8);?>" /> 
+   <input name="c9" id="c9" type="hidden" value="<?php printf("%s",$c9);?>" /> 
+   <input name="c10" id="c10" type="hidden" value="<?php printf("%s",$c10);?>" /> 
+   <input name="c11" id="c11" type="hidden" value="<?php printf("%s",$c12);?>" /> 
+   <input name="c12" id="c12" type="hidden" value="<?php printf("%s",$c13);?>" /> 
+   <input name="c13" id="c13" type="hidden" value="<?php printf("%s",$c14);?>" /> 
+   <input name="c14" id="c14" type="hidden" value="<?php printf("%s",$c15);?>" /> 
+   <input name="c15" id="c15" type="hidden" value="<?php printf("%s",$c16);?>" /> 
    
-   <input name="ch1" id="ch1" type="hidden" value="<? printf("%s",$ch1);?>" /> 
-   <input name="ch2" id="ch2" type="hidden" value="<? printf("%s",$ch2);?>" /> 
-   <input name="ch3" id="ch3" type="hidden" value="<? printf("%s",$ch3);?>" />    
-   <input name="ch4" id="ch4" type="hidden" value="<? printf("%s",$ch4);?>" />    
-   <input name="ch5" id="ch5" type="hidden" value="<? printf("%s",$ch5);?>" /> 
-   <input name="ch6" id="ch6" type="hidden" value="<? printf("%s",$ch6);?>" /> 
-   <input name="ch7" id="ch7" type="hidden" value="<? printf("%s",$ch7);?>" />       
-   <input name="ch8" id="ch8" type="hidden" value="<? printf("%s",$ch8);?>" /> 
-   <input name="ch9" id="ch9" type="hidden" value="<? printf("%s",$ch9);?>" /> 
-   <input name="ch10" id="ch10" type="hidden" value="<? printf("%s",$ch10);?>" /> 
-   <input name="ch11" id="ch11" type="hidden" value="<? printf("%s",$ch11);?>" /> 
-   <input name="ch12" id="ch12" type="hidden" value="<? printf("%s",$ch12);?>" /> 
-   <input name="ch13" id="ch13" type="hidden" value="<? printf("%s",$ch13);?>" />                
-   <input name="ch14" id="ch14" type="hidden" value="<? printf("%s",$ch14);?>" />
-   <input name="ch15" id="ch15" type="hidden" value="<? printf("%s",$ch15);?>" />  
+   <input name="ch1" id="ch1" type="hidden" value="<?php printf("%s",$ch1);?>" /> 
+   <input name="ch2" id="ch2" type="hidden" value="<?php printf("%s",$ch2);?>" /> 
+   <input name="ch3" id="ch3" type="hidden" value="<?php printf("%s",$ch3);?>" />    
+   <input name="ch4" id="ch4" type="hidden" value="<?php printf("%s",$ch4);?>" />    
+   <input name="ch5" id="ch5" type="hidden" value="<?php printf("%s",$ch5);?>" /> 
+   <input name="ch6" id="ch6" type="hidden" value="<?php printf("%s",$ch6);?>" /> 
+   <input name="ch7" id="ch7" type="hidden" value="<?php printf("%s",$ch7);?>" />       
+   <input name="ch8" id="ch8" type="hidden" value="<?php printf("%s",$ch8);?>" /> 
+   <input name="ch9" id="ch9" type="hidden" value="<?php printf("%s",$ch9);?>" /> 
+   <input name="ch10" id="ch10" type="hidden" value="<?php printf("%s",$ch10);?>" /> 
+   <input name="ch11" id="ch11" type="hidden" value="<?php printf("%s",$ch11);?>" /> 
+   <input name="ch12" id="ch12" type="hidden" value="<?php printf("%s",$ch12);?>" /> 
+   <input name="ch13" id="ch13" type="hidden" value="<?php printf("%s",$ch13);?>" />                
+   <input name="ch14" id="ch14" type="hidden" value="<?php printf("%s",$ch14);?>" />
+   <input name="ch15" id="ch15" type="hidden" value="<?php printf("%s",$ch15);?>" />  
    
-   <input name="dat1" id="dat1" type="hidden" value="<? printf("%s",$datoe1);?>" />  
-   <input name="dat2" id="dat2" type="hidden" value="<? printf("%s",$datoe2);?>" />  
-   <input name="dat3" id="dat3" type="hidden" value="<? printf("%s",$datoe3);?>" />  
-   <input name="dat4" id="dat4" type="hidden" value="<? printf("%s",$datoe4);?>" />  
-   <input name="dat5" id="dat5" type="hidden" value="<? printf("%s",$datoe5);?>" />  
-   <input name="dat6" id="dat6" type="hidden" value="<? printf("%s",$datoe6);?>" />  
-   <input name="dat7" id="dat7" type="hidden" value="<? printf("%s",$datoe7);?>" />  
-   <input name="dat8" id="dat8" type="hidden" value="<? printf("%s",$datoe8);?>" />  
-   <input name="dat9" id="dat9" type="hidden" value="<? printf("%s",$datoe9);?>" />  
-   <input name="dat10" id="dat10" type="hidden" value="<? printf("%s",$datoe10);?>" />  
-   <input name="dat11" id="dat11" type="hidden" value="<? printf("%s",$datoe11);?>" />  
-   <input name="dat12" id="dat12" type="hidden" value="<? printf("%s",$datoe12);?>" />  
-   <input name="dat13" id="dat13" type="hidden" value="<? printf("%s",$datoe13);?>" />  
-   <input name="dat14" id="dat14" type="hidden" value="<? printf("%s",$datoe14);?>" />  
-   <input name="dat15" id="dat15" type="hidden" value="<? printf("%s",$datoe15);?>" />  
+   <input name="dat1" id="dat1" type="hidden" value="<?php printf("%s",$datoe1);?>" />  
+   <input name="dat2" id="dat2" type="hidden" value="<?php printf("%s",$datoe2);?>" />  
+   <input name="dat3" id="dat3" type="hidden" value="<?php printf("%s",$datoe3);?>" />  
+   <input name="dat4" id="dat4" type="hidden" value="<?php printf("%s",$datoe4);?>" />  
+   <input name="dat5" id="dat5" type="hidden" value="<?php printf("%s",$datoe5);?>" />  
+   <input name="dat6" id="dat6" type="hidden" value="<?php printf("%s",$datoe6);?>" />  
+   <input name="dat7" id="dat7" type="hidden" value="<?php printf("%s",$datoe7);?>" />  
+   <input name="dat8" id="dat8" type="hidden" value="<?php printf("%s",$datoe8);?>" />  
+   <input name="dat9" id="dat9" type="hidden" value="<?php printf("%s",$datoe9);?>" />  
+   <input name="dat10" id="dat10" type="hidden" value="<?php printf("%s",$datoe10);?>" />  
+   <input name="dat11" id="dat11" type="hidden" value="<?php printf("%s",$datoe11);?>" />  
+   <input name="dat12" id="dat12" type="hidden" value="<?php printf("%s",$datoe12);?>" />  
+   <input name="dat13" id="dat13" type="hidden" value="<?php printf("%s",$datoe13);?>" />  
+   <input name="dat14" id="dat14" type="hidden" value="<?php printf("%s",$datoe14);?>" />  
+   <input name="dat15" id="dat15" type="hidden" value="<?php printf("%s",$datoe15);?>" />  
    
-   <input name="total_debito" id="total_debito" type="hidden" value="<? printf("%s",$td);?>" />  
-   <input name="total_credito" id="total_credito" type="hidden" value="<? printf("%s",$tc);?>" />  
-   <input name="fecha_ceva" id="fecha_ceva" type="hidden" value="<? printf("%s",$fecha_ceva_e);?>" />  
-   <input name="d_ceva" id="d_ceva" type="hidden" value="<? printf("%s",$des_ceva_e);?>" />  
+   <input name="total_debito" id="total_debito" type="hidden" value="<?php printf("%s",$td);?>" />  
+   <input name="total_credito" id="total_credito" type="hidden" value="<?php printf("%s",$tc);?>" />  
+   <input name="fecha_ceva" id="fecha_ceva" type="hidden" value="<?php printf("%s",$fecha_ceva_e);?>" />  
+   <input name="d_ceva" id="d_ceva" type="hidden" value="<?php printf("%s",$des_ceva_e);?>" />  
    
-   <input name="retefuente_e" id="retefuente_e" type="hidden" value="<? printf("%s",$retefuente_e);?>" />  
-   <input name="vretefuente_e" id="vretefuente_e" type="hidden" value="<? printf("%s",$vretefuente_e);?>" />  
-   <input name="reteiva_e" id="reteiva_e" type="hidden" value="<? printf("%s",$reteiva_e);?>" />    
-    <input name="vreteiva_e" id="vreteiva_e" type="hidden" value="<? printf("%s",$vreteiva_e);?>" />  
-   <input name="reteica_e" id="reteica_e" type="hidden" value="<? printf("%s",$reteica_e);?>" />  
-   <input name="partir_e" id="partir_e" type="hidden" value="<? printf("%s",$partir_e);?>" />  
-   <input name="tarifa_e2" id="tarifa_e2" type="hidden" value="<? printf("%s",$tarifa_e);?>" />  
-   <input name="vr_reteica_e" id="vr_reteica_e" type="hidden" value="<? printf("%s",$vreteica);?>" />  
-   <input name="estampilla1_e" id="estampilla1_e" type="hidden" value="<? printf("%s",$estampilla1_e);?>" />  
-   <input name="vestampilla1_e" id="vestampilla1_e" type="hidden" value="<? printf("%s",$vestampilla1_e);?>" />  
-   <input name="estampilla2_e" id="estampilla2_e" type="hidden" value="<? printf("%s",$estampilla2_e);?>" />  
-   <input name="vestampilla2_e" id="vestampilla2_e" type="hidden" value="<? printf("%s",$vestampilla2_e);?>" />  
-   <input name="estampilla3_e" id="estampilla3_e" type="hidden" value="<? printf("%s",$estampilla3_e);?>" />  
-   <input name="vestampilla3_e" id="vestampilla3_e" type="hidden" value="<? printf("%s",$vestampilla3_e);?>" />  
-   <input name="estampilla4_e" id="estampilla4_e" type="hidden" value="<? printf("%s",$estampilla4_e);?>" />  
-   <input name="vestampilla4_e" id="vestampilla4_e" type="hidden" value="<? printf("%s",$vestampilla4_e);?>" />  
-   <input name="estampilla5_e" id="estampilla5_e" type="hidden" value="<? printf("%s",$estampilla5_e);?>" />  
-   <input name="vestampilla5_e" id="vestampilla5_e" type="hidden" value="<? printf("%s",$vestampilla5_e);?>" />  
+   <input name="retefuente_e" id="retefuente_e" type="hidden" value="<?php printf("%s",$retefuente_e);?>" />  
+   <input name="vretefuente_e" id="vretefuente_e" type="hidden" value="<?php printf("%s",$vretefuente_e);?>" />  
+   <input name="reteiva_e" id="reteiva_e" type="hidden" value="<?php printf("%s",$reteiva_e);?>" />    
+    <input name="vreteiva_e" id="vreteiva_e" type="hidden" value="<?php printf("%s",$vreteiva_e);?>" />  
+   <input name="reteica_e" id="reteica_e" type="hidden" value="<?php printf("%s",$reteica_e);?>" />  
+   <input name="partir_e" id="partir_e" type="hidden" value="<?php printf("%s",$partir_e);?>" />  
+   <input name="tarifa_e2" id="tarifa_e2" type="hidden" value="<?php printf("%s",$tarifa_e);?>" />  
+   <input name="vr_reteica_e" id="vr_reteica_e" type="hidden" value="<?php printf("%s",$vreteica);?>" />  
+   <input name="estampilla1_e" id="estampilla1_e" type="hidden" value="<?php printf("%s",$estampilla1_e);?>" />  
+   <input name="vestampilla1_e" id="vestampilla1_e" type="hidden" value="<?php printf("%s",$vestampilla1_e);?>" />  
+   <input name="estampilla2_e" id="estampilla2_e" type="hidden" value="<?php printf("%s",$estampilla2_e);?>" />  
+   <input name="vestampilla2_e" id="vestampilla2_e" type="hidden" value="<?php printf("%s",$vestampilla2_e);?>" />  
+   <input name="estampilla3_e" id="estampilla3_e" type="hidden" value="<?php printf("%s",$estampilla3_e);?>" />  
+   <input name="vestampilla3_e" id="vestampilla3_e" type="hidden" value="<?php printf("%s",$vestampilla3_e);?>" />  
+   <input name="estampilla4_e" id="estampilla4_e" type="hidden" value="<?php printf("%s",$estampilla4_e);?>" />  
+   <input name="vestampilla4_e" id="vestampilla4_e" type="hidden" value="<?php printf("%s",$vestampilla4_e);?>" />  
+   <input name="estampilla5_e" id="estampilla5_e" type="hidden" value="<?php printf("%s",$estampilla5_e);?>" />  
+   <input name="vestampilla5_e" id="vestampilla5_e" type="hidden" value="<?php printf("%s",$vestampilla5_e);?>" />  
    
 
 
@@ -2448,7 +2448,7 @@ while($rowxx4 = mysql_fetch_array($resultadoxx4))
 	</div>	</td>
   </tr>
     <input name="contador_f" id="contador_f" type="hidden" value="" />
-    <input name="id_ceva" id="id_ceva" type="hidden" value="<? printf("%s",$id_ceva);?>" />  
+    <input name="id_ceva" id="id_ceva" type="hidden" value="<?php printf("%s",$id_ceva);?>" />  
     
 
     <tr>
@@ -2475,12 +2475,12 @@ while($rowxx4 = mysql_fetch_array($resultadoxx4))
           </div>
         </div></td>
         <td bgcolor="#FFFFFF" width="200"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-          <div align="center" class="Estilo4"><? printf("%s",$crpp_e);?>
+          <div align="center" class="Estilo4"><?php printf("%s",$crpp_e);?>
 		
-              <input name="id_obcg" type="hidden" value="<? printf("%s",$id_obcg);?>" />
+              <input name="id_obcg" type="hidden" value="<?php printf("%s",$id_obcg);?>" />
 			  
-			  <input name="id_manu_crpp" type="hidden" value="<? printf("%s",$id_manu_crpp);?>" />
-              <input name="id_auto_crpp" type="hidden" value="<? printf("%s",$id_auto_crpp);?>" />
+			  <input name="id_manu_crpp" type="hidden" value="<?php printf("%s",$id_manu_crpp);?>" />
+              <input name="id_auto_crpp" type="hidden" value="<?php printf("%s",$id_auto_crpp);?>" />
           </div>
         </div></td>
         <td bgcolor="#F5F5F5" width="200"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
@@ -2489,8 +2489,8 @@ while($rowxx4 = mysql_fetch_array($resultadoxx4))
           </div>
         </div></td>
         <td bgcolor="#FFFFFF" width="200"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-          <div align="center" class="Estilo4"><? printf("%s",$fecha_crpp2);?>
-              <input name="fecha_crpp" type="hidden" id="fecha_crpp" value="<? printf("%s",$fecha_crpp);?>" />
+          <div align="center" class="Estilo4"><?php printf("%s",$fecha_crpp2);?>
+              <input name="fecha_crpp" type="hidden" id="fecha_crpp" value="<?php printf("%s",$fecha_crpp);?>" />
           </div>
         </div></td>
       </tr>
@@ -2502,8 +2502,8 @@ while($rowxx4 = mysql_fetch_array($resultadoxx4))
         </div></td>
         <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo4">
-            <div align="left"><? printf("%s",$tercero_e);?>
-              <input name="tercero" type="hidden" id="tercero" value="<? printf("%s",$tercero_e);?>" />
+            <div align="left"><?php printf("%s",$tercero_e);?>
+              <input name="tercero" type="hidden" id="tercero" value="<?php printf("%s",$tercero_e);?>" />
               </div>
           </div>
         </div></td>
@@ -2518,7 +2518,7 @@ while($rowxx4 = mysql_fetch_array($resultadoxx4))
           <div align="center" class="Estilo4">
             <div align="left">
 			
-			<?
+			<?php
 
 $sql3 = "select * from recaudo_ncbt where id_recau='$id' and id_emp='$id_emp' limit 1 ";
 $resultado3 = mysql_db_query($database, $sql3, $connectionxx);
@@ -2601,7 +2601,7 @@ printf("%s",$cnit_e);
             
             
             
-              <input name="ccnit" type="hidden" id="ccnit"  value="<? printf("%s",$cnit_e);?>" />
+              <input name="ccnit" type="hidden" id="ccnit"  value="<?php printf("%s",$cnit_e);?>" />
               </div>
           </div>
         </div></td>
@@ -2615,8 +2615,8 @@ printf("%s",$cnit_e);
         <td colspan="2" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo4">
             <div align="left">
-              <? printf("%s",$pago_e); ?>
-              <input name="pago" type="hidden" id="pago" value="<? printf("%s",$pago_e);?>" />
+              <?php printf("%s",$pago_e); ?>
+              <input name="pago" type="hidden" id="pago" value="<?php printf("%s",$pago_e);?>" />
             </div>
           </div>
         </div></td>
@@ -2626,7 +2626,7 @@ printf("%s",$cnit_e);
 	
 	<br />
 	  
-	<div align="center"><?
+	<div align="center"><?php
 
 	
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
@@ -2669,7 +2669,7 @@ while($rw = mysql_fetch_array($re))
 	$cta = $rw["cuenta"];
 
 $sq2 = "select proc_rec, nom_rubro, opc1, vigencia from car_ppto_gas  where  cod_pptal ='$cta' order by id asc ";
-$re2 = mysql_db_query($database, $sq2, $cx);   
+$re2 = $cx->query($sq2);   
 while($rw2 = mysql_fetch_array($re2))
 {
 
@@ -2744,9 +2744,9 @@ printf("
           </div>
 	      </div></td>
 	    <td width="200" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-          <div align="center" class="Estilo4"><? printf("%s",$cobp_e);?>
-              <input name="id_manu_cobp"  type="hidden" value="<? printf("%s",$id_manu_cobp);?>" />
-              <input name="id_auto_cobp" type="hidden" id="id_auto_cobp" value="<? printf("%s",$id_auto_cobp);?>" />
+          <div align="center" class="Estilo4"><?php printf("%s",$cobp_e);?>
+              <input name="id_manu_cobp"  type="hidden" value="<?php printf("%s",$id_manu_cobp);?>" />
+              <input name="id_auto_cobp" type="hidden" id="id_auto_cobp" value="<?php printf("%s",$id_auto_cobp);?>" />
           </div>
 	      </div></td>
 	    <td width="200" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
@@ -2755,8 +2755,8 @@ printf("
           </div>
 	      </div></td>
 	    <td width="200" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-          <div align="center" class="Estilo4"><? printf("%s",$fecha_cobp_e);?>
-              <input name="fecha_cobp" id="fecha_cobp" type="hidden" value="<? printf("%s",$fecha_cobp_e);?>"  />
+          <div align="center" class="Estilo4"><?php printf("%s",$fecha_cobp_e);?>
+              <input name="fecha_cobp" id="fecha_cobp" type="hidden" value="<?php printf("%s",$fecha_cobp_e);?>"  />
           </div>
 	      </div></td>
 	    </tr>
@@ -2768,8 +2768,8 @@ printf("
         </div></td>
 	    <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo4">
-              <div align="left"> <? printf("%s",$concepto_e); ?>
-                  <input name="des_cobp" type="hidden" id="des_cobp" value="<? printf("%s",$concepto_e);?>" />
+              <div align="left"> <?php printf("%s",$concepto_e); ?>
+                  <input name="des_cobp" type="hidden" id="des_cobp" value="<?php printf("%s",$concepto_e);?>" />
               </div>
             </div>
 	      </div></td>
@@ -2782,8 +2782,8 @@ printf("
         </div></td>
 	    <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo4">
-              <div align="left"> <? printf("%s",$ref_e); ?>
-                  <input name="ref" type="hidden" id="ref" value="<? printf("%s",$ref_e);?>" />
+              <div align="left"> <?php printf("%s",$ref_e); ?>
+                  <input name="ref" type="hidden" id="ref" value="<?php printf("%s",$ref_e);?>" />
               </div>
             </div>
 	      </div></td>
@@ -2806,8 +2806,8 @@ printf("
           </div>
 	      </div></td>
 	    <td width="200" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-          <div align="center" class="Estilo4"> <? printf("%s",$id_manu_obcg_e);?>
-          <input name="dato_e" type="hidden" id="dato_e" value="<? printf("%s",$id_manu_obcg_e);?>" />
+          <div align="center" class="Estilo4"> <?php printf("%s",$id_manu_obcg_e);?>
+          <input name="dato_e" type="hidden" id="dato_e" value="<?php printf("%s",$id_manu_obcg_e);?>" />
               
           </div>
 	      </div></td>
@@ -2817,7 +2817,7 @@ printf("
           </div>
 	      </div></td>
 	    <td width="200" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
-          <div align="center" class="Estilo4"><? printf("%s",$fechaobcg);?>
+          <div align="center" class="Estilo4"><?php printf("%s",$fechaobcg);?>
               
           </div>
 	      </div></td>
@@ -2830,7 +2830,7 @@ printf("
         </div></td>
 	    <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
             <div align="center" class="Estilo4">
-              <div align="left"> <? printf("%s",$concepto_obcg_e); ?>
+              <div align="left"> <?php printf("%s",$concepto_obcg_e); ?>
                   
               </div>
             </div>
@@ -2841,7 +2841,7 @@ printf("
     </div>  
     <br />
 	<div align="center"></div>
-	<div align="center"><?
+	<div align="center"><?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cobp where id_auto_cobp ='$cobp_auto_e' order by id asc ";
 $re = mysql_db_query($database, $sq, $cx);
@@ -2880,7 +2880,7 @@ while($rw = mysql_fetch_array($re))
 $cta = $rw["cuenta"];
 
 $sq2 = "select proc_rec, nom_rubro from car_ppto_gas  where cod_pptal ='$cta' order by id asc ";
-$re2 = mysql_db_query($database, $sq2, $cx);   
+$re2 = $cx->query($sq2);   
 while($rw2 = mysql_fetch_array($re2))
 {
 
@@ -2956,7 +2956,7 @@ printf("
       </div></td>
       <td colspan="2" bgcolor="#FFFFFF"><div style="padding-left:15px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
         <div align="left">
-          <input name="fecha_ceva" type="text" class="required Estilo12" id="fecha_ceva" value="<? echo $fecha_ceva_e; ?>" size="12" />
+          <input name="fecha_ceva" type="text" class="required Estilo12" id="fecha_ceva" value="<?php echo $fecha_ceva_e; ?>" size="12" />
           <span class="Estilo8">:::</span>
           <input name="button2" type="button" class="Estilo12" onclick="displayCalendar(document.a.fecha_ceva,'yyyy/mm/dd',this)" value="Seleccione Fecha" />
         </div>
@@ -2971,7 +2971,7 @@ printf("
       </div></td>
       <td width="200" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
           <div align="center" class="Estilo4">
-            <?
+            <?php
 
 new mysqli($server, $dbuser, $dbpass, $database);
 $resulta = mysql_query("SHOW TABLE STATUS FROM $database LIKE 'ceva'");
@@ -2981,8 +2981,8 @@ $conse = $array[Auto_increment];
 }
 
 ?>
-            <? printf("%s",$conse);?>
-            <input name="id_auto_ceva" type="hidden" class="Estilo12" id="id_auto_ceva" value="<? printf("%s",$conse);?>"/>
+            <?php printf("%s",$conse);?>
+            <input name="id_auto_ceva" type="hidden" class="Estilo12" id="id_auto_ceva" value="<?php printf("%s",$conse);?>"/>
           </div>
       </div></td>
       <td width="200" bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
@@ -2995,7 +2995,7 @@ $conse = $array[Auto_increment];
             <div align="center">
               <input name="id_manu_ceva" type="text" class="required Estilo4" id="id_manu_ceva" style="text-align:center" onkeypress="return validar(event)"               
               
-			  value="<?  printf("%s",$id_manu_ceva_sub); ?>" onkeyup="chk_ceva();" />
+			  value="<?php  printf("%s",$id_manu_ceva_sub); ?>" onkeyup="chk_ceva();" />
               
              
               
@@ -3023,7 +3023,7 @@ $conse = $array[Auto_increment];
       </div></td>
       <td colspan="3" bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
         <div align="center" class="Estilo20">
-          <input name="des_ceva" type="text"   id="des_ceva" onblur="this.value=this.value.toUpperCase();" value="<? echo $des_ceva_e; ?>" style="width:500px;" />
+          <input name="des_ceva" type="text"   id="des_ceva" onblur="this.value=this.value.toUpperCase();" value="<?php echo $des_ceva_e; ?>" style="width:500px;" />
         </div>
       </div></td>
       </tr>
@@ -3034,7 +3034,7 @@ $conse = $array[Auto_increment];
           <div align="center"><strong>Si el pago a realizar no tiene IVA, deje la casilla en BLANCO,<br />
             caso contrario, Digite Tarifa del IVA ( Ejemplo : 16 %)<br /><br />
             </strong>
-            <input name="iva" size="5" type="text" class="Estilo12" id="iva" style="text-align:center" onkeyup="cinco();" onkeypress="return validar(event)" value="<?  printf("%s",$iva_e); ?>" />
+            <input name="iva" size="5" type="text" class="Estilo12" id="iva" style="text-align:center" onkeyup="cinco();" onkeypress="return validar(event)" value="<?php  printf("%s",$iva_e); ?>" />
             <span class="Estilo14"> <font color="#000000">%</font>::</span></div></div>
       </div></td>
       </tr>
@@ -3053,7 +3053,7 @@ $conse = $array[Auto_increment];
   </script>
   
   
-      <?
+      <?php
 	  
 
 
@@ -3205,7 +3205,7 @@ printf("
       <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="salud" type="text" class="Estilo12" id="salud" style="text-align:right" onkeypress="return validar(event)" value="<? printf("%s",$salud_e);?>" onkeyup="tres();" onChange="ceros();" />
+              <input name="salud" type="text" class="Estilo12" id="salud" style="text-align:right" onkeypress="return validar(event)" value="<?php printf("%s",$salud_e);?>" onkeyup="tres();" onChange="ceros();" />
             </div>
           </div>
       </div></td>
@@ -3217,7 +3217,7 @@ printf("
       <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="pension" type="text" class="Estilo12" id="pension" style="text-align:right" onkeypress="return validar(event)" value="<? printf("%s",$pension_e);?>" onkeyup="tres();" onChange="ceros();"/>
+              <input name="pension" type="text" class="Estilo12" id="pension" style="text-align:right" onkeypress="return validar(event)" value="<?php printf("%s",$pension_e);?>" onkeyup="tres();" onChange="ceros();"/>
             </div>
           </div>
       </div></td>
@@ -3231,7 +3231,7 @@ printf("
       <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="libranza" type="text" class="Estilo12" id="libranza" style="text-align:right" onkeypress="return validar(event)" value="<? printf("%s",$libranza_e);?>" onkeyup="tres();" onChange="ceros();"/>
+              <input name="libranza" type="text" class="Estilo12" id="libranza" style="text-align:right" onkeypress="return validar(event)" value="<?php printf("%s",$libranza_e);?>" onkeyup="tres();" onChange="ceros();"/>
             </div>
           </div>
       </div></td>
@@ -3243,7 +3243,7 @@ printf("
       <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="f_solidaridad" type="text" class="Estilo12" id="f_solidaridad" style="text-align:right" onkeypress="return validar(event)" value="<? printf("%s",$solidaridad_e);?>" onkeyup="tres();" onChange="ceros();"/>
+              <input name="f_solidaridad" type="text" class="Estilo12" id="f_solidaridad" style="text-align:right" onkeypress="return validar(event)" value="<?php printf("%s",$solidaridad_e);?>" onkeyup="tres();" onChange="ceros();"/>
             </div>
           </div>
       </div></td>
@@ -3257,7 +3257,7 @@ printf("
       <td width="200"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="f_empleados" type="text" class="Estilo12" id="f_empleados" style="text-align:right" onkeypress="return validar(event)" value="<? printf("%s",$empleados_e);?>" onkeyup="tres();" onChange="ceros();"/>
+              <input name="f_empleados" type="text" class="Estilo12" id="f_empleados" style="text-align:right" onkeypress="return validar(event)" value="<?php printf("%s",$empleados_e);?>" onkeyup="tres();" onChange="ceros();"/>
             </div>
           </div>
       </div></td>
@@ -3269,7 +3269,7 @@ printf("
       <td width="200"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="sindicato" type="text" class="Estilo12" id="sindicato" style="text-align:right" onkeypress="return validar(event)" value="<? printf("%s",$sindicato_e);?>" onkeyup="tres();" onChange="ceros();"/>
+              <input name="sindicato" type="text" class="Estilo12" id="sindicato" style="text-align:right" onkeypress="return validar(event)" value="<?php printf("%s",$sindicato_e);?>" onkeyup="tres();" onChange="ceros();"/>
             </div>
           </div>
       </div></td>
@@ -3283,7 +3283,7 @@ printf("
       <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="embargo" type="text" class="Estilo12" id="embargo" style="text-align:right" onkeypress="return validar(event)" value="<? printf("%s",$embargo_e);?>" onkeyup="tres();" onChange="ceros();"/>
+              <input name="embargo" type="text" class="Estilo12" id="embargo" style="text-align:right" onkeypress="return validar(event)" value="<?php printf("%s",$embargo_e);?>" onkeyup="tres();" onChange="ceros();"/>
             </div>
           </div>
       </div></td>
@@ -3294,7 +3294,7 @@ printf("
       </div></td>
       <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
-            <div align="center"><input name="cruce" type="text" class="Estilo12" id="cruce" style="text-align:right" onkeypress="return validar(event)" value="<? printf("%s",$cruce_e);?>" onkeyup="tres();"  onChange="ceros();"/></div>
+            <div align="center"><input name="cruce" type="text" class="Estilo12" id="cruce" style="text-align:right" onkeypress="return validar(event)" value="<?php printf("%s",$cruce_e);?>" onkeyup="tres();"  onChange="ceros();"/></div>
           </div>
       </div></td>
     </tr>
@@ -3307,7 +3307,7 @@ printf("
       <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <input name="otros" type="text" class="Estilo12" id="otros" style="text-align:right" onkeypress="return validar(event)" value="<? printf("%s",$otros_e);?>" onkeyup="tres();" onChange="ceros();"/>
+              <input name="otros" type="text" class="Estilo12" id="otros" style="text-align:right" onkeypress="return validar(event)" value="<?php printf("%s",$otros_e);?>" onkeyup="tres();" onChange="ceros();"/>
             </div>
           </div>
       </div></td>
@@ -3316,7 +3316,7 @@ printf("
     </tr>
 </table>
   <br />
-<?
+<?php
 $sqlxx2 = "select * from modo_estampillas";
 $resultadoxx2 = mysql_db_query($database, $sqlxx2, $connectionxx);
 while($rowxx2 = mysql_fetch_array($resultadoxx2)) 
@@ -3327,7 +3327,7 @@ while($rowxx2 = mysql_fetch_array($resultadoxx2))
 if($auto=='SI' and $manu=='NO')
 {   
 ?>
-<?
+<?php
 }
 else
 {
@@ -3365,8 +3365,8 @@ else
       <td><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center">
             <select name="retefuente" class="Estilo12" id="retefuente" style="width: 300px;"  onchange="retefuentef(value);">
-              <option value="<? printf("%s",$retefuente_e);?>"></option>
-              <? 
+              <option value="<?php printf("%s",$retefuente_e);?>"></option>
+              <?php 
   
    include('../config.php');
    $query="SELECT * FROM retefuente";
@@ -3437,7 +3437,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
           <div align="center">
             <select name="retecree" class="Estilo12" id="retecree" style="width: 300px;"  onchange="retecree2(value);">
               <option value=""></option>
-              <? 
+              <?php 
 			   include('../config.php');
 			   $query="SELECT * FROM retecree";
 			   $link=mysql_connect($server,$dbuser,$dbpass);
@@ -3472,7 +3472,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
           <div align="center" class="Estilo12">
             <div align="center">
 			<input name="vr_retecree" type="text" class="Estilo12" id="vr_retecree" style="text-align:right" onChange="ceros();" onkeypress="return validar(event)" 
-			  value="<?  printf("%s",$vretecree_e); ?>" onkeyup="tres();"  />			  
+			  value="<?php  printf("%s",$vretecree_e); ?>" onkeyup="tres();"  />			  
 			  
             </div>
           </div>
@@ -3502,8 +3502,8 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center">
             <select name="reteiva" class="Estilo12" id="reteiva" style="width: 300px;" onchange="ret_iva(value)">
-              <option value=" <? printf("%s",$reteiva_e);?>"></option>
-              <? 
+              <option value=" <?php printf("%s",$reteiva_e);?>"></option>
+              <?php 
    
    include('../config.php');
    $query="SELECT * FROM reteiva";
@@ -3528,7 +3528,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center" class="Estilo12">
             <div align="center" id="partir_iva">
-              <? 
+              <?php 
 
 /*$sqlxx2b = "SELECT * FROM reteiva WHERE concepto = '$reteiva' ";
 $resultadoxx2b = mysql_db_query($database, $sqlxx2b, $connectionxx);
@@ -3547,13 +3547,13 @@ echo number_format($a_partir_reteiva,2,',','.');*/
       </div></td>
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center" class="Estilo12">
-            <div align="center" id="tarifa_iva"> <? //printf("%s",$tarifa_reteiva);//echo number_format($tarifa_reteiva,2,',','.'); //printf("%s",$tarifa_reteiva); ?> </div>
+            <div align="center" id="tarifa_iva"> <?php //printf("%s",$tarifa_reteiva);//echo number_format($tarifa_reteiva,2,',','.'); //printf("%s",$tarifa_reteiva); ?> </div>
           </div>
       </div></td>
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center" class="Estilo12">
             <div align="center">
-              <? 
+              <?php 
 /*if($vr_tot_obli_sin_iva >= $a_partir_reteiva)
 {
  $vr_reteiva = $iva_vr_obli_pago * $tarifa_reteiva;
@@ -3574,7 +3574,7 @@ else
 */
 ?>
               
-              <!--              <input name="vr_reteiva" type="text" class="Estilo12" id="vr_reteiva" style="text-align:right" onkeypress="return validar(event)" value="<? //printf("%.0f",$vr_reteiva); ?>" />-->
+              <!--              <input name="vr_reteiva" type="text" class="Estilo12" id="vr_reteiva" style="text-align:right" onkeypress="return validar(event)" value="<?php //printf("%.0f",$vr_reteiva); ?>" />-->
 			  
 			  <input name="vr_reteiva" type="text" class="Estilo12" id="vr_reteiva" style="text-align:right" onChange="ceros();" onkeypress="return validar(event)" 
 			  value="" />	
@@ -3603,7 +3603,7 @@ else
           <div align="center"><span class="Estilo4">
             <select name="reteica" class="Estilo12" id="reteica" style="width: 300px;" onchange="ret_ica(value)">
               <option value=""></option>
-				  <? 
+				  <?php 
 				   $reteica = $_POST['reteica'];
 				   include('../config.php');
 				   $query="SELECT * FROM reteica";
@@ -3631,7 +3631,7 @@ else
           <div align="center" class="Estilo12">
             <div align="center">
               <input name="a_partir_reteica" type="text" class="Estilo12" id="a_partir_reteica" style="text-align:right" onkeyup="tres();" onkeypress="return validar(event)" 
-			  value="<? printf("%.0f",$partir_e);?>" />
+			  value="<?php printf("%.0f",$partir_e);?>" />
             </div>
           </div>
       </div></td>
@@ -3639,7 +3639,7 @@ else
           <div align="center" class="Estilo12">
             <div align="center">
               <input name="tarifa_reteica" type="text" class="Estilo12" id="tarifa_reteica" style="text-align:right" onkeyup="otro();" onkeypress="return validar(event)" 
-			  value="<? printf("%.2f",$tarifa_e);?>" size="5" /> * 1000
+			  value="<?php printf("%.2f",$tarifa_e);?>" size="5" /> * 1000
             </div>
           </div>
       </div></td>
@@ -3672,8 +3672,8 @@ else
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center"><span class="Estilo4">
             <select name="estampilla1" class="Estilo12" id="estampilla1" style="width: 300px;" onchange="estamp1(value,id);" >
-              <option value="<? printf("%s",$estampilla1_e);?>"></option>
-              <? 
+              <option value="<?php printf("%s",$estampilla1_e);?>"></option>
+              <?php 
    //$estampilla2 = $_POST['estampilla1'];		  
    include('../config.php');
    $query="SELECT * FROM estampillas";
@@ -3709,7 +3709,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
         <div align="center" class="Estilo12">
           <div align="center">
             <input name="vr_estampilla1" type="text" class="Estilo12" id="vr_estampilla1" onChange="ceros();" style="text-align:right" onkeypress="return validar(event)" 
-			  value="<? printf("%.0f",$vestampilla1_e);?>" />
+			  value="<?php printf("%.0f",$vestampilla1_e);?>" />
           </div>
         </div>
       </div></td>
@@ -3734,8 +3734,8 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
       <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
           <div align="center"><span class="Estilo4">
             <select name="estampilla2" class="Estilo12" id="estampilla2" style="width: 300px;" onchange="estamp1(value,id);" >
-              <option value="<? printf("%s",$estampilla2_e);?>"></option>
-              <? 
+              <option value="<?php printf("%s",$estampilla2_e);?>"></option>
+              <?php 
   		  
    include('../config.php');
    $query="SELECT * FROM estampillas";
@@ -3771,7 +3771,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
         <div align="center" class="Estilo12">
           <div align="center">
             <input name="vr_estampilla2" type="text" class="Estilo12" id="vr_estampilla2" onChange="ceros();" style="text-align:right" onkeypress="return validar(event)" 
-			  value="<? printf("%.0f",$vestampilla2_e); ?>" />
+			  value="<?php printf("%.0f",$vestampilla2_e); ?>" />
           </div>
         </div>
       </div></td>
@@ -3796,8 +3796,8 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
         <div align="center"><span class="Estilo20">
           <select name="estampilla3" class="Estilo12" id="estampilla3" style="width: 300px;" onchange="estamp1(value,id);">
-              <option value="<? printf("%s",$estampilla3_e);?>"></option>
-              <? 
+              <option value="<?php printf("%s",$estampilla3_e);?>"></option>
+              <?php 
 		  
    include('../config.php');
    $query="SELECT * FROM estampillas";
@@ -3833,7 +3833,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
         <div align="center" class="Estilo12">
           <div align="center">
             <input name="vr_estampilla3" type="text" class="Estilo12" id="vr_estampilla3" onChange="ceros();" style="text-align:right" onkeypress="return validar(event)" 
-			  value="<? printf("%.0f",$vestampilla3_e);?>" />
+			  value="<?php printf("%.0f",$vestampilla3_e);?>" />
           </div>
         </div>
       </div></td>
@@ -3858,8 +3858,8 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
       <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
         <div align="center"><span class="Estilo20">
           <select name="estampilla4" class="Estilo12" id="estampilla4" style="width: 300px;" onchange="estamp1(value,id);">
-            <option value="<? printf("%s",$estampilla4_e);?>"></option>
-            <? 
+            <option value="<?php printf("%s",$estampilla4_e);?>"></option>
+            <?php 
    	  
    include('../config.php');
    $query="SELECT * FROM estampillas";
@@ -3895,7 +3895,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
         <div align="center" class="Estilo12">
           <div align="center">
             <input name="vr_estampilla4" type="text" class="Estilo12" id="vr_estampilla4" onChange="ceros();" style="text-align:right" onkeypress="return validar(event)" 
-			  value="<? printf("%.0f",$vestampilla4_e);?>" />
+			  value="<?php printf("%.0f",$vestampilla4_e);?>" />
           </div>
         </div>
       </div></td>
@@ -3920,8 +3920,8 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:2px; padding-right:5px; padding-bottom:2px;">
         <div align="center"><span class="Estilo20">
           <select name="estampilla5" class="Estilo12" id="estampilla5" style="width: 300px;" onchange="estamp1(value,id);">
-            <option value="<? printf("%s",$estampilla5_e);?>"></option>
-            <? 
+            <option value="<?php printf("%s",$estampilla5_e);?>"></option>
+            <?php 
   		  
    include('../config.php');
    $query="SELECT * FROM estampillas";
@@ -3957,7 +3957,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
         <div align="center" class="Estilo12">
           <div align="center">
             <input name="vr_estampilla5" type="text" class="Estilo12" id="vr_estampilla5" onChange="ceros();" style="text-align:right" onkeypress="return validar(event)" 
-			  value="<? printf("%.0f",$vestampilla5_e);?>" />
+			  value="<?php printf("%.0f",$vestampilla5_e);?>" />
           </div>
         </div>
       </div></td>
@@ -3968,7 +3968,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
           <div align="center" class="Estilo4">
             <div align="center"><b>FORMA DE PAGO </b> <span class="Estilo12">
               <select name="forma_pago" class="Estilo4" id="forma_pago">
-                <? 
+                <?php 
 		 $forma = array('CHEQUE','EFECTIVO','TRANSFERENCIA','CRUCE DE CUETAS','OTRO');
 		 $forma_pago =$_POST['forma_pago']; 
 		 $i=0;
@@ -3994,7 +3994,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
       </div></td>
     </tr>
 </table>
-<? 
+<?php 
 } 
 ?>  
   
@@ -4023,8 +4023,8 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
 	  <div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
 		  <div align="center" class="Estilo4">
 		    <p><strong>MOVIMIENTO CONTABLE
-		      <input type="hidden" name='contador' value='<? print $contador1; ?>' id="contador" >
-		      <input type="hidden" name='contini' value='<? print $numpost; ?>' id="contini">
+		      <input type="hidden" name='contador' value='<?php print $contador1; ?>' id="contador" >
+		      <input type="hidden" name='contini' value='<?php print $numpost; ?>' id="contini">
 		    </strong><strong><br />
 		      </strong>
 		      
@@ -4033,7 +4033,7 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
 <p>
   <strong><img src="images/mas.png" alt="" title="Agregar Fila" width="20" height="20" border="0" style='cursor: pointer'; onclick='agregar();'>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <span id='contis' class='Estilo4'><? printf("%s",$contador1); ?></span>
+    <span id='contis' class='Estilo4'><?php printf("%s",$contador1); ?></span>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <img src="images/menos.png" alt="" title="Quitar Fila" width="20" height="20" border="0" style='cursor: pointer'; onclick='borrarUltima();'>
   </strong></p>
@@ -4138,7 +4138,7 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
         <div style='padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px; background:#004080; width:150px'>
           <div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px; background:#FFFFFF'>
             <div align="center">
-			  <?
+			  <?php
 printf("
 
 <center class='Estilo4'>
@@ -4160,28 +4160,28 @@ printf("
     <td colspan="3"><div style="padding-left:5px; padding-top:3px; padding-right:5px; padding-bottom:3px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../config.php');				
+          <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $ano=$rowxx["ano"];
 }
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email?>	</div>
 	</div>	</td>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -4209,6 +4209,6 @@ echo $ano;
 
 
 
-<?
+<?php
 }
 ?>

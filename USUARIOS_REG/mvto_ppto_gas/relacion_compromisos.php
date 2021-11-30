@@ -59,7 +59,7 @@ printf("
 </tr>
 ");
 $sq = "SELECT ter_nat, ter_jur, cuenta, detalle_crpp, id_manu_cdpp,id_auto_cdpp,id_manu_crpp, fecha_crpp,fecha_cdpp, vr_orig, sum(vr_digitado) as vr_digitado, tercero, contrato,n_contrato from crpp where fecha_crpp between '$fecha_ini' and '$fecha_fin' $fil group by cuenta,id_manu_crpp ORDER BY cuenta";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 		while($rw = $re->fetch_assoc())
 		{
 			$ter_nat=$rw["ter_nat"];

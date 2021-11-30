@@ -8,7 +8,7 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 		// Consulto la tabla de pagos por sumar el valor total pagado del cada rubro
 		$sql2 = "select max(id_manu_roit) from recaudo_roit where fecha_recaudo='$fecha'";
 		$res = mysql_db_query($database,$sql2,$cx);
-		$row = mysql_fetch_array($res);
+		$row = $res->fetch_assoc();
 		$concec= $row["max(id_manu_roit)"];
 		if ($concec)
 		{

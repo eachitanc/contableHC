@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -394,7 +394,7 @@ function contabilidad()
 </head>
 <body onLoad="contabilidad();">
 
-<?
+<?php
 $id = $_POST['id'];// echo $id;
 $fecha_c=$_POST['fecha_c'];// echo $fecha_c;
 $id_reip = $_POST['id_reip'];
@@ -414,9 +414,9 @@ include('../config.php');
 //id _emp				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $idxx=$rowxx["id_emp"];
   $id_emp=$rowxx["id_emp"];
@@ -624,7 +624,7 @@ $difere = $tot_deb - $tot_cre;
 ?>
 
 <center>
-  <span class="Estilo4"><strong>MODIFICACION DE LA NOTA CREDITO BANCARIA No. ...::: <? printf("%s",$id_manu_ncbt); ?> :::...</strong></span><br />
+  <span class="Estilo4"><strong>MODIFICACION DE LA NOTA CREDITO BANCARIA No. ...::: <?php printf("%s",$id_manu_ncbt); ?> :::...</strong></span><br />
 </center>
 <form method="post" name="a" id="commentForm" action="modifica_roit2.php" >
   <table width="910" height="36" border="1" align="center" class="bordepunteado1">
@@ -637,7 +637,7 @@ $difere = $tot_deb - $tot_cre;
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
           <div align="center" class="Estilo22">
             <div align="center">
-              <input name="id_manu_ncbt" type="text" class="required Estilo4" id="id_manu_ncbt" onKeyUp="a.id_manu_ncbt.value=a.id_manu_ncbt.value.toUpperCase();" size="80" value="<? printf("%s",$id_manu_ncbt); ?>" />
+              <input name="id_manu_ncbt" type="text" class="required Estilo4" id="id_manu_ncbt" onKeyUp="a.id_manu_ncbt.value=a.id_manu_ncbt.value.toUpperCase();" size="80" value="<?php printf("%s",$id_manu_ncbt); ?>" />
             </div>
           </div>
       </div></td>
@@ -655,16 +655,16 @@ $difere = $tot_deb - $tot_cre;
         </div>
       </div></td>
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-        <div align="center" class="Estilo4"><? printf("%s",$tercero); ?></div>
+        <div align="center" class="Estilo4"><?php printf("%s",$tercero); ?></div>
       </div></td>
       <td width="200" bgcolor="#F5F5F5">
-	  <input name="id" type="hidden" value="<? printf("%s",$id); ?>" />
-	  <input name="id_reip" type="hidden" value="<? printf("%s",$id_reip); ?>" />
-	  <input name="id_caic" type="hidden" value="<? printf("%s",$id_caic); ?>" />
-	  <input name="id_recau" type="hidden" value="<? printf("%s",$id_recau); ?>" />
-       <input name="fecha_c" type="hidden" value="<? printf("%s",$fecha_c); ?>" />
-	  <!--input name="cuenta" type="hidden" value="<? //printf("%s",$cuenta); ?>" /-->
-	  <input name="tercero" type="hidden" value="<? printf("%s",$tercero); ?>" /></td>
+	  <input name="id" type="hidden" value="<?php printf("%s",$id); ?>" />
+	  <input name="id_reip" type="hidden" value="<?php printf("%s",$id_reip); ?>" />
+	  <input name="id_caic" type="hidden" value="<?php printf("%s",$id_caic); ?>" />
+	  <input name="id_recau" type="hidden" value="<?php printf("%s",$id_recau); ?>" />
+       <input name="fecha_c" type="hidden" value="<?php printf("%s",$fecha_c); ?>" />
+	  <!--input name="cuenta" type="hidden" value="<?php //printf("%s",$cuenta); ?>" /-->
+	  <input name="tercero" type="hidden" value="<?php printf("%s",$tercero); ?>" /></td>
     </tr>
     <tr>
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
@@ -675,13 +675,13 @@ $difere = $tot_deb - $tot_cre;
       <td bgcolor="#F5F5F5"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
         <div align="center" class="Estilo4">
           <div align="center">
-          <input name="des_recaudo" type="text" class="required Estilo4" id="des_recaudo" onKeyUp="a.des_recaudo.value=a.des_recaudo.value.toUpperCase();" size="80" value="<? printf("%s",$des_recaudo); ?>" />
+          <input name="des_recaudo" type="text" class="required Estilo4" id="des_recaudo" onKeyUp="a.des_recaudo.value=a.des_recaudo.value.toUpperCase();" size="80" value="<?php printf("%s",$des_recaudo); ?>" />
           </div>
         </div>
       </div></td>
       <td bgcolor="#F5F5F5">
       	<div align="center">
-              <input name="fecha_recaudo" type="text" class="required Estilo4" id="fecha_recaudo" value="<? printf("%s",$fecha_recau);?>" size="12" />
+              <input name="fecha_recaudo" type="text" class="required Estilo4" id="fecha_recaudo" value="<?php printf("%s",$fecha_recau);?>" size="12" />
               <span class="Estilo8">:::</span>
               <input name="button2" type="button" class="Estilo4" onClick="displayCalendar(document.forms[0].fecha_recaudo,'yyyy/mm/dd',this)" value="Seleccione Fecha" />
               </div>
@@ -713,7 +713,7 @@ $difere = $tot_deb - $tot_cre;
         <div align="center">
          
 		 
-     	  <?
+     	  <?php
 			include('../config.php');
 			$db = new mysqli($server, $dbuser, $dbpass, $database);
 			
@@ -731,11 +731,11 @@ $difere = $tot_deb - $tot_cre;
 			?>
           
              
-		  <input name="nombre2" type="hidden" style="border:#FFF" value="<? printf($rw1[nom_rubro]); ?>" />
+		  <input name="nombre2" type="hidden" style="border:#FFF" value="<?php printf($rw1[nom_rubro]); ?>" />
       </div></td>
       <td bgcolor="#FFFFFF"><div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
         <div align="center">
-          <input name="vr_digitado" type="text" class="required Estilo4" id="vr_digitado" size="20" onKeyPress="return validar(event)" style="text-align:right" value="<? printf("%s",$vr_digitado); ?>" />
+          <input name="vr_digitado" type="text" class="required Estilo4" id="vr_digitado" size="20" onKeyPress="return validar(event)" style="text-align:right" value="<?php printf("%s",$vr_digitado); ?>" />
         </div>
       </div></td>
     </tr>
@@ -847,10 +847,10 @@ miPopup = window.open("../pgcp/consulta_cta.php","CONTAFACIL","width=800,height=
 
 </form>
 <center class='Estilo19'>
-<a href="confirma_borra_roit.php?id_recau2=<? printf("%s",$id_recau); ?>"><B>...::: VOLVER :::...</B></a>
+<a href="confirma_borra_roit.php?id_recau2=<?php printf("%s",$id_recau); ?>"><B>...::: VOLVER :::...</B></a>
 </center>
 </body>
 </html>
-<?
+<?php
 }
 ?>

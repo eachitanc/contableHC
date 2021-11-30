@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -47,7 +47,7 @@ a:active {
 
 </head>
 <body>
-<?
+<?php
 $id=$_GET['id'];
 //printf("%s",$id);
 
@@ -55,9 +55,9 @@ include('../config.php');
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 //id_emp
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $id_emp=$rowxx["id_emp"];
   
@@ -108,7 +108,7 @@ while($row3 = mysql_fetch_array($res3))
       <div align="right"><span class="Estilo1">No Consecutivo : </span> </div>
     </div></td>
     <td width="200"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="center"><span class="Estilo1"><? printf("%s",$id_reip); ?></span> </div>
+      <div align="center"><span class="Estilo1"><?php printf("%s",$id_reip); ?></span> </div>
     </div></td>
   </tr>
   <tr>
@@ -116,7 +116,7 @@ while($row3 = mysql_fetch_array($res3))
       <div align="right"><span class="Estilo1">Fecha del Reconocimiento  : </span> </div>
     </div></td>
     <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="center"><span class="Estilo1"><? printf("%s",$fecha_reg); ?></span> </div>
+      <div align="center"><span class="Estilo1"><?php printf("%s",$fecha_reg); ?></span> </div>
     </div></td>
   </tr>
   <tr>
@@ -124,7 +124,7 @@ while($row3 = mysql_fetch_array($res3))
       <div align="right"><span class="Estilo1">Vr. Reconocido  : </span> </div>
     </div></td>
     <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="center"><span class="Estilo1">$ <? printf("%.2f",$tot_vr_reip); ?> = </span> </div>
+      <div align="center"><span class="Estilo1">$ <?php printf("%.2f",$tot_vr_reip); ?> = </span> </div>
     </div></td>
   </tr>
   <tr>
@@ -137,7 +137,7 @@ while($row3 = mysql_fetch_array($res3))
       <div align="right"><span class="Estilo1">No. Consecutivo  : </span> </div>
     </div></td>
     <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="center"><span class="Estilo1"><? printf("%s",$consec_cartera); ?></span> </div>
+      <div align="center"><span class="Estilo1"><?php printf("%s",$consec_cartera); ?></span> </div>
     </div></td>
   </tr>
   <tr>
@@ -145,7 +145,7 @@ while($row3 = mysql_fetch_array($res3))
       <div align="right"><span class="Estilo1">Fecha de la Causacion .: </span> </div>
     </div></td>
     <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="center"><span class="Estilo1"><? printf("%s",$fecha_causa); ?></span> </div>
+      <div align="center"><span class="Estilo1"><?php printf("%s",$fecha_causa); ?></span> </div>
     </div></td>
   </tr>
   <tr>
@@ -153,13 +153,13 @@ while($row3 = mysql_fetch_array($res3))
       <div align="right"><span class="Estilo1">Vr Causado . :</span> </div>
     </div></td>
     <td><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-      <div align="center"><span class="Estilo1">$ <? printf("%.2f",$valor_rec); ?> = </span> </div>
+      <div align="center"><span class="Estilo1">$ <?php printf("%.2f",$valor_rec); ?> = </span> </div>
     </div></td>
   </tr>
 </table><BR />
 <div align="center"><span class="Estilo1"><strong>RECIBOS OFICIALES DE INGRESO GENERADOS</strong></span> <br />
     <span style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
-  <?
+  <?php
 $sq = "select distinct(id_recau) , fecha_recaudo , id_reip , id_caic, tercero  from recaudo_roit where id_emp = '$id_emp' and id_caic ='$consec_cartera' order by fecha_recaudo asc ";
 $re = mysql_db_query($database, $sq, $connectionxx);
 
@@ -179,7 +179,7 @@ printf("
 ");
 
 $total_rec=0;
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
 
 $id_recau2=$rw["id_recau"];   
@@ -204,9 +204,9 @@ $total_rec=$total_rec+$vr_total_roit;
 printf("</table></center>");
 
 ?>
-  <? $res_fin=$tot_vr_reip-$total_rec; ?>
+  <?php $res_fin=$tot_vr_reip-$total_rec; ?>
   <br />
-  <span class="Estilo1">TOTAL RECONOCIDO  ( $ <? printf("%.2f",$tot_vr_reip); ?> = ) - TOTAL RECAUDADO ( $ <? printf("%.2f",$total_rec); ?> = )<BR /> ...::: $ <? printf("%.2f",$res_fin); ?> = :::...</span></span><br />
+  <span class="Estilo1">TOTAL RECONOCIDO  ( $ <?php printf("%.2f",$tot_vr_reip); ?> = ) - TOTAL RECAUDADO ( $ <?php printf("%.2f",$total_rec); ?> = )<BR /> ...::: $ <?php printf("%.2f",$res_fin); ?> = :::...</span></span><br />
 </div>
 <br />
 <div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:5px;">
@@ -220,6 +220,6 @@ printf("</table></center>");
 </div>
 </body>
 </html>
-<?
+<?php
 }
 ?>

@@ -21,7 +21,6 @@ if (!isset($_SESSION["login"])) {
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 			<title>CONTAFACIL</title>
-
 			<style type="text/css">
 				.Estilo2 {
 					font-size: 9px
@@ -370,6 +369,8 @@ if (!isset($_SESSION["login"])) {
 														if ($rw3['cargo'] == "REVISOR") {
 
 															$ver_boton = "style=display:none";
+														} else {
+															$ver_boton = '';
 														}
 														?>
 													</select>
@@ -395,7 +396,7 @@ if (!isset($_SESSION["login"])) {
 
 								$archivo = "mvto.php";
 								$a = isset($_POST['nn']) ? $_POST['nn'] : '';
-
+								$f = '';
 
 								if ($a == 'REIP') {
 								?>
@@ -460,6 +461,8 @@ if (!isset($_SESSION["login"])) {
 
 										if (isset($_POST["buscar"])) {
 											$filtro = "and (id_manu_reip LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%') ";
+										} else {
+											$filtro = '';
 										}
 
 
@@ -568,7 +571,7 @@ if (!isset($_SESSION["login"])) {
 
 		<?php
 									}
-									if ($registrado == "") {
+									if (!isset($registrado)) {
 									} else {
 
 		?>

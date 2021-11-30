@@ -306,9 +306,9 @@ include('../config.php');
 	
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx1 = "select * from fecha";
-$resultadoxx1 = mysql_db_query($database, $sqlxx1, $connectionxx);
+$resultadoxx1 = $connectionxx->query($sqlxx1);
 
-while($rowxx1 = mysql_fetch_array($resultadoxx1)) 
+while($rowxx1 = $resultadoxx1->fetch_assoc()) 
 {
   $id_emp=$rowxx1["id_emp"];
 }
@@ -362,7 +362,7 @@ if ($crtl_doc == 'SI')
 	$firmas = "style='display:'";
 }
 $sq3= "select nombre, apaterno,amaterno,cargo from usuarios2 where login = '$_SESSION[login]'";
-$re3 = mysql_db_query($database, $sq3, $connectionxx);
+$re3 = $connectionxx->query($sq3);
 $rw3 =mysql_fetch_array($re3); 
 
 $ver ="";
@@ -467,7 +467,7 @@ if ($crtl_doc == 'NO') $ver = "style='display:none'";
   <?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cobp where id_emp = '$id_emp' and id_auto_cobp ='$row25[id_auto_cobp]' order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>

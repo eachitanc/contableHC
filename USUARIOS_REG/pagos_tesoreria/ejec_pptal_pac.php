@@ -1,4 +1,4 @@
-<?
+<?php
 set_time_limit(1800);
 session_start();
 if(!$_SESSION["login"])
@@ -377,6 +377,6 @@ printf("</table></center>");
 <br />
 </body>
 </html>
-<?
+<?php
 }
 ?>

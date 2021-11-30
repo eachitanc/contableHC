@@ -22,7 +22,7 @@ if (!isset($_SESSION["login"])) {
   $usuario = $dbuser;
   $password = $dbpass;
 
-  $conexion = mysql_connect($servidor, $usuario, $password) or die("no se pudo conectar a base de datos" . mysql_error());
+  $conexion = new mysqli($server, $dbuser, $dbpass, $database) or die("no se pudo conectar a base de datos" . mysql_error());
 
   $selec = mysql_select_db($database, $conexion);
 

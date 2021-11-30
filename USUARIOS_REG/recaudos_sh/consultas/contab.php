@@ -6,14 +6,14 @@ include('../../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 // Obtengo el nombre del rubro y el valor inicial constituido como cuenta por pagar    	
 		$sql = "select * from recaudo_ncbt where id='$id'";
-		$res = mysql_db_query($database, $sql, $cx);
+		$res = $cx->query($sql);
 		$fil=mysql_num_rows($res);		
 		$con=0;
 		$pgcp='';
 		$des='';
 		$deb='';
 		$cre='';
-		while ($row = mysql_fetch_array($res))
+		while ($row =$res->fetch_assoc())
 		{			
 		   for ($i=1;$i<=15;$i++)
 		   { 

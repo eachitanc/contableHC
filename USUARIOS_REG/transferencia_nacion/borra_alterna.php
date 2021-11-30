@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<?
+<?php
 $id_recau=$_GET['id_recau'];
 $fecha_c=$_GET['fecha_c'];// echo $fecha_c;
 ?>
@@ -28,15 +28,15 @@ $fecha_c=$_GET['fecha_c'];// echo $fecha_c;
   <span class="Estilo1">Esta accion eliminara el registro permanentemente, desea Continuar ?<br />
   </span><br />
 
-    <input type='hidden' name='id_recau' value='<? printf("%s",$id_recau); ?>'>
-    <input type='hidden' name='fecha_c' value='<? printf("%s",$fecha_c); ?>'>
+    <input type='hidden' name='id_recau' value='<?php printf("%s",$id_recau); ?>'>
+    <input type='hidden' name='fecha_c' value='<?php printf("%s",$fecha_c); ?>'>
     
   <input type='submit' name='Submit' value='Eliminar' class='Estilo1' />
     
   </div>
 </form><br />
 
-  <?
+  <?php
 printf("
 
 <center class='Estilo9'>

@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -134,6 +134,6 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
    
 ?>
  
-<?
+<?php
 }
 ?>

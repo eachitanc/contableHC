@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(!$_SESSION["login"])
 {
@@ -31,16 +31,16 @@ a:active {
 .Estilo9 {font-size: 10px; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;}
 -->
 </style>
-<?
+<?php
 
 include('../config.php');
 // conexion				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 // id_emp
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
   $id_emp=$rowxx["id_emp"];
   $idxx=$rowxx["id_emp"];
@@ -417,7 +417,7 @@ mysql_query($sql, $connectionxx) or die(mysql_error());
 
 
 </table>
-<?
+<?php
 
 
 
@@ -437,6 +437,6 @@ printf("
 ?>
 
 
-<?
+<?php
 }
 ?>

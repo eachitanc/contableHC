@@ -3,7 +3,7 @@ header("Cache-Control: no-store, no-cache, must-revalidate");
 	$codigo_pptal =$_REQUEST['cod'];
 	$fecha_corte =$_REQUEST['fecha'];
 	include('../../../config.php');		
-	$cx = new mysqli($server, $dbuser, $dbpass, $database)or die ("Conexion no Exitosa");
+	$cx = $cx->query($sq)or die ("Conexion no Exitosa");
 	 
 	$val = mysql_query("select sum(valor) as comp from reip_ing where cuenta ='$codigo_pptal'", $cx);
 	while ($row = mysql_fetch_array($val))

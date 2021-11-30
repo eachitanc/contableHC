@@ -4,8 +4,8 @@ if (!isset($_SESSION["login"])) {
 	header("Location: ../login.php");
 	exit;
 } else {
-	$ver_boton='';
-	$filtro='';
+	$ver_boton = '';
+	$filtro = '';
 	// verifico permisos del usuario
 	include('../config.php');
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Conexion no Exitosa");
@@ -302,9 +302,10 @@ if (!isset($_SESSION["login"])) {
 
 											include('../config.php');
 											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
-											if(isset($_POST["buscar"])) $_POST["buscar"] = trim($_POST["buscar"]); else $_POST["buscar"] = "";				
-											if ($_POST["buscar"] != "") {
+											if (isset($_POST["buscar"])) {
 												$filtro = "and (des LIKE  '%$buscar%' OR cdpp LIKE  '%$buscar%') ";
+											} else {
+												$filtro = '';
 											}
 
 
@@ -362,7 +363,7 @@ if (!isset($_SESSION["login"])) {
 
 												$axz = $rw["consecutivo"];
 												$resulta = $cx->query("select SUM(valor) AS TOTAL from cdpp WHERE consecutivo = '$axz' AND id_emp='$id_emp'");
-												$row = $resulta->fetch_array();
+												$row = $resulta->fetch_row();
 												$total = $row[0];
 												$nuevo_total = $total;
 
@@ -426,7 +427,7 @@ if (!isset($_SESSION["login"])) {
 
 
 										//-------
-										if ($registrado == "") {
+										if (!isset($registrado)) {
 										} else {
 										?>
 											<br />
@@ -436,10 +437,15 @@ if (!isset($_SESSION["login"])) {
 											include('../config.php');
 											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 											//$sq = "select consecutivo, tercero,  fecha_reg, cdpp, des from cdpp where id_emp = '$id_emp' and contab = 'SI'    ";
-											//$re = mysql_db_query($database, $sq, $cx);
+											//$re = $cx->query($sq);
 											$limitar = "limit $ini,$fin";
-											if ($_POST["buscar"] != "") {
-												$filtro = "and (des LIKE  '%$buscar%' OR cdpp LIKE  '%$buscar%') ";
+											if (isset($_POST["buscar"])) {
+												if ($_POST["buscar"] != "") {
+													$filtro = "and (des LIKE  '%$buscar%' OR cdpp LIKE  '%$buscar%') ";
+													$limitar = '';
+												}
+											} else {
+												$filtro = '';
 												$limitar = '';
 											}
 
@@ -501,7 +507,7 @@ if (!isset($_SESSION["login"])) {
 
 												$axz1 = $rw["consecutivo"];
 												$link = new mysqli($server, $dbuser, $dbpass, $database);
-												$sql="select SUM(valor) AS TOTAL from cdpp WHERE consecutivo = '$axz1' AND id_emp='$id_emp'";
+												$sql = "select SUM(valor) AS TOTAL from cdpp WHERE consecutivo = '$axz1' AND id_emp='$id_emp'";
 												$resulta = $link->query($sql);
 												$row = $resulta->fetch_assoc();
 												$total = $row['TOTAL'];
@@ -578,8 +584,10 @@ if (!isset($_SESSION["login"])) {
 
 											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 
-											if ($_POST["buscar"] != "") {
+											if (isset($_POST["buscar"])) {
 												$filtro = "and (id_manu_crpp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR detalle_crpp LIKE '%$buscar%' or id_manu_cdpp like '%$buscar%')";
+											} else {
+												$filtro = '';
 											}
 
 											$a = "select id_auto_crpp,id_auto_cdpp, id_manu_crpp, id_manu_cdpp, fecha_crpp, tercero , contrato, t_humano, inversion, subsidiado  from crpp where id_emp = '$id_emp' and ctrl = 'NO' ";
@@ -630,10 +638,10 @@ if (!isset($_SESSION["login"])) {
 
 												$axz11 = $rw2["id_auto_crpp"];
 												$resulta = $cx->query("select SUM(vr_digitado) AS TOTAL from crpp WHERE id_auto_crpp = '$axz11' AND id_emp='$id_emp'");
-												$row = $resulta->fetch_array();
+												$row = $resulta->fetch_row();
 												$total = $row[0];
 												$resulta2 = $cx->query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_crpp = '$axz11' AND id_emp='$id_emp'");
-												$row2 = $resulta2->fetch_array();
+												$row2 = $resulta2->fetch_row();
 												$total2 = $row2[0];
 
 												$nuevo_total11 = $total;
@@ -710,7 +718,7 @@ if (!isset($_SESSION["login"])) {
 										}
 
 
-										if ($registrado == "") {
+										if (!isset($registrado)) {
 										} else {
 										?>
 											<BR />
@@ -726,9 +734,11 @@ if (!isset($_SESSION["login"])) {
 										<?php
 											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 											$limitar = "limit $ini,$fin";
-											if(isset($_POST["buscar"])) $_POST["buscar"] =$_POST['buscar'];else $_POST["buscar"] ="";
-											if ($_POST["buscar"] != "") {
+											if (isset($_POST["buscar"])) {
 												$filtro = "and (id_manu_crpp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR detalle_crpp LIKE '%$buscar%' or id_manu_cdpp like '%$buscar%') ";
+												$limitar = '';
+											} else {
+												$filtro = '';
 												$limitar = '';
 											}
 
@@ -795,7 +805,7 @@ if (!isset($_SESSION["login"])) {
 												$axz111 = $rw2["id_auto_crpp"];
 												$link = new mysqli($server, $dbuser, $dbpass, $database);
 												$resulta = $link->query("select SUM(vr_digitado) AS TOTAL from crpp WHERE id_auto_crpp = '$axz111' AND id_emp='$id_emp'");
-												$row = $resulta->fetch_array();
+												$row = $resulta->fetch_row();
 												$total = $row[0];
 												$nuevo_total111 = $total;
 
@@ -882,8 +892,10 @@ if (!isset($_SESSION["login"])) {
 										} else {
 											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 
-											if ($_POST["buscar"] != "") {
+											if (isset($_POST["buscar"])) {
 												$filtro = "and (id_manu_cobp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR des_cobp LIKE '%$buscar%') ";
+											} else {
+												$filtro = '';
 											}
 
 											$a = "select distinct(id_auto_cobp), id_manu_cobp, des_cobp,  id_manu_crpp, id_manu_cdpp, fecha_cobp, tercero, contab, tesoreria from cobp where id_emp = '$id_emp' and contab='NO' and tesoreria ='NO' and liq = ''";
@@ -934,7 +946,7 @@ if (!isset($_SESSION["login"])) {
 
 												$a1a = $rw2["id_auto_cobp"];
 												$resulta = $cx->query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_cobp = '$a1a' AND id_emp='$id_emp' ");
-												$row = $resulta->fetch_assoc();
+												$row = $resulta->fetch_row();
 												$total = $row[0];
 												$nuevo_totala = $total;
 
@@ -998,7 +1010,7 @@ if (!isset($_SESSION["login"])) {
 											printf("</table></center>");
 										}
 
-										if ($registrado == "") {
+										if (!isset($registrado)) {
 										} else {
 
 
@@ -1017,8 +1029,11 @@ if (!isset($_SESSION["login"])) {
 											<?php
 											$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 											$limitar = "limit $ini,$fin";
-											if ($_POST["buscar"] != "") {
+											if (isset($_POST["buscar"])) {
 												$filtro = "and (id_manu_cobp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR des_cobp LIKE '%$buscar%') ";
+												$limitar = '';
+											} else {
+												$filtro = '';
 												$limitar = '';
 											}
 
@@ -1078,7 +1093,7 @@ if (!isset($_SESSION["login"])) {
 
 												$a1a1 = $rw2["id_auto_cobp"];
 												$resulta = $cx->query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_cobp = '$a1a1' AND id_emp='$id_emp'");
-												$row = $resulta->fetch_assoc();
+												$row = $resulta->fetch_row();
 												$total = $row[0];
 												$nuevo_totala1 = $total;
 
@@ -1156,8 +1171,10 @@ if (!isset($_SESSION["login"])) {
 
 									<?php
 
-											if ($_POST["buscar"] != "") {
+											if (isset($_POST["buscar"])) {
 												$filtro = "and (id_manu_cobp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' OR des_cobp LIKE '%$buscar%')";
+											} else {
+												$filtro = '';
 											}
 
 											$a = "select distinct(id_auto_cobp), id_manu_cobp, des_cobp, id_manu_crpp, id_manu_cdpp, fecha_cobp, tercero, contab, tesoreria from cobp where id_emp = '$id_emp' and contab='NO' and tesoreria ='SI'";
@@ -1213,7 +1230,7 @@ if (!isset($_SESSION["login"])) {
 
 												$a1a = $rw2["id_auto_cobp"];
 												$resulta = $cx->query("select SUM(vr_digitado) AS TOTAL from cobp WHERE id_auto_cobp = '$a1a' AND id_emp='$id_emp'");
-												$row = $resulta->fetch_assoc();
+												$row = $resulta->fetch_row();
 												$total = $row[0];
 												$nuevo_totala = $total;
 												printf("

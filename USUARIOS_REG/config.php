@@ -1,6 +1,6 @@
 <?php
 	$server="localhost";  
-	$database="bd_esepotosi2021"; 
+	$database="contableHC"; 
 	$dbpass="12345"; 
 	$dbuser="root";
 	$nom_emp="";

@@ -1,7 +1,7 @@
 <?php
 /*
 *******************************************************************************************************************************
-*	Rotina para gerar códigos de barra padrão 2of5 .
+*	Rotina para gerar cï¿½digos de barra padrï¿½o 2of5 .
 *	Luciano Lima Silva 09/01/2003
 *	netdinamica@netdinamica.com.br
 *	Site: www.netdinamica.com.br
@@ -11,11 +11,11 @@
 
 class BarCode
 {
-	var $valor;					// número do código de barra (valor do código 2of5)
+	var $valor;					// nï¿½mero do cï¿½digo de barra (valor do cï¿½digo 2of5)
 	var $barra_preta;		// arquivo de imagem para barra preta
 	var $barra_branca;	// arquivo de imagem para barra branca
 
-	// constantes para o padrão 2 of 5
+	// constantes para o padrï¿½o 2 of 5
 	var $fino = 1 ;
 	var $largo = 3 ;
 	var $altura = 50 ;
@@ -138,7 +138,7 @@ class BarCode
 		if ($draw) {
 			echo $this->html;
 		}
-	} // função parseBarCode
+	} // funï¿½ï¿½o parseBarCode
 
 	function drawBarCode()
 	{

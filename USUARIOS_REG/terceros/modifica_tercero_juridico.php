@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -1419,16 +1419,16 @@ function ValidaActividad(id){
   </tr>
   <tr>
     <td colspan="3">
-	<? 
+	<?php 
 		$id=$_GET['id1'];
 		//printf("%s",$id);
 	?>
-	<?
+	<?php
 	
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
 while($rowxx = mysql_fetch_array($resultadoxx)) 
 {
@@ -1515,7 +1515,7 @@ $ent_ofi2=$rw["ent_ofi2"];
               <div align="right">NO. DE IDENTIFICACION </div>
           </div></td>
           <td width="186" bgcolor="#F5F5F5"><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="num_id2" type="text" class="Estilo4" id="num_id2" style="width:150px;" onkeypress="return validar(event)" value="<? printf("%s",$num_id2); ?>" />
+              <input name="num_id2" type="text" class="Estilo4" id="num_id2" style="width:150px;" onkeypress="return validar(event)" value="<?php printf("%s",$num_id2); ?>" />
           </div></td>
         </tr>
         <tr>
@@ -1624,7 +1624,7 @@ $ent_ofi2=$rw["ent_ofi2"];
               <div align="right">ACTIVIDAD ECONOMICA </div>
           </div></td>
           <td bgcolor="#F5F5F5"><div class="Estilo4" style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="act_eco" id="act_eco" type="text" size="5" value="<? echo $act_eco; ?>" onchange="ValidaActividad('act_eco');" />
+              <input name="act_eco" id="act_eco" type="text" size="5" value="<?php echo $act_eco; ?>" onchange="ValidaActividad('act_eco');" />
           </div></td>
         </tr>
         
@@ -1634,7 +1634,7 @@ $ent_ofi2=$rw["ent_ofi2"];
           </div></td>
           <td colspan="3"><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="center">
-                <input name="raz_soc2" type="text" class="Estilo4" id="raz_soc2" style="width:400px;" onkeyup="b.raz_soc2.value=b.raz_soc2.value.toUpperCase();" value="<? printf("%s",$raz_soc2); ?>" />
+                <input name="raz_soc2" type="text" class="Estilo4" id="raz_soc2" style="width:400px;" onkeyup="b.raz_soc2.value=b.raz_soc2.value.toUpperCase();" value="<?php printf("%s",$raz_soc2); ?>" />
               </div>
           </div></td>
         </tr>
@@ -1644,7 +1644,7 @@ $ent_ofi2=$rw["ent_ofi2"];
                   <span class="Estilo4">(siglas) </span></div>
           </div></td>
           <td><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="nom_com2" type="text" class="Estilo4" id="nom_com2" style="width:150px;" onkeyup="b.nom_com2.value=b.nom_com2.value.toUpperCase();" value="<? printf("%s",$nom_com2); ?>" />
+              <input name="nom_com2" type="text" class="Estilo4" id="nom_com2" style="width:150px;" onkeyup="b.nom_com2.value=b.nom_com2.value.toUpperCase();" value="<?php printf("%s",$nom_com2); ?>" />
           </div></td>
           <td class="Estilo4"><div class="Estilo28" style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="right">PAIS </div>
@@ -1714,13 +1714,13 @@ $ent_ofi2=$rw["ent_ofi2"];
               <div align="right">DIRECCION </div>
           </div></td>
           <td><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="dir2" type="text" class="Estilo4" id="dir2" style="width:150px;" onkeyup="b.dir2.value=b.dir2.value.toUpperCase();" value="<? printf("%s",$dir2); ?>" />
+              <input name="dir2" type="text" class="Estilo4" id="dir2" style="width:150px;" onkeyup="b.dir2.value=b.dir2.value.toUpperCase();" value="<?php printf("%s",$dir2); ?>" />
           </div></td>
           <td class="Estilo4"><div class="Estilo28" style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="right">TELEFONO </div>
           </div></td>
           <td><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="tel2" type="text" class="Estilo4" id="tel2" style="width:150px;" onkeypress="return validar(event)" value="<? printf("%s",$tel2); ?>" />
+              <input name="tel2" type="text" class="Estilo4" id="tel2" style="width:150px;" onkeypress="return validar(event)" value="<?php printf("%s",$tel2); ?>" />
           </div></td>
         </tr>
         <tr>
@@ -1728,13 +1728,13 @@ $ent_ofi2=$rw["ent_ofi2"];
               <div align="right">FAX </div>
           </div></td>
           <td bgcolor="#F5F5F5"><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="fax2" type="text" class="Estilo4" id="fax2" style="width:150px;" onkeypress="return validar(event)" value="<? printf("%s",$fax2); ?>" />
+              <input name="fax2" type="text" class="Estilo4" id="fax2" style="width:150px;" onkeypress="return validar(event)" value="<?php printf("%s",$fax2); ?>" />
           </div></td>
           <td bgcolor="#F5F5F5" class="Estilo4"><div class="Estilo28" style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="right">EMAIL </div>
           </div></td>
           <td bgcolor="#F5F5F5"><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="email2" type="text" class="Estilo4" id="email2" style="width:150px;" value="<? printf("%s",$em2); ?>" />
+              <input name="email2" type="text" class="Estilo4" id="email2" style="width:150px;" value="<?php printf("%s",$em2); ?>" />
           </div></td>
         </tr>
         <tr>
@@ -1743,36 +1743,36 @@ $ent_ofi2=$rw["ent_ofi2"];
           </div></td>
           <td class="Estilo4"><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="right">Contabilidad <span class="Estilo29">:::</span>
-                  <?
+                  <?php
 if ($contabilidad2 == 'SI')
 {
 ?>
                   <input name="contabilidad2" type="checkbox" class="Estilo4" id="contabilidad2" value="SI" checked="checked" />
-                  <?
+                  <?php
 }
 else
 {
 ?>
                   <input name="contabilidad2" type="checkbox" class="Estilo4" id="contabilidad2" value="SI" />
-                  <?
+                  <?php
 }
 ?>
               </div>
           </div></td>
           <td><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="right" class="Estilo4">Tesoreria <span class="Estilo29">:::</span>
-                  <?
+                  <?php
 if ($tesoreria2 == 'SI')
 {
 ?>
                   <input name="tesoreria2" type="checkbox" class="Estilo4" id="tesoreria2" value="SI" checked="checked" />
-                  <?
+                  <?php
 }
 else
 {
 ?>
                   <input name="tesoreria2" type="checkbox" class="Estilo4" id="tesoreria2" value="SI" />
-                  <?
+                  <?php
 }
 ?>
               </div>
@@ -1783,42 +1783,42 @@ else
           <td><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'> </div></td>
           <td class="Estilo4"><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="right">Presupuesto <span class="Estilo29">:::</span>
-                  <?
+                  <?php
 if ($ppto2 == 'SI')
 {
 ?>
                   <input name="ppto2" type="checkbox" class="Estilo4" id="ppto2" value="SI" checked="checked" />
-                  <?
+                  <?php
 }
 else
 {
 ?>
                   <input name="ppto2" type="checkbox" class="Estilo4" id="ppto2" value="SI" />
-                  <?
+                  <?php
 }
 ?>
               </div>
           </div></td>
           <td><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="right" class="Estilo4">Almacen <span class="Estilo29">:::</span>
-                  <?
+                  <?php
 if ($almacen2 == 'SI')
 {
 ?>
                   <input name="almacen2" type="checkbox" class="Estilo4" id="almacen2" value="SI" checked="checked" />
-                  <?
+                  <?php
 }
 else
 {
 ?>
                   <input name="almacen2" type="checkbox" class="Estilo4" id="almacen2" value="SI" />
-                  <?
+                  <?php
 }
 ?>
               </div>
           </div></td>
           <td><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="id" type="hidden" id="id" value="<? printf("%s",$id); ?>" />
+              <input name="id" type="hidden" id="id" value="<?php printf("%s",$id); ?>" />
           </div></td>
         </tr>
  
@@ -1827,18 +1827,18 @@ else
           <td class="Estilo4"><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
             <div align="right">Interventor <span class="Estilo29">:::</span>
              
-<?
+<?php
 if ($interventor == 'SI')
 {
 ?>
                 <input name="interventor" type="checkbox" class="Estilo4" id="ppto" value="SI" checked="checked" />
-<?
+<?php
 }
 else
 {
 ?>
 			 <input name="interventor" type="checkbox" class="Estilo4" id="ppto" value="SI" />
-<?
+<?php
 }
 ?>
 			 
@@ -1868,13 +1868,13 @@ else
               <div align="right">PRIMER APELLIDO </div>
           </div></td>
           <td><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="pri_ape2" type="text" class="Estilo4" id="pri_ape2" style="width:150px;" onkeyup="b.pri_ape2.value=b.pri_ape2.value.toUpperCase();" value="<? printf("%s",$pri_ape2); ?>" />
+              <input name="pri_ape2" type="text" class="Estilo4" id="pri_ape2" style="width:150px;" onkeyup="b.pri_ape2.value=b.pri_ape2.value.toUpperCase();" value="<?php printf("%s",$pri_ape2); ?>" />
           </div></td>
           <td class="Estilo4"><div class="Estilo28" style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="right">SEGUNDO APELLIDO </div>
           </div></td>
           <td><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="seg_ape2" type="text" class="Estilo4" id="seg_ape2" style="width:150px;" onkeyup="b.seg_ape2.value=b.seg_ape2.value.toUpperCase();" value="<? printf("%s",$seg_ape2); ?>" />
+              <input name="seg_ape2" type="text" class="Estilo4" id="seg_ape2" style="width:150px;" onkeyup="b.seg_ape2.value=b.seg_ape2.value.toUpperCase();" value="<?php printf("%s",$seg_ape2); ?>" />
           </div></td>
         </tr>
         <tr>
@@ -1882,13 +1882,13 @@ else
               <div align="right">PRIMER NOMBRE </div>
           </div></td>
           <td bgcolor="#F5F5F5"><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="pri_nom2" type="text" class="Estilo4" id="pri_nom2" style="width:150px;" onkeyup="b.pri_nom2.value=b.pri_nom2.value.toUpperCase();" value="<? printf("%s",$pri_nom2); ?>" />
+              <input name="pri_nom2" type="text" class="Estilo4" id="pri_nom2" style="width:150px;" onkeyup="b.pri_nom2.value=b.pri_nom2.value.toUpperCase();" value="<?php printf("%s",$pri_nom2); ?>" />
           </div></td>
           <td bgcolor="#F5F5F5" class="Estilo4"><div class="Estilo28" style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="right">SEGUNDO NOMBRE </div>
           </div></td>
           <td bgcolor="#F5F5F5"><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="seg_nom2" type="text" class="Estilo4" id="seg_nom2" style="width:150px;" onkeyup="b.seg_nom2.value=b.seg_nom2.value.toUpperCase();" value="<? printf("%s",$seg_nom2); ?>" />
+              <input name="seg_nom2" type="text" class="Estilo4" id="seg_nom2" style="width:150px;" onkeyup="b.seg_nom2.value=b.seg_nom2.value.toUpperCase();" value="<?php printf("%s",$seg_nom2); ?>" />
           </div></td>
         </tr>
         <tr>
@@ -1896,13 +1896,13 @@ else
               <div align="right">DIRECCION </div>
           </div></td>
           <td><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="dir22" type="text" class="Estilo4" id="dir22" style="width:150px;" onkeyup="b.dir22.value=b.dir22.value.toUpperCase();" value="<? printf("%s",$dir22); ?>" />
+              <input name="dir22" type="text" class="Estilo4" id="dir22" style="width:150px;" onkeyup="b.dir22.value=b.dir22.value.toUpperCase();" value="<?php printf("%s",$dir22); ?>" />
           </div></td>
           <td class="Estilo4"><div class="Estilo28" style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="right">TELEFONO </div>
           </div></td>
           <td><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="tel22" type="text" class="Estilo4" id="tel22" style="width:150px;" onkeypress="return validar(event)" value="<? printf("%s",$tel22); ?>"/>
+              <input name="tel22" type="text" class="Estilo4" id="tel22" style="width:150px;" onkeypress="return validar(event)" value="<?php printf("%s",$tel22); ?>"/>
           </div></td>
         </tr>
         <tr>
@@ -1910,13 +1910,13 @@ else
               <div align="right">FAX </div>
           </div></td>
           <td bgcolor="#F5F5F5"><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="fax22" type="text" class="Estilo4" id="fax22" style="width:150px;" onkeypress="return validar(event)" value="<? printf("%s",$fax22); ?>"/>
+              <input name="fax22" type="text" class="Estilo4" id="fax22" style="width:150px;" onkeypress="return validar(event)" value="<?php printf("%s",$fax22); ?>"/>
           </div></td>
           <td bgcolor="#F5F5F5" class="Estilo4"><div class="Estilo28" style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
               <div align="right">EMAIL </div>
           </div></td>
           <td bgcolor="#F5F5F5"><div style='padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;'>
-              <input name="email22" type="text" class="Estilo4" id="email22" style="width:150px;" value="<? printf("%s",$em22); ?>" />
+              <input name="email22" type="text" class="Estilo4" id="email22" style="width:150px;" value="<?php printf("%s",$em22); ?>" />
           </div></td>
         </tr>
         <tr>
@@ -1947,10 +1947,10 @@ else
     <td colspan="3"><div style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       <div align="center"> <span class="Estilo4">Fecha de  esta Sesion:</span> <br />
           <span class="Estilo4"> <strong>
-          <? include('../config.php');				
+          <?php include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
 while($rowxx = mysql_fetch_array($resultadoxx)) 
 {
@@ -1959,16 +1959,16 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 echo $ano;
 ?>
           </strong> </span> <br />
-          <span class="Estilo4"><b>Usuario: </b><u><? echo $_SESSION["login"];?></u> </span> </div>
+          <span class="Estilo4"><b>Usuario: </b><u><?php echo $_SESSION["login"];?></u> </span> </div>
     </div></td>
   </tr>
   <tr>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
-	  <div align="center"><?PHP include('../config.php'); echo $nom_emp ?><br />
-	    <?PHP echo $dir_tel ?><BR />
-	    <?PHP echo $muni ?> <br />
-	    <?PHP echo $email?>	</div>
+	  <div align="center"><?php include('../config.php'); echo $nom_emp ?><br />
+	    <?php echo $dir_tel ?><BR />
+	    <?php echo $muni ?> <br />
+	    <?php echo $email?>	</div>
 	</div>	</td>
     <td width="266">
 	<div class="Estilo7" id="main_div" style="padding-left:3px; padding-top:5px; padding-right:3px; padding-bottom:3px;">
@@ -1993,6 +1993,6 @@ echo $ano;
 
 
 
-<?
+<?php
 }
 ?>

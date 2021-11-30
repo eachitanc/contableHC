@@ -12,7 +12,10 @@ if (!isset($_SESSION["login"])) {
 	$des = $_POST['des'];
 	$cuenta = $_POST['cuenta'];
 	$valor = $_POST['valor'];
-
+	$pri_ape = '';
+	$seg_ape = '';
+	$pri_nom = '';
+	$seg_nom = '';
 
 
 
@@ -48,13 +51,12 @@ cta: %s<br>vr: %s
 	// consulta ppto
 	$sql = "select * from car_ppto_ing where id_emp ='$id_emp' and cod_pptal ='$cuenta'";
 	$resultado = $connectionxx->query($sql);;
-
+	$definitivo = 0;
 	while ($row = $resultado->fetch_assoc()) {
 		$tip_dato = $row["tip_dato"];
 		$definitivo = $row["definitivo"];
 		$nom_rubro = $row["nom_rubro"];
 	}
-
 	// consulta tercero nat
 	$sqla = "select * from terceros_naturales where id_emp ='$id_emp' and id ='$ter_nat'";
 	$resultadoa = $connectionxx->query($sqla);
@@ -104,8 +106,11 @@ cta: %s<br>vr: %s
 
 	$resultb = $link->query("select SUM(vr_digitado) AS TOTAL from recaudo_ncbt WHERE id_emp ='$id_emp' and cuenta ='$cuenta'");
 	$rowb = $resultb->fetch_array();
-	$total_recaudado_ncbt = $rowb[0];
-
+	if (!empty($rowb)) {
+		$total_recaudado_ncbt = $rowb[0];
+	} else {
+		$total_recaudado_ncbt = 0;
+	}
 
 	$todo_lo_recaudado = $total_recaudado + $total_recaudado_ncbt;
 

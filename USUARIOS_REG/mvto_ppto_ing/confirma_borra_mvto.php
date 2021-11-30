@@ -1,116 +1,142 @@
 <?php
 session_start();
-if(!isset($_SESSION["login"]))
-{
-header("Location: ../login.php");
-exit;
+if (!isset($_SESSION["login"])) {
+	header("Location: ../login.php");
+	exit;
 } else {
 ?>
-<html>
-<head>
-<title>CONTAFACIL</title>
-<style type="text/css">
-<!--
-a {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #666666;
-}
-a:visited {
-	color: #990000;
-	text-decoration: none;
-}
-a:hover {
-	color: #990000;
-	text-decoration: underline;
-}
-a:active {
-	color: #990000;
-	text-decoration: none;
-}
-a:link {
-	text-decoration: none;
-	color: #990000;
-}
-.Estilo4 {
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 10px;
-	color: #333333;
-	font-weight: bold;
-}
--->
-</style>
+	<html>
 
-<style type="text/css">
-table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-width: 2px; border-color: #004080; }
-.Estilo8 {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; color: #333333; }
-.Estilo8 {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; color: #333333; }
-.Estilo8 {color: #FFFFFF}
-.Estilo9 {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 10px;
-}
-.Estilo10 {color: #990000}
-</style>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<head>
+		<title>CONTAFACIL</title>
+		<style type="text/css">
+			<!--
+			a {
+				font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+				font-size: 11px;
+				color: #666666;
+			}
 
-<script> 
-function validar(e) { 
-    tecla = (document.all) ? e.keyCode : e.which; 
-    if (tecla==8 || tecla==46) return true; //Tecla de retroceso (para poder borrar) 
-    patron = /\d/; //ver nota 
-    te = String.fromCharCode(tecla); 
-    return patron.test(te);  
-}  
-</script>
+			a:visited {
+				color: #990000;
+				text-decoration: none;
+			}
+
+			a:hover {
+				color: #990000;
+				text-decoration: underline;
+			}
+
+			a:active {
+				color: #990000;
+				text-decoration: none;
+			}
+
+			a:link {
+				text-decoration: none;
+				color: #990000;
+			}
+
+			.Estilo4 {
+				font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+				font-size: 10px;
+				color: #333333;
+				font-weight: bold;
+			}
+			-->
+		</style>
+
+		<style type="text/css">
+			table.bordepunteado1 {
+				border-style: solid;
+				border-collapse: collapse;
+				border-width: 2px;
+				border-color: #004080;
+			}
+
+			.Estilo8 {
+				font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+				font-size: 10px;
+				color: #333333;
+			}
+
+			.Estilo8 {
+				font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+				font-size: 10px;
+				color: #333333;
+			}
+
+			.Estilo8 {
+				color: #FFFFFF
+			}
+
+			.Estilo9 {
+				font-family: Verdana, Arial, Helvetica, sans-serif;
+				font-size: 10px;
+			}
+
+			.Estilo10 {
+				color: #990000
+			}
+		</style>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+		<script>
+			function validar(e) {
+				tecla = (document.all) ? e.keyCode : e.which;
+				if (tecla == 8 || tecla == 46) return true; //Tecla de retroceso (para poder borrar) 
+				patron = /\d/; //ver nota 
+				te = String.fromCharCode(tecla);
+				return patron.test(te);
+			}
+		</script>
 
 
 
-</head>
-<body>
+	</head>
 
-<div align="center">
-  <?php
-include("../config.php");
- 
-$consecutivo=$_GET['consecutivo'];
+	<body>
 
-// saco el id de la empresa
-   $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-	    $sqlxx = "select * from fecha";
-	    $resultadoxx = $connectionxx->query($sqlxx);
-	    while($rowxx = $resultadoxx->fetch_assoc()) 
-  	    {
-     	 $idxx=$rowxx["id_emp"];
-    	}
-		
+		<div align="center">
+			<?php
+			include("../config.php");
 
-$sqlxxa = "select * from reip_ing where id_emp ='$idxx' and consecutivo ='$consecutivo'";
-$resultadoxxa =$connectionxx->query($sqlxxa);
+			$consecutivo = $_GET['consecutivo'];
 
-while($rowxxa = $resultadoxxa->fetch_assoc()) 
-{
-  $id_manu_reip=$rowxxa["id_manu_reip"];
-}
+			// saco el id de la empresa
+			$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
+			$sqlxx = "select * from fecha";
+			$resultadoxx = $connectionxx->query($sqlxx);
+			while ($rowxx = $resultadoxx->fetch_assoc()) {
+				$idxx = $rowxx["id_emp"];
+			}
 
 
-$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-$sq = "select * from reip_ing where id_emp = '$idxx' and consecutivo='$consecutivo' order by cuenta asc ";
-$re = $cx->query($sq);
+			$sqlxxa = "select * from reip_ing where id_emp ='$idxx' and consecutivo ='$consecutivo'";
+			$resultadoxxa = $connectionxx->query($sqlxxa);
 
-printf("
+			while ($rowxxa = $resultadoxxa->fetch_assoc()) {
+				$id_manu_reip = $rowxxa["id_manu_reip"];
+			}
+
+
+			$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
+			$sq = "select * from reip_ing where id_emp = '$idxx' and consecutivo='$consecutivo' order by cuenta asc ";
+			$re = $cx->query($sq);
+
+			printf("
 <center>
 <br>
 <DIV style='background:#DCE9E5; padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px; width:800px;'>
 <span class='Estilo4'>
-<strong>DATOS  DEL  RECONOCIMIENTO ...::: ".$id_manu_reip." :::...</strong>
+<strong>DATOS  DEL  RECONOCIMIENTO ...::: " . $id_manu_reip . " :::...</strong>
 </span>
 </DIV>
 <BR>
 </center>
 ");
 
-printf("
+			printf("
 <center>
 
 <table width='1000' BORDER='1' class='bordepunteado1'>
@@ -132,9 +158,9 @@ printf("
 
 ");
 
-while($rw = $re->fetch_assoc()) 
-   {
-printf("
+			while ($rw = $re->fetch_assoc()) {
+				printf(
+					"
 <span class='Estilo4'>
 <tr>
 <td align='left'><span class='Estilo9'>&nbsp; %s </span></td>
@@ -157,31 +183,43 @@ printf("
 
 
 
-</tr>", $rw["cuenta"], $rw["nom_rubro"], $rw["tercero"], $rw["valor"] , 
+</tr>",
+					$rw["cuenta"],
+					$rw["nom_rubro"],
+					$rw["tercero"],
+					$rw["valor"],
 
-$rw["id"], $rw["cuenta"] , $rw["consecutivo"], 
+					$rw["id"],
+					$rw["cuenta"],
+					$rw["consecutivo"],
 
-$rw["id"] , $rw["cuenta"], $rw["consecutivo"], $rw["ter_nat"], $rw["ter_jur"], $rw["des"], $rw["valor"], $rw["nom_rubro"]
+					$rw["id"],
+					$rw["cuenta"],
+					$rw["consecutivo"],
+					$rw["ter_nat"],
+					$rw["ter_jur"],
+					$rw["des"],
+					$rw["valor"],
+					$rw["nom_rubro"]
 
-); 
+				);
+			}
 
-
-   }
-
-?>
-  <?php
-printf("
+			?>
+			<?php
+			printf("
 </table>
 </center>
 ");
-?>
- 
-  <br>
-  <br>
-  <br>
-  <center><a href='mvto.php' target='_parent' class='Estilo10'><B> ...::: CANCELAR PROCESO y/o VOLVER :::...</B> </a></center><BR>
-</body>
-</html>
+			?>
+
+			<br>
+			<br>
+			<br>
+			<center><a href='mvto.php' target='_parent' class='Estilo10'><B> ...::: CANCELAR PROCESO y/o VOLVER :::...</B> </a></center><BR>
+	</body>
+
+	</html>
 
 <?php
 }
