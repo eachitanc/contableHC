@@ -1005,7 +1005,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 								<option value=''</option>
 			";
 								$result=mysql_db_query($database,$query,$link);
-								while ($row=mysql_fetch_array($result))
+								while ($row=$result->fetch_assoc())
 								{
 									if ($row[cod_pptal]==$cuenta_cxp) 
 									{
@@ -1152,7 +1152,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 			$resultado4 = mysql_db_query($database, $sql4, $connectionxx);
 			$iq=0;
 			$iqq=0;
-			while($row4 = mysql_fetch_array($resultado4)) 
+			while($row4 = $resultado4->fetch_assoc()) 
 			{
 			  
 			  $concep[$iq]=$row4["concepto"];
@@ -1415,7 +1415,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   $query="SELECT * FROM retefuente";
 				   $link=mysql_connect($server,$dbuser,$dbpass);
 				   $result=mysql_db_query($database,$query,$link);
-				   while ($row=mysql_fetch_array($result))
+				   while ($row=$result->fetch_assoc())
 				   {
 					if ($row['concepto']==$retefuente) 
 					{
@@ -1562,7 +1562,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   $query="SELECT * FROM reteiva";
 				   $link=mysql_connect($server,$dbuser,$dbpass);
 				   $result=mysql_db_query($database,$query,$link);
-				   while ($row=mysql_fetch_array($result))
+				   while ($row=$result->fetch_assoc())
 				   {
 					if ($row['concepto']==$reteiva) 
 					{
@@ -1777,7 +1777,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   $query="SELECT * FROM estampillas";
 				   $link=mysql_connect($server,$dbuser,$dbpass);
 				   $result=mysql_db_query($database,$query,$link);
-				   while ($row=mysql_fetch_array($result))
+				   while ($row=$result->fetch_assoc())
 				   {
 					if ($row['concepto']==$estampilla1) 
 					{
@@ -1919,7 +1919,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   $query="SELECT * FROM estampillas";
 				   $link=mysql_connect($server,$dbuser,$dbpass);
 				   $result=mysql_db_query($database,$query,$link);
-				   while ($row=mysql_fetch_array($result))
+				   while ($row=$result->fetch_assoc())
 				   {
 					if ($row['concepto']==$estampilla2) 
 					{
@@ -2063,7 +2063,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   $query="SELECT * FROM estampillas";
 				   $link=mysql_connect($server,$dbuser,$dbpass);
 				   $result=mysql_db_query($database,$query,$link);
-				   while ($row=mysql_fetch_array($result))
+				   while ($row=$result->fetch_assoc())
 				   {
 					if ($row['concepto']==$estampilla3) 
 					{
@@ -2203,7 +2203,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 					   $query="SELECT * FROM estampillas";
 					   $link=mysql_connect($server,$dbuser,$dbpass);
 					   $result=mysql_db_query($database,$query,$link);
-					   while ($row=mysql_fetch_array($result))
+					   while ($row=$result->fetch_assoc())
 					   {
 						if ($row['concepto']==$estampilla4) 
 						{
@@ -2342,7 +2342,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 				   $query="SELECT * FROM estampillas";
 				   $link=mysql_connect($server,$dbuser,$dbpass);
 				   $result=mysql_db_query($database,$query,$link);
-				   while ($row=mysql_fetch_array($result))
+				   while ($row=$result->fetch_assoc())
 				   {
 					if ($row['concepto']==$estampilla5) 
 					{
@@ -2623,7 +2623,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 					$query="SELECT cuenta FROM retefuente where concepto='$_POST[$postnom]'";
 					$link=mysql_connect($server,$dbuser,$dbpass);
 					$result=mysql_db_query($database,$query,$link);
-					$row=mysql_fetch_array($result);
+					$row=$result->fetch_assoc();
 					$cuentacero[$ia]=$row["cuenta"];
 				}
 				if($postnom=="reteiva")
@@ -2631,7 +2631,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 					$query="SELECT cuenta FROM reteiva where concepto='$_POST[$postnom]'";
 					$link=mysql_connect($server,$dbuser,$dbpass);
 					$result=mysql_db_query($database,$query,$link);
-					$row=mysql_fetch_array($result);
+					$row=$result->fetch_assoc();
 					$cuentacero[$ia]=$row["cuenta"];
 				}
 				if($postnom=="reteica")
@@ -2643,7 +2643,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 					$query="SELECT cuenta FROM estampillas where concepto='$_POST[$postnom]'";
 					$link=mysql_connect($server,$dbuser,$dbpass);
 					$result=mysql_db_query($database,$query,$link);
-					$row=mysql_fetch_array($result);
+					$row=$result->fetch_assoc();
 					$cuentacero[$ia]=$row["cuenta"];
 				}
 				if($postnom=="estampilla2")
@@ -2651,7 +2651,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 					$query="SELECT cuenta FROM estampillas where concepto='$_POST[$postnom]'";
 					$link=mysql_connect($server,$dbuser,$dbpass);
 					$result=mysql_db_query($database,$query,$link);
-					$row=mysql_fetch_array($result);
+					$row=$result->fetch_assoc();
 					$cuentacero[$ia]=$row["cuenta"];
 				}
 				if($postnom=="estampilla3")
@@ -2659,7 +2659,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 					$query="SELECT cuenta FROM estampillas where concepto='$_POST[$postnom]'";
 					$link=mysql_connect($server,$dbuser,$dbpass);
 					$result=mysql_db_query($database,$query,$link);
-					$row=mysql_fetch_array($result);
+					$row=$result->fetch_assoc();
 					$cuentacero[$ia]=$row["cuenta"];
 				}
 				if($postnom=="estampilla4")
@@ -2667,7 +2667,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 					$query="SELECT cuenta FROM estampillas where concepto='$_POST[$postnom]'";
 					$link=mysql_connect($server,$dbuser,$dbpass);
 					$result=mysql_db_query($database,$query,$link);
-					$row=mysql_fetch_array($result);
+					$row=$result->fetch_assoc();
 					$cuentacero[$ia]=$row["cuenta"];
 				}
 				if($postnom=="estampilla5")
@@ -2675,7 +2675,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 					$query="SELECT cuenta FROM estampillas where concepto='$_POST[$postnom]'";
 					$link=mysql_connect($server,$dbuser,$dbpass);
 					$result=mysql_db_query($database,$query,$link);
-					$row=mysql_fetch_array($result);
+					$row=$result->fetch_assoc();
 					$cuentacero[$ia]=$row["cuenta"];
 				}
 			   $ia++;
@@ -2775,7 +2775,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 			   $query="SELECT nom_rubro FROM pgcp where cod_pptal='$cuentacero[$aa]'";
 			   $link=mysql_connect($server,$dbuser,$dbpass);
 			   $result=mysql_db_query($database,$query,$link);
-			   $row1=mysql_fetch_array($result);
+			   $row1=$result->fetch_assoc();
 			   if($modi=='modi')
 			   {
 			   $varauxd = $rowx['vr_deb_'.$i];

@@ -2071,7 +2071,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 								<option value=''</option>
 			";
 								$result=mysql_db_query($database,$query,$link);
-								while ($row=mysql_fetch_array($result))
+								while ($row=$result->fetch_assoc())
 								{
 									if ($row[id_manu_cobp]==$cuenta_cxp) 
 									{
@@ -2210,7 +2210,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
 			$resultado4 = mysql_db_query($database, $sql4, $connectionxx);
 			$iq=0;
 			$iqq=0;
-			while($row4 = mysql_fetch_array($resultado4)) 
+			while($row4 = $resultado4->fetch_assoc()) 
 			{
 			  
 			  $concep[$iq]=$row4["concepto"];
@@ -2446,7 +2446,7 @@ $link=mysql_connect($server,$dbuser,$dbpass);
    $query="SELECT * FROM retefuente";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$retefuente) 
    	{
@@ -2518,7 +2518,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
    $query="SELECT * FROM reteiva";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$reteiva) 
    	{
@@ -2634,7 +2634,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
    $query="SELECT * FROM estampillas";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$estampilla2) 
    	{
@@ -2696,7 +2696,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
    $query="SELECT * FROM estampillas";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$estampilla2) 
    	{
@@ -2758,7 +2758,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
    $query="SELECT * FROM estampillas";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$estampilla3) 
    	{
@@ -2820,7 +2820,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
    $query="SELECT * FROM estampillas";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$estampilla4) 
    	{
@@ -2882,7 +2882,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
    $query="SELECT * FROM estampillas";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$estampilla5) 
    	{

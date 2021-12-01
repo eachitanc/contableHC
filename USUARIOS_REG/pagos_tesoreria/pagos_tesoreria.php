@@ -1,7 +1,7 @@
 <?php
 set_time_limit(1800);
 session_start();
-if (!$_SESSION["login"]) {
+if (!isset($_SESSION["login"])) {
   header("Location: ../login.php");
   exit;
 } else {
@@ -448,6 +448,7 @@ if (!$_SESSION["login"]) {
             include('../config.php');
             $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
             $sqlxx = "select * from fecha";
+            $a = $r = '';
             $resultadoxx = $connectionxx->query($sqlxx);
             // Datos para mostrar listas
             $ini = isset($_GET['ini']) ? $_GET['ini'] : '';
@@ -475,6 +476,7 @@ if (!$_SESSION["login"]) {
             $sq3 = "select cargo from usuarios2 where login = '$_SESSION[login]'";
             $re3 = $connectionxx->query($sq3);
             $rw3 = $re3->fetch_assoc();
+            $ver_boton = '';
             if ($rw3['cargo'] == "REVISOR") {
               $ver_boton = "style=display:none";
             }
@@ -529,9 +531,11 @@ if (!$_SESSION["login"]) {
 
 
                     $cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
-
-                    if ($_POST["buscar"] != "") {
+                    $b = '';
+                    if (isset($_POST['buscar'])) {
                       $filtro = "and (id_manu_obcg LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%') ";
+                    } else {
+                      $filtro = '';
                     }
                     $a = "select * from obcg where id_emp = '$id_emp' and pagado ='NO'";
                     if (empty($tercero)) {
@@ -648,8 +652,10 @@ if (!$_SESSION["login"]) {
 
                     $cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 
-                    if ($_POST["buscar"] != "") {
+                    if (isset($_POST['buscar'])) {
                       $filtro = "and (id_manu_cobp LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%') ";
+                    } else {
+                      $filtro = '';
                     }
 
                     $a = "select distinct(id_auto_cobp), id_manu_cobp,  id_manu_crpp, id_manu_cdpp, fecha_cobp, tercero, contab, pagado from cobp where id_emp = '$id_emp' and contab ='NO' and pagado ='NO' and tesoreria = 'SI'";
@@ -744,7 +750,7 @@ if (!$_SESSION["login"]) {
                     echo "</form>";
                   }
 
-                  if ($registrado == "") {
+                  if (!isset($registrado)) {
                   } else {
 
               ?>
@@ -760,9 +766,11 @@ if (!$_SESSION["login"]) {
                     $nada = "anulado";
                     $cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
                     $limitar = "limit $ini,$fin";
-                    if ($_POST["buscar"] != "") {
+                    if (isset($_POST['buscar'])) {
                       $filtro = "and (id_manu_ceva LIKE  '%$buscar%' OR tercero LIKE  '%$buscar%' ) ";
                       $limitar = '';
+                    } else {
+                      $filtro = '';
                     }
 
                     $a = "select * from ceva where id_emp = '$id_emp' and estado = 'nada' and id_auto_cobp !='AUTO'";

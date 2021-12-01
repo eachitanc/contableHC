@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -63,7 +63,7 @@ while($rowxxqw = mysql_fetch_array($resultadoxxqw))
 }
 
 $link = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-mysql_select_db("database", $link);
+
 
 $result = mysql_query("SELECT * FROM car_ppto_gas where id_emp ='$id_emp' and tip_dato = 'D' and ano = '".$fecha_ini_op."'", $link);
 $tot_ctas_d = mysql_num_rows($result);

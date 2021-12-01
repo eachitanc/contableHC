@@ -215,7 +215,7 @@ while($rowd = mysql_fetch_array($resultadod))
 {  $tipd=$rowd["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqle = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp5'";
-$resultadoe = mysql_db_query($database, $sqle, $connectionxx);
+$resultadoe = $connectionxx->query($sqle);
 while($rowe = mysql_fetch_array($resultadoe)) 
 {  $tipe=$rowe["tip_dato"]; }
 // consulta tipo_dato de pgcp

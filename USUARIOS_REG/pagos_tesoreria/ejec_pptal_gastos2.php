@@ -134,7 +134,7 @@ $cx2 = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Con
 $sq2 = "select * from empresa where cod_emp = '$idxxx'";
 $re2 = mysql_db_query($database, $sq2, $cx2);
 
-while($row2 = mysql_fetch_array($re2)) 
+while($row2 = $re2->fetch_assoc()) 
    {
 printf("<span class='Estilo4'><b>...::: %s :::...</b></span><br>", $row2["raz_soc"]);  
    }

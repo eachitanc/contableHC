@@ -251,7 +251,7 @@ while($rowd = mysql_fetch_array($resultadod))
 {  $tipd=$rowd["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqle = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp5'";
-$resultadoe = mysql_db_query($database, $sqle, $connectionxx);
+$resultadoe = $connectionxx->query($sqle);
 while($rowe = mysql_fetch_array($resultadoe)) 
 {  $tipe=$rowe["tip_dato"]; }
 // consulta tipo_dato de pgcp
@@ -331,10 +331,10 @@ $aux=$id_auto_cobp;
 
 
 $sqla1 = "update obcg set pagado='SI' where id_emp = '$id_emp' and id_auto_cobp = '$aux'";
-$resultadoa1 = mysql_db_query($database, $sqla1, $connectionxx);
+$resultadoa1 = $connectionxx->query($sqla1);
 
 $sqla2 = "update cobp set pagado='SI' where id_emp = '$id_emp' and id_auto_cobp = '$aux'";
-$resultadoa2 = mysql_db_query($database, $sqla2, $connectionxx);
+$resultadoa2 = $connectionxx->query($sqla2);
 
 
 

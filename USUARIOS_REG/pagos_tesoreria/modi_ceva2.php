@@ -2232,9 +2232,9 @@ while($rowxxx2 = mysql_fetch_array($resulfecha))
 // consulta
 
 $sqlxx2 = "select * from obcg where id_emp = '$id_emp' and id_auto_obcg = '$id_obcg'";
-$resultadoxx2 = mysql_db_query($database, $sqlxx2, $connectionxx);
+$resultadoxx2 = $connectionxx->query($sqlxx2);
 
-while($rowxx2 = mysql_fetch_array($resultadoxx2)) 
+while($rowxx2 = $resultadoxx2->fetch_assoc()) 
 {
   $id_auto_obcg=$rowxx2["id_auto_obcg"];
   $id_auto_cobp=$rowxx2["id_auto_cobp"];
@@ -2532,7 +2532,7 @@ while($row3 = mysql_fetch_array($resultado3))
 $sql4 = "select * from terceros_naturales where id='$ter_nat' and id_emp='$id_emp' ";
 $resultado4 = mysql_db_query($database, $sql4, $connectionxx);
 
-while($row4 = mysql_fetch_array($resultado4)) 
+while($row4 = $resultado4->fetch_assoc()) 
 {
   $num_id=$row4["num_id"];
   
@@ -2631,7 +2631,7 @@ printf("%s",$cnit_e);
 	
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from crpp where  id_auto_crpp ='$crpp_e' order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 echo "<div id='tabla1' style='display: none'>
 <center>
@@ -2663,14 +2663,14 @@ echo "<div id='tabla1' style='display: none'>
 
 $nuevo_total=0;
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
    
 	$cta = $rw["cuenta"];
 
 $sq2 = "select proc_rec, nom_rubro, opc1, vigencia from car_ppto_gas  where  cod_pptal ='$cta' order by id asc ";
 $re2 = $cx->query($sq2);   
-while($rw2 = mysql_fetch_array($re2))
+while($rw2 = $re2->fetch_assoc())
 {
 
 	$fte = $rw2["proc_rec"];  
@@ -2844,7 +2844,7 @@ printf("
 	<div align="center"><?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cobp where id_auto_cobp ='$cobp_auto_e' order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -2874,14 +2874,14 @@ printf("
 ");
 
 $nuevo_total=0;
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
    
 $cta = $rw["cuenta"];
 
 $sq2 = "select proc_rec, nom_rubro from car_ppto_gas  where cod_pptal ='$cta' order by id asc ";
 $re2 = $cx->query($sq2);   
-while($rw2 = mysql_fetch_array($re2))
+while($rw2 = $re2->fetch_assoc())
 {
 
 	$fte = $rw2["proc_rec"];  
@@ -3060,7 +3060,7 @@ $conse = $array[Auto_increment];
 	  
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cobp where id_auto_cobp ='$cobp_auto_e' order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -3093,7 +3093,7 @@ $vr1x=0;
 $vr2x=0;
 $vr3x=0;
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
 
 //***** CONSULTA SITUACION DE FONDOS  - NOM_CUENTA 
@@ -3318,8 +3318,8 @@ printf("
   <br />
 <?php
 $sqlxx2 = "select * from modo_estampillas";
-$resultadoxx2 = mysql_db_query($database, $sqlxx2, $connectionxx);
-while($rowxx2 = mysql_fetch_array($resultadoxx2)) 
+$resultadoxx2 = $connectionxx->query($sqlxx2);
+while($rowxx2 = $resultadoxx2->fetch_assoc()) 
    {
    $auto=$rowxx2["auto"];
    $manu=$rowxx2["manu"];
@@ -3372,7 +3372,7 @@ else
    $query="SELECT * FROM retefuente";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$retefuente_e) 
    	{
@@ -3442,7 +3442,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
 			   $query="SELECT * FROM retecree";
 			   $link=mysql_connect($server,$dbuser,$dbpass);
 			   $result=mysql_db_query($database,$query,$link);
-			   while ($row=mysql_fetch_array($result))
+			   while ($row=$result->fetch_assoc())
 			   {
 				if ($row['concepto']==$retecree_e) 
 				{
@@ -3509,7 +3509,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
    $query="SELECT * FROM reteiva";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$reteiva_e) 
    	{
@@ -3609,7 +3609,7 @@ else
 				   $query="SELECT * FROM reteica";
 				   $link=mysql_connect($server,$dbuser,$dbpass);
 				   $result=mysql_db_query($database,$query,$link);
-				   while ($row=mysql_fetch_array($result))
+				   while ($row=$result->fetch_assoc())
 				   {
 					if ($row['concepto']==$reteica_e) 
 					{
@@ -3679,7 +3679,7 @@ else
    $query="SELECT * FROM estampillas";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$estampilla1_e) 
    	{
@@ -3741,7 +3741,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
    $query="SELECT * FROM estampillas";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$estampilla2_e) 
    	{
@@ -3803,7 +3803,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
    $query="SELECT * FROM estampillas";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$estampilla3_e) 
    	{
@@ -3865,7 +3865,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
    $query="SELECT * FROM estampillas";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$estampilla4_e) 
    	{
@@ -3927,7 +3927,7 @@ echo "<OPTION VALUE=\"".$row["concepto"]."\">".$row["concepto"]."</OPTION>";
    $query="SELECT * FROM estampillas";
    $link=mysql_connect($server,$dbuser,$dbpass);
    $result=mysql_db_query($database,$query,$link);
-   while ($row=mysql_fetch_array($result))
+   while ($row=$result->fetch_assoc())
    {
    	if ($row['concepto']==$estampilla5_e) 
    	{

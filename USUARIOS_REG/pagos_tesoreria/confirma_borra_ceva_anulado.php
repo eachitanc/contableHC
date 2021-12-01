@@ -46,9 +46,9 @@ while($rowxx = $resultadoxx->fetch_assoc())
 
 // Selecciono el pago que voy a anular la reversion
 $sqlxx1 = "select * from ceva where id_emp ='$id_emp' and id_auto_ceva = '$id_ceva'";
-$resultadoxx1 = mysql_db_query($database, $sqlxx1, $connectionxx);
+$resultadoxx1 = $connectionxx->query($sqlxx1);
 
-while($rowxx1 = mysql_fetch_array($resultadoxx1)) 
+while($rowxx1 = $resultadoxx1->fetch_assoc()) 
 {
   $id_auto_cobp=$rowxx1["id_auto_cobp"];
 }
@@ -83,15 +83,15 @@ if($pagado=='NO')
 	$resulceva = mysql_db_query($database, $aqlaceva, $connectionxx);
 	
 	$sqla1 = "update obcg set pagado='SI' where id_emp = '$id_emp' and id_auto_cobp = '$id_auto_cobp'";
-	$resultadoa1 = mysql_db_query($database, $sqla1, $connectionxx);
+	$resultadoa1 = $connectionxx->query($sqla1);
 
 if ($tesoreria == 'SI')
 {
 	$sqla2 = "update cobp set pagado='SI' where id_emp = '$id_emp' and id_auto_cobp = '$id_auto_cobp'";
-	$resultadoa2 = mysql_db_query($database, $sqla2, $connectionxx);
+	$resultadoa2 = $connectionxx->query($sqla2);
 }else{
 	$sqla2 = "update cobp set pagado='SI', contab='SI' where id_emp = '$id_emp' and id_auto_cobp = '$id_auto_cobp'";
-	$resultadoa2 = mysql_db_query($database, $sqla2, $connectionxx);
+	$resultadoa2 = $connectionxx->query($sqla2);
 }
 	printf("
 	<br>

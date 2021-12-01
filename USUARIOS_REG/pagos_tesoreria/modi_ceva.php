@@ -816,9 +816,9 @@ include('../config.php');
 				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx1 = "select * from fecha";
-$resultadoxx1 = mysql_db_query($database, $sqlxx1, $connectionxx);
+$resultadoxx1 = $connectionxx->query($sqlxx1);
 
-while($rowxx1 = mysql_fetch_array($resultadoxx1)) 
+while($rowxx1 = $resultadoxx1->fetch_assoc()) 
 {
   $id_emp=$rowxx1["id_emp"];
 }
@@ -994,7 +994,7 @@ while($rowxx = $resultadoxx->fetch_assoc())
   <?php
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cobp where id_emp = '$id_emp' and id_auto_cobp ='$id_auto_cobp' order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -1022,14 +1022,14 @@ printf("
 ");
 
 $nuevo_total=0;
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
    
 $cta = $rw["cuenta"];
 
 $sq2 = "select proc_rec, nom_rubro from car_ppto_gas  where id_emp = '$id_emp' and cod_pptal ='$cta' order by id asc ";
 $re2 = $cx->query($sq2);   
-while($rw2 = mysql_fetch_array($re2))
+while($rw2 = $re2->fetch_assoc())
 {
 
 	$fte = $rw2["proc_rec"];  

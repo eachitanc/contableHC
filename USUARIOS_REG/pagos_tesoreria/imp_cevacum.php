@@ -356,9 +356,9 @@ include('../config.php');
 		
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx1 = "select * from fecha";
-$resultadoxx1 = mysql_db_query($database, $sqlxx1, $connectionxx);
+$resultadoxx1 = $connectionxx->query($sqlxx1);
 
-while($rowxx1 = mysql_fetch_array($resultadoxx1)) 
+while($rowxx1 = $resultadoxx1->fetch_assoc()) 
 {
   $id_emp=$rowxx1["id_emp"];
 }
@@ -457,13 +457,13 @@ while ($rw4=mysql_fetch_array($re4))
 	  $id_auto_crpp  = $rowxx["id_auto_crpp"];
 	}
 	$sq5 = "select n_contrato from crpp where id_auto_crpp='$id_auto_crpp'";
-	$re5 = mysql_db_query($database, $sq5, $connectionxx);
-	$rw5 = mysql_fetch_array($re5); 
+	$re5 = $connectionxx->query($sq5);
+	$rw5 = $re5->fetch_assoc(); 
 	
 	$sqlxx2 = "select * from empresa where cod_emp='$id_emp'";
-	$resultadoxx2 = mysql_db_query($database, $sqlxx2, $connectionxx);
+	$resultadoxx2 = $connectionxx->query($sqlxx2);
 	
-	while($rowxx2 = mysql_fetch_array($resultadoxx2)) 
+	while($rowxx2 = $resultadoxx2->fetch_assoc()) 
 	{
 	  $nom_jefe_ppto=$rowxx2["nom_jefe_ppto"];
 	  $nom_rep_leg=$rowxx2["nom_rep_leg"];
@@ -603,7 +603,7 @@ while ($rw4=mysql_fetch_array($re4))
 	  <?php
 		$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	$sq = "select * from cobp where id_emp = '$id_emp' and id_auto_cobp ='$id_auto_cobp' and vr_digitado > 0 order by id asc ";
-	$re = mysql_db_query($database, $sq, $cx);
+	$re = $cx->query($sq);
 	
 	printf("
 	<center>
@@ -626,14 +626,14 @@ while ($rw4=mysql_fetch_array($re4))
 	");
 	
 	$nuevo_total=0;
-	while($rw = mysql_fetch_array($re)) 
+	while($rw = $re->fetch_assoc()) 
 	   {
 	   
 	$cta = $rw["cuenta"];
 	
 	$sq2 = "select proc_rec, nom_rubro from car_ppto_gas  where id_emp = '$id_emp' and cod_pptal ='$cta' order by id asc ";
 	$re2 = $cx->query($sq2);   
-	while($rw2 = mysql_fetch_array($re2))
+	while($rw2 = $re2->fetch_assoc())
 	{
 	
 		$fte = $rw2["proc_rec"];  
@@ -719,7 +719,7 @@ while ($rw4=mysql_fetch_array($re4))
 	$acu1=0;
 	$acu2=0;
 	
-	while($rw2 = mysql_fetch_array($re2))
+	while($rw2 = $re2->fetch_assoc())
 	{
 		for($i=1;$i < 16 ; $i++)
 		{
@@ -732,7 +732,7 @@ while ($rw4=mysql_fetch_array($re4))
 	
 				$cod=$rw2["pgcp".$i];
 				$ss2 = "select * from pgcp where  cod_pptal = '$cod'";
-				$rr2 = mysql_db_query($database, $ss2, $cx);
+				$rr2 = $cx->query($ss2);
 				while($rrw2 = mysql_fetch_array($rr2)) 
 				{
 					 $nom_rubro2=$rrw2["nom_rubro"];
@@ -817,9 +817,9 @@ while ($rw4=mysql_fetch_array($re4))
 	 for($j=0;$j<=15;$j++)
 	 {
 				$sqle = "select * from ceva where id_auto_ceva = '$id_ceva'";
-				$rese = mysql_db_query($database, $sqle, $connectionxx);
+				$rese = $connectionxx->query($sqle);
 				
-				while($rowe = mysql_fetch_array($rese)) 
+				while($rowe = $rese->fetch_assoc()) 
 				{
 				  $nom_e=$rowe[pgcp."$j"];
 				  
@@ -830,7 +830,7 @@ while ($rw4=mysql_fetch_array($re4))
 								
 								$sqpgcp="select * from pgcp where cod_pptal = '$nom_e'";
 								$respgcp=mysql_db_query($database,$sqpgcp,$connectionxx);
-								while($rowpgcp=mysql_fetch_array($respgcp))
+								while($rowpgcp=$respgcp->fetch_assoc())
 								{
 									
 									$no_banco=$rowpgcp["nom_banco1"];
@@ -1303,7 +1303,7 @@ while ($rw4=mysql_fetch_array($re4))
 	$login= $_SESSION["login"];
 	$sqlogin="select * from usuarios2 where login='$login'";
 	$reslogin= mysql_db_query($database,$sqlogin,$connectionxx);
-	while ($rowlogin=mysql_fetch_array($reslogin))
+	while ($rowlogin=$reslogin->fetch_assoc())
 	{
 		$nomUser= $rowlogin["nombre"];
 		$apellidoLogin=$rowlogin["apaterno"];

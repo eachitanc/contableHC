@@ -132,7 +132,7 @@ while($rowxx = $resultadoxx->fetch_assoc())
 	printf("%s",$automanu);
 $sq = "select * from dctos_deduc_cecp where id = '$id' ";
 $re = mysql_db_query($database, $sq, $connectionxx);
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 $concepto = $rw["concepto"];
 $cuenta = $rw["cuenta"];

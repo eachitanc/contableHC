@@ -189,7 +189,7 @@ while($rowxx = $resultadoxx->fetch_assoc())
 
 $sq = "select * from estampillas where id = '$id' ";
 $re = mysql_db_query($database, $sq, $connectionxx);
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 $concepto = $rw["concepto"];
 

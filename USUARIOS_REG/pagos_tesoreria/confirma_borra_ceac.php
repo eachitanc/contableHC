@@ -47,9 +47,9 @@ while($rowxx = $resultadoxx->fetch_assoc())
 
 
 $sqlxx1 = "select * from ceva where id_emp ='$id_emp' and id_auto_ceva = '$id_ceva'";
-$resultadoxx1 = mysql_db_query($database, $sqlxx1, $connectionxx);
+$resultadoxx1 = $connectionxx->query($sqlxx1);
 
-while($rowxx1 = mysql_fetch_array($resultadoxx1)) 
+while($rowxx1 = $resultadoxx1->fetch_assoc()) 
 {
   $id_auto_cobp=$rowxx1["id_auto_cobp"];
 }
@@ -84,10 +84,10 @@ else
 
 
 $sqla1 = "update obcg set pagado='NO',ceva='' where id_emp = '$id_emp' and ceva = '$id_ceva'";
-$resultadoa1 = mysql_db_query($database, $sqla1, $connectionxx);
+$resultadoa1 = $connectionxx->query($sqla1);
 
 $sqla2 = "update cobp set pagado='NO',ceva='' where id_emp = '$id_emp' and ceva = '$id_ceva'";
-$resultadoa2 = mysql_db_query($database, $sqla2, $connectionxx);
+$resultadoa2 = $connectionxx->query($sqla2);
 
 
 

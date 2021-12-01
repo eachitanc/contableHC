@@ -159,7 +159,7 @@ while($rowd = mysql_fetch_array($resultadod))
 {  $tipd=$rowd["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqle = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp5'";
-$resultadoe = mysql_db_query($database, $sqle, $connectionxx);
+$resultadoe = $connectionxx->query($sqle);
 while($rowe = mysql_fetch_array($resultadoe)) 
 {  $tipe=$rowe["tip_dato"]; }
 // consulta tipo_dato de pgcp
@@ -248,7 +248,7 @@ if ($ter_nat)
 $sql4 = "select * from terceros_naturales where id='$ter_nat' and id_emp='$id_emp' ";
 					$resultado4 = mysql_db_query($database, $sql4, $connectionxx);
 					
-					while($row4 = mysql_fetch_array($resultado4)) 
+					while($row4 = $resultado4->fetch_assoc()) 
 					{
 					  $pri_ape=$row4["pri_ape"];
 					  $seg_ape=$row4["seg_ape"];

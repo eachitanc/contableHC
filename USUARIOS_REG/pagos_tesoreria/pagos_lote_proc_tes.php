@@ -80,7 +80,7 @@ for ($i=1;$i<=$filas;$i++)
 		$num_cheque5=$_POST['cheq_'.$i];
 		if ($suma ==0)
 		{
-			$pgcp2=$_POST['valcre_'.$i];;
+			$pgcp2=$_POST['valcre_'.$i];
 			$pgcp3='';
 			$pgcp4='';
 			$pgcp5='';

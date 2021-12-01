@@ -105,7 +105,7 @@ while($rowxxxq = mysql_fetch_array($rxxq))
 $cx2 = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq2 = "select * from empresa where cod_emp = '$idxxx'";
 $re2 = mysql_db_query($database, $sq2, $cx2);
-while($row2 = mysql_fetch_array($re2)) 
+while($row2 = $re2->fetch_assoc()) 
    {
    $empresa = $row2["raz_soc"];
    }
@@ -147,7 +147,7 @@ $ruta_img = "http://$_SERVER[HTTP_HOST]/USUARIOS_REG/images/PLANTILLA PNG PARA L
 include('../config.php');				
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from car_ppto_gas order by cod_pptal asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -182,7 +182,7 @@ printf("
 <td align='center' width='150'><span class='Estilo4'><b>Tipo</b></span></td>
 <td align='center' width='150'><span class='Estilo4'><b>Nivel</b></span></td>
 ");
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
 $link=mysql_connect($server,$dbuser,$dbpass);
 //****

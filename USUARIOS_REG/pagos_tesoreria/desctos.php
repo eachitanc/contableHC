@@ -109,7 +109,7 @@ while($rowxx = $resultadoxx->fetch_assoc())
 include('../config.php');				
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from retefuente order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -144,7 +144,7 @@ printf("
 
 ");
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
 	$sqx = "select * from rango where concepto='$rw[concepto]' ";
 	$rex = mysql_db_query($database, $sqx, $cx);
@@ -212,7 +212,7 @@ printf("
 
 ");
 
-while($rw2 = mysql_fetch_array($re2)) 
+while($rw2 = $re2->fetch_assoc()) 
    {
    $sqx = "select * from rango where concepto='$rw2[concepto]' ";
 	$rex = mysql_db_query($database, $sqx, $cx);
@@ -281,7 +281,7 @@ printf("
 
 ");
 
-while($rw2 = mysql_fetch_array($re2)) 
+while($rw2 = $re2->fetch_assoc()) 
    {
    $sqx = "select * from rango where concepto='$rw2[concepto]' ";
 	$rex = mysql_db_query($database, $sqx, $cx);
@@ -351,7 +351,7 @@ printf("
 
 ");
 
-while($rw2 = mysql_fetch_array($re2)) 
+while($rw2 = $re2->fetch_assoc()) 
    {
    $sqx = "select * from rango where concepto='$rw2[concepto]' ";
 	$rex = mysql_db_query($database, $sqx, $cx);
@@ -397,7 +397,7 @@ printf("</table></center>");
 include('../config.php');				
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from dctos_deduc_cecp order by id asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -423,7 +423,7 @@ printf("
 		<td colspan ='1' align='center' width='150' style='color:#FFFF00' class='Estilo4' valign='middle'></td>
 ");
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
 		if ($rw['contab']=='SI')
 			$checksi="checked='checked'"; 
@@ -454,8 +454,8 @@ printf("</table></center>");
             <br />
 <?php
 $sqlxx2 = "select * from modo_estampillas";
-$resultadoxx2 = mysql_db_query($database, $sqlxx2, $connectionxx);
-while($rowxx2 = mysql_fetch_array($resultadoxx2)) 
+$resultadoxx2 = $connectionxx->query($sqlxx2);
+while($rowxx2 = $resultadoxx2->fetch_assoc()) 
    {
    $auto=$rowxx2["auto"];
    $manu=$rowxx2["manu"];
