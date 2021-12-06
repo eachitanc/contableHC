@@ -2599,7 +2599,7 @@ printf("
 
 new mysqli($server, $dbuser, $dbpass, $database);
 $resulta = mysql_query("SHOW TABLE STATUS FROM $database LIKE 'ceva'");
-while($array = mysql_fetch_array($resulta)) 
+while($array = $resulta->fetch_assoc()) 
 {
 $conse = $array[Auto_increment];
 }

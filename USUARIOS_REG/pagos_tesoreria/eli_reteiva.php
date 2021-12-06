@@ -42,18 +42,18 @@ while($rowxx = $resultadoxx->fetch_assoc())
   $id_emp=$rowxx["id_emp"];
 }
 $sqlx = "select * from reteiva where id ='$id'";
-$resx = mysql_db_query($database, $sqlx, $connectionxx);
-while($rowx = mysql_fetch_array($resx)) 
+$resx = $connectionxx->query($sqlx);
+while($rowx = $resx->fetch_assoc()) 
 {
   $concepto=$rowx["concepto"]; 
 }
 $sqx = "select * from cecp where reteiva = '$concepto'";
-$resx = mysql_db_query($database, $sqx, $connectionxx);
-$maxi = mysql_num_rows($resx); 
+$resx = $connectionxx->query($sqx);
+$maxi = $resx->num_rows; 
 if ($maxi >0){$cont=1;}
 $sq2 = "select * from ceva where reteiva = '$concepto'";
-$res = mysql_db_query($database, $sq2, $connectionxx);
-$exi = mysql_num_rows($res); 
+$res = $connectionxx->query($sq2);
+$exi = $res->num_rows; 
 if ($exi>0){$cont++;}
 if ($cont ==0)
 {

@@ -6,14 +6,14 @@ include('../../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 // Obtengo el nombre del rubro y el valor inicial constituido como cuenta por pagar
 	$sql = "select * from pgcp order by cod_pptal asc";
-	$res = mysql_db_query($database, $sql, $cx);
-	$num=mysql_num_rows($res);
+	$res = $cx->query($sql);
+	$num=$res->num_rows;
 	
 	////////////////////
 		
       /* echo "<table >";  
        $columnes = 2; # numero de columnas  
-       if (($rows=mysql_num_rows($res))==0) 
+       if (($rows=$res->num_rows)==0) 
         {    
            echo " no hay nada"; 
         }  
@@ -53,7 +53,7 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 	
 	
 	
-	while ($row = mysql_fetch_array($res))
+	while ($row = $res->fetch_assoc())
 	{	
 		//if($valor>=$row[base]&&($valor<=$row[tope]||$row[tope]==''))
 			

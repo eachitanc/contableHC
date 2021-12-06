@@ -1,4 +1,4 @@
-<?
+<?php
 set_time_limit(180);
 session_start();
 if(!isset($_SESSION["login"]))
@@ -33,7 +33,7 @@ a:active {
 .Estilo9 {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; color: #333333; font-weight: bold; }
 -->
 </style>
-<?
+<?php
 include('../config.php');
 
 //*** los campos del encabezado
@@ -76,7 +76,7 @@ $sql = "
 update aux_conciliaciones_vig_ant set estado='$estado',flag1='1',flag2='0',fecha_marca='$fecha_fin'
 where 
 comprobante ='$comprobante' and debito ='$debito' and credito ='$credito' ";
-$resultado = mysql_db_query($database, $sql, $cx);
+$resultado = $cx->query($sql);
 
 
 
@@ -88,9 +88,9 @@ $resultado = mysql_db_query($database, $sql, $cx);
 <span class="Estilo9">ACCION DE CONCILIAR<br />REALIZADA CON EXITO</span><br />
 <br /><br />
 <form id="form1" name="form1" method="post">
-<input type="hidden" name="fecha_fin" value="<? printf("%s",$fecha_fin);?>" />
-<input type="hidden" name="cuenta" value="<? printf("%s",$cuenta);?>" />
-<input type="hidden" name="nom_rubro" value="<? printf("%s",$nom_rubro);?>" />
+<input type="hidden" name="fecha_fin" value="<?php printf("%s",$fecha_fin);?>" />
+<input type="hidden" name="cuenta" value="<?php printf("%s",$cuenta);?>" />
+<input type="hidden" name="nom_rubro" value="<?php printf("%s",$nom_rubro);?>" />
 <input name="Submit" type="submit" id="boton" class="Estilo4" value="Continuar" onclick="this.form.action = '../conciliaciones/conciliaciones3_m.php'" />
 </form>
 </center>
@@ -98,6 +98,6 @@ $resultado = mysql_db_query($database, $sql, $cx);
 	document.getElementById("boton").focus();
 </script>
 
-<?
+<?php
 }
 ?>

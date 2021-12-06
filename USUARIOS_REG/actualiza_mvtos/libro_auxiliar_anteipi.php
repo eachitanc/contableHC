@@ -1,4 +1,4 @@
-<?
+<?php
 set_time_limit(2400);
 session_start();
 if(!isset($_SESSION["login"]))
@@ -62,7 +62,7 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
   
   <tr>
     <td width="2394" colspan="3">
-<?
+<?php
 include('../config.php');
 
 //**** variables para generacion dinamica
@@ -72,7 +72,7 @@ $conexion=new mysqli($server, $dbuser, $dbpass, $database);
 
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($base, $sqlxx, $conexion);
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {  $idxx=$rowxx["id_emp"];  $id_emp=$rowxx["id_emp"];  }
 
 //**********************
@@ -81,7 +81,7 @@ $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo 
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -93,7 +93,7 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 $sqlxx3 = "select * from fecha_ini_op";
 $resultadoxx3 = mysql_db_query($database, $sqlxx3, $connectionxx);
 
-while($rowxx3 = mysql_fetch_array($resultadoxx3)) 
+while($rowxx3 = $resultadoxx3->fetch_assoc()) 
    {
    $desde=$rowxx3["fecha_ini_op"];
    }  
@@ -101,7 +101,7 @@ while($rowxx3 = mysql_fetch_array($resultadoxx3))
 $sql4 = "select * from empresa";
 $res4 = mysql_db_query($database, $sql4, $connectionxx);
 
-while($row4 = mysql_fetch_array($res4)) 
+while($row4 = $res4->fetch_assoc()) 
    {
    $empresa=$row4["raz_soc"];
    }  
@@ -125,9 +125,9 @@ mysql_select_db ($base, $connectionxx);
 //***	conta_cesp
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from conta_cesp where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 
 		for($i=1;$i<51;$i++)
@@ -140,7 +140,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -170,8 +170,8 @@ while($rw = mysql_fetch_array($re))
 //***	cartera_cont
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cartera_cont where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 
 		for($i=1;$i<51;$i++)
@@ -184,7 +184,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -202,7 +202,7 @@ while($rw = mysql_fetch_array($re))
 						$id_cons =$rw['id']."_".$i;
 						$sql52 ="select * from reip_ing where consecutivo ='$id_reip'";
 						$rr23 = mysql_db_query($database, $sql52, $connectionxx);
-						$rrw23 = mysql_fetch_array($rr23);
+						$rrw23 = $rr23->fetch_assoc();
 						$detalle=$rrw23["des"];
 						$sql_ok = "INSERT INTO lib_aux 
 						(fecha,dcto,cuenta,nombre,detalle,tercero,debito,credito,id_auto,id_cons) 
@@ -213,11 +213,11 @@ while($rw = mysql_fetch_array($re))
  		  }//fin for
 }//fin while	
 //***	cecp
-mysql_db_query($database, $sql, $cx);
+$cx->query($sql);
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cecp where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 
 		for($i=1;$i<16;$i++)
@@ -230,7 +230,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -258,8 +258,8 @@ while($rw = mysql_fetch_array($re))
 //***	ceva
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from ceva where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 
 		for($i=1;$i<16;$i++)
@@ -272,13 +272,13 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
 					$ss3 = "select * from cobp where id_auto_cobp = '$rw[id_auto_cobp]'";
 					$rr3 = mysql_db_query($database, $ss3, $connectionxx);
-					while($rrw3 = mysql_fetch_array($rr3)) 
+					while($rrw3 = $rr3->fetch_assoc()) 
 					{
 					  $cod_pptal=$rrw3["cuenta"];
 					}
@@ -307,8 +307,8 @@ while($rw = mysql_fetch_array($re))
 /*
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from conta_ncon where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 
 		for($i=1;$i<51;$i++)
@@ -321,7 +321,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -349,8 +349,8 @@ while($rw = mysql_fetch_array($re))
 //***	conta_ncsp
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from conta_ncsp where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 
 		for($i=1;$i<16;$i++)
@@ -363,7 +363,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -390,8 +390,8 @@ while($rw = mysql_fetch_array($re))
 //***	conta_ndsp
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from conta_ndsp where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 
 		for($i=1;$i<16;$i++)
@@ -404,7 +404,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -432,9 +432,9 @@ while($rw = mysql_fetch_array($re))
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 //$sq = "select * from conta_tfin where id_emp = '$id_emp'";
 $sq = "select distinct(id_manu_ncon),fecha_ncon,des_ncon,tercero,pgcp1,pgcp2,pgcp3,pgcp4,pgcp5,pgcp6,pgcp7,pgcp8,pgcp9,pgcp10,pgcp11,pgcp12,pgcp13,pgcp14,pgcp15,vr_deb_1,vr_deb_2,vr_deb_3,vr_deb_4,vr_deb_5,vr_deb_6,vr_deb_7,vr_deb_8,vr_deb_9,vr_deb_10,vr_deb_11,vr_deb_12,vr_deb_13,vr_deb_14,vr_deb_15,vr_cre_1,vr_cre_2,vr_cre_3,vr_cre_4,vr_cre_5,vr_cre_6,vr_cre_7,vr_cre_8,vr_cre_9,vr_cre_10,vr_cre_11,vr_cre_12,vr_cre_13,vr_cre_14,vr_cre_15,id,id_auto_ncon from conta_tfin where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 
 		for($i=1;$i<16;$i++)
@@ -447,7 +447,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -473,8 +473,8 @@ while($rw = mysql_fetch_array($re))
 //***	conta_coba
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from conta_coba where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 
 		for($i=1;$i<51;$i++)
@@ -487,7 +487,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -517,8 +517,8 @@ while($rw = mysql_fetch_array($re))
 
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from obcg where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 
 		for($i=1;$i<51;$i++)
@@ -531,7 +531,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -559,8 +559,8 @@ while($rw = mysql_fetch_array($re))
 //***	recaudo_ncbt
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from recaudo_ncbt where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 
 		for($i=1;$i<16;$i++)
@@ -573,7 +573,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -602,8 +602,8 @@ while($rw = mysql_fetch_array($re))
 /*
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from recaudo_rcgt where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 		for($i=1;$i<161;$i++)
 			{
@@ -615,7 +615,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -644,8 +644,8 @@ while($rw = mysql_fetch_array($re))
 //***	recaudo_riip
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from lib_aux2";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 				if($rw["cuenta"] == '' and $rw["debito"] == 0.00 and $rw["credito"] == 0.00 )
 				 {
@@ -655,7 +655,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["cuenta"];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -691,8 +691,8 @@ while($rw = mysql_fetch_array($re))
 //***	recaudo_riur
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from recaudo_riur where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 		for($i=1;$i<161;$i++)
 			{
@@ -704,7 +704,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -733,8 +733,8 @@ while($rw = mysql_fetch_array($re))
 /*
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from recaudo_rtic where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 		for($i=1;$i<161;$i++)
 			{
@@ -746,7 +746,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -773,8 +773,8 @@ while($rw = mysql_fetch_array($re))
 //***	recaudo_rica
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from recaudo_rica where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 		for($i=1;$i<161;$i++)
 			{
@@ -786,7 +786,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -813,8 +813,8 @@ while($rw = mysql_fetch_array($re))
 //***	recaudo_rica
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from recaudo_rica1 where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 		for($i=1;$i<161;$i++)
 			{
@@ -826,7 +826,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -853,8 +853,8 @@ while($rw = mysql_fetch_array($re))
 //***	recaudo_rica
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from recaudo_rica2 where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 		for($i=1;$i<161;$i++)
 			{
@@ -866,7 +866,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -895,8 +895,8 @@ while($rw = mysql_fetch_array($re))
 
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select distinct(id_manu_roit),fecha_recaudo,des_recaudo,tercero,pgcp1,pgcp2,pgcp3,pgcp4,pgcp5,pgcp6,pgcp7,pgcp8,pgcp9,pgcp10,pgcp11,pgcp12,pgcp13,pgcp14,pgcp15,vr_deb_1,vr_deb_2,vr_deb_3,vr_deb_4,vr_deb_5,vr_deb_6,vr_deb_7,vr_deb_8,vr_deb_9,vr_deb_10,vr_deb_11,vr_deb_12,vr_deb_13,vr_deb_14,vr_deb_15,vr_cre_1,vr_cre_2,vr_cre_3,vr_cre_4,vr_cre_5,vr_cre_6,vr_cre_7,vr_cre_8,vr_cre_9,vr_cre_10,vr_cre_11,vr_cre_12,vr_cre_13,vr_cre_14,vr_cre_15 from recaudo_roit where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 		for($i=1;$i<16;$i++)
 			{
@@ -908,7 +908,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -934,8 +934,8 @@ while($rw = mysql_fetch_array($re))
 //***	recaudo_tnat
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from recaudo_tnat where id_emp = '$id_emp'";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 		for($i=1;$i<16;$i++)
 			{
@@ -947,7 +947,7 @@ while($rw = mysql_fetch_array($re))
 					$cod=$rw["pgcp".$i];
 					$ss2 = "select * from pgcp where id_emp = '$id_emp' and cod_pptal = '$cod'";
 					$rr2 = mysql_db_query($database, $ss2, $connectionxx);
-					while($rrw2 = mysql_fetch_array($rr2)) 
+					while($rrw2 = $rr2->fetch_assoc()) 
 					{
 					  $nom_rubro2=$rrw2["nom_rubro"];
 					}
@@ -991,6 +991,6 @@ while($rw = mysql_fetch_array($re))
 </table>
 </body>
 </html>
-<?
+<?php
 }
 ?>

@@ -1,7 +1,7 @@
-<?
+<?php
 set_time_limit(1200);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -34,13 +34,13 @@ header("Expires: 0");
 </head>
 
 <body>
-<?
+<?php
 include('../config.php');				
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
 $resultadoxx = mysql_db_query($database, $sqlxx, $cx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -52,14 +52,14 @@ while($rowxx = mysql_fetch_array($resultadoxx))
 $sqlxx3 = "select * from fecha_ini_op";
 $resultadoxx3 = mysql_db_query($database, $sqlxx3, $cx);
 
-while($rowxx3 = mysql_fetch_array($resultadoxx3)) 
+while($rowxx3 = $resultadoxx3->fetch_assoc()) 
    {
    $desde=$rowxx3["fecha_ini_op"];
    }    
 ?>	
 	<form name="a" method="post" action="retefuente.php">
 </form>	
-	<?
+	<?php
 	$fecha_ini=$_POST['fecha_ini'];
 	$fecha_fin=$_POST['fecha_fin'];
 	$cuenta = $_POST['cuenta'];	
@@ -82,12 +82,12 @@ printf("
 // inicio consulta
 	$sq = "select * from lib_aux where cuenta = '$cuenta' and credito > 0 and (fecha between '$fecha_ini' and '$fecha_fin' )";
 	echo $sq;
-	$re = mysql_db_query($database, $sq, $cx);
-	while($rw = mysql_fetch_array($re)) 
+	$re = $cx->query($sq);
+	while($rw = $re->fetch_assoc()) 
 	{
 		$sq3 ="select cuenta from lib_aux where dcto ='$rw[dcto]' and cuenta like '1110%'";
-		$re3 = mysql_db_query($database, $sq3, $cx);
-		$rw3 = mysql_fetch_array($re3);
+		$re3 = $cx->query($sq3);
+		$rw3 = $re3->fetch_assoc();
 	echo "
 		<tr>
 			<td align='center'>$rw[fecha]</td>
@@ -118,6 +118,6 @@ printf("</table></center>");
 
 
 
-<?
+<?php
 }
 ?>

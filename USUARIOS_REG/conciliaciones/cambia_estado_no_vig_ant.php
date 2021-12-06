@@ -11,7 +11,7 @@ $sql = "
 update aux_conciliaciones_vig_ant set estado='NO',flag1='0',flag2='0',fecha_marca=''
 where 
 dcto ='$dcto' and cuenta ='$cuenta'";
-$resultado = mysql_db_query($database, $sql, $cx);
+$resultado = $cx->query($sql);
 	echo $sql;	
 ?>
 

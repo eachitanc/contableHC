@@ -9,13 +9,13 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 	if ($rubro !='')
 	{
 		$sql = "select * from cxp where cod_pptal ='$rubro'";
-		$res = mysql_db_query($database, $sql, $cx);
-		$row = mysql_fetch_array($res);
+		$res = $cx->query($sql);
+		$row = $res->fetch_assoc();
 		$aprobado = $row["ppto_aprob"];
 		// Consulto la tabla de pagos por sumar el valor total pagado del  rubro
 		$sql2 = "select sum(valor) as pagado from cecp_cuenta where cuenta ='$rubro'";
-		$res2 = mysql_db_query($database, $sql2, $cx);
-		$row2 = mysql_fetch_array($res2); 
+		$res2 = $cx->query($sql2);
+		$row2 = $res2->fetch_assoc(); 
 		$pagado =$row2["pagado"];
 		$saldo = ($aprobado - $pagado) + $valor_actual;
 		$saldo_mod = $saldo + $valor_actual;

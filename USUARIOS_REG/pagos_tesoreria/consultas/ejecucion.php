@@ -30,13 +30,13 @@ if ($cod2[$i] !='')
   {	
 	// Obtengo el nombre del rubro y el valor inicial constituido como cuenta por pagar
 	$sql = "select * from cxp where cod_pptal ='$cod2[$i]'";
-	$res = mysql_db_query($database, $sql, $cx);
-	$row = mysql_fetch_array($res);
+	$res = $cx->query($sql);
+	$row = $res->fetch_assoc();
 	$aprobado = number_format($row["ppto_aprob"],2,',','.');
 	// Consulto la tabla de pagos por sumar el valor total pagado del cada rubro
 	$sql2 = "select sum(valor) as pagado from cecp_cuenta where cuenta ='$cod2[$i]'";
-	$res2 = mysql_db_query($database, $sql2, $cx);
-	$row2 = mysql_fetch_array($res2); 
+	$res2 = $cx->query($sql2);
+	$row2 = $res2->fetch_assoc(); 
 	$pagado =number_format($row2["pagado"],2,',','.');
 	$saldo = number_format(($row["ppto_aprob"] - $row2["pagado"]),2,',','.');
 	print ("

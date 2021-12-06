@@ -1,7 +1,7 @@
-<?
+<?php
 set_time_limit(1800);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -35,7 +35,7 @@ header("Expires: 0");
 <body>
 <div align="center" class="Estilo4">
 <div style='padding-left:10px; padding-top:10px; padding-right:10px; padding-bottom:10px;'>
- <?
+ <?php
 $fecha_ini=$_POST['fecha_ini'];
 $fecha_fin=$_POST['fecha_fin'];
 include('../config.php');

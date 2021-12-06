@@ -105,9 +105,9 @@ include('../config.php');
 
 $cxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sxx = "select * from fecha";
-$rxx = mysql_db_query($database, $sxx, $cxx);
+$rxx = $cxx->query($sxx);
 
-while($rowxxx = mysql_fetch_array($rxx)) 
+while($rowxxx = $rxx->fetch_assoc()) 
    {
    
    $idxxx=$rowxxx["id_emp"];
@@ -118,9 +118,9 @@ while($rowxxx = mysql_fetch_array($rxx))
    
 
 $sxxq = "select * from fecha_ini_op";
-$rxxq = mysql_db_query($database, $sxxq, $cxx);
+$rxxq = $cxx->query($sxxq);
 
-while($rowxxxq = mysql_fetch_array($rxxq)) 
+while($rowxxxq = $rxxq->fetch_assoc()) 
    {
    
    $fecha_ini_op=$rowxxxq["fecha_ini_op"];
@@ -131,7 +131,7 @@ while($rowxxxq = mysql_fetch_array($rxxq))
 			
 $cx2 = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq2 = "select * from empresa where cod_emp = '$idxxx'";
-$re2 = mysql_db_query($database, $sq2, $cx2);
+$re2 = $cx2->query($sq2);
 
 while($row2 = $re2->fetch_assoc()) 
    {

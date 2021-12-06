@@ -23,7 +23,7 @@ if($_SESSION["rol"] == 'USUARIO')
 include('config.php');	
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlx = "select * from usuarios where login = '$hencor'";
-$resultx = mysql_db_query($database, $sqlx, $cx);
+$resultx = $cx->query($sqlx);
 while($rowx = mysql_fetch_array($resultx))
 {
 $link= $rowx["tipo_doc"];

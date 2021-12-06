@@ -231,78 +231,78 @@ while($rowx = mysql_fetch_array($consultax))
 // tipo de dato de los pgcp
 // consulta tipo_dato de pgcp
 $sqla = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp1'";
-$resultadoa = mysql_db_query($database, $sqla, $connectionxx);
-while($rowa = mysql_fetch_array($resultadoa)) 
+$resultadoa = $connectionxx->query($sqla);
+while($rowa = $resultadoa->fetch_assoc()) 
 {  $tipa=$rowa["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlb = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp2'";
-$resultadob = mysql_db_query($database, $sqlb, $connectionxx);
-while($rowb = mysql_fetch_array($resultadob)) 
+$resultadob = $connectionxx->query($sqlb);
+while($rowb = $resultadob->fetch_assoc()) 
 {  $tipb=$rowb["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlc = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp3'";
-$resultadoc = mysql_db_query($database, $sqlc, $connectionxx);
-while($rowc = mysql_fetch_array($resultadoc)) 
+$resultadoc = $connectionxx->query($sqlc);;
+while($rowc = $resultadoc->fetch_assoc()) 
 {  $tipc=$rowc["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqld = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp4'";
-$resultadod = mysql_db_query($database, $sqld, $connectionxx);
-while($rowd = mysql_fetch_array($resultadod)) 
+$resultadod = $connectionxx->query($sqld);
+while($rowd = $resultadod->fetch_assoc()) 
 {  $tipd=$rowd["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqle = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp5'";
 $resultadoe = $connectionxx->query($sqle);
-while($rowe = mysql_fetch_array($resultadoe)) 
+while($rowe = $resultadoe->fetch_assoc()) 
 {  $tipe=$rowe["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlf = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp6'";
-$resultadof = mysql_db_query($database, $sqlf, $connectionxx);
-while($rowf = mysql_fetch_array($resultadof)) 
+$resultadof = $connectionxx->query($sqlf);
+while($rowf = $resultadof->fetch_assoc()) 
 {  $tipf=$rowf["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlg = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp7'";
-$resultadog = mysql_db_query($database, $sqlg, $connectionxx);
-while($rowg = mysql_fetch_array($resultadog)) 
+$resultadog = $connectionxx->query($sqlg);
+while($rowg = $resultadog->fetch_assoc()) 
 {  $tipg=$rowg["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlh = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp8'";
-$resultadoh = mysql_db_query($database, $sqlh, $connectionxx);
-while($rowh = mysql_fetch_array($resultadoh)) 
+$resultadoh = $connectionxx->query($sqlh);
+while($rowh = $resultadoh->fetch_assoc()) 
 {  $tiph=$rowh["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqli = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp9'";
-$resultadoi = mysql_db_query($database, $sqli, $connectionxx);
-while($rowi = mysql_fetch_array($resultadoi)) 
+$resultadoi = $connectionxx->query($sqli);
+while($rowi = $resultadoi->fetch_assoc()) 
 {  $tipi=$rowi["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlj = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp10'";
-$resultadoj = mysql_db_query($database, $sqlj, $connectionxx);
-while($rowj = mysql_fetch_array($resultadoj)) 
+$resultadoj = $connectionxx->query($sqlj);
+while($rowj = $resultadoj->fetch_assoc()) 
 {  $tipj=$rowj["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlk = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp11'";
-$resultadok = mysql_db_query($database, $sqlk, $connectionxx);
-while($rowk = mysql_fetch_array($resultadok)) 
+$resultadok = $connectionxx->query($sqlk);
+while($rowk = $resultadok->fetch_assoc()) 
 {  $tipk=$rowk["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqll = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp12'";
-$resultadol = mysql_db_query($database, $sqll, $connectionxx);
-while($rowl = mysql_fetch_array($resultadol)) 
+$resultadol = $connectionxx->query($sqll);
+while($rowl = $resultadol->fetch_assoc()) 
 {  $tipl=$rowl["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlm = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp13'";
-$resultadom = mysql_db_query($database, $sqlm, $connectionxx);
-while($rowm = mysql_fetch_array($resultadom)) 
+$resultadom = $connectionxx->query($sqlm);
+while($rowm = $resultadom->fetch_assoc()) 
 {  $tipm=$rowm["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqln = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp14'";
-$resultadon = mysql_db_query($database, $sqln, $connectionxx);
-while($rown = mysql_fetch_array($resultadon)) 
+$resultadon = $connectionxx->query($sqln);
+while($rown = $resultadon->fetch_assoc()) 
 {  $tipn=$rown["tip_dato"]; }
 // consulta tipo_dato de pgcp
 $sqlo = "select * from pgcp where id_emp ='$id_emp' and cod_pptal ='$pgcp15'";
-$resultadoo = mysql_db_query($database, $sqlo, $connectionxx);
-while($rowo = mysql_fetch_array($resultadoo)) 
+$resultadoo = $connectionxx->query($sqlo);
+while($rowo = $resultadoo->fetch_assoc()) 
 {  $tipo=$rowo["tip_dato"]; }
 
 if($fecha_ceva == '' or $id_manu_ceva == 'CEVA' or $des_ceva == '' or $forma_pago == '' or $tot_deb == 0 or $tot_cre == 0 or $fecha_ceva > $bx or $fecha_ceva < $ax or ($tipa =='M')or($tipb =='M')or($tipc =='M')or($tipd =='M')or($tipe =='M')or($tipf =='M')or($tipg =='M')or($tiph =='M')or($tipi =='M')or($tipj =='M')or($tipk =='M')or($tipl =='M')or($tipm =='M')or($tipn =='M')or($tipo =='M') or $tot_deb_a != $tot_cre_a )

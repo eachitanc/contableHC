@@ -1,6 +1,6 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -91,7 +91,7 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
   
   <tr>
     <td colspan="3">
-<?
+<?php
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
@@ -183,6 +183,6 @@ while($rowxx3 = mysql_fetch_array($resultadoxx3))
 
 
 
-<?
+<?php
 }
 ?>

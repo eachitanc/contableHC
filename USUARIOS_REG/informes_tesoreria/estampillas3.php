@@ -1,123 +1,115 @@
-<?
+<?php
 set_time_limit(1200);
 session_start();
-if(!session_is_registered("login"))
-{
-header("Location: ../login.php");
-exit;
+if (!isset($_SESSION["login"])) {
+	header("Location: ../login.php");
+	exit;
 } else {
 
-header("Content-type: application/vnd.ms-excel");
-header("Content-Disposition: attachment; filename=RELACION_DE_ESTAMPILLAS.xls");
-header("Pragma: no-cache");
-header("Expires: 0");
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=RELACION_DE_ESTAMPILLAS.xls");
+	header("Pragma: no-cache");
+	header("Expires: 0");
 
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>CONTAFACIL</title>
-<style>
-.text
-  {
- mso-number-format:"\@"
-  }
-.date
-	{
-	mso-number-format:"yyyy\/mm\/dd"	
-	}
-.numero
-	{
-	mso-number-format:"0"	
-	}
-</style>
-</head>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml">
 
-<body>
-<?
-include('../config.php');				
-$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-$sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>CONTAFACIL</title>
+		<style>
+			.text {
+				mso-number-format: "\@"
+			}
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
-   {
-   
-   $idxx=$rowxx["id_emp"];
-   $id_emp=$rowxx["id_emp"];
-   $ano=$rowxx["ano"];
- 
-   }
-   
-$sqlxx3 = "select * from fecha_ini_op";
-$resultadoxx3 = mysql_db_query($database, $sqlxx3, $connectionxx);
+			.date {
+				mso-number-format: "yyyy\/mm\/dd"
+			}
 
-while($rowxx3 = mysql_fetch_array($resultadoxx3)) 
-   {
-   $desde=$rowxx3["fecha_ini_op"];
-   }    
-?>	
-	<form name="a" method="post" action="retefuente.php">
-</form>	
-	<?
-	$fecha_ini=$_POST['fecha_ini'];
-	$fecha_fin=$_POST['fecha_fin'];	
-	$cuenta=$_POST['cuenta'];
-	$cuenta2 = split(",",$cuenta);
-	if($cuenta2[1] == '') 
-	{
-		$sq = "select * from lib_aux where (fecha between '$fecha_ini' and '$fecha_fin' ) and cuenta = '$cuenta2[0]' and credito > 0 order by fecha asc ";
-	}else{
-		$sq = "select * from lib_aux where (fecha between '$fecha_ini' and '$fecha_fin' ) and (cuenta = '$cuenta2[0]' or cuenta = '$cuenta2[1]')  and credito > 0 order by fecha asc ";
+			.numero {
+				mso-number-format: "0"
+			}
+		</style>
+	</head>
+
+	<body>
+		<?php
+		include('../config.php');
+		$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
+		$sqlxx = "select * from fecha";
+		$resultadoxx = $connectionxx->query($sqlxx);
+
+		while ($rowxx = $resultadoxx->fetch_assoc()) {
+
+			$idxx = $rowxx["id_emp"];
+			$id_emp = $rowxx["id_emp"];
+			$ano = $rowxx["ano"];
 		}
-//-------
-$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
-mysql_db_query($database,"TRUNCATE TABLE estamp_det",$cx);
 
-$sq4 ="select nombre from desc_list where cuenta = '$cuenta'";
-$re4 = mysql_db_query($database, $sq4, $cx);
-$rw4 = mysql_fetch_array($re4);
-$nombre = strtoupper($rw4['nombre']);
-$cuenta3 = $cuenta2[0].$cuenta2[1];
-// inicio consulta
-	//$sq = "select * from lib_aux where (fecha between '$fecha_ini' and '$fecha_fin' ) and cuenta = '$cuenta' and credito > 0 order by fecha asc ";
-	// Cambiar consulta
-	$re = mysql_db_query($database, $sq, $cx);
-	while($rw = mysql_fetch_array($re)) 
-	{
-		$sq6="select sum(credito) as total from lib_aux where (cuenta like '1110%' or cuenta like '1105%' or cuenta like '1908%') and id_auto ='$rw[id_auto]' group by id_auto";
-		$re6 = mysql_db_query($database, $sq6, $cx);
-		$rw6 = mysql_fetch_array($re6);
-		$sq2 = "select cuenta,credito from lib_aux where (cuenta like '1110%' or cuenta like '1105%' or cuenta like '1908%') and id_auto ='$rw[id_auto]'";
-		$re2 = mysql_db_query($database, $sq2, $cx);
-		while ($rw2 =  mysql_fetch_array($re2))
-		{
-		if ($rw2['cuenta'] == '110501')
-		{
-			$valor = $rw['credito'];
-		}else{
-			if($rw6['total'] ==0) echo "<br> doc " . $rw[dcto] . " --->" .$rw['credito']." --->".$rw[id_auto] ;
-		$por = $rw2['credito'] / $rw6['total'];
-		$valor = $rw['credito'] * $por;	
+		$sqlxx3 = "select * from fecha_ini_op";
+		$resultadoxx3 = $connectionxx->query($sqlxx3);
+
+		while ($rowxx3 = $resultadoxx3->fetch_assoc()) {
+			$desde = $rowxx3["fecha_ini_op"];
 		}
-		
-		
-	$sq5 = "INSERT INTO estamp_det (tipo,fecha, dcto, tercero, ccnit, detalle, credito, cta_bco ) values ('$rw[cuenta]','$rw[fecha]','$rw[dcto]','$rw[tercero]','$rw[ccnit]','$rw[detalle]','$valor','$rw2[cuenta]')";
-	$res5 = mysql_db_query($database, $sq5, $cx);
-		$valor =0;
-		$por=0;
+		?>
+		<form name="a" method="post" action="retefuente.php">
+		</form>
+		<?php
+		$fecha_ini = $_POST['fecha_ini'];
+		$fecha_fin = $_POST['fecha_fin'];
+		$cuenta = $_POST['cuenta'];
+		$cuenta2 = explode(",", $cuenta);
+		if (!isset($cuenta2[1])) {
+			$sq = "select * from lib_aux where (fecha between '$fecha_ini' and '$fecha_fin' ) and cuenta = '$cuenta2[0]' and credito > 0 order by fecha asc ";
+		} else {
+			$sq = "select * from lib_aux where (fecha between '$fecha_ini' and '$fecha_fin' ) and (cuenta = '$cuenta2[0]' or cuenta = '$cuenta2[1]')  and credito > 0 order by fecha asc ";
 		}
-		
-		}// Fin for
-// CONSULTA PARA MOSTRAR RESULTADOS
-$sq7 ="select distinct ccnit as ccnits from estamp_det order by ccnit asc";
-$re7 = mysql_db_query($database, $sq7, $cx);
-$fi7 = mysql_num_rows($re7);
-$suma=0;
-echo "<br>";
-printf("
+		//-------
+		$cx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
+		$cx->query("TRUNCATE TABLE estamp_det") or die(mysqli_error($cx));
+
+		$sq4 = "select nombre from desc_list where cuenta = '$cuenta'";
+		$re4 = $cx->query($sq4);
+		$rw4 = $re4->fetch_assoc();
+		$nombre = strtoupper($rw4['nombre']);
+		$cta = isset($cuenta2[1]) ? $cuenta2[1] : '';
+		$cuenta3 = $cuenta2[0] . $cta;
+		// inicio consulta
+		//$sq = "select * from lib_aux where (fecha between '$fecha_ini' and '$fecha_fin' ) and cuenta = '$cuenta' and credito > 0 order by fecha asc ";
+		// Cambiar consulta
+		$re = $cx->query($sq) or die(mysqli_error($cx));
+		while ($rw = $re->fetch_assoc()) {
+			$sq6 = "select sum(credito) as total from lib_aux where (cuenta like '1110%' or cuenta like '1105%' or cuenta like '1908%') and id_auto ='$rw[id_auto]' group by id_auto";
+			$re6 = $cx->query($sq6);
+			$rw6 = $re6->fetch_assoc();
+			$sq2 = "select cuenta,credito from lib_aux where (cuenta like '1110%' or cuenta like '1105%' or cuenta like '1908%') and id_auto ='$rw[id_auto]'";
+			$re2 = $cx->query($sq2);
+			while ($rw2 =  $re2->fetch_assoc()) {
+				if ($rw2['cuenta'] == '110501') {
+					$valor = $rw['credito'];
+				} else {
+					if ($rw6['total'] == 0) echo "<br> doc " . $rw['dcto'] . " --->" . $rw['credito'] . " --->" . $rw['id_auto'];
+					$por = $rw2['credito'] / $rw6['total'];
+					$valor = $rw['credito'] * $por;
+				}
+
+
+				$sq5 = "INSERT INTO estamp_det (tipo,fecha, dcto, tercero, ccnit, detalle, credito, cta_bco ) values ('$rw[cuenta]','$rw[fecha]','$rw[dcto]','$rw[tercero]','$rw[ccnit]','$rw[detalle]','$valor','$rw2[cuenta]')";
+				$res5 = $cx->query($sq5);
+				$valor = 0;
+				$por = 0;
+			}
+		} // Fin for
+		// CONSULTA PARA MOSTRAR RESULTADOS
+		$sq7 = "select distinct ccnit as ccnits from estamp_det order by ccnit asc";
+		$re7 = $cx->query($sq7);
+		$fi7 = $re7->num_rows;
+		$suma = 0;
+		echo "<br>";
+		printf("
 		<center>
 		<table width='2400' BORDER='0' class='bordepunteado1'>
 		<tr>
@@ -131,18 +123,17 @@ printf("
 		</tr>
         </table></center><br><br>
 		");
-while ($rw7 =  mysql_fetch_array($re7))
-{
-	$sq8 ="select tercero from estamp_det where ccnit ='$rw7[ccnits]'";
-	$re8 = mysql_db_query($database, $sq8, $cx);
-	$rw8 =  mysql_fetch_array($re8); 
-	
-	echo "
+		while ($rw7 =  $re7->fetch_assoc()) {
+			$sq8 = "select tercero from estamp_det where ccnit ='$rw7[ccnits]'";
+			$re8 = $cx->query($sq8);
+			$rw8 =  $re8->fetch_assoc();
+
+			echo "
 		<tr>
 			<td align='left' colspan='5'><b>$rw8[tercero] - CC/NIT $rw7[ccnits]</b></td>
 		</tr>
 	";
-	printf("
+			printf("
 		<center>
 		<table width='2400' BORDER='1' class='bordepunteado1'>
 		<tr>
@@ -153,17 +144,16 @@ while ($rw7 =  mysql_fetch_array($re7))
 		<td bgcolor='#DCE9E5' align='center' width='100'>Cta</td>
 		</tr>
 		");
-	$sq3 ="select * from estamp_det where ccnit ='$rw7[ccnits]' order by tipo asc";
- 	$re3 = mysql_db_query($database, $sq3, $cx);
-	while ($rw3 =  mysql_fetch_array($re3))
-	{
-	$tipo ='';
-	if ($rw3['tipo'] =='29109001') $tipo ='PROCULTURA';
-	if ($rw3['tipo'] =='29059008') $tipo ='ADULTO MAYOR';
-	if ($rw3['tipo'] =='29059006') $tipo ='UDENAR';
-	if ($rw3['tipo'] =='291013') $tipo ='CONTRIBUCIONES';
-	if ($rw3['tipo'] =='29109002') $tipo ='PUBLICACIONES';
-	echo "
+			$sq3 = "select * from estamp_det where ccnit ='$rw7[ccnits]' order by tipo asc";
+			$re3 = $cx->query($sq3);
+			while ($rw3 =  $re3->fetch_assoc()) {
+				$tipo = '';
+				if ($rw3['tipo'] == '29109001') $tipo = 'PROCULTURA';
+				if ($rw3['tipo'] == '29059008') $tipo = 'ADULTO MAYOR';
+				if ($rw3['tipo'] == '29059006') $tipo = 'UDENAR';
+				if ($rw3['tipo'] == '291013') $tipo = 'CONTRIBUCIONES';
+				if ($rw3['tipo'] == '29109002') $tipo = 'PUBLICACIONES';
+				echo "
 		<tr>
 			<td align='center'>$rw3[fecha]</td>
 			<td align='center'>$rw3[dcto]</td>
@@ -172,22 +162,22 @@ while ($rw7 =  mysql_fetch_array($re7))
 			<td align='center'>$rw3[cta_bco]</td>
 	</tr>
 	";
-	$suma = $suma + $rw3['credito'];
-	}
-	
-	echo "
+				$suma = $suma + $rw3['credito'];
+			}
+
+			echo "
 		<tr>
 			<td bgcolor='#F7F7F7' align='left' colspan='3'><b>TOTAL</b></td>
 			<td bgcolor='#F7F7F7' align='right'><b>$suma<b></td>
 			<td bgcolor='#F7F7F7' align='right'>&nbsp;</td>
 		</tr>
 	";
-printf("</table></center><br><br>");
-$total = $total + $suma;
-$suma=0;
-}
-//--------	
-	printf("
+			printf("</table></center><br><br>");
+			$total = $total + $suma;
+			$suma = 0;
+		}
+		//--------	
+		printf("
 		<center>
 		<table width='2400' BORDER='0' class='bordepunteado1'>
 		<tr>
@@ -198,15 +188,16 @@ $suma=0;
         </table></center><br><br>
 		");
 
-?>	
-</body>
-</html>
+		?>
+	</body>
+
+	</html>
 
 
 
 
 
 
-<?
+<?php
 }
 ?>

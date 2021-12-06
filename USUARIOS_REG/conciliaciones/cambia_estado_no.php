@@ -13,6 +13,6 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 $sql = "
 update aux_conciliaciones set estado='NO',flag1='0',flag2='0',fecha_marca=''
 where consecutivo = '$consec' and cuenta ='$cuenta' and dcto ='$dcto'";
-$resultado = mysql_db_query($database, $sql, $cx);
+$resultado = $cx->query($sql);
 
 ?>

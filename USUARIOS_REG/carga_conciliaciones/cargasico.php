@@ -1,4 +1,4 @@
-<?
+<?php
 include('../config.php');
 $base=$database;
 $conexion=mysql_connect ($server, $dbuser, $dbpass);

@@ -8,7 +8,7 @@ exit;
 } else {
 // verifico permisos del usuario
 		include('../config.php');
-		$cx = mysql_connect("$server","$dbuser","$dbpass")or die ("Conexion no Exitosa");
+		$cx = new mysqli($server, $dbuser, $dbpass, $database)or die ("Conexion no Exitosa");
 		 
        	$sql="SELECT ppto FROM usuarios2 where login = '$_SESSION[login]'";
 		$res=mysql_query($sql,$cx);

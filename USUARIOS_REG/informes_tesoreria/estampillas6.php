@@ -1,7 +1,7 @@
-<?
+<?php
 set_time_limit(1200);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -36,13 +36,13 @@ header("Expires: 0");
 </head>
 
 <body>
-<?
+<?php
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -52,16 +52,16 @@ while($rowxx = mysql_fetch_array($resultadoxx))
    }
    
 $sqlxx3 = "select * from fecha_ini_op";
-$resultadoxx3 = mysql_db_query($database, $sqlxx3, $connectionxx);
+$resultadoxx3 = $connectionxx->query($sqlxx3);
 
-while($rowxx3 = mysql_fetch_array($resultadoxx3)) 
+while($rowxx3 = $resultadoxx3->fetch_assoc()) 
    {
    $desde=$rowxx3["fecha_ini_op"];
    }    
 ?>	
 	<form name="a" method="post" action="retefuente.php">
 </form>	
-	<?
+	<?php
 	$fecha_ini=$_POST['fecha_ini'];
 	$fecha_fin=$_POST['fecha_fin'];	
 	$cuenta=$_POST['cuenta'];
@@ -77,29 +77,29 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 mysql_db_query($database,"TRUNCATE TABLE estamp_det",$cx);
 
 $sq4 ="select nombre from desc_list where cuenta = '$cuenta'";
-$re4 = mysql_db_query($database, $sq4, $cx);
-$rw4 = mysql_fetch_array($re4);
+$re4 = $cx->query($sq4);
+$rw4 = $re4->fetch_assoc();
 $nombre = strtoupper($rw4['nombre']);
 $cuenta3 = $cuenta2[0].$cuenta2[1];
 // inicio consulta
 	//$sq = "select * from lib_aux where (fecha between '$fecha_ini' and '$fecha_fin' ) and cuenta = '$cuenta' and credito > 0 order by fecha asc ";
 	// Cambiar consulta
-	$re = mysql_db_query($database, $sq, $cx);
-	while($rw = mysql_fetch_array($re)) 
+	$re = $cx->query($sq);
+	while($rw = $re->fetch_assoc()) 
 	{
 		$sq2 = "select cuenta from lib_aux where (cuenta like '1110%' or cuenta like '190101%') and id_auto ='$rw[id_auto]'";
-		$re2 = mysql_db_query($database, $sq2, $cx);
-		$rw2 =  mysql_fetch_array($re2); 
+		$re2 = $cx->query($sq2);
+		$rw2 =  $re2->fetch_assoc(); 
 	$sq5 = "INSERT INTO estamp_det (tipo,fecha, dcto, tercero, ccnit, detalle, credito, cta_bco ) values ('$rw[cuenta]','$rw[fecha]','$rw[dcto]','$rw[tercero]','$rw[ccnit]','$rw[detalle]','$rw[credito]','$rw2[cuenta]')";
-	$res5 = mysql_db_query($database, $sq5, $cx);
+	$res5 = $cx->query($sq5);
 	}// Fin for
 // CONSULTA PARA MOSTRAR RESULTADOS
 	$sq5 ="select raz_soc,nit,dv from empresa where cod_emp ='$idxx'";
-	$re5 = mysql_db_query($database, $sq5, $cx);
-	$rw5 = mysql_fetch_array($re5);
+	$re5 = $cx->query($sq5);
+	$rw5 = $re5->fetch_assoc();
 	$sq4 ="select cuenta,nombre from desc_list where cuenta ='$cuenta'";
-	$re4 = mysql_db_query($database, $sq4, $cx);
-	$rw4 = mysql_fetch_array($re4);
+	$re4 = $cx->query($sq4);
+	$rw4 = $re4->fetch_assoc();
 	$nombre = strtoupper($rw4['nombre']);
 echo("
 <center>
@@ -136,8 +136,8 @@ echo "
 	";
 	$sq ="select * from estamp_det order by fecha asc";
 	//$sq = "select * from lib_aux where cuenta = '$cuenta' and credito > 0 and (fecha between '$fecha_ini' and '$fecha_fin' )";
-	$re = mysql_db_query($database, $sq, $cx);
-	while($rw = mysql_fetch_array($re)) 
+	$re = $cx->query($sq);
+	while($rw = $re->fetch_assoc()) 
 	{
 	echo "
 		<tr>
@@ -167,6 +167,6 @@ printf("</table></center>");
 
 
 
-<?
+<?php
 }
 ?>

@@ -26,8 +26,8 @@ $cuenta='1110050903';
 */
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from aux_conciliaciones where fecha_fin ='$fecha_fin' and cuenta='$cuenta' ";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 	$saldo_extracto=$rw["saldo_extracto"];$nom_rubro=$rw['nom_rubro'];
 	/*$cons = split("_",$rw['consecutivo']);
@@ -135,9 +135,9 @@ printf("
 //****** consulta en tabla auxiliar SIN CONCILIAR vigencias ANTERIORES
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from aux_conciliaciones_vig_ant where cuenta ='$cuenta' and fecha <='$fecha_fin' $fecha_b order by fecha,debito asc";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 				
 				$ctrl1x=$rw["fecha"];
@@ -197,7 +197,7 @@ while($rw = mysql_fetch_array($re))
 
 <!--LISTA DE DCTOS SIN CONCILIAR MESES ANTERIORES-->
 
-<?
+<?php
 //*** encabezado del informe
 
 
@@ -218,9 +218,9 @@ or
 (fecha < '$fecha_mes_ant' and cuenta ='$cuenta' and flag1 = '1' and flag2 = '0' $fecha_b)
 
 order by fecha asc";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 
 $fecha_marca_ctrl=$rw["fecha_marca"];
@@ -314,9 +314,9 @@ $saldo_ext_eval=$rw["saldo_extracto"];
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 /*$sq = "select * from aux_conciliaciones where ((fecha between '$fecha_mes_ant' and '$fecha_fin' ) and cuenta ='$cuenta' and flag1 = '0' and flag2 = '0') or ((fecha between '$fecha_mes_ant' and '$fecha_fin' ) and cuenta ='$cuenta' and flag1 = '1' and flag2 = '0') order by fecha asc";*/
 $sq = "select  consecutivo,dcto, fecha,tercero,cheque,debito,credito,fecha_marca,estado,fecha_fin,cuenta from aux_conciliaciones where ((fecha between '$fecha_mes_ant' and '$fecha_fin' ) and cuenta ='$cuenta' and flag1 = '0' and flag2 = '0' $fecha_b ) or ((fecha between '$fecha_mes_ant' and '$fecha_fin' ) and cuenta ='$cuenta' and flag1 = '1' and flag2 = '0' $fecha_b)  order by fecha,debito asc";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 
 $fecha_marca_ctrl=$rw["fecha_marca"];
@@ -401,9 +401,9 @@ printf("
 //****** consulta en tabla auxiliar CONCILIADAS
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from aux_conciliaciones where ((fecha between '$fecha_mes_ant' and '$fecha_fin' ) and cuenta ='$cuenta' and flag1 = '1' and flag2 = '1' and fecha_marca ='$fecha_fin' $fecha_b) or (fecha_marca ='$fecha_fin' and cuenta ='$cuenta' and flag1 = '1' and flag2 = '0' $fecha_b)  order by fecha asc";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 
 		$comp1=$rw["fecha_fin"];
@@ -451,9 +451,9 @@ $credito =$credito + $rw["credito"];
 
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from aux_conciliaciones_vig_ant where cuenta ='$cuenta' and flag1='1' and flag2='0' and fecha_marca = '$fecha_fin' and fecha <='$fecha_fin' $fecha_b order by fecha asc";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 
 					  	printf("<tr bgcolor='#FFFF00'><span class='Estilo4'>");
@@ -485,7 +485,7 @@ echo"</tr>
 
 printf("</table></center><br>");
 ?>
-<?
+<?php
 
 //***************** finalizacion de la tabla e impresion de totales
 
@@ -508,7 +508,7 @@ else
 
 
 $ss22a = "select * from sico where cuenta = '$cuenta'";
-$rr22a = mysql_db_query($database, $ss22a, $cx);
+$rr22a = $cx->query($ss22a);
 while($rrw22a = mysql_fetch_array($rr22a)) 
 {
   $sico_d=$rrw22a["debito"];
@@ -527,9 +527,9 @@ else
 //************
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from aux_conciliaciones where fecha_fin = '$fecha_fin' and cuenta ='$cuenta' $fecha_b";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 
 
@@ -587,7 +587,7 @@ Saldo Final = %s</b></center></span>
      </div></td>
      <td colspan="2" bgcolor="#990000"><div style='padding-left:5px; padding-top:5px; padding-right:30px; padding-bottom:5px;'>
          <div align="right" class="Estilo11">
-           <div align="center"><? printf("%s",number_format($saldo_extracto,2,'.',','));?> </div>
+           <div align="center"><?php printf("%s",number_format($saldo_extracto,2,'.',','));?> </div>
          </div>
        <div align="right"></div>
        <div align="right"></div>
@@ -606,13 +606,13 @@ Saldo Final = %s</b></center></span>
    <tr>
      <td><div style='padding-left:5px; padding-top:5px; padding-right:20px; padding-bottom:5px;'>
          <div align="right">
-<?
+<?php
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from aux_conciliaciones where (fecha < '$fecha_mes_ant' and cuenta ='$cuenta' and flag1 = '0' and flag2 = '0') or (fecha < '$fecha_mes_ant' and cuenta ='$cuenta' and flag1 = '1' and flag2 = '0')  order by fecha asc";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 $acum_debito_1=0;
 $acum_debito_2=0;
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 $fecha_marca_ctrl=$rw["fecha_marca"];
 $fecha_marca_2=$rw["fecha_marca"];
@@ -632,9 +632,9 @@ $flag2_ctrl=$rw["flag2"];
 //***
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from aux_conciliaciones where ((fecha between '$fecha_mes_ant' and '$fecha_fin' ) and cuenta ='$cuenta' and flag1 = '0' and flag2 = '0') or ((fecha between '$fecha_mes_ant' and '$fecha_fin' ) and cuenta ='$cuenta' and flag1 = '1' and flag2 = '0')  order by fecha asc";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 		$fecha_marca_ctrl=$rw["fecha_marca"];
 		//printf("debito : %s<br>",number_format($rw["debito"],2,',','.'));
@@ -646,9 +646,9 @@ while($rw = mysql_fetch_array($re))
 //****** consulta en tabla auxiliar SIN CONCILIAR vigencias ANTERIORES
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from aux_conciliaciones_vig_ant where cuenta ='$cuenta' and fecha <= '$fecha_fin' order by fecha asc";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 $acum_deb_va='0';
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 				
 				$ctrl1x=$rw["fecha"];
@@ -700,13 +700,13 @@ printf("%s",number_format($tot_debitos,2,'.',','));
 	 
      <td><div style='padding-left:5px; padding-top:5px; padding-right:20px; padding-bottom:5px;'>
          <div align="right">
-<?
+<?php
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from aux_conciliaciones where (fecha < '$fecha_mes_ant' and cuenta ='$cuenta' and flag1 = '0' and flag2 = '0') or (fecha < '$fecha_mes_ant' and cuenta ='$cuenta' and flag1 = '1' and flag2 = '0')  order by fecha asc";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 $acum_credito_1=0;
 $acum_credito_2=0;
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 $fecha_marca_ctrl=$rw["fecha_marca"];
 $fecha_marca_2=$rw["fecha_marca"];
@@ -726,9 +726,9 @@ $flag2_ctrl=$rw["flag2"];
 //***
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from aux_conciliaciones where ((fecha between '$fecha_mes_ant' and '$fecha_fin' ) and cuenta ='$cuenta' and flag1 = '0' and flag2 = '0') or ((fecha between '$fecha_mes_ant' and '$fecha_fin' ) and cuenta ='$cuenta' and flag1 = '1' and flag2 = '0')  order by fecha asc";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 		$fecha_marca_ctrl=$rw["fecha_marca"];
 		//printf("credito : %s<br>",number_format($rw["credito"],2,',','.'));
@@ -741,9 +741,9 @@ while($rw = mysql_fetch_array($re))
 //****** consulta en tabla auxiliar SIN CONCILIAR vigencias ANTERIORES
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from aux_conciliaciones_vig_ant where cuenta ='$cuenta' and fecha <= '$fecha_fin' order by fecha asc";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 $acum_cre_va='0';
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 				
 				$ctrl1x=$rw["fecha"];
@@ -793,7 +793,7 @@ printf("%s",number_format($tot_creditos,2,'.',','));
      </div></td>
      <td colspan="2" bgcolor="#990000"><div style='padding-left:5px; padding-top:5px; padding-right:30px; padding-bottom:5px;'>
          <div align="right" class="Estilo11">
-           <div align="center"><? printf("%s",number_format($saldo_final,2,'.',','));?> </div>
+           <div align="center"><?php printf("%s",number_format($saldo_final,2,'.',','));?> </div>
          </div>
        <div align="right"></div>
      </div></td>
@@ -805,7 +805,7 @@ printf("%s",number_format($tot_creditos,2,'.',','));
      <td colspan="2" bgcolor="#990000"><div style='padding-left:5px; padding-top:5px; padding-right:30px; padding-bottom:5px;'>
          <div align="right" class="Estilo11">
            <div align="center">
-             <? $diferencia = $saldo_extracto -  ($tot_creditos) + ($tot_debitos) - $saldo_final;
+             <?php $diferencia = $saldo_extracto -  ($tot_creditos) + ($tot_debitos) - $saldo_final;
 	 
 	 printf("%s",number_format($diferencia,2,'.',','));?>
            </div>
@@ -813,7 +813,7 @@ printf("%s",number_format($tot_creditos,2,'.',','));
      </div></td>
    </tr>
  </table>
- <?
+ <?php
 ?>
  </div>
 </div>

@@ -1,16 +1,16 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
 } else {
 		// verifico permisos del usuario
 		include('../config.php');
-		$cx = mysql_connect("$server","$dbuser","$dbpass")or die ("Conexion no Exitosa");
-		mysql_select_db("$database"); 
+		$cx = new mysqli($server, $dbuser, $dbpass, $database)or die ("Conexion no Exitosa");
+		
        	$sql="SELECT info FROM usuarios2 where login = '$_SESSION[login]'";
-		$res=mysql_db_query($database,$sql,$cx);
+		$res=$cx->query($sql);
 		$rw =mysql_fetch_array($res);
 if ($rw['info']=='SI')
 {
@@ -101,7 +101,7 @@ table.bordepunteado1 { border-style: solid; border-collapse:collapse; border-wid
   
   <tr>
     <td colspan="3">
-<?
+<?php
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
@@ -193,7 +193,7 @@ while($rowxx3 = mysql_fetch_array($resultadoxx3))
 
 
 
-<?
+<?php
 }else{ // si no tiene persisos de usuario
 	echo "<br><br><center>Usuario no tiene permisos en este m&oacute;dulo</center><br>";
 	echo "<center>Click <a href=\"../user.php\">aqu&iacute; para volver</a></center>";

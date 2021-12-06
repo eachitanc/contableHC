@@ -1,7 +1,7 @@
-<?
+<?php
 set_time_limit(4800);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -126,7 +126,7 @@ background-color:#ECF8FD;
 <div align="center" class="Estilo4">
  <div style='padding-left:10px; padding-top:10px; padding-right:10px; padding-bottom:10px;'>
      
-      <?
+      <?php
 include('../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 mysql_select_db ($database, $cx);
@@ -171,8 +171,8 @@ $saldo_extracto=str_replace(',','',$_POST['saldo']);
 if($saldo_extracto == '')
 {
 		$sq = "select * from aux_conciliaciones where fecha_fin ='$fecha_fin' and cuenta='$cuenta'  ";
-		$re = mysql_db_query($database, $sq, $cx);
-		while($rw = mysql_fetch_array($re)) 
+		$re = $cx->query($sq);
+		while($rw = $re->fetch_assoc()) 
 		{
 		$saldo_extracto=$rw["saldo_extracto"];
 		}//printf(" nom_rubro : $nom_rubro<br>");
@@ -248,7 +248,7 @@ $nn=$cuenta;
 //********************************************
 ?>
       <br />
-      <?
+      <?php
 //********************************************
 //********************************************
 //********************************************
@@ -263,9 +263,9 @@ $conexion=mysql_connect ($server, $dbuser, $dbpass);
 
 //********* ano e id_emp
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 
 $idxx=$rowxx["id_emp"];
@@ -276,9 +276,9 @@ $ano=$rowxx["ano"];
 
 
 $sqlxx3 = "select * from fecha_ini_op";
-$resultadoxx3 = mysql_db_query($database, $sqlxx3, $connectionxx);
+$resultadoxx3 = $connectionxx->query($sqlxx3);
 
-while($rowxx3 = mysql_fetch_array($resultadoxx3)) 
+while($rowxx3 = $resultadoxx3->fetch_assoc()) 
    {
    $fecha_ini_op=$rowxx3["fecha_ini_op"];
    }  
@@ -434,7 +434,7 @@ $total_creditos=0;
 	
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from lib_aux where (fecha between '$fecha_ini' and '$fecha_fin' ) and cuenta = '$nn' order by fecha asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 if ( (mysql_num_rows($re) == 0) ){ // graba el saldo en extracto cuando la cuenta no tinen movimiento en le mes.
 
@@ -448,19 +448,19 @@ if ( (mysql_num_rows($re) == 0) ){ // graba el saldo en extracto cuando la cuent
 				VALUES
 				('$fecha_fin','$saldo_extracto','$nn','$nom_rubro','$fecha_fin','NA',
 				'NA','NA','0','0','','0','0')";
-				mysql_db_query($database, $sql, $cx) or die(mysql_error());
+				$cx->query($sql) or die(mysql_error());
 				
 				}else{ 
 				$sql = "update aux_conciliaciones set saldo_extracto='$saldo_extracto',nom_rubro='$nom_rubro'
 				where fecha_fin='$fecha_fin' and cuenta = '$nn'";
-				$results= mysql_db_query($database, $sql, $cx);
+				$results= $cx->query($sql);
 				}
 			
 }else{
 
 $saldo=$saldo_inicial;
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 		// consulta de numero de cheques
 		
@@ -784,14 +784,14 @@ while($rw = mysql_fetch_array($re))
 					VALUES
 					('$consecutivo','$fecha_fina','$saldo_extractoa','$cuentaa','$nom_rubroa','$fechaa','$dctoa',
 					'$terceroa','$chequea','$debitoa','$creditoa','$estadoa','$flag1','$flag2')";
-					$resultado = mysql_db_query($database, $sql, $cx);
+					$resultado = $cx->query($sql);
 				
 				}
 				else
 				{
 					$sql = "update aux_conciliaciones set consecutivo='$consecutivo',cheque='$chequea',debito='$debitoa',credito='$creditoa', nom_rubro='$nom_rubro'
 					where fecha_fin='$fecha_fina' and cuenta = '$cuentaa' and dcto='$dctoa' and consecutivo = '$consecutivo'  ";
-					$resultado = mysql_db_query($database, $sql, $cx);
+					$resultado = $cx->query($sql);
 				}
 			$chequea='';
 		//}
@@ -808,7 +808,7 @@ while($rw = mysql_fetch_array($re))
 
 
 $sql = "update aux_conciliaciones set saldo_extracto ='$saldo_extractoa' , total_debitos='$total_debitos', total_creditos='$total_creditos', saldo_final='$saldo_final', saldo_inicial='$saldo_inicial' where fecha_fin='$fecha_fina' and cuenta = '$cuentaa' ";
-$resultado = mysql_db_query($database, $sql, $cx);
+$resultado = $cx->query($sql);
 
 $sq4 ="select consecutivo,dcto from aux_conciliaciones";
 $re4 = mysql_db_query($database, $sq4, $cx);
@@ -833,7 +833,7 @@ while($rw4 = mysql_fetch_array($re4))
 ?>
 
 
-<?
+<?php
 
 include('../config.php');
 $base=$database;
@@ -853,8 +853,8 @@ if (mysql_num_rows($result) == 0)
 else
 {
 	$sqlxx = "select * from aux_conciliaciones where estado='SI'";
-	$resultadoxx = mysql_db_query($base, $sqlxx, $conexion);
-	while($rowxx = mysql_fetch_array($resultadoxx)) 
+	$resultadoxx =$conexion->query($sqlxx);
+	while($rowxx = $resultadoxx->fetch_assoc()) 
 	{
 	  $cuentaxx=$rowxx["cuenta"];
 	  $dctoxx=$rowxx["dcto"];
@@ -880,8 +880,8 @@ if (mysql_num_rows($result) == 0)
 else
 {
 	$sqlxx = "select * from aux_conciliaciones where estado='NO'";
-	$resultadoxx = mysql_db_query($base, $sqlxx, $conexion);
-	while($rowxx = mysql_fetch_array($resultadoxx)) 
+	$resultadoxx =$conexion->query($sqlxx);
+	while($rowxx = $resultadoxx->fetch_assoc()) 
 	{
 	  
 	  $cuentaxx=$rowxx["cuenta"];
@@ -911,8 +911,8 @@ if (mysql_num_rows($result) == 0)
 else
 {
 	$sqlxx = "select * from aux_conciliaciones where estado='SI'";
-	$resultadoxx = mysql_db_query($base, $sqlxx, $conexion);
-	while($rowxx = mysql_fetch_array($resultadoxx)) 
+	$resultadoxx =$conexion->query($sqlxx);
+	while($rowxx = $resultadoxx->fetch_assoc()) 
 	{
 	  
 	  $cuentaxx=$rowxx["cuenta"];
@@ -946,12 +946,12 @@ else
 <br />
 CONCILIACION BANCARIA ACTUALIZADA CON EXITO<br /><br /><br />
 <form id="form1" name="form1" method="post">
-<input type="hidden" name="fecha_fin" value="<? printf("%s",$fecha_fin);?>" />
-<input type="hidden" name="cuenta" value="<? printf("%s",$cuenta);?>" />
-<input type="hidden" name="nom_rubro" value="<? printf("%s",$nom_rubro);?>" />
-<input type="hidden" name="saldo_extracto" value="<? printf("%s",$saldo_extracto);?>" />
-<input type="hidden" name="saldo_inicial" value="<? printf("%s",$saldo_inicial);?>" />
-<input type="hidden" name="saldo_final" value="<? printf("%s",$saldo_final);?>" />
+<input type="hidden" name="fecha_fin" value="<?php printf("%s",$fecha_fin);?>" />
+<input type="hidden" name="cuenta" value="<?php printf("%s",$cuenta);?>" />
+<input type="hidden" name="nom_rubro" value="<?php printf("%s",$nom_rubro);?>" />
+<input type="hidden" name="saldo_extracto" value="<?php printf("%s",$saldo_extracto);?>" />
+<input type="hidden" name="saldo_inicial" value="<?php printf("%s",$saldo_inicial);?>" />
+<input type="hidden" name="saldo_final" value="<?php printf("%s",$saldo_final);?>" />
   
   <br />
   <table width="200" border="0" align="center">
@@ -988,7 +988,7 @@ include('../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select distinct (fecha_fin), cuenta , saldo_extracto from aux_conciliaciones where cuenta = '$cuenta' order by cuenta asc ";
 //$sq = "select distinct (fecha_fin), cuenta , saldo_extracto from aux_conciliaciones order by cuenta asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -1017,7 +1017,7 @@ printf("
 
 ");
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
    {
 printf("
 <span class='Estilo4'>
@@ -1050,6 +1050,6 @@ printf("</table></center>");
   </div>
 </body>
 </html>
-<?
+<?php
 }
 ?>

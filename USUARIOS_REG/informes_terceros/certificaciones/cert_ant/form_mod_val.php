@@ -116,13 +116,13 @@ $rw2=mysql_fetch_array($rs2);
         <tr valign="center">
           <td width="1%"> </td>
           <td width="25%"  align="left">Codigo Presupuestal:</td>
-          <td width="74%" align="left"><? echo $cuenta . " - " . $rw2['nom_rubro']; ?></td>
+          <td width="74%" align="left"><?php echo $cuenta . " - " . $rw2['nom_rubro']; ?></td>
         </tr>
         
         <tr valign="center" >
           <td> </td>
           <td  align="left" >Valor:</td>
-          <td align="left"><input type="text" name="producto" id="producto" size="18" value="<? echo $valor; ?>" style="text-align:right"  /></td>
+          <td align="left"><input type="text" name="producto" id="producto" size="18" value="<?php echo $valor; ?>" style="text-align:right"  /></td>
         </tr>
         
      

@@ -1,7 +1,7 @@
-<?
+<?php
 set_time_limit(180);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -33,7 +33,7 @@ a:active {
 .Estilo9 {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; color: #333333; font-weight: bold; }
 -->
 </style>
-<?
+<?php
 include('../config.php');
 
 //*** los campos del encabezado
@@ -83,13 +83,13 @@ mysql_query($sSQL);
 <span class="Estilo9">ACCION DE ELIMINAR<br />REALIZADA CON EXITO</span><br />
 <br /><br />
 <form id="form1" name="form1" method="post">
-<input type="hidden" name="fecha_fin" value="<? printf("%s",$fecha_fin);?>" />
-<input type="hidden" name="cuenta" value="<? printf("%s",$cuenta);?>" />
-<input type="hidden" name="nom_rubro" value="<? printf("%s",$nom_rubro);?>" />
+<input type="hidden" name="fecha_fin" value="<?php printf("%s",$fecha_fin);?>" />
+<input type="hidden" name="cuenta" value="<?php printf("%s",$cuenta);?>" />
+<input type="hidden" name="nom_rubro" value="<?php printf("%s",$nom_rubro);?>" />
 <input name="Submit" type="submit" class="Estilo4" value="Continuar" onclick="this.form.action = 'conciliaciones3.php'" />
 </form>
 </center>
 
-<?
+<?php
 }
 ?>

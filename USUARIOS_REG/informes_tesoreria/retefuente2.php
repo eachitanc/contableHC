@@ -1,7 +1,7 @@
-<?
+<?php
 set_time_limit(1200);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -34,13 +34,13 @@ header("Expires: 0");
 </head>
 
 <body>
-<?
+<?php
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -50,16 +50,16 @@ while($rowxx = mysql_fetch_array($resultadoxx))
    }
    
 $sqlxx3 = "select * from fecha_ini_op";
-$resultadoxx3 = mysql_db_query($database, $sqlxx3, $connectionxx);
+$resultadoxx3 = $connectionxx->query($sqlxx3);
 
-while($rowxx3 = mysql_fetch_array($resultadoxx3)) 
+while($rowxx3 = $resultadoxx3->fetch_assoc()) 
    {
    $desde=$rowxx3["fecha_ini_op"];
    }    
 ?>	
 	<form name="a" method="post" action="retefuente.php">
 </form>	
-	<?
+	<?php
 	$fecha_ini=$_POST['fecha_ini'];
 	$fecha_fin=$_POST['fecha_fin'];	
 	printf("
@@ -73,7 +73,7 @@ while($rowxx3 = mysql_fetch_array($resultadoxx3))
 
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from lib_aux where (fecha between '$fecha_ini' and '$fecha_fin' ) and id_emp = '$id_emp' and cuenta like '%2436'";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
 printf("
 <center>
@@ -96,15 +96,15 @@ printf("
 
 ");
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
    
 //*** INFO CEVA ***//
 //*** porcentaje retefuente 
 $concepto = $rw["retefuente"];  
 $sqlxx = "select * from retefuente where concepto = '$concepto'";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+$resultadoxx = $connectionxx->query($sqlxx);
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {$tarifa=$rowxx["tarifa"]; }   
 //*** vr bruto pagado
 $bruto = $rw["total_pagado"] + $rw["salud"] + $rw["pension"] + $rw["libranza"] + $rw["f_solidaridad"] + $rw["f_empleados"] + $rw["sindicato"] + $rw["embargo"] + $rw["cruce"] + $rw["otros"] + $rw["vr_retefuente"] + $rw["vr_reteiva"] + $rw["vr_reteica"] + $rw["vr_estampilla1"] + $rw["vr_estampilla2"] + $rw["vr_estampilla3"] + $rw["vr_estampilla4"] + $rw["vr_estampilla5"];
@@ -158,8 +158,8 @@ number_format($bruto,2,'.',','),$tarifa2,$rw["retefuente"],number_format($rw["vr
 //*** codigo del banco pgcp (saca nombre del banco y cuenta del pgcp)
 $id_auto_ceva = $rw["id_auto_ceva"];
 $sqlxx3 = "select * FROM ceva where id_emp='$id_emp' and id_auto_ceva = '$id_auto_ceva'";
-$resultadoxx3 = mysql_db_query($database, $sqlxx3, $connectionxx);
-while($rowxx3 = mysql_fetch_array($resultadoxx3)) 
+$resultadoxx3 = $connectionxx->query($sqlxx3);
+while($rowxx3 = $resultadoxx3->fetch_assoc()) 
 {
 
 $pgcp1 = $rowxx3["pgcp1"];
@@ -197,8 +197,8 @@ $o = substr($pgcp15,0,4);
 		if($a == '1110')
 		{			 printf("%s<br>",$pgcp1);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp1'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco1=$rowxx["nom_banco1"];
 					   $num_cta1=$rowxx["num_cta"];
@@ -215,8 +215,8 @@ $o = substr($pgcp15,0,4);
 		if($b == '1110')
 		{			 printf("%s<br>",$pgcp2);		    
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp2'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco2=$rowxx["nom_banco1"];
 					   $num_cta2=$rowxx["num_cta"];
@@ -232,8 +232,8 @@ $o = substr($pgcp15,0,4);
 		if($c == '1110')
 		{			 printf("%s<br>",$pgcp3);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp3'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco3=$rowxx["nom_banco1"];
 					   $num_cta3=$rowxx["num_cta"];
@@ -248,8 +248,8 @@ $o = substr($pgcp15,0,4);
 		if($d == '1110')
 		{			 printf("%s<br>",$pgcp4);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp4'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco4=$rowxx["nom_banco1"];
 					   $num_cta4=$rowxx["num_cta"];
@@ -265,8 +265,8 @@ $o = substr($pgcp15,0,4);
 		if($e == '1110')
 		{			 printf("%s<br>",$pgcp5);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp5'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco5=$rowxx["nom_banco1"];
 					   $num_cta5=$rowxx["num_cta"];
@@ -282,8 +282,8 @@ $o = substr($pgcp15,0,4);
 		if($f == '1110')
 		{			 printf("%s<br>",$pgcp6);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp6'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco6=$rowxx["nom_banco1"];
 					   $num_cta6=$rowxx["num_cta"];
@@ -299,8 +299,8 @@ $o = substr($pgcp15,0,4);
 		if($g == '1110')
 		{			 printf("%s<br>",$pgcp7);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp7'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco7=$rowxx["nom_banco1"];
 					   $num_cta7=$rowxx["num_cta"];
@@ -316,8 +316,8 @@ $o = substr($pgcp15,0,4);
 		if($h == '1110')
 		{			 printf("%s<br>",$pgcp8);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp8'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco8=$rowxx["nom_banco1"];
 					   $num_cta8=$rowxx["num_cta"];
@@ -333,8 +333,8 @@ $o = substr($pgcp15,0,4);
 		if($i == '1110')
 		{			 printf("%s<br>",$pgcp9);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp9'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco9=$rowxx["nom_banco1"];
 					   $num_cta9=$rowxx["num_cta"];
@@ -350,8 +350,8 @@ $o = substr($pgcp15,0,4);
 		if($j == '1110')
 		{			 printf("%s<br>",$pgcp10);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp10'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco10=$rowxx["nom_banco1"];
 					   $num_cta10=$rowxx["num_cta"];
@@ -368,8 +368,8 @@ $o = substr($pgcp15,0,4);
 		if($k == '1110')
 		{			 printf("%s<br>",$pgcp11);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp11'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco11=$rowxx["nom_banco1"];
 					   $num_cta11=$rowxx["num_cta"];
@@ -385,8 +385,8 @@ $o = substr($pgcp15,0,4);
 		if($l == '1110')
 		{			 printf("%s<br>",$pgcp12);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp12'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco12=$rowxx["nom_banco1"];
 					   $num_cta12=$rowxx["num_cta"];
@@ -402,8 +402,8 @@ $o = substr($pgcp15,0,4);
 		if($m == '1110')
 		{			 printf("%s<br>",$pgcp13);	
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp13'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco13=$rowxx["nom_banco1"];
 					   $num_cta13=$rowxx["num_cta"];
@@ -419,8 +419,8 @@ $o = substr($pgcp15,0,4);
 		if($n == '1110')
 		{			 printf("%s<br>",$pgcp14);	
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp14'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco14=$rowxx["nom_banco1"];
 					   $num_cta14=$rowxx["num_cta"];
@@ -436,8 +436,8 @@ $o = substr($pgcp15,0,4);
 		if($o == '1110')
 		{			 printf("%s<br>",$pgcp15);	
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp15'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco15=$rowxx["nom_banco1"];
 					   $num_cta15=$rowxx["num_cta"];
@@ -702,17 +702,17 @@ printf("
 
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sq = "select * from cecp where (fecha_cecp between '$fecha_ini' and '$fecha_fin' ) and id_emp = '$id_emp' order by fecha_cecp asc ";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 
 //*** INFO CECP ***//
 //*** porcentaje retefuente 
 $concepto = $rw["retefuente"];  
 $sqlxx = "select * from retefuente where concepto = '$concepto'";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+$resultadoxx = $connectionxx->query($sqlxx);
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {$tarifa=$rowxx["tarifa"]; }   
 //*** vr bruto pagado
 $bruto = $rw["total_pagado"] + $rw["salud"] + $rw["pension"] + $rw["libranza"] + $rw["f_solidaridad"] + $rw["f_empleados"] + $rw["sindicato"] + $rw["embargo"] + $rw["cruce"] + $rw["otros"] + $rw["vr_retefuente"] + $rw["vr_reteiva"] + $rw["vr_reteica"] + $rw["vr_estampilla1"] + $rw["vr_estampilla2"] + $rw["vr_estampilla3"] + $rw["vr_estampilla4"] + $rw["vr_estampilla5"];
@@ -765,8 +765,8 @@ number_format($bruto,2,'.',','),$tarifa3,$rw["retefuente"],number_format($rw["vr
 //*** codigo del banco pgcp
 $id_auto_cecp = $rw["id_auto_cecp"];
 $sqlxx3 = "select * FROM cecp where id_emp='$id_emp' and id_auto_cecp = '$id_auto_cecp'";
-$resultadoxx3 = mysql_db_query($database, $sqlxx3, $connectionxx);
-while($rowxx3 = mysql_fetch_array($resultadoxx3)) 
+$resultadoxx3 = $connectionxx->query($sqlxx3);
+while($rowxx3 = $resultadoxx3->fetch_assoc()) 
 {
 
 $pgcp1 = $rowxx3["pgcp1"];
@@ -804,8 +804,8 @@ $o = substr($pgcp15,0,4);
 if($a == '1110')
 		{			 printf("%s<br>",$pgcp1);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp1'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco1=$rowxx["nom_banco1"];
 					   $num_cta1=$rowxx["num_cta"];
@@ -822,8 +822,8 @@ if($a == '1110')
 		if($b == '1110')
 		{			 printf("%s<br>",$pgcp2);		    
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp2'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco2=$rowxx["nom_banco1"];
 					   $num_cta2=$rowxx["num_cta"];
@@ -839,8 +839,8 @@ if($a == '1110')
 		if($c == '1110')
 		{			 printf("%s<br>",$pgcp3);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp3'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco3=$rowxx["nom_banco1"];
 					   $num_cta3=$rowxx["num_cta"];
@@ -855,8 +855,8 @@ if($a == '1110')
 		if($d == '1110')
 		{			 printf("%s<br>",$pgcp4);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp4'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco4=$rowxx["nom_banco1"];
 					   $num_cta4=$rowxx["num_cta"];
@@ -872,8 +872,8 @@ if($a == '1110')
 		if($e == '1110')
 		{			 printf("%s<br>",$pgcp5);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp5'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco5=$rowxx["nom_banco1"];
 					   $num_cta5=$rowxx["num_cta"];
@@ -889,8 +889,8 @@ if($a == '1110')
 		if($f == '1110')
 		{			 printf("%s<br>",$pgcp6);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp6'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco6=$rowxx["nom_banco1"];
 					   $num_cta6=$rowxx["num_cta"];
@@ -906,8 +906,8 @@ if($a == '1110')
 		if($g == '1110')
 		{			 printf("%s<br>",$pgcp7);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp7'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco7=$rowxx["nom_banco1"];
 					   $num_cta7=$rowxx["num_cta"];
@@ -923,8 +923,8 @@ if($a == '1110')
 		if($h == '1110')
 		{			 printf("%s<br>",$pgcp8);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp8'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco8=$rowxx["nom_banco1"];
 					   $num_cta8=$rowxx["num_cta"];
@@ -940,8 +940,8 @@ if($a == '1110')
 		if($i == '1110')
 		{			 printf("%s<br>",$pgcp9);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp9'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco9=$rowxx["nom_banco1"];
 					   $num_cta9=$rowxx["num_cta"];
@@ -957,8 +957,8 @@ if($a == '1110')
 		if($j == '1110')
 		{			 printf("%s<br>",$pgcp10);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp10'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco10=$rowxx["nom_banco1"];
 					   $num_cta10=$rowxx["num_cta"];
@@ -975,8 +975,8 @@ if($a == '1110')
 		if($k == '1110')
 		{			 printf("%s<br>",$pgcp11);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp11'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco11=$rowxx["nom_banco1"];
 					   $num_cta11=$rowxx["num_cta"];
@@ -992,8 +992,8 @@ if($a == '1110')
 		if($l == '1110')
 		{			 printf("%s<br>",$pgcp12);
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp12'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco12=$rowxx["nom_banco1"];
 					   $num_cta12=$rowxx["num_cta"];
@@ -1009,8 +1009,8 @@ if($a == '1110')
 		if($m == '1110')
 		{			 printf("%s<br>",$pgcp13);	
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp13'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco13=$rowxx["nom_banco1"];
 					   $num_cta13=$rowxx["num_cta"];
@@ -1026,8 +1026,8 @@ if($a == '1110')
 		if($n == '1110')
 		{			 printf("%s<br>",$pgcp14);	
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp14'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco14=$rowxx["nom_banco1"];
 					   $num_cta14=$rowxx["num_cta"];
@@ -1043,8 +1043,8 @@ if($a == '1110')
 		if($o == '1110')
 		{			 printf("%s<br>",$pgcp15);	
 					$sqlxx = "select * from pgcp where cod_pptal = '$pgcp15'";
-					$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
-					while($rowxx = mysql_fetch_array($resultadoxx)) 
+					$resultadoxx = $connectionxx->query($sqlxx);
+					while($rowxx = $resultadoxx->fetch_assoc()) 
 					   {
 					   $nom_banco15=$rowxx["nom_banco1"];
 					   $num_cta15=$rowxx["num_cta"];
@@ -1312,6 +1312,6 @@ printf("</table></center>");
 
 
 
-<?
+<?php
 }
 ?>

@@ -58,12 +58,12 @@ include('../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 			$sql2 = "SELECT fecha_ceva , id_manu_ceva FROM ceva order by fecha_ceva, id_manu_ceva asc;";
 			$res = mysql_db_query($database,$sql2,$cx);
-		   // $row = mysql_fetch_array($res);
+		   // $row = $res->fetch_assoc();
 			
 			 echo"<center>";
       		 echo "<table  align=center border=0  class='bordepunteado1'>"; 
        		 $columnes = 2; # numero de columnas (variable) 
-             if (($rows=mysql_num_rows($res))==0)
+             if (($rows=$res->num_rows)==0)
 			 {   
                        echo " No Se Han Encontrado  datos";
              } 

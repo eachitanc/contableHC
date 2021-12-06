@@ -4,15 +4,15 @@ include('../config.php');
 $cx=mysql_connect ($server, $dbuser, $dbpass);
 echo "hola";
 $sq = "SELECT * from aux_estracto where deb > 0";
-$re = mysql_db_query($database, $sq, $cx);
+$re = $cx->query($sq);
 $fecha_m = '2015/12/31';
-while($rw = mysql_fetch_array($re)) 
+while($rw = $re->fetch_assoc()) 
 {
 	//$fecha = '2015/07/' . substr($rw['fecha'],-2);
 	$sq2 = "select * from aux_conciliaciones where fecha_fin = '$fecha_m' and debito = '$rw[deb]' and fecha = '$rw[fecha]' and pre =''";
-	$re2 = mysql_db_query($database, $sq2, $cx);
-	$rw2 = mysql_fetch_array($re2);
-	$fl2 = mysql_num_rows($re2);
+	$re2 = $cx->query($sq2);
+	$rw2 = $re2->fetch_assoc();
+	$fl2 = $re2->num_rows;
 	if ($fl2 > 0)
 	{
 		//Actualiza conciliaciones
@@ -29,14 +29,14 @@ while($rw = mysql_fetch_array($re))
 }
 
 $sq = "SELECT * from aux_estracto where cre > 0";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 	$fecha = '2015/07/' . substr($rw['fecha'],-2);
 	$sq2 = "select * from aux_conciliaciones where fecha_fin = '2015/07/31' and cheque = '$rw[dcto]' and credito = '$rw[cre]' and pre =''";
-	$re2 = mysql_db_query($database, $sq2, $cx);
-	$rw2 = mysql_fetch_array($re2);
-	$fl2 = mysql_num_rows($re2);
+	$re2 = $cx->query($sq2);
+	$rw2 = $re2->fetch_assoc();
+	$fl2 = $re2->num_rows;
 	if ($fl2 > 0)
 	{
 		//Actualiza conciliaciones
@@ -52,8 +52,8 @@ while($rw = mysql_fetch_array($re))
 */	
 }
 $sq = "SELECT * from aux_estracto where deb > 0 and estado =''";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re)) 
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc()) 
 {
 	//$fecha = '2015/07/' . substr($rw['fecha'],-2);
 	$sq3 = "select * from aux_conciliaciones where fecha_fin = '$fecha_m' and debito = '$rw[deb]' and pre =''";

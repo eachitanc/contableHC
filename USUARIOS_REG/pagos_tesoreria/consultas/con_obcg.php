@@ -9,9 +9,9 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
     for($i=1;$i<16;$i++)
 	{
 		$sql = "select * from obcg where vr_cre_$i!='' AND id_auto_obcg='$reten'";
-		$res = mysql_db_query($database, $sql, $cx);
-		//$numf=mysql_num_rows($res);
-		while ($row = mysql_fetch_array($res))
+		$res = $cx->query($sql);
+		//$numf=$res->num_rows;
+		while ($row = $res->fetch_assoc())
 		{
 			$numf++;
 			$pgcp=$row[pgcp."$i"];

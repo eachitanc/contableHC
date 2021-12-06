@@ -39,8 +39,8 @@ $concepto=$_POST['concepto'];
 $cuenta=$_POST['cuenta'];
 $codigo=$_POST['codigo'];
 $sqlx = "select * from retecree where id ='$id'";
-$resx = mysql_db_query($database, $sqlx, $cx);
-while($rowx = mysql_fetch_array($resx)) 
+$resx = $cx->query($sqlx);
+while($rowx = $resx->fetch_assoc()) 
 {
   $concepto_ant=$rowx["concepto"]; 
 }
@@ -74,28 +74,28 @@ while($rowx = mysql_fetch_array($resx))
 	$numrangos=count($base);
 // Actualio las tablas cecp y ceva con el concepto modificado de la retefuente
 $sqx = "update cecp set reteiva='$concepto' where reteiva = '$concepto_ant'"; 
-$resx = mysql_db_query($database, $sqx, $cx);
+$resx = $cx->query($sqx);
 $sqx1 = "update ceva set reteiva='$concepto' where reteiva = '$concepto_ant'"; 
-$resx1 = mysql_db_query($database, $sqx1, $cx);
+$resx1 = $cx->query($sqx1);
 // Actualizo los datos de la retencion
 $sql = "update retecree set concepto='$concepto',a_partir='$a_partir',tarifa='$tarifa', cuenta ='$cuenta', codigo_ret='$codigo' where id = '$id' ";
-$resultado = mysql_db_query($database, $sql, $cx);
+$resultado = $cx->query($sql);
 
 for($i=0;$i<$numrangos;$i++)
 {
 		// Consulto la tabla rangos para saber si el rango existe y decidir si guardo un nuevo registro o lo edito
 		$sqx2 = "select base,tope,tarifa from rango where concepto= '$concepto' and id ='$id5[$i]'";
-		$rex2 = mysql_db_query($database, $sqx2, $cx);
+		$rex2 = $cx->query($sqx2);
 		$maxi = mysql_num_rows($rex2);
 		if (empty($maxi))
 		{
 			$sql = "INSERT INTO rango ( concepto ,base, tope, tarifa ) VALUES ( '$concepto' ,'$base[$i]', '$tope[$i]', '$tarifa[$i]')";
-			mysql_db_query($database, $sql, $cx) or die(mysql_error());
+			$cx->query($sql) or die(mysql_error());
 		}
 		else
 		{
 			$sql = "update rango set concepto ='$concepto',base ='$base[$i]', tope='$tope[$i]', tarifa ='$tarifa[$i]' where id ='$id5[$i]'";
-			mysql_db_query($database, $sql, $cx) or die(mysql_error());
+			$cx->query($sql) or die(mysql_error());
 		}
 }
 for($i=0;$i<$numrangos;$i++)

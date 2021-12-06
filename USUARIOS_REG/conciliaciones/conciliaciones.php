@@ -1,7 +1,7 @@
-<?
+<?php
 set_time_limit(600);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
@@ -9,7 +9,7 @@ exit;
 		// verifico permisos del usuario
 		include('../config.php');
 		$cx = mysql_connect("$server","$dbuser","$dbpass")or die ("Conexion no Exitosa");
-		mysql_select_db("$database"); 
+		 
        	$sql="SELECT teso,conta FROM usuarios2 where login = '$_SESSION[login]'";
 		$res=mysql_db_query($database,$sql,$cx);
 		$rw =mysql_fetch_array($res);
@@ -109,7 +109,7 @@ req.send(null);
 <table width="600" border="0" align="center">
   
   <tr>
-    <td width="798" colspan="3"><?
+    <td width="798" colspan="3"><?php
 include('../config.php');
 
 //**** variables para generacion dinamica
@@ -117,15 +117,15 @@ $base=$database;
 $conexion=mysql_connect ($server, $dbuser, $dbpass);
 
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($base, $sqlxx, $conexion);
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+$resultadoxx =$conexion->query($sqlxx);
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {  $idxx=$rowxx["id_emp"];  $id_emp=$rowxx["id_emp"];  }
 //********************** ano y fecha ini op
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
    {
    
    $idxx=$rowxx["id_emp"];
@@ -135,9 +135,9 @@ while($rowxx = mysql_fetch_array($resultadoxx))
    }
    
 $sqlxx3 = "select * from fecha_ini_op";
-$resultadoxx3 = mysql_db_query($database, $sqlxx3, $connectionxx);
+$resultadoxx3 = $connectionxx->query($sqlxx3);
 
-while($rowxx3 = mysql_fetch_array($resultadoxx3)) 
+while($rowxx3 = $resultadoxx3->fetch_assoc()) 
    {
    $desde=$rowxx3["fecha_ini_op"];
    }  
@@ -163,15 +163,15 @@ while($rowxx3 = mysql_fetch_array($resultadoxx3))
     <td colspan="2"><div class="Estilo4" style="padding-left:3px; padding-top:3px; padding-right:3px; padding-bottom:3px;">
       <div align="center">
         <select name="nn" class="Estilo4" style="width: 400px;">
-          <?
+          <?php
 include('../config.php');
 $db = new mysqli($server, $dbuser, $dbpass, $database);
 
 $strSQL = "SELECT * FROM pgcp WHERE id_emp = '$idxx' AND tip_dato = 'D' AND cod_pptal like '1110%' ORDER BY cod_pptal";
-$rs = mysql_query($strSQL);
+$rs = $db->query($strSQL);
 $nr = mysql_num_rows($rs);
 for ($i=0; $i<$nr; $i++) {
-	$r = mysql_fetch_array($rs);
+	$r = $rs->fetch_assoc();
 	echo "<OPTION VALUE=\"".$r["cod_pptal"].";".$r["nom_rubro"]."\">".$r["cod_pptal"]." - ".$r["nom_rubro"]."</b></OPTION>";
 }
 ?>
@@ -187,13 +187,13 @@ for ($i=0; $i<$nr; $i++) {
     <td><div id="div" style="padding-left:5px; padding-top:5px; padding-right:5px; padding-bottom:5px;">
       
           <div align="center">
-<?
+<?php
 include('../config.php');				
 $connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+$resultadoxx = $connectionxx->query($sqlxx);
 
-while($rowxx = mysql_fetch_array($resultadoxx)) 
+while($rowxx = $resultadoxx->fetch_assoc()) 
 {
 $ano=$rowxx["ano"];
 }
@@ -208,18 +208,18 @@ if ($bis ==1) $feb= $anio.'/02/29'; else $feb = $anio.'/02/28';
 
 ?>	  
 <select name="fecha_fin" class="Estilo4" id="corte">
-<option value="<? printf("$anio/01/31");?>">ENERO </option>
-<option value="<? printf("$feb");?>">FEBRERO </option>
-<option value="<? printf("$anio/03/31");?>">MARZO </option>
-<option value="<? printf("$anio/04/30");?>">ABRIL </option>
-<option value="<? printf("$anio/05/31");?>">MAYO </option>
-<option value="<? printf("$anio/06/30");?>">JUNIO </option>
-<option value="<? printf("$anio/07/31");?>">JULIO </option>
-<option value="<? printf("$anio/08/31");?>">AGOSTO </option>
-<option value="<? printf("$anio/09/30");?>">SEPTIEMBRE </option>
-<option value="<? printf("$anio/10/31");?>">OCTUBRE </option>
-<option value="<? printf("$anio/11/30");?>">NOVIEMBRE </option>
-<option value="<? printf("$anio/12/31");?>">DICIEMBRE </option>
+<option value="<?php printf("$anio/01/31");?>">ENERO </option>
+<option value="<?php printf("$feb");?>">FEBRERO </option>
+<option value="<?php printf("$anio/03/31");?>">MARZO </option>
+<option value="<?php printf("$anio/04/30");?>">ABRIL </option>
+<option value="<?php printf("$anio/05/31");?>">MAYO </option>
+<option value="<?php printf("$anio/06/30");?>">JUNIO </option>
+<option value="<?php printf("$anio/07/31");?>">JULIO </option>
+<option value="<?php printf("$anio/08/31");?>">AGOSTO </option>
+<option value="<?php printf("$anio/09/30");?>">SEPTIEMBRE </option>
+<option value="<?php printf("$anio/10/31");?>">OCTUBRE </option>
+<option value="<?php printf("$anio/11/30");?>">NOVIEMBRE </option>
+<option value="<?php printf("$anio/12/31");?>">DICIEMBRE </option>
 </select>		
           <br />
           </div>
@@ -252,7 +252,7 @@ if ($bis ==1) $feb= $anio.'/02/29'; else $feb = $anio.'/02/28';
 </table>
 </form>	
 <br />
-<?
+<?php
 include('../config.php');
 $base=$database;
 $conexion=mysql_connect ($server, $dbuser, $dbpass);
@@ -318,7 +318,7 @@ $conexion=mysql_connect ($server, $dbuser, $dbpass);
 
 
 
-<?
+<?php
 
 }else{ // si no tiene persisos de usuario
 	echo "<br><br><center>Usuario no tiene permisos en este m&oacute;dulo</center><br>";

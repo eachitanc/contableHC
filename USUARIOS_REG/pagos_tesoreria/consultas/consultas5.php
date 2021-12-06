@@ -13,8 +13,8 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 				INNER JOIN cree 
 					ON (terceros_juridicos.act_eco = cree.codigo)
 			WHERE (terceros_juridicos.id =$id_ter);";
-	$res = mysql_db_query($database, $sql, $cx);
-	$row = mysql_fetch_array($res);
+	$res = $cx->query($sql);
+	$row = $res->fetch_assoc();
 	$tarifa = $row['tarifa'];
 	$sq2="select * from retecree";
 	$rs2=$cx->query($sq2);

@@ -1863,7 +1863,7 @@ $ccnit = $rw["ccnit"];
 					new mysqli($server, $dbuser, $dbpass, $database);
 					
 					$resultamax = mysql_query("select MAX(id_manu_cecp) FROM cecp");
-					while($arraymax = mysql_fetch_array($resultamax)) 
+					while($arraymax = $resulta->fetch_array()) 
 					{
 						$ultimo = $arraymax[0];
 						$ultimo1 = substr($ultimo,4);
@@ -1962,7 +1962,7 @@ $ccnit = $rw["ccnit"];
 						$db = new mysqli($server, $dbuser, $dbpass, $database);
 						
 						$strSQL = "SELECT * FROM terceros_naturales  WHERE id_emp = '$id_emp' order by  pri_ape asc ";
-						$rs = mysql_query($strSQL);
+						$rs = $db->query($strSQL);
 						$nr = mysql_num_rows($rs);
 						for ($i=0; $i<$nr; $i++) 
 						{
@@ -1992,7 +1992,7 @@ $ccnit = $rw["ccnit"];
 						$db = new mysqli($server, $dbuser, $dbpass, $database);
 						
 						$strSQL = "SELECT * FROM terceros_juridicos  WHERE id_emp = '$id_emp' order by raz_soc2 asc ";
-						$rs = mysql_query($strSQL);
+						$rs = $db->query($strSQL);
 						$nr = mysql_num_rows($rs);
 						for ($i=0; $i<$nr; $i++) 
 						{

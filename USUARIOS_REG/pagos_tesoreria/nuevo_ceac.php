@@ -1845,12 +1845,12 @@ if (!$_SESSION["login"]) {
 									<div align="center" class="Estilo12">
 										<div align="center">
 											<?php
-											$ultimo2 = $_POST['id_manu_cecp'];
+											$ultimo = '';
+											$ultimo2 = isset($_POST['id_manu_cecp']) ? $_POST['id_manu_cecp'] : '';
 											if ($ultimo2 == '') {
 												$cx = new mysqli($server, $dbuser, $dbpass, $database);
-
 												$resultamax = $cx->query("select MAX(id_manu_cecp) FROM cecp");
-												while ($arraymax = $resultamax->fetch_array()) {
+												while ($arraymax = $resultamax->fetch_row()) {
 													$ultimo = $arraymax[0];
 													$ultimo1 = substr($ultimo, 4);
 													$ultimoo = $ultimo1 + 1;
@@ -2208,7 +2208,7 @@ if (!$_SESSION["login"]) {
 			</br>
 		</table>
 		<!-- Datos del compromiso vige anterior -->
-		<table width="800" border="0" id="deduciones" align="center" style="display:">
+		<table width="800" border="0" id="deduciones" align="center" style="display:''">
 			<tr>
 				<td colspan="4">
 					<div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;">
@@ -2466,7 +2466,7 @@ if (!$_SESSION["login"]) {
 				</td>
 			</tr>
 		</table> <!-- Descuentos y deducciones -->
-		<table width="950" border="0" id="retenciones" align="center" style="display:">
+		<table width="950" border="0" id="retenciones" align="center" style="display:''">
 			<tr>
 				<td colspan="5">
 					<div style="padding-left:5px; padding-top:10px; padding-right:5px; padding-bottom:10px;"></div>
@@ -3343,9 +3343,9 @@ if (!$_SESSION["login"]) {
 								include('../config.php');
 								$connectionxx = new mysqli($server, $dbuser, $dbpass, $database) or die("Fallo en la Conexion a la Base de Datos");
 								$sqlxx = "select * from fecha";
-								$resultadoxx = mysql_db_query($database, $sqlxx, $connectionxx);
+								$resultadoxx = $connectionxx->query($sqlxx);
 
-								while ($rowxx = mysql_fetch_array($resultadoxx)) {
+								while ($rowxx = $resultadoxx->fetch_assoc()) {
 									$ano = $rowxx["ano"];
 								}
 								echo $ano;

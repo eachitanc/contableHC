@@ -6,8 +6,8 @@ include('../../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 // Obtengo el nombre del rubro y el valor inicial constituido como cuenta por pagar
 	$sql = "select * from aux_conciliaciones2  where dcto ='$ceva' and estado ='SI'";
-	$res = mysql_db_query($database, $sql, $cx);
-	$fil=mysql_num_rows($res);
+	$res = $cx->query($sql);
+	$fil=$res->num_rows;
 	echo $fil;
 $cx = null;
 ?>

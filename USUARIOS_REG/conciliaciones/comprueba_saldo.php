@@ -1,12 +1,12 @@
-<?
+<?php
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
 } else {
 ?>
-<?
+<?php
 include('../config.php');
 
 //*** luis hillon
@@ -40,7 +40,7 @@ else
 }
 mysql_close($conexion);
 ?>
-<?
+<?php
 }
 ?>
 

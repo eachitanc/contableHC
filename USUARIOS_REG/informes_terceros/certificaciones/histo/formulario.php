@@ -351,8 +351,8 @@ while ($rw9 = mysql_fetch_array ($rs9))
 		// formularios para llamado de ajax
 		echo "<input name='id_cobp' id='id_cobp' value='$rw9[id_auto_cobp]' type='hidden' />";
 		// Muestro la tabla del reporte
-		?> <tr id='<? echo $rw9[id_auto_cobp]; ?>' onmousemove='cambiaColor(id)' onmouseout='cambiaColor2(id)' style='cursor:pointer;' onclick="VerCobp('generator/table2/formulario.php','vert');">
-      <?
+		?> <tr id='<?php echo $rw9[id_auto_cobp]; ?>' onmousemove='cambiaColor(id)' onmouseout='cambiaColor2(id)' style='cursor:pointer;' onclick="VerCobp('generator/table2/formulario.php','vert');">
+      <?php
 	  echo"
 		<td  align='left'>$rw9[fecha_cobp]</td>
         <td  align='left'>$rw9[id_manu_cobp]</td>

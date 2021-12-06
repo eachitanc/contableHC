@@ -25,7 +25,7 @@ if ($anno[0] != $vigen2)
 		// Consulto la tabla de pagos por sumar el valor total pagado del cada rubro
 		$sql2 = "select max(id_manu_ceva) from ceva where fecha_ceva='$fecha'";
 		$res = mysql_db_query($database,$sql2,$cx);
-		$row = mysql_fetch_array($res);
+		$row = $res->fetch_assoc();
 		$dato = $row["max(id_manu_ceva)"];
 		$concec= substr($dato,4,20);
 		if ($concec)

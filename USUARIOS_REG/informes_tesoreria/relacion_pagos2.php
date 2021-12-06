@@ -1,18 +1,18 @@
-<?
+<?php
 set_time_limit(1800);
 session_start();
-if(!session_is_registered("login"))
+if(!isset($_SESSION["login"]))
 {
 header("Location: ../login.php");
 exit;
 } else {
 	include('../config.php');
 					// verifico permisos del usuario
-		$cx = mysql_connect("$server","$dbuser","$dbpass")or die ("Conexion no Exitosa");
-		mysql_select_db("$database"); 
+		$cx = new mysqli($server, $dbuser, $dbpass, $database)or die ("Conexion no Exitosa");
+		
        	$sql="SELECT teso FROM usuarios2 where login = '$_SESSION[login]'";
-		$res=mysql_db_query($database,$sql,$cx);
-		$rw =mysql_fetch_array($res);
+		$res=$cx->query($sql);
+		$rw =$res->fetch_assoc();
 if ($rw['teso']=='SI')
 {
 
@@ -43,13 +43,13 @@ header("Expires: 0");
 </style>
 </head>
 <body>
-<?
+<?php
 include('../config.php');				
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 // llegan las variables
 $sxx = "select * from fecha";
-$rxx = mysql_db_query($database, $sxx, $cx);
-while($rowxxx = mysql_fetch_array($rxx)) 
+$rxx = $cx->query($sxx);
+while($rowxxx = $rxx->fetch_assoc()) 
    {
    $ano=$rowxxx["ano"];
    }
@@ -87,8 +87,8 @@ printf("
 </tr>
 ");
 $sq = "SELECT * from ceva where fecha_ceva BETWEEN '$fecha_ini' AND '$fecha_fin' order  by fecha_ceva asc";
-$re = mysql_db_query($database, $sq, $cx);
-while($rw = mysql_fetch_array($re))
+$re = $cx->query($sq);
+while($rw = $re->fetch_assoc())
 {
 		$seg_soc=$rw["salud"]+$rw["pension"];
 		$reten = $rw["vr_retefuente"] + $rw["vr_reteiva"] + $rw["vr_reteica"]; 
@@ -102,8 +102,8 @@ while($rw = mysql_fetch_array($re))
 			 if ($cod_conta2 =='1110' or $cod_conta2 =='1120')
 			 {
 				$sq2 = "SELECT cod_sia,num_cta,fuentes_recursos from pgcp where cod_pptal ='$cod_conta'";
-				$re2 = mysql_db_query($database, $sq2, $cx);	
-				$rw2 = mysql_fetch_array($re2);
+				$re2 = $cx->query($sq2);	
+				$rw2 = $re2->fetch_assoc();
 				if ($i =='1')
 				{$j='';}else{$j=$i;}
 				$banco = $rw2["cod_sia"];
@@ -129,16 +129,16 @@ while($rw = mysql_fetch_array($re))
 			 }
 		}   
 		$sq3 = "SELECT sum(vr_digitado) as pag_cobp from cobp  where (id_auto_cobp ='$rw[id_auto_cobp]' or ceva ='$rw[id_auto_ceva]') ";
-		$re3 = mysql_db_query($database, $sq3, $cx);	
-		$rw3 = mysql_fetch_array($re3);
+		$re3 = $cx->query($sq3);	
+		$rw3 = $re3->fetch_assoc();
 		$valor = $rw3["pag_cobp"];
 		$neto = round($valor - $seg_soc - $reten - $otros_des,2);
 		$sq1 = "SELECT sum(vr_digitado) as pag,cuenta from cobp where (id_auto_cobp='$rw[id_auto_cobp]' or ceva ='$rw[id_auto_ceva]') group by cuenta";
-		$re1 = mysql_db_query($database, $sq1, $cx);
-		$rubros =mysql_num_rows($re1);
+		$re1 = $cx->query($sq1);
+		$rubros =$re1->num_rows;
 		$sq4 = "SELECT clas_contrato from contrataciones2 where id_auto_crpp ='$rw[id_auto_crpp]'";
-		$re4 = mysql_db_query($database, $sq4, $cx);	
-		$rw4 = mysql_fetch_array($re4);
+		$re4 = $cx->query($sq4);	
+		$rw4 = $re4->fetch_assoc();
 		$clase = $rw4["clas_contrato"];
 		if ($clase =='MENOR CUANT�A') $clase=' C12';
 		if ($clase =='DESIERTO LICITACI�N') $clase=' C12';
@@ -185,10 +185,10 @@ while($rw = mysql_fetch_array($re))
 		if ($clase =='OTROS') $clase='C12';
 		if ($rubros == 1)
 		{
-		 $rw1 = mysql_fetch_array($re1);
+		 $rw1 = $re1->fetch_assoc();
 					$sq5 = "SELECT  clase_pago_sia,cod_sia,nom_rubro  from car_ppto_gas where cod_pptal ='$rw1[cuenta]'";
-					$re5 = mysql_db_query($database, $sq5, $cx);	
-					$rw5 = mysql_fetch_array($re5);
+					$re5 = $cx->query($sq5);	
+					$rw5 = $re5->fetch_assoc();
 		 if ($clase =='')
 				{
 					$clase = $rw5["clase_pago_sia"];
@@ -216,15 +216,15 @@ while($rw = mysql_fetch_array($re))
 				$p_seg_soc =$seg_soc/$valor;
 				$p_reten = $reten/$valor;
 				$p_otros_des =$otros_des/$valor;
-				while($rw1 = mysql_fetch_array($re1))
+				while($rw1 = $re1->fetch_assoc())
 					{
 							
 						if ($rw1["pag"] >0)
 						{
 							$cuenta =$rw1["cuenta"];
 							$sq6 = "SELECT  clase_pago_sia,cod_sia,nom_rubro  from car_ppto_gas where cod_pptal ='$cuenta'";
-							$re6 = mysql_db_query($database, $sq6, $cx);	
-							$rw6 = mysql_fetch_array($re6);
+							$re6 = $cx->query($sq6);	
+							$rw6 = $re6->fetch_assoc();
 							
 							if ($clase =='')
 							{

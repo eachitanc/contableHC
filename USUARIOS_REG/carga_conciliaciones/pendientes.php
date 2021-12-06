@@ -1,4 +1,4 @@
-<?
+<?php
 set_time_limit(600);
 session_start();
 if(!isset($_SESSION["login"]))
@@ -9,10 +9,10 @@ exit;
 					// verifico permisos del usuario
 		include('../config.php');
 		$cx = mysql_connect("$server","$dbuser","$dbpass")or die ("Conexion no Exitosa");
-		mysql_select_db("$database"); 
+		 
        	$sql="SELECT conta FROM usuarios2 where login = '$_SESSION[login]'";
 		$res=mysql_db_query($database,$sql,$cx);
-		$rw =mysql_fetch_array($res);
+		$rw =$res->fetch_assoc();
 if ($rw['conta']=='SI')
 {
 
@@ -49,7 +49,7 @@ function validar(e) {
 </style>
 </head>
 <body>
-<?
+<?php
 printf("
 <center>
 <table width='900' BORDER='1' class='bordepunteado1'>

@@ -351,8 +351,8 @@ while ($rw9 = mysql_fetch_array ($rs9))
 		// formularios para llamado de ajax
 		echo "<input name='id_cobp' id='id_cobp' value='$rw9[id_auto_cobp]' type='hidden' />";
 		// Muestro la tabla del reporte
-		?> <tr id="<? echo $rw9['id_auto_cobp']; ?>" onMouseOver="cambiaColortr(id);" onMouseOut="cambiaColortr2(id);"  style='cursor:pointer;' onClick="cargaArchivo('animated.php?id_cobp=<? echo $rw9['id_auto_cobp']; ?>','emergente');">
-      <?
+		?> <tr id="<?php echo $rw9['id_auto_cobp']; ?>" onMouseOver="cambiaColortr(id);" onMouseOut="cambiaColortr2(id);"  style='cursor:pointer;' onClick="cargaArchivo('animated.php?id_cobp=<?php echo $rw9['id_auto_cobp']; ?>','emergente');">
+      <?php
 	  echo"
 		<td  align='left'>$rw9[fecha_cobp]</td>
         <td  align='left'>$rw9[id_manu_cobp]</td>

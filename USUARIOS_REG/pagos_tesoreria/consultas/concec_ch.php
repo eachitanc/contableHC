@@ -11,8 +11,8 @@ $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Cone
 		$campo = 'num_cheque'.$i;
 		if ($i == 1) $campo ='num_cheque' ;
 		$sql = "select * from ceva where $campo ='$cheque'";
-		$res = mysql_db_query($database, $sql, $cx);
-		$filas = mysql_num_rows($res);
+		$res = $cx->query($sql);
+		$filas = $res->num_rows;
 		if ($filas > 0) $cont++;
 	}
 	//$valort=$valoret*$valor;
