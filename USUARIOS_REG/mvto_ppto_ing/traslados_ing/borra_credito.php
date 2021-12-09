@@ -36,7 +36,7 @@ include('../../config.php');
 $cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 //echo $_GET['borrar'];
 $sqlxx = "select * from fecha";
-$resultadoxx = mysql_db_query($database, $sqlxx, $cx);
+$resultadoxx = $cx->query($sqlxx);
 
 while($rowxx = $resultadoxx->fetch_assoc()) 
 {

@@ -15,7 +15,7 @@ $fecha_adi=$_POST['fecha_a'];
 include('../../config.php');				
 	$cx = new mysqli($server, $dbuser, $dbpass, $database) or die ("Fallo en la Conexion a la Base de Datos");
 	$sqlxx = "select * from vf";
-	$resultadoxx = mysql_db_query($database, $sqlxx, $cx);
+	$resultadoxx = $cx->query($sqlxx);
 	while($rowxx = $resultadoxx->fetch_assoc()) 
 	{
  		 $ax=$rowxx["fecha_ini"]; $bx=$rowxx["fecha_fin"];
